@@ -283,8 +283,8 @@ export default function SmartTable() {
           {[
             { step: "01", title: "Cliente toca", desc: "NFC o QR code — sin app, sin descarga, sin friccion" },
             { step: "02", title: "Portal abierto", desc: "Se abre pagina web instantanea en el navegador del celular" },
-            { step: "03", title: "Datos capturados", desc: "Nombre, telefono, historial de visitas guardados en CRM" },
-            { step: "04", title: "Accion automatica", desc: "SMS de bienvenida, oferta personalizada, fidelizacion" },
+            { step: "03", title: "Ordena desde la mesa", desc: "Explora el menu digital, elige platillos y envia el pedido sin llamar al mesero" },
+            { step: "04", title: "Deja tu resena", desc: "Acceso directo a Google Business para calificar con 5 estrellas en segundos" },
           ].map((item) => (
             <div key={item.step} className="flex gap-3">
               <div className="w-10 h-10 bg-amber-500/10 border border-amber-700/40 rounded-xl flex items-center justify-center shrink-0">
