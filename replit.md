@@ -16,6 +16,22 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - **API codegen**: Orval (from OpenAPI spec)
 - **Build**: esbuild (CJS bundle)
 
+## Artifacts
+
+### Conect-R Dashboard (`artifacts/conectr-dashboard`)
+- **Type**: React + Vite (frontend-only, no backend)
+- **Preview**: `/` (root)
+- **Purpose**: Interactive Sales Dashboard showcasing Conect-R ecosystem for "Restaurante Maya"
+- **Design**: Dark mode, gold/wood accents, Cinzel serif font (Maya-Elegant)
+- **Modules**:
+  1. Smart Table (NFC/QR) — stand visualizer + client portal simulator
+  2. Gestion Operativa — Table Reserve + NextUp waitlist
+  3. Digital Signage — TV screen simulator + 1-click content update
+  4. Presencia Digital — Web Builder preview + AI Concierge chat
+  5. Modulo Creativo — Menu templates + social content calendar
+  6. Antes y Despues — Before/After comparison with Recharts graphs
+- **Key packages**: framer-motion, recharts, lucide-react, wouter, radix-ui
+
 ## Key Commands
 
 - `pnpm run typecheck` — full typecheck across all packages
