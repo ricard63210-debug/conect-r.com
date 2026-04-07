@@ -90,11 +90,18 @@ export default function GestionOperativa() {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">Gestion Operativa</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          Software Suite completo para eliminar colas fisicas, gestionar reservaciones con SMS automatico
-          y maximizar la rotacion de mesas.
+        <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">Ecosistema All Inclusive</h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto mb-4">
+          Reservaciones automaticas, listas de espera digitales, confirmaciones por SMS, captura de datos del cliente,
+          rotacion de mesas optimizada, senalizacion digital, presencia web y mas — todo integrado en un solo sistema.
+          Tu enfoque: crear experiencias y generar revenue. Lo demas, nosotros lo automatizamos.
         </p>
+        <div className="inline-block bg-amber-900/20 border border-amber-700/40 rounded-2xl px-6 py-3">
+          <p className="text-amber-300 font-serif text-base italic">
+            "Tu exito es nuestra razon de ser. Si tu restaurante crece, nosotros crecemos contigo."
+          </p>
+          <p className="text-amber-500/60 text-xs mt-1 text-center">— El equipo de Conect-R</p>
+        </div>
       </div>
 
       {/* Tabs */}

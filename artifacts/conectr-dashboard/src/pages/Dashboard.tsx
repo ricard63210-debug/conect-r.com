@@ -22,8 +22,8 @@ const modules = [
   },
   {
     id: "gestion",
-    label: "Gestion Operativa",
-    sublabel: "Reservas & Espera",
+    label: "Ecosistema All Inclusive",
+    sublabel: "Todo en uno para crecer",
     icon: BarChart2,
     component: GestionOperativa,
     color: "from-orange-700 to-orange-500",
