@@ -563,7 +563,7 @@ export default function SmartTable() {
           {[
             { step: "01", title: "Toca el stand", desc: "NFC o QR code — sin app, sin descarga, sin friccion" },
             { step: "02", title: "Ve el menu digital", desc: "Carta completa con fotos HD, precios y descripcion de platillos" },
-            { step: "03", title: "Ordena desde la mesa", desc: "Envia su pedido directo a cocina sin esperar al mesero" },
+            { step: "03", title: "Cualquier link que el dueno elija", desc: "Juegos, trivias, promociones, videos — el dueno configura el destino desde el panel de control" },
             { step: "04", title: "Deja su resena", desc: "Acceso directo a Google Business para calificar con 5 estrellas en segundos" },
           ].map((item) => (
             <div key={item.step} className="flex gap-3">
