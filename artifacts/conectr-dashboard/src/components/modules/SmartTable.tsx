@@ -222,7 +222,7 @@ export default function SmartTable() {
       icon: QrCode,
       color: "from-amber-600 to-amber-400",
       desc: "Carta completa con descripcion y fotos de cada platillo",
-      url: null,
+      url: `${window.location.origin}/maya-menu/`,
     },
     {
       id: "reviews",
@@ -277,9 +277,7 @@ export default function SmartTable() {
 
   const handlePortalButton = (btn: typeof portalButtons[0]) => {
     setActiveButton(btn.id);
-    if (btn.id === "menu") {
-      setShowMenu(true);
-    } else if (btn.url) {
+    if (btn.url) {
       window.open(btn.url, "_blank", "noopener,noreferrer");
     }
   };
