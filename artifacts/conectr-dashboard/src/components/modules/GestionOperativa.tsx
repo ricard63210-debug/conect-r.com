@@ -191,10 +191,35 @@ export default function GestionOperativa() {
               ))}
             </div>
 
+            {/* Data captured automatically on reservation */}
+            <div className="maya-card rounded-xl p-5 border border-amber-800/30">
+              <h4 className="text-sm font-semibold text-amber-400 mb-4 flex items-center gap-2">
+                <Check size={16} /> Datos capturados automaticamente al reservar
+              </h4>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
+                {[
+                  { label: "Nombre completo", value: "Ana Garcia" },
+                  { label: "Telefono", value: "+52 55 8765 4321" },
+                  { label: "Email", value: "ana@email.com" },
+                  { label: "Personas", value: "4 comensales" },
+                  { label: "Fecha y hora", value: "Vie 4 Abr 19:00" },
+                  { label: "Ocasion especial", value: "Cumpleanos" },
+                ].map(item => (
+                  <div key={item.label} className="bg-muted/10 border border-border/40 rounded-xl p-3">
+                    <div className="text-xs text-muted-foreground mb-1">{item.label}</div>
+                    <div className="text-sm font-medium text-foreground">{item.value}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="text-xs text-muted-foreground/70 bg-amber-900/10 border border-amber-800/20 rounded-lg p-3">
+                Estos datos se guardan automaticamente en el CRM al momento de la reserva — sin que el staff tenga que ingresarlos manualmente.
+              </div>
+            </div>
+
             {/* SMS confirmation simulation */}
             <div className="maya-card rounded-xl p-5">
               <h4 className="text-sm font-semibold text-amber-400 mb-3 flex items-center gap-2">
-                <Bell size={16} /> Como funciona la confirmacion SMS automatica
+                <Bell size={16} /> Confirmacion SMS automatica
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
                 {[

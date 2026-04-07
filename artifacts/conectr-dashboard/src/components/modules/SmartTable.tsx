@@ -2,21 +2,13 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Wifi, Star, Calendar, Instagram, Facebook, Smartphone, QrCode,
-  ChevronRight, Check, Users, TrendingUp, X
+  ChevronRight, Check, Users, TrendingUp
 } from "lucide-react";
-
-interface CustomerData {
-  name: string;
-  phone: string;
-  email: string;
-  visits: number;
-}
 
 export default function SmartTable() {
   const [activeButton, setActiveButton] = useState<string | null>(null);
-  const [nfcTapped, setNfcTapped] = useState(false);
-  const [customerCaptured, setCustomerCaptured] = useState<CustomerData | null>(null);
   const [showAnimation, setShowAnimation] = useState(false);
+  const [portalOpen, setPortalOpen] = useState(false);
 
   const portalButtons = [
     { id: "menu", label: "Menu Digital", icon: QrCode, color: "from-amber-600 to-amber-400", desc: "Carta completa con fotos HD y precios actualizados" },
@@ -27,23 +19,17 @@ export default function SmartTable() {
   ];
 
   const handleNfcTap = () => {
-    setNfcTapped(true);
+    if (showAnimation) return;
     setShowAnimation(true);
     setTimeout(() => {
-      setCustomerCaptured({
-        name: "Carlos Mendez",
-        phone: "+52 55 1234 5678",
-        email: "carlos@email.com",
-        visits: 3
-      });
+      setPortalOpen(true);
       setShowAnimation(false);
-    }, 2500);
+    }, 2000);
   };
 
   const resetNfc = () => {
-    setNfcTapped(false);
-    setCustomerCaptured(null);
-    setShowAnimation(false);
+    setPortalOpen(false);
+    setActiveButton(null);
   };
 
   return (
@@ -109,7 +95,7 @@ export default function SmartTable() {
               Haz clic en el stand para simular un toque NFC
             </p>
 
-            {/* Phone animation */}
+            {/* Phone animation while loading portal */}
             <AnimatePresence>
               {showAnimation && (
                 <motion.div
@@ -133,47 +119,32 @@ export default function SmartTable() {
             </AnimatePresence>
           </div>
 
-          {/* Customer data captured */}
+          {/* Portal opened confirmation */}
           <AnimatePresence>
-            {customerCaptured && (
+            {portalOpen && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 className="maya-card rounded-xl p-4 border border-amber-800/40"
               >
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center">
-                      <Check size={16} className="text-amber-400" />
+                    <div className="w-7 h-7 bg-amber-500/20 rounded-full flex items-center justify-center">
+                      <Check size={14} className="text-amber-400" />
                     </div>
-                    <span className="text-sm font-semibold text-amber-400">Datos capturados al instante</span>
+                    <span className="text-sm font-semibold text-amber-400">Portal abierto en el celular</span>
                   </div>
-                  <button onClick={resetNfc} className="text-muted-foreground hover:text-foreground">
-                    <X size={16} />
+                  <button onClick={resetNfc} className="text-muted-foreground hover:text-foreground text-xs underline">
+                    Reiniciar
                   </button>
                 </div>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Nombre:</span>
-                    <span className="font-medium">{customerCaptured.name}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Telefono:</span>
-                    <span className="font-medium">{customerCaptured.phone}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Email:</span>
-                    <span className="font-medium">{customerCaptured.email}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Visitas previas:</span>
-                    <span className="font-medium text-amber-400">{customerCaptured.visits}</span>
-                  </div>
-                </div>
-                <div className="mt-3 text-xs text-muted-foreground/70 bg-muted/20 rounded-lg p-2">
-                  CRM actualizado automaticamente. Se envio mensaje de bienvenida.
-                </div>
+                <p className="text-xs text-muted-foreground">
+                  El cliente ve el menu, resenas, eventos y redes sociales del restaurante.
+                  Es una herramienta de <span className="text-amber-300 font-medium">engagement y marketing directo</span>,
+                  no de captura de datos. Los datos se capturan automaticamente en
+                  <span className="text-amber-300 font-medium"> Table Reserve</span> cuando el cliente hace una reservacion.
+                </p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -274,17 +245,17 @@ export default function SmartTable() {
         </div>
       </div>
 
-      {/* How it captures data */}
+      {/* What happens in the portal */}
       <div className="maya-card rounded-2xl p-6">
         <h3 className="text-lg font-semibold text-primary mb-4 flex items-center gap-2">
-          <ChevronRight size={20} /> Como capturamos datos al instante
+          <ChevronRight size={20} /> Que puede hacer el cliente desde el portal
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {[
-            { step: "01", title: "Cliente toca", desc: "NFC o QR code — sin app, sin descarga, sin friccion" },
-            { step: "02", title: "Portal abierto", desc: "Se abre pagina web instantanea en el navegador del celular" },
-            { step: "03", title: "Ordena desde la mesa", desc: "Explora el menu digital, elige platillos y envia el pedido sin llamar al mesero" },
-            { step: "04", title: "Deja tu resena", desc: "Acceso directo a Google Business para calificar con 5 estrellas en segundos" },
+            { step: "01", title: "Toca el stand", desc: "NFC o QR code — sin app, sin descarga, sin friccion" },
+            { step: "02", title: "Ve el menu digital", desc: "Carta completa con fotos HD, precios y descripcion de platillos" },
+            { step: "03", title: "Ordena desde la mesa", desc: "Envia su pedido directo a cocina sin esperar al mesero" },
+            { step: "04", title: "Deja su resena", desc: "Acceso directo a Google Business para calificar con 5 estrellas en segundos" },
           ].map((item) => (
             <div key={item.step} className="flex gap-3">
               <div className="w-10 h-10 bg-amber-500/10 border border-amber-700/40 rounded-xl flex items-center justify-center shrink-0">
