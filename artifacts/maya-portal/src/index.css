@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --gold: #d4a017;
+  --gold-light: #f0c040;
+  --gold-dim: #a07810;
+  --bg: #0d0a06;
+  --bg-card: #1a1208;
+  --bg-card2: #211609;
+  --cream: #fdf8ec;
+  --text: #f5ead5;
+  --text-muted: #8b7355;
+  --border: rgba(212,160,23,0.18);
+  --font-serif: 'Cinzel', serif;
+  --font-deco: 'Cinzel Decorative', serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overscroll-behavior: none;
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #d4a017 0%, #f0c040 50%, #b8860b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.portal-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  transition: all 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.portal-card:active {
+  transform: scale(0.96);
+  opacity: 0.88;
+}
+
+.btn-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 8px;
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 100;
+  padding: 0;
+}
+
+.modal-sheet {
+  background: #1a1208;
+  border: 1px solid rgba(212,160,23,0.25);
+  border-radius: 1.5rem 1.5rem 0 0;
+  width: 100%;
+  max-width: 440px;
+  padding: 24px 20px 40px;
+  animation: slideUp 0.28s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.form-input {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(212,160,23,0.25);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.18s;
+}
+
+.form-input::placeholder { color: var(--text-muted); }
+.form-input:focus { border-color: var(--gold); }
+
+textarea.form-input {
+  resize: none;
+  min-height: 100px;
+}
+
+.btn-submit {
+  width: 100%;
+  background: linear-gradient(135deg, #d4a017, #b8860b);
+  color: #0d0a06;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-serif);
+  letter-spacing: 0.04em;
+  transition: opacity 0.18s;
+}
+.btn-submit:active { opacity: 0.85; }
+.btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-cancel {
+  width: 100%;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: color 0.18s;
+}
+.btn-cancel:hover { color: var(--text); }
