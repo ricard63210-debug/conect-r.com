@@ -107,8 +107,8 @@ export default function GestionOperativa() {
       {/* Tabs */}
       <div className="flex gap-2 p-1 bg-muted/20 rounded-xl w-fit mx-auto">
         {[
-          { id: "reserve", label: "Table Reserve", icon: Calendar },
-          { id: "nextup", label: "NextUp — Lista de Espera", icon: Users },
+          { id: "reserve", label: "Table Reserve", logo: "/logo-table-reserve.jpeg" },
+          { id: "nextup", label: "NextUp — Lista de Espera", logo: "/logo-nextup.jpeg" },
         ].map((tab) => (
           <button
             key={tab.id}
@@ -120,7 +120,7 @@ export default function GestionOperativa() {
                 : "text-muted-foreground hover:text-foreground"
             }`}
           >
-            <tab.icon size={16} />
+            <img src={tab.logo} alt={tab.label} className="w-5 h-5 rounded-full object-cover shrink-0" />
             {tab.label}
           </button>
         ))}
