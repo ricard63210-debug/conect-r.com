@@ -63,8 +63,8 @@ const modules = [
   },
   {
     id: "resultados",
-    label: "Resultados",
-    sublabel: "Antes vs Despues",
+    label: "Proyección",
+    sublabel: "Con Conect-R",
     icon: TrendingUp,
     component: AntesDepues,
     color: "from-green-700 to-green-500",
