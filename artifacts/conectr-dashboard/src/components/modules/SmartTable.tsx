@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Wifi, Star, Calendar, Instagram, Facebook, Smartphone, QrCode,
   ChevronRight, Check, Users, TrendingUp, ExternalLink, MessageCircleWarning,
-  ThumbsDown, Send, ArrowLeft, Plus, Flame, Leaf
+  ThumbsDown, Send, ArrowLeft, Flame, Leaf, Heart
 } from "lucide-react";
 
 interface FeedbackState {
@@ -11,6 +11,16 @@ interface FeedbackState {
   issues: string[];
   comment: string;
   submitted: boolean;
+}
+
+interface MenuItem {
+  name: string;
+  desc: string;
+  detail: string;
+  emoji: string;
+  gradient: string;
+  spicy?: boolean;
+  veg?: boolean;
 }
 
 const ISSUE_OPTIONS = [
@@ -27,36 +37,167 @@ const ISSUE_OPTIONS = [
 const MENU_CATEGORIES = ["Entradas", "Tacos", "Platos Fuertes", "Bebidas", "Postres"] as const;
 type MenuCategory = typeof MENU_CATEGORIES[number];
 
-const MENU_ITEMS: Record<MenuCategory, { name: string; desc: string; price: string; spicy?: boolean; veg?: boolean }[]> = {
+const MENU_ITEMS: Record<MenuCategory, MenuItem[]> = {
   Entradas: [
-    { name: "Guacamole Artesanal", desc: "Aguacate, jitomate, cilantro, limon, jalapeño", price: "$9.00", veg: true },
-    { name: "Queso Fundido", desc: "Queso Oaxaca derretido con chorizo y rajas", price: "$11.00", spicy: true },
-    { name: "Tostadas de Ceviche", desc: "Camaron fresco, limon, chile serrano, pepino", price: "$13.00" },
-    { name: "Sopa de Lima", desc: "Caldo de pollo, tortilla crujiente, lima yucateca", price: "$8.00" },
+    {
+      name: "Guacamole Artesanal",
+      desc: "Aguacate, jitomate, cilantro, limon, jalapeño",
+      detail: "Preparado al momento en molcajete de piedra volcanica. Usamos aguacates Hass maduros, jitomate asado, cilantro fresco, limon de Colima y jalapeño picado. Servido con totopos artesanales recien hechos. Una receta familiar que llevamos mas de 15 anos perfeccionando.",
+      emoji: "🥑",
+      gradient: "from-green-700 to-emerald-500",
+      veg: true,
+    },
+    {
+      name: "Queso Fundido",
+      desc: "Queso Oaxaca derretido con chorizo y rajas",
+      detail: "Una cazuela de barro directo al horno con queso Oaxaca de hebra fundido a la perfeccion, coronado con chorizo artesanal de la casa y rajas de chile poblano asado. Se sirve con tortillas de maiz recien hechas. Ideal para compartir.",
+      emoji: "🧀",
+      gradient: "from-yellow-600 to-orange-500",
+      spicy: true,
+    },
+    {
+      name: "Tostadas de Ceviche",
+      desc: "Camaron fresco, limon, chile serrano, pepino",
+      detail: "Camaron fresco marinado en jugo de limon durante 4 horas, mezclado con pepino, cebolla morada, chile serrano y cilantro. Servido sobre tostadas crujientes artesanales con aguacate y salsa botanera. Sabor del mar en cada bocado.",
+      emoji: "🦐",
+      gradient: "from-orange-600 to-red-500",
+    },
+    {
+      name: "Sopa de Lima",
+      desc: "Caldo de pollo, tortilla crujiente, lima yucateca",
+      detail: "Receta tradicional yucateca con caldo de pollo dorado, pechuga desmenuzada, jitomate asado, cebolla morada, chile habanero suave y el toque distintivo de lima yucateca. Se decora con tiras de tortilla crujiente y aguacate. Confort en cada cucharada.",
+      emoji: "🍋",
+      gradient: "from-yellow-500 to-amber-400",
+    },
   ],
   Tacos: [
-    { name: "Al Pastor", desc: "Cerdo adobado, pina, cilantro, cebolla", price: "$4.50", spicy: true },
-    { name: "Birria", desc: "Res estofada en consomme, queso, cilantro", price: "$5.00" },
-    { name: "Camarones", desc: "Camaron a la diabla, col morada, chipotle", price: "$5.50", spicy: true },
-    { name: "Hongos", desc: "Hongos salteados, epazote, chile poblano", price: "$4.00", veg: true },
-    { name: "Carnitas", desc: "Cerdo confitado, salsa verde, cebolla morada", price: "$4.50" },
+    {
+      name: "Al Pastor",
+      desc: "Cerdo adobado, pina, cilantro, cebolla",
+      detail: "Cerdo marinado 24 horas en achiote, chiles guajillo y ancho, oregano y especias. Cocinado en trompo vertical y cortado al momento. Servido con pina natural, cilantro fresco, cebolla blanca y salsa verde tatemada. El taco mas icónico de la cultura mexicana.",
+      emoji: "🌮",
+      gradient: "from-red-600 to-orange-500",
+      spicy: true,
+    },
+    {
+      name: "Birria",
+      desc: "Res estofada en consomme, queso, cilantro",
+      detail: "Res cocida lentamente por 6 horas en consomme de chiles guajillo, ancho y pasilla con especias mexicanas. Servida con queso Chihuahua fundido, cilantro y cebolla. Acompanada de consomme caliente para mojar. La receta favorita de nuestros clientes.",
+      emoji: "🥩",
+      gradient: "from-rose-700 to-red-500",
+    },
+    {
+      name: "Camarones",
+      desc: "Camaron a la diabla, col morada, chipotle",
+      detail: "Camarones jumbo salteados en salsa a la diabla con chile de arbol, chipotle ahumado y mantequilla de ajo. Servidos sobre tortilla de maiz azul con col morada encurtida, crema de chipotle y jugo de limon. Picantes y llenos de sabor del oceano.",
+      emoji: "🦐",
+      gradient: "from-pink-700 to-red-600",
+      spicy: true,
+    },
+    {
+      name: "Hongos",
+      desc: "Hongos salteados, epazote, chile poblano",
+      detail: "Mix de hongos de temporada — portobello, shiitake y ostra — salteados con ajo, epazote fresco, chile poblano asado y mantequilla. Servidos en tortilla de maiz hecha a mano con frijoles negros, queso Oaxaca y salsa verde. Opcion vegetariana de sabor intenso.",
+      emoji: "🍄",
+      gradient: "from-amber-700 to-yellow-600",
+      veg: true,
+    },
+    {
+      name: "Carnitas",
+      desc: "Cerdo confitado, salsa verde, cebolla morada",
+      detail: "Cerdo confitado en manteca de cerdo durante 4 horas con naranja, canela, hojas de laurel y ajo hasta lograr una textura que se deshace. Crujiente por fuera, jugoso por dentro. Servido con salsa verde tatemada, cebolla morada y chile serrano.",
+      emoji: "🐷",
+      gradient: "from-amber-600 to-orange-500",
+    },
   ],
   "Platos Fuertes": [
-    { name: "Mole Negro", desc: "Pollo bañado en mole negro oaxaqueño, arroz, frijoles", price: "$18.00" },
-    { name: "Chile en Nogada", desc: "Chile poblano relleno, nogada de nuez, granadas", price: "$21.00", veg: true },
-    { name: "Ribeye a la Mexicana", desc: "300g, nopal asado, salsa roja, frijoles charros", price: "$28.00", spicy: true },
-    { name: "Camarones al Mezcal", desc: "Camarones jumbo, crema de chile ancho, arroz verde", price: "$24.00" },
+    {
+      name: "Mole Negro",
+      desc: "Pollo bañado en mole negro oaxaqueño, arroz, frijoles",
+      detail: "Nuestro mole negro es una receta de mas de 30 ingredientes: chiles mulato, pasilla, chihuacle negro, chocolate amargo, platano macho, ajonjoli y especias. Cocinado lentamente por 8 horas. Servido sobre muslo de pollo rostizado, arroz rojo y frijoles negros con epazote. Patrimonio de la cocina mexicana.",
+      emoji: "🍗",
+      gradient: "from-stone-700 to-amber-800",
+    },
+    {
+      name: "Chile en Nogada",
+      desc: "Chile poblano relleno, nogada de nuez, granadas",
+      detail: "Chile poblano asado relleno de picadillo de res y cerdo con frutas de temporada — durazno, pera, platano y almendras — bañado en nogada de nuez de Castilla fresca, decorado con granada roja y perejil. Los colores de la bandera mexicana en un solo plato.",
+      emoji: "🌶️",
+      gradient: "from-green-700 to-emerald-600",
+      veg: true,
+    },
+    {
+      name: "Ribeye a la Mexicana",
+      desc: "300g, nopal asado, salsa roja, frijoles charros",
+      detail: "Corte de Ribeye de 300g al punto deseado, sazonado con especias mexicanas y sellado en comal de hierro. Acompanado de nopal asado con ensalada de chile de arbol, frijoles charros con tocino y chorizo, y salsa roja de molcajete. El favorito de los carnivoros.",
+      emoji: "🥩",
+      gradient: "from-red-800 to-rose-700",
+      spicy: true,
+    },
+    {
+      name: "Camarones al Mezcal",
+      desc: "Camarones jumbo, crema de chile ancho, arroz verde",
+      detail: "Camarones gigantes flambeados en mezcal Joven con mantequilla de ajo negro, servidos sobre crema de chile ancho tatemado y arroz verde de cilantro. Un plato que combina la tradicion del mezcal artesanal con ingredientes del Pacifico mexicano. Experiencia gourmet.",
+      emoji: "🦐",
+      gradient: "from-blue-700 to-teal-600",
+    },
   ],
   Bebidas: [
-    { name: "Margarita Clasica", desc: "Tequila blanco, limon, triple sec, sal", price: "$10.00" },
-    { name: "Mezcal Negroni", desc: "Mezcal Joven, Campari, Vermut Rojo", price: "$13.00" },
-    { name: "Agua de Jamaica", desc: "Flor de Jamaica, azucar de cana, hierbabuena", price: "$4.00", veg: true },
-    { name: "Michelada Maya", desc: "Cerveza, clamato, limon, chamoy, tajin", price: "$8.00", spicy: true },
+    {
+      name: "Margarita Clasica",
+      desc: "Tequila blanco, limon, triple sec, sal",
+      detail: "La clasica bien hecha: tequila blanco 100% agave, jugo de limon exprimido al momento, triple sec premium y una pizca de sal de grano. Servida en copa escarcha con sal de grano y limon. Simple, perfecta, inigualable. La base de toda buena cantina.",
+      emoji: "🍹",
+      gradient: "from-yellow-500 to-lime-500",
+    },
+    {
+      name: "Mezcal Negroni",
+      desc: "Mezcal Joven, Campari, Vermut Rojo",
+      detail: "Un Negroni con caracter mexicano: mezcal joven artesanal de Oaxaca en lugar del gin clasico, Campari italiano y Vermut Rojo dulce. Servido en vaso old fashioned con hielo esferico y una piel de naranja expresada. Para los amantes de lo amargo y lo complejo.",
+      emoji: "🥃",
+      gradient: "from-red-700 to-amber-600",
+    },
+    {
+      name: "Agua de Jamaica",
+      desc: "Flor de Jamaica, azucar de cana, hierbabuena",
+      detail: "Infusion artesanal de flor de Jamaica seca de Guerrero, endulzada con azucar de cana natural, enfriada lentamente y servida con hierbabuena fresca y limon. Una bebida sin alcohol llena de antioxidantes y sabor genuino. Refrescante y natural.",
+      emoji: "🌺",
+      gradient: "from-pink-700 to-fuchsia-600",
+      veg: true,
+    },
+    {
+      name: "Michelada Maya",
+      desc: "Cerveza, clamato, limon, chamoy, tajin",
+      detail: "La michelada de la casa: cerveza lager fria mezclada con clamato, jugo de limon fresco, salsa Worcestershire, Tabasco y sal de ajo. Vaso escarcha con chamoy y tajin. Decorada con camarones encurtidos y pepino. Una explosion de sabores que solo Maya sabe hacer.",
+      emoji: "🍺",
+      gradient: "from-amber-600 to-red-500",
+      spicy: true,
+    },
   ],
   Postres: [
-    { name: "Tres Leches", desc: "Bizcocho empapado en tres leches, crema batida", price: "$7.00" },
-    { name: "Churros con Chocolate", desc: "Churros crujientes, chocolate caliente, cajeta", price: "$8.00" },
-    { name: "Helado de Elote", desc: "Helado artesanal de elote dulce, cajeta, canela", price: "$6.00", veg: true },
+    {
+      name: "Tres Leches",
+      desc: "Bizcocho esponjoso empapado en tres leches, crema batida",
+      detail: "Bizcocho casero horneado en el momento y empapado en la mezcla de leche entera, leche evaporada y leche condensada. Cubierto con crema batida artesanal y decorado con canela en polvo. Ligero, humedo y con ese sabor dulce que recuerda la cocina de la abuela.",
+      emoji: "🍰",
+      gradient: "from-amber-200 to-yellow-300",
+      veg: true,
+    },
+    {
+      name: "Churros con Chocolate",
+      desc: "Churros crujientes, chocolate caliente, cajeta",
+      detail: "Churros fritos al momento con masa de choux, crujientes por fuera y suaves por dentro, espolvoreados con azucar y canela. Servidos con chocolate caliente artesanal de cacao mexicano de Tabasco y cajeta de cabra para mojar. El postre mas pedido de la casa.",
+      emoji: "🍫",
+      gradient: "from-amber-700 to-yellow-600",
+    },
+    {
+      name: "Helado de Elote",
+      desc: "Helado artesanal de elote dulce, cajeta, canela",
+      detail: "Helado elaborado con elote dulce fresco de temporada, leche entera y crema. De textura cremosa y sabor inconfundible. Servido en copa con cajeta artesanal de Celaya, canela molida y nuez tostada. Una interpretacion gourmet de un sabor tipicamente mexicano.",
+      emoji: "🌽",
+      gradient: "from-yellow-400 to-amber-400",
+      veg: true,
+    },
   ],
 };
 
@@ -66,6 +207,7 @@ export default function SmartTable() {
   const [portalOpen, setPortalOpen] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [menuCategory, setMenuCategory] = useState<MenuCategory>("Entradas");
+  const [selectedDish, setSelectedDish] = useState<MenuItem | null>(null);
   const [feedback, setFeedback] = useState<FeedbackState>({
     rating: 0,
     issues: [],
@@ -79,13 +221,13 @@ export default function SmartTable() {
       label: "Menu Digital",
       icon: QrCode,
       color: "from-amber-600 to-amber-400",
-      desc: "Carta completa con fotos HD y precios actualizados",
+      desc: "Carta completa con descripcion y fotos de cada platillo",
       url: null,
     },
     {
       id: "reviews",
-      label: "Resenas Google",
-      icon: Star,
+      label: "Comparte tu experiencia",
+      icon: Heart,
       color: "from-yellow-600 to-yellow-400",
       desc: "Disfrutaste con nosotros? Compartelo con la gente.",
       url: "https://www.google.com/search?q=maya+cantina+reviews+google",
@@ -129,6 +271,7 @@ export default function SmartTable() {
     setPortalOpen(false);
     setActiveButton(null);
     setShowMenu(false);
+    setSelectedDish(null);
     setFeedback({ rating: 0, issues: [], comment: "", submitted: false });
   };
 
@@ -275,7 +418,61 @@ export default function SmartTable() {
               </div>
             </div>
 
-            {/* === MENU VIEW === */}
+            {/* ===== DISH DETAIL VIEW ===== */}
+            <AnimatePresence>
+              {selectedDish && (
+                <motion.div
+                  key="dish-detail"
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  exit={{ x: "100%" }}
+                  transition={{ type: "tween", duration: 0.28 }}
+                  className="absolute inset-0 top-8 bg-gray-950 z-20 flex flex-col overflow-y-auto"
+                >
+                  {/* Photo area */}
+                  <div className={`relative h-52 bg-gradient-to-br ${selectedDish.gradient} flex flex-col items-center justify-center shrink-0`}>
+                    <button
+                      onClick={() => setSelectedDish(null)}
+                      className="absolute top-3 left-3 flex items-center gap-1 bg-black/40 backdrop-blur-sm px-2.5 py-1.5 rounded-full text-xs text-white font-medium"
+                    >
+                      <ArrowLeft size={13} /> Regresar
+                    </button>
+                    <span className="text-7xl drop-shadow-lg">{selectedDish.emoji}</span>
+                  </div>
+
+                  {/* Info */}
+                  <div className="p-4 space-y-3">
+                    <div className="flex items-start gap-2">
+                      <div className="flex-1">
+                        <h3 className="text-base font-bold text-white leading-tight">{selectedDish.name}</h3>
+                        <div className="flex items-center gap-2 mt-1">
+                          {selectedDish.spicy && (
+                            <span className="flex items-center gap-1 text-xs text-orange-400 bg-orange-900/30 px-2 py-0.5 rounded-full">
+                              <Flame size={10} /> Picante
+                            </span>
+                          )}
+                          {selectedDish.veg && (
+                            <span className="flex items-center gap-1 text-xs text-green-400 bg-green-900/30 px-2 py-0.5 rounded-full">
+                              <Leaf size={10} /> Vegetariano
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-gray-300 leading-relaxed">{selectedDish.detail}</p>
+
+                    <div className="p-3 bg-amber-900/20 border border-amber-800/30 rounded-xl">
+                      <p className="text-xs text-amber-300/80 italic">
+                        "Cocinado con ingredientes frescos y recetas autenticas de la cocina mexicana tradicional."
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* ===== MENU VIEW ===== */}
             <AnimatePresence>
               {showMenu && (
                 <motion.div
@@ -289,21 +486,17 @@ export default function SmartTable() {
                   {/* Menu header */}
                   <div className="relative bg-white flex flex-col items-center pt-4 pb-3 shrink-0">
                     <button
-                      onClick={() => { setShowMenu(false); setActiveButton(null); }}
+                      onClick={() => { setShowMenu(false); setActiveButton(null); setSelectedDish(null); }}
                       className="absolute left-3 top-4 flex items-center gap-1 text-xs text-blue-600 font-medium"
                     >
                       <ArrowLeft size={14} /> Volver
                     </button>
-                    <img
-                      src="/maya-logo.jpeg"
-                      alt="Maya Cantina"
-                      className="h-16 object-contain"
-                    />
+                    <img src="/maya-logo.jpeg" alt="Maya Cantina" className="h-14 object-contain" />
                     <p className="text-xs text-gray-500 mt-1">Cocina Mexicana • SAC, CA</p>
                   </div>
 
                   {/* Category tabs */}
-                  <div className="flex gap-0 bg-gray-900 border-b border-gray-800 overflow-x-auto shrink-0 scrollbar-hide">
+                  <div className="flex gap-0 bg-gray-900 border-b border-gray-800 overflow-x-auto shrink-0" style={{ scrollbarWidth: "none" }}>
                     {MENU_CATEGORIES.map(cat => (
                       <button
                         key={cat}
@@ -319,7 +512,7 @@ export default function SmartTable() {
                     ))}
                   </div>
 
-                  {/* Menu items */}
+                  {/* Menu items — tappable */}
                   <div className="flex-1 overflow-y-auto">
                     <AnimatePresence mode="wait">
                       <motion.div
@@ -331,22 +524,26 @@ export default function SmartTable() {
                         className="divide-y divide-gray-800"
                       >
                         {MENU_ITEMS[menuCategory].map((item) => (
-                          <div key={item.name} className="flex items-start justify-between p-3 gap-2">
+                          <motion.button
+                            key={item.name}
+                            onClick={() => setSelectedDish(item)}
+                            whileTap={{ scale: 0.98 }}
+                            className="w-full flex items-center gap-3 p-3 text-left active:bg-gray-800/60"
+                          >
+                            {/* Mini photo */}
+                            <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shrink-0`}>
+                              <span className="text-2xl">{item.emoji}</span>
+                            </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-1.5 mb-0.5">
                                 <span className="text-xs font-semibold text-white leading-tight">{item.name}</span>
                                 {item.spicy && <Flame size={10} className="text-orange-500 shrink-0" />}
                                 {item.veg && <Leaf size={10} className="text-green-500 shrink-0" />}
                               </div>
-                              <p className="text-xs text-gray-400 leading-tight">{item.desc}</p>
+                              <p className="text-xs text-gray-400 leading-tight line-clamp-2">{item.desc}</p>
                             </div>
-                            <div className="flex flex-col items-end gap-1.5 shrink-0">
-                              <span className="text-xs font-bold text-amber-400">{item.price}</span>
-                              <button className="w-6 h-6 bg-amber-500 rounded-full flex items-center justify-center hover:bg-amber-400 transition-colors">
-                                <Plus size={12} className="text-black" />
-                              </button>
-                            </div>
-                          </div>
+                            <ChevronRight size={14} className="text-gray-600 shrink-0" />
+                          </motion.button>
                         ))}
                       </motion.div>
                     </AnimatePresence>
@@ -365,9 +562,8 @@ export default function SmartTable() {
               )}
             </AnimatePresence>
 
-            {/* === PORTAL MAIN VIEW === */}
+            {/* ===== PORTAL MAIN VIEW ===== */}
             <div className="absolute inset-0 top-8 bg-gradient-to-b from-gray-950 to-black overflow-y-auto scrollbar-gold">
-              {/* Header */}
               <div className="relative h-24 bg-gradient-to-b from-amber-900/60 to-transparent flex flex-col items-center justify-center">
                 <div className="text-xl font-serif font-bold gold-gradient">RESTAURANTE MAYA</div>
                 <div className="text-xs text-amber-300/70 mt-1">Cocina Mexicana Autentica</div>
@@ -562,9 +758,9 @@ export default function SmartTable() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {[
             { step: "01", title: "Toca el stand", desc: "NFC o QR code — sin app, sin descarga, sin friccion" },
-            { step: "02", title: "Ve el menu digital", desc: "Carta completa con fotos HD, precios y descripcion de platillos" },
+            { step: "02", title: "Ve el menu digital", desc: "Carta completa con fotos y descripcion detallada de cada platillo" },
             { step: "03", title: "Cualquier link que el dueno elija", desc: "Juegos, trivias, promociones, videos — el dueno configura el destino desde el panel de control" },
-            { step: "04", title: "Deja su resena", desc: "Acceso directo a Google Business para calificar con 5 estrellas en segundos" },
+            { step: "04", title: "Comparte su experiencia", desc: "Acceso directo a Google Business para calificar con 5 estrellas en segundos" },
           ].map((item) => (
             <div key={item.step} className="flex gap-3">
               <div className="w-10 h-10 bg-amber-500/10 border border-amber-700/40 rounded-xl flex items-center justify-center shrink-0">
