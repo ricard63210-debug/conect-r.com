@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Wifi, Star, Calendar, Instagram, Facebook, Smartphone, QrCode,
   ChevronRight, Check, Users, TrendingUp, ExternalLink, MessageCircleWarning,
-  ThumbsDown, Send
+  ThumbsDown, Send, ArrowLeft, Plus, Flame, Leaf
 } from "lucide-react";
 
 interface FeedbackState {
@@ -24,10 +24,48 @@ const ISSUE_OPTIONS = [
   "Otro",
 ];
 
+const MENU_CATEGORIES = ["Entradas", "Tacos", "Platos Fuertes", "Bebidas", "Postres"] as const;
+type MenuCategory = typeof MENU_CATEGORIES[number];
+
+const MENU_ITEMS: Record<MenuCategory, { name: string; desc: string; price: string; spicy?: boolean; veg?: boolean }[]> = {
+  Entradas: [
+    { name: "Guacamole Artesanal", desc: "Aguacate, jitomate, cilantro, limon, jalapeño", price: "$9.00", veg: true },
+    { name: "Queso Fundido", desc: "Queso Oaxaca derretido con chorizo y rajas", price: "$11.00", spicy: true },
+    { name: "Tostadas de Ceviche", desc: "Camaron fresco, limon, chile serrano, pepino", price: "$13.00" },
+    { name: "Sopa de Lima", desc: "Caldo de pollo, tortilla crujiente, lima yucateca", price: "$8.00" },
+  ],
+  Tacos: [
+    { name: "Al Pastor", desc: "Cerdo adobado, pina, cilantro, cebolla", price: "$4.50", spicy: true },
+    { name: "Birria", desc: "Res estofada en consomme, queso, cilantro", price: "$5.00" },
+    { name: "Camarones", desc: "Camaron a la diabla, col morada, chipotle", price: "$5.50", spicy: true },
+    { name: "Hongos", desc: "Hongos salteados, epazote, chile poblano", price: "$4.00", veg: true },
+    { name: "Carnitas", desc: "Cerdo confitado, salsa verde, cebolla morada", price: "$4.50" },
+  ],
+  "Platos Fuertes": [
+    { name: "Mole Negro", desc: "Pollo bañado en mole negro oaxaqueño, arroz, frijoles", price: "$18.00" },
+    { name: "Chile en Nogada", desc: "Chile poblano relleno, nogada de nuez, granadas", price: "$21.00", veg: true },
+    { name: "Ribeye a la Mexicana", desc: "300g, nopal asado, salsa roja, frijoles charros", price: "$28.00", spicy: true },
+    { name: "Camarones al Mezcal", desc: "Camarones jumbo, crema de chile ancho, arroz verde", price: "$24.00" },
+  ],
+  Bebidas: [
+    { name: "Margarita Clasica", desc: "Tequila blanco, limon, triple sec, sal", price: "$10.00" },
+    { name: "Mezcal Negroni", desc: "Mezcal Joven, Campari, Vermut Rojo", price: "$13.00" },
+    { name: "Agua de Jamaica", desc: "Flor de Jamaica, azucar de cana, hierbabuena", price: "$4.00", veg: true },
+    { name: "Michelada Maya", desc: "Cerveza, clamato, limon, chamoy, tajin", price: "$8.00", spicy: true },
+  ],
+  Postres: [
+    { name: "Tres Leches", desc: "Bizcocho empapado en tres leches, crema batida", price: "$7.00" },
+    { name: "Churros con Chocolate", desc: "Churros crujientes, chocolate caliente, cajeta", price: "$8.00" },
+    { name: "Helado de Elote", desc: "Helado artesanal de elote dulce, cajeta, canela", price: "$6.00", veg: true },
+  ],
+};
+
 export default function SmartTable() {
   const [activeButton, setActiveButton] = useState<string | null>(null);
   const [showAnimation, setShowAnimation] = useState(false);
   const [portalOpen, setPortalOpen] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const [menuCategory, setMenuCategory] = useState<MenuCategory>("Entradas");
   const [feedback, setFeedback] = useState<FeedbackState>({
     rating: 0,
     issues: [],
@@ -90,12 +128,15 @@ export default function SmartTable() {
   const resetNfc = () => {
     setPortalOpen(false);
     setActiveButton(null);
+    setShowMenu(false);
     setFeedback({ rating: 0, issues: [], comment: "", submitted: false });
   };
 
   const handlePortalButton = (btn: typeof portalButtons[0]) => {
     setActiveButton(btn.id);
-    if (btn.url) {
+    if (btn.id === "menu") {
+      setShowMenu(true);
+    } else if (btn.url) {
       window.open(btn.url, "_blank", "noopener,noreferrer");
     }
   };
@@ -234,7 +275,97 @@ export default function SmartTable() {
               </div>
             </div>
 
-            {/* App content */}
+            {/* === MENU VIEW === */}
+            <AnimatePresence>
+              {showMenu && (
+                <motion.div
+                  key="menu-view"
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  exit={{ x: "100%" }}
+                  transition={{ type: "tween", duration: 0.3 }}
+                  className="absolute inset-0 top-8 bg-gray-950 z-10 flex flex-col"
+                >
+                  {/* Menu header */}
+                  <div className="relative bg-white flex flex-col items-center pt-4 pb-3 shrink-0">
+                    <button
+                      onClick={() => { setShowMenu(false); setActiveButton(null); }}
+                      className="absolute left-3 top-4 flex items-center gap-1 text-xs text-blue-600 font-medium"
+                    >
+                      <ArrowLeft size={14} /> Volver
+                    </button>
+                    <img
+                      src="/maya-logo.jpeg"
+                      alt="Maya Cantina"
+                      className="h-16 object-contain"
+                    />
+                    <p className="text-xs text-gray-500 mt-1">Cocina Mexicana • SAC, CA</p>
+                  </div>
+
+                  {/* Category tabs */}
+                  <div className="flex gap-0 bg-gray-900 border-b border-gray-800 overflow-x-auto shrink-0 scrollbar-hide">
+                    {MENU_CATEGORIES.map(cat => (
+                      <button
+                        key={cat}
+                        onClick={() => setMenuCategory(cat)}
+                        className={`px-3 py-2.5 text-xs font-medium whitespace-nowrap border-b-2 transition-all ${
+                          menuCategory === cat
+                            ? "border-amber-400 text-amber-400"
+                            : "border-transparent text-gray-400"
+                        }`}
+                      >
+                        {cat}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Menu items */}
+                  <div className="flex-1 overflow-y-auto">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={menuCategory}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.15 }}
+                        className="divide-y divide-gray-800"
+                      >
+                        {MENU_ITEMS[menuCategory].map((item) => (
+                          <div key={item.name} className="flex items-start justify-between p-3 gap-2">
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-1.5 mb-0.5">
+                                <span className="text-xs font-semibold text-white leading-tight">{item.name}</span>
+                                {item.spicy && <Flame size={10} className="text-orange-500 shrink-0" />}
+                                {item.veg && <Leaf size={10} className="text-green-500 shrink-0" />}
+                              </div>
+                              <p className="text-xs text-gray-400 leading-tight">{item.desc}</p>
+                            </div>
+                            <div className="flex flex-col items-end gap-1.5 shrink-0">
+                              <span className="text-xs font-bold text-amber-400">{item.price}</span>
+                              <button className="w-6 h-6 bg-amber-500 rounded-full flex items-center justify-center hover:bg-amber-400 transition-colors">
+                                <Plus size={12} className="text-black" />
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Legend */}
+                  <div className="flex gap-3 px-3 py-2 border-t border-gray-800 bg-gray-900 shrink-0">
+                    <div className="flex items-center gap-1 text-xs text-gray-500">
+                      <Flame size={10} className="text-orange-500" /> Picante
+                    </div>
+                    <div className="flex items-center gap-1 text-xs text-gray-500">
+                      <Leaf size={10} className="text-green-500" /> Vegetariano
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* === PORTAL MAIN VIEW === */}
             <div className="absolute inset-0 top-8 bg-gradient-to-b from-gray-950 to-black overflow-y-auto scrollbar-gold">
               {/* Header */}
               <div className="relative h-24 bg-gradient-to-b from-amber-900/60 to-transparent flex flex-col items-center justify-center">
@@ -281,7 +412,7 @@ export default function SmartTable() {
 
                 {/* Active button description */}
                 <AnimatePresence>
-                  {activeButton && activeButton !== "feedback" && (
+                  {activeButton && activeButton !== "feedback" && activeButton !== "menu" && (
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
@@ -295,7 +426,7 @@ export default function SmartTable() {
                   )}
                 </AnimatePresence>
 
-                {/* Feedback button — full width, different style */}
+                {/* Feedback button */}
                 <motion.button
                   onClick={() => setActiveButton(activeButton === "feedback" ? null : "feedback")}
                   whileTap={{ scale: 0.98 }}
@@ -340,8 +471,6 @@ export default function SmartTable() {
                       ) : (
                         <div className="p-3 space-y-3">
                           <p className="text-xs font-semibold text-orange-300">Como fue tu experiencia hoy?</p>
-
-                          {/* Star rating */}
                           <div className="flex gap-1 justify-center">
                             {[1, 2, 3, 4, 5].map(star => (
                               <button
@@ -356,10 +485,8 @@ export default function SmartTable() {
                               </button>
                             ))}
                           </div>
-
-                          {/* Issue checkboxes */}
                           <div>
-                            <p className="text-xs text-gray-400 mb-2">Cual fue el problema? (selecciona los que apliquen)</p>
+                            <p className="text-xs text-gray-400 mb-2">Cual fue el problema?</p>
                             <div className="grid grid-cols-2 gap-1.5">
                               {ISSUE_OPTIONS.map(issue => (
                                 <button
@@ -379,10 +506,8 @@ export default function SmartTable() {
                               ))}
                             </div>
                           </div>
-
-                          {/* Comment */}
                           <div>
-                            <p className="text-xs text-gray-400 mb-1.5">Quieres agregar algo mas?</p>
+                            <p className="text-xs text-gray-400 mb-1.5">Algo mas que quieras agregar?</p>
                             <textarea
                               value={feedback.comment}
                               onChange={e => setFeedback(prev => ({ ...prev, comment: e.target.value }))}
@@ -391,7 +516,6 @@ export default function SmartTable() {
                               className="w-full bg-gray-800 border border-gray-700 rounded-lg px-2.5 py-2 text-xs text-white focus:outline-none focus:border-orange-600 resize-none"
                             />
                           </div>
-
                           <button
                             onClick={submitFeedback}
                             disabled={feedback.rating === 0}
