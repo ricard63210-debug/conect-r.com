@@ -1,67 +1,117 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Monitor, Smartphone, Edit3, Check, RefreshCw, Star, Clock, Utensils, Music } from "lucide-react";
+import {
+  Monitor, Check, Clock, Music, Star, Flame, Calendar,
+  MessageSquare, Phone, Instagram, Facebook, RefreshCw
+} from "lucide-react";
 
-interface ScreenContent {
+interface EventSlide {
+  id: string;
+  tag: string;
+  tagIcon: typeof Music;
   title: string;
   subtitle: string;
-  type: "menu" | "event" | "promo";
+  detail: string;
   bg: string;
+  accent: string;
+  days: string;
+  time: string;
 }
 
-const presets: ScreenContent[] = [
+const EVENT_SLIDES: EventSlide[] = [
   {
-    title: "Menu del Dia",
-    subtitle: "Pozole Rojo • Enchiladas Verdes • Agua de Jamaica",
-    type: "menu",
-    bg: "from-amber-900/80 to-stone-900",
+    id: "mariachi",
+    tag: "Noche Especial",
+    tagIcon: Music,
+    title: "Noches de Mariachi",
+    subtitle: "Musica en vivo con los mejores mariachis de Sacramento",
+    detail: "Ambiente, sabor y tradicion",
+    bg: "from-purple-950 via-indigo-950 to-stone-950",
+    accent: "text-purple-300",
+    days: "Viernes y Sabado",
+    time: "8:00 PM",
   },
   {
-    title: "Noche Maya",
-    subtitle: "Musica en Vivo • Cena Romantica • Viernes 7pm",
-    type: "event",
-    bg: "from-purple-900/80 to-stone-900",
-  },
-  {
+    id: "happyhour",
+    tag: "Happy Hour",
+    tagIcon: Flame,
     title: "2x1 en Margaritas",
-    subtitle: "Hoy de 18:00 a 20:00 • Solo con reservacion",
-    type: "promo",
-    bg: "from-orange-900/80 to-stone-900",
+    subtitle: "Clasicas • Frozen • De la Casa",
+    detail: "La mejor hora del dia en Maya",
+    bg: "from-amber-950 via-orange-950 to-stone-950",
+    accent: "text-amber-300",
+    days: "Lunes a Jueves",
+    time: "3:00 PM – 6:00 PM",
+  },
+  {
+    id: "brunch",
+    tag: "Brunch Dominical",
+    tagIcon: Star,
+    title: "Sunday Brunch Maya",
+    subtitle: "Mimosas sin limite • Menú especial de brunch mexicano",
+    detail: "El domingo mas sabroso de SAC",
+    bg: "from-rose-950 via-pink-950 to-stone-950",
+    accent: "text-rose-300",
+    days: "Domingos",
+    time: "11:00 AM – 3:00 PM",
+  },
+  {
+    id: "cenaRomantica",
+    tag: "Experiencia Unica",
+    tagIcon: Star,
+    title: "Cena Romantica",
+    subtitle: "Mesa para dos • Menu degustacion • Maridaje de mezcal",
+    detail: "Reservaciones limitadas",
+    bg: "from-red-950 via-rose-950 to-stone-950",
+    accent: "text-red-300",
+    days: "Viernes y Sabado",
+    time: "7:00 PM – 10:00 PM",
+  },
+  {
+    id: "tacotuesday",
+    tag: "Promo Semanal",
+    tagIcon: Flame,
+    title: "Taco Tuesday",
+    subtitle: "Tacos desde $3 • Micheladas 2x1 • Vibras de barrio",
+    detail: "El martes mas chido de la semana",
+    bg: "from-green-950 via-emerald-950 to-stone-950",
+    accent: "text-green-300",
+    days: "Martes",
+    time: "12:00 PM – 9:00 PM",
   },
 ];
 
+const LOCATIONS = ["Barra", "Terraza"];
+
 export default function DigitalSignage() {
-  const [activeContent, setActiveContent] = useState<ScreenContent>(presets[0]);
-  const [editMode, setEditMode] = useState(false);
-  const [editTitle, setEditTitle] = useState("");
-  const [editSubtitle, setEditSubtitle] = useState("");
+  const [activeIdx, setActiveIdx] = useState(0);
   const [updating, setUpdating] = useState(false);
   const [updated, setUpdated] = useState(false);
-  const [customMessage, setCustomMessage] = useState("");
+  const [isPaused, setIsPaused] = useState(false);
 
-  const handleUpdate = (content: ScreenContent) => {
+  const activeSlide = EVENT_SLIDES[activeIdx];
+
+  // Auto-cycle every 5 seconds
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setActiveIdx(prev => (prev + 1) % EVENT_SLIDES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isPaused]);
+
+  const selectSlide = (idx: number) => {
     setUpdating(true);
+    setIsPaused(true);
     setTimeout(() => {
-      setActiveContent(content);
+      setActiveIdx(idx);
       setUpdating(false);
       setUpdated(true);
-      setTimeout(() => setUpdated(false), 2500);
-    }, 1200);
-  };
-
-  const handleCustomUpdate = () => {
-    if (!editTitle.trim()) return;
-    handleUpdate({
-      title: editTitle,
-      subtitle: editSubtitle,
-      type: "promo",
-      bg: "from-teal-900/80 to-stone-900",
-    });
-    setEditMode(false);
-    setEditTitle("");
-    setEditSubtitle("");
-    setCustomMessage("Pantallas actualizadas en tiempo real");
-    setTimeout(() => setCustomMessage(""), 3000);
+      setTimeout(() => {
+        setUpdated(false);
+        setIsPaused(false);
+      }, 2500);
+    }, 900);
   };
 
   return (
@@ -69,19 +119,19 @@ export default function DigitalSignage() {
       <div className="text-center">
         <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">Pantallas Digitales — Digital Signage</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Controla todas las pantallas de tu restaurante desde tu celular.
-          Cambia el menu, anuncia eventos o promociones con un solo clic.
+          Las pantallas del restaurante muestran contenido dinamico en tiempo real: eventos, promociones y el ambiente
+          que Maya quiere proyectar. El equipo de Conect-R gestiona cada actualizacion.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* TV Screens simulation */}
+        {/* TV Screens */}
         <div className="space-y-4">
           <h3 className="text-lg font-semibold text-primary flex items-center gap-2">
-            <Monitor size={20} /> Pantallas del Restaurante
+            <Monitor size={20} /> Pantallas del Restaurante — En Vivo
           </h3>
 
-          {/* Main boarding screen */}
+          {/* Main TV */}
           <div className="relative">
             <div className="bg-gray-900 rounded-2xl p-2 border-4 border-gray-700 tv-glow">
               <div className="bg-gray-950 rounded-xl overflow-hidden" style={{ aspectRatio: "16/9" }}>
@@ -101,43 +151,82 @@ export default function DigitalSignage() {
                     </motion.div>
                   ) : (
                     <motion.div
-                      key={activeContent.title}
-                      initial={{ opacity: 0, scale: 0.98 }}
+                      key={activeSlide.id}
+                      initial={{ opacity: 0, scale: 1.04 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.4 }}
-                      className={`w-full h-full bg-gradient-to-br ${activeContent.bg} relative flex flex-col items-center justify-center p-8`}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: 0.6 }}
+                      className={`w-full h-full bg-gradient-to-br ${activeSlide.bg} relative flex flex-col items-center justify-center px-6 py-4`}
                     >
-                      {/* Background texture */}
-                      <div className="absolute inset-0 opacity-5" style={{
-                        backgroundImage: "repeating-linear-gradient(45deg, #d4a017 25%, transparent 25%, transparent 75%, #d4a017 75%, #d4a017), repeating-linear-gradient(45deg, #d4a017 25%, transparent 25%, transparent 75%, #d4a017 75%, #d4a017)",
-                        backgroundSize: "20px 20px",
-                        backgroundPosition: "0 0, 10px 10px"
-                      }} />
+                      {/* Ambient glow */}
+                      <div className="absolute inset-0 opacity-20"
+                        style={{ backgroundImage: "radial-gradient(ellipse at center, rgba(212,160,23,0.3) 0%, transparent 70%)" }}
+                      />
+
+                      {/* Top bar */}
+                      <div className="absolute top-3 left-4 right-4 flex items-center justify-between">
+                        <span className="text-xs text-white/30 font-serif tracking-widest uppercase">Maya Cantina</span>
+                        <div className="flex gap-1">
+                          {EVENT_SLIDES.map((_, i) => (
+                            <div
+                              key={i}
+                              className={`h-0.5 rounded-full transition-all duration-300 ${
+                                i === activeIdx ? "w-6 bg-amber-400" : "w-2 bg-white/20"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      </div>
 
                       {/* Content */}
                       <div className="text-center relative z-10">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/20 border border-amber-600/40 rounded-full mb-4">
-                          {activeContent.type === "menu" && <Utensils size={14} className="text-amber-400" />}
-                          {activeContent.type === "event" && <Music size={14} className="text-amber-400" />}
-                          {activeContent.type === "promo" && <Star size={14} className="text-amber-400" />}
-                          <span className="text-xs text-amber-300 uppercase tracking-widest">
-                            {activeContent.type === "menu" ? "Menu de Hoy" : activeContent.type === "event" ? "Evento Especial" : "Promocion"}
-                          </span>
+                        <motion.div
+                          initial={{ y: 10, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          transition={{ delay: 0.2 }}
+                          className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 border border-white/20 rounded-full mb-3"
+                        >
+                          <activeSlide.tagIcon size={12} className="text-amber-400" />
+                          <span className="text-xs text-amber-300 uppercase tracking-widest">{activeSlide.tag}</span>
+                        </motion.div>
+
+                        <motion.h2
+                          initial={{ y: 15, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          transition={{ delay: 0.3 }}
+                          className="text-3xl sm:text-4xl font-serif font-bold text-white mb-2"
+                        >
+                          {activeSlide.title}
+                        </motion.h2>
+
+                        <motion.p
+                          initial={{ y: 10, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          transition={{ delay: 0.4 }}
+                          className={`text-base ${activeSlide.accent} mb-1`}
+                        >
+                          {activeSlide.subtitle}
+                        </motion.p>
+
+                        <motion.p
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 0.5 }}
+                          className="text-xs text-white/50 italic"
+                        >
+                          {activeSlide.detail}
+                        </motion.p>
+                      </div>
+
+                      {/* Bottom bar */}
+                      <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+                        <div className="flex items-center gap-1.5 text-xs text-white/40">
+                          <Calendar size={10} />
+                          <span>{activeSlide.days}</span>
                         </div>
-
-                        <h2 className="text-3xl sm:text-4xl font-serif font-bold text-white mb-3">
-                          {activeContent.title}
-                        </h2>
-                        <p className="text-amber-200/80 text-lg">{activeContent.subtitle}</p>
-
-                        {/* Bottom bar */}
-                        <div className="absolute bottom-4 left-0 right-0 flex items-center justify-between px-8">
-                          <span className="text-xs text-white/40 font-serif">RESTAURANTE MAYA</span>
-                          <div className="flex items-center gap-1 text-xs text-white/40">
-                            <Clock size={10} />
-                            <span>Lun-Dom 13:00-23:00</span>
-                          </div>
+                        <div className="flex items-center gap-1.5 text-xs text-white/40">
+                          <Clock size={10} />
+                          <span>{activeSlide.time}</span>
                         </div>
                       </div>
                     </motion.div>
@@ -145,7 +234,6 @@ export default function DigitalSignage() {
                 </AnimatePresence>
               </div>
             </div>
-            {/* TV stand */}
             <div className="flex justify-center mt-1">
               <div className="w-16 h-2 bg-gray-700 rounded" />
             </div>
@@ -154,17 +242,17 @@ export default function DigitalSignage() {
             </div>
           </div>
 
-          {/* Multiple small screens */}
+          {/* Small screens */}
           <div className="grid grid-cols-2 gap-3">
-            {["Barra", "Terraza"].map((location) => (
-              <div key={location} className="bg-gray-900 rounded-xl p-1 border-2 border-gray-700">
+            {LOCATIONS.map((loc) => (
+              <div key={loc} className="bg-gray-900 rounded-xl p-1 border-2 border-gray-700">
                 <div className="bg-gray-950 rounded-lg overflow-hidden">
                   <div
-                    className={`bg-gradient-to-br ${activeContent.bg} flex flex-col items-center justify-center p-3`}
+                    className={`bg-gradient-to-br ${activeSlide.bg} flex flex-col items-center justify-center p-3`}
                     style={{ aspectRatio: "16/9" }}
                   >
-                    <p className="text-xs text-amber-300 font-serif font-bold text-center">{activeContent.title}</p>
-                    <p className="text-xs text-amber-200/60 text-center mt-1" style={{ fontSize: "9px" }}>{location}</p>
+                    <p className="text-xs text-amber-300 font-serif font-bold text-center leading-tight">{activeSlide.title}</p>
+                    <p className="text-white/40 text-center mt-1" style={{ fontSize: "9px" }}>{loc}</p>
                   </div>
                 </div>
               </div>
@@ -175,121 +263,97 @@ export default function DigitalSignage() {
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
               className="flex items-center gap-2 text-sm text-green-400 bg-green-400/10 border border-green-700/40 rounded-xl px-4 py-2.5"
             >
               <Check size={16} /> 3 pantallas actualizadas en tiempo real
-              {customMessage && ` — ${customMessage}`}
             </motion.div>
           )}
         </div>
 
-        {/* Control panel — owner's phone */}
+        {/* Right panel */}
         <div className="space-y-4">
+          {/* Event selector */}
           <h3 className="text-lg font-semibold text-primary flex items-center gap-2">
-            <Smartphone size={20} /> Control desde el Celular del Dueno
+            <Calendar size={20} /> Eventos Activos de Maya
           </h3>
 
-          {/* Phone mockup */}
-          <div className="mx-auto w-64 bg-gray-950 rounded-[2rem] border-4 border-gray-800 shadow-2xl overflow-hidden" style={{ minHeight: "480px" }}>
-            <div className="p-4 space-y-3">
-              <div className="text-center mb-4">
-                <div className="text-xs text-muted-foreground">Panel de Control</div>
-                <div className="text-sm font-semibold gold-gradient font-serif">Restaurante Maya</div>
-              </div>
-
-              <div className="text-xs text-muted-foreground mb-2 uppercase tracking-wider">Contenido rapido</div>
-
-              <div className="space-y-2">
-                {presets.map((preset) => (
-                  <motion.button
-                    key={preset.title}
-                    whileTap={{ scale: 0.97 }}
-                    onClick={() => handleUpdate(preset)}
-                    data-testid={`preset-btn-${preset.type}`}
-                    className={`w-full flex items-center gap-3 p-3 rounded-xl border text-left transition-all duration-200 ${
-                      activeContent.title === preset.title
-                        ? "border-amber-600/60 bg-amber-500/10"
-                        : "border-gray-800 bg-gray-900/60"
-                    }`}
-                  >
-                    <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${preset.bg.replace("/80", "")} flex items-center justify-center shrink-0`}>
-                      {preset.type === "menu" && <Utensils size={14} className="text-white" />}
-                      {preset.type === "event" && <Music size={14} className="text-white" />}
-                      {preset.type === "promo" && <Star size={14} className="text-white" />}
-                    </div>
-                    <div>
-                      <div className="text-xs font-semibold text-foreground">{preset.title}</div>
-                      <div className="text-xs text-muted-foreground mt-0.5 truncate" style={{ maxWidth: "150px" }}>{preset.subtitle}</div>
-                    </div>
-                    {activeContent.title === preset.title && (
-                      <Check size={14} className="text-amber-400 ml-auto" />
-                    )}
-                  </motion.button>
-                ))}
-              </div>
-
-              <div className="border-t border-border/40 pt-3">
-                <button
-                  onClick={() => setEditMode(!editMode)}
-                  data-testid="custom-content-btn"
-                  className="w-full flex items-center gap-2 p-3 rounded-xl border border-dashed border-amber-700/40 text-amber-400 text-xs hover:bg-amber-500/5 transition-colors"
-                >
-                  <Edit3 size={14} />
-                  Mensaje personalizado
-                </button>
-              </div>
-
-              <AnimatePresence>
-                {editMode && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="space-y-2"
-                  >
-                    <input
-                      type="text"
-                      placeholder="Titulo..."
-                      value={editTitle}
-                      onChange={e => setEditTitle(e.target.value)}
-                      className="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Descripcion..."
-                      value={editSubtitle}
-                      onChange={e => setEditSubtitle(e.target.value)}
-                      className="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500"
-                    />
-                    <button
-                      onClick={handleCustomUpdate}
-                      className="w-full py-2 bg-amber-500 text-black text-xs rounded-lg font-semibold"
-                    >
-                      Actualizar todas las pantallas
-                    </button>
-                  </motion.div>
+          <div className="space-y-2">
+            {EVENT_SLIDES.map((slide, idx) => (
+              <motion.button
+                key={slide.id}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => selectSlide(idx)}
+                className={`w-full flex items-center gap-3 p-3 rounded-xl border text-left transition-all duration-200 ${
+                  activeIdx === idx
+                    ? "border-amber-600/60 bg-amber-500/10"
+                    : "border-gray-800 bg-gray-900/60 hover:border-gray-700"
+                }`}
+              >
+                <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${slide.bg} flex items-center justify-center shrink-0`}>
+                  <slide.tagIcon size={15} className="text-amber-400" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-xs font-semibold text-foreground">{slide.title}</div>
+                  <div className="text-xs text-muted-foreground mt-0.5 truncate">{slide.days} • {slide.time}</div>
+                </div>
+                {activeIdx === idx && <Check size={14} className="text-amber-400 shrink-0" />}
+                {activeIdx !== idx && (
+                  <div className="w-1.5 h-1.5 rounded-full bg-gray-700 shrink-0" />
                 )}
-              </AnimatePresence>
-            </div>
+              </motion.button>
+            ))}
           </div>
 
-          {/* Feature callout */}
-          <div className="maya-card rounded-xl p-4 border border-amber-800/30">
-            <div className="text-sm font-semibold text-amber-400 mb-2">Cambio en un Clic</div>
-            <ul className="space-y-1.5 text-xs text-muted-foreground">
+          {/* How updates work */}
+          <div className="maya-card rounded-2xl p-5 border border-amber-800/30 space-y-4">
+            <div>
+              <div className="text-sm font-semibold text-amber-400 mb-1 flex items-center gap-2">
+                <MessageSquare size={15} /> Como actualizamos tu contenido
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Tu nos dices que quieres mostrar y nosotros lo cambiamos en tiempo real.
+                Sin tecnicos, sin complicaciones — un mensaje y listo.
+              </p>
+            </div>
+
+            <div className="space-y-2">
               {[
-                "Actualiza menu, eventos o promos desde cualquier lugar",
-                "Las 3 pantallas del local se sincronizan en segundos",
-                "Programa contenido con anticipacion por dias y horas",
-                "Sin necesidad de IT ni tecnico en sitio",
+                { icon: Phone, text: "Nos contactas por WhatsApp, llamada o mensaje" },
+                { icon: MessageSquare, text: "Nos dices: nuevo evento, promo, horario o imagen" },
+                { icon: RefreshCw, text: "Actualizamos todas tus pantallas en minutos" },
+                { icon: Check, text: "Tu restaurante siempre con contenido fresco y relevante" },
               ].map((item, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <Check size={12} className="text-amber-400 mt-0.5 shrink-0" />
-                  {item}
-                </li>
+                <div key={i} className="flex items-start gap-2.5">
+                  <div className="w-6 h-6 rounded-full bg-amber-500/10 border border-amber-700/30 flex items-center justify-center shrink-0 mt-0.5">
+                    <item.icon size={11} className="text-amber-400" />
+                  </div>
+                  <p className="text-xs text-muted-foreground">{item.text}</p>
+                </div>
               ))}
-            </ul>
+            </div>
+
+            {/* Social channels */}
+            <div className="border-t border-border/30 pt-3">
+              <p className="text-xs text-muted-foreground/60 mb-2">Siguenos para inspiracion de contenido:</p>
+              <div className="flex gap-2">
+                <a
+                  href="https://www.instagram.com/mayacantinasac"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-pink-900/20 border border-pink-800/30 rounded-lg text-xs text-pink-300 hover:bg-pink-900/30 transition-colors"
+                >
+                  <Instagram size={12} /> @mayacantinasac
+                </a>
+                <a
+                  href="https://www.facebook.com/Mayarestaurantsac"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-900/20 border border-blue-800/30 rounded-lg text-xs text-blue-300 hover:bg-blue-900/30 transition-colors"
+                >
+                  <Facebook size={12} /> Maya SAC
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
