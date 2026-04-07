@@ -46,8 +46,8 @@ const modules = [
   },
   {
     id: "creativo",
-    label: "Modulo Creativo",
-    sublabel: "Menu & Redes",
+    label: "Diseño de Menú",
+    sublabel: "Menú Imprimible",
     icon: Palette,
     component: ModuloCreativo,
     color: "from-purple-700 to-purple-500",

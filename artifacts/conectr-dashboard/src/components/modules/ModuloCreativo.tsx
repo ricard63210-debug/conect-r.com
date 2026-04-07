@@ -1,372 +1,276 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Palette, Calendar, Image, Grid, ChevronLeft, ChevronRight, Instagram, Facebook, Plus, Check, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import { Palette, Grid, Check, ExternalLink, Star } from "lucide-react";
 
 const menuTemplates = [
   {
     id: 1,
     name: "Elegante Oscuro",
     bg: "from-stone-900 to-amber-950",
-    accent: "text-amber-400",
+    accentColor: "#c9a227",
+    accentClass: "text-amber-400",
     border: "border-amber-700/40",
     preview: "bg-gradient-to-br from-stone-900 to-amber-950",
+    mutedClass: "text-amber-400/50",
+    lineClass: "border-amber-700/30",
+    descClass: "text-stone-400",
+    footerClass: "text-stone-500",
   },
   {
     id: 2,
     name: "Madera Rustica",
     bg: "from-amber-900 to-stone-800",
-    accent: "text-orange-300",
+    accentColor: "#f4a261",
+    accentClass: "text-orange-300",
     border: "border-orange-700/40",
     preview: "bg-gradient-to-br from-amber-900 to-stone-800",
+    mutedClass: "text-orange-300/50",
+    lineClass: "border-orange-700/30",
+    descClass: "text-amber-200/60",
+    footerClass: "text-stone-400",
   },
   {
     id: 3,
     name: "Moderno Minimalista",
-    bg: "from-gray-900 to-neutral-900",
-    accent: "text-white",
-    border: "border-white/20",
-    preview: "bg-gradient-to-br from-gray-900 to-neutral-900",
+    bg: "from-zinc-950 to-neutral-900",
+    accentColor: "#e5e5e5",
+    accentClass: "text-white",
+    border: "border-white/15",
+    preview: "bg-gradient-to-br from-zinc-950 to-neutral-900",
+    mutedClass: "text-white/40",
+    lineClass: "border-white/10",
+    descClass: "text-neutral-400",
+    footerClass: "text-neutral-500",
   },
 ];
 
-const daysOfWeek = ["Lun", "Mar", "Mie", "Jue", "Vie", "Sab", "Dom"];
-
-const contentCalendar: Record<string, { type: string; text: string; platform: "ig" | "fb" | "both" }> = {
-  "0": { type: "foto", text: "Pozole Rojo — receta de abuela", platform: "ig" },
-  "1": { type: "story", text: "Detras de la cocina — Chef Mario", platform: "ig" },
-  "2": { type: "promo", text: "Noche Maya este Viernes — Reserva YA", platform: "both" },
-  "3": { type: "reel", text: "Como preparamos nuestra Cochinita", platform: "ig" },
-  "4": { type: "evento", text: "Noche Maya • Musica en Vivo • 8pm", platform: "both" },
-  "5": { type: "foto", text: "Mesa romantica para dos — te esperamos", platform: "ig" },
-  "6": { type: "promo", text: "Brunch Dominical 11am-3pm", platform: "both" },
-};
-
-const colorMap: Record<string, string> = {
-  foto: "bg-blue-500/20 border-blue-700/40 text-blue-300",
-  story: "bg-purple-500/20 border-purple-700/40 text-purple-300",
-  promo: "bg-amber-500/20 border-amber-700/40 text-amber-300",
-  reel: "bg-pink-500/20 border-pink-700/40 text-pink-300",
-  evento: "bg-green-500/20 border-green-700/40 text-green-300",
-};
+const MENU_SECTIONS = [
+  {
+    category: "BRUNCH",
+    items: [
+      { name: "Chilaquiles Maya", price: "$19", star: true },
+      { name: "Huevos Rancheros", price: "$16" },
+      { name: "Pancakes de Cajeta", price: "$14" },
+    ],
+  },
+  {
+    category: "STARTERS",
+    items: [
+      { name: "Birria Egg Rolls", price: "$13", star: true },
+      { name: "Pork Belly Bites", price: "$12" },
+      { name: "Guacamole Maya", price: "$11" },
+      { name: "Elote Loco", price: "$9" },
+    ],
+  },
+  {
+    category: "TACOS",
+    items: [
+      { name: "Taco Maya", price: "$16", star: true },
+      { name: "Taco de Birria", price: "$15" },
+      { name: "Taco de Carnitas", price: "$14" },
+      { name: "Taco Vegano", price: "$13" },
+    ],
+  },
+  {
+    category: "MARISCOS",
+    items: [
+      { name: "Ceviche Maya", price: "$18" },
+      { name: "Tostadas de Atún", price: "$17", star: true },
+      { name: "Aguachile Verde", price: "$19" },
+    ],
+  },
+  {
+    category: "PLATOS FUERTES",
+    items: [
+      { name: "Mole Negro", price: "$22", star: true },
+      { name: "Arrachera a la Parrilla", price: "$26" },
+      { name: "Chile en Nogada", price: "$24" },
+      { name: "Camarones al Mezcal", price: "$25" },
+    ],
+  },
+  {
+    category: "DRINKS",
+    items: [
+      { name: "Margarita Clásica", price: "$12" },
+      { name: "Margarita de Tamarindo", price: "$13" },
+      { name: "Mezcal Negroni", price: "$14" },
+      { name: "Michelada Maya", price: "$10" },
+      { name: "Agua de Jamaica", price: "$5" },
+    ],
+  },
+];
 
 export default function ModuloCreativo() {
-  const [activeTab, setActiveTab] = useState<"menu" | "calendar">("menu");
   const [selectedTemplate, setSelectedTemplate] = useState(0);
-  const [selectedDay, setSelectedDay] = useState<string | null>(null);
-  const [weekOffset, setWeekOffset] = useState(0);
-  const [addingPost, setAddingPost] = useState(false);
-  const [newPostText, setNewPostText] = useState("");
+  const tmpl = menuTemplates[selectedTemplate];
 
-  const template = menuTemplates[selectedTemplate];
-
-  const menuItems = [
-    { category: "Antojitos", items: [
-      { name: "Tostadas de Tinga", price: "$85", photo: "🥗" },
-      { name: "Quesadillas de Flor de Calabaza", price: "$95", photo: "🫓" },
-    ]},
-    { category: "Platos Principales", items: [
-      { name: "Pozole Rojo Estilo Guerrero", price: "$195", photo: "🍲" },
-      { name: "Mole Negro Oaxaqueno", price: "$225", photo: "🍗" },
-      { name: "Cochinita Pibil de Horno", price: "$210", photo: "🥩" },
-    ]},
-    { category: "Postres", items: [
-      { name: "Tarta de Tamal Dulce", price: "$85", photo: "🍮" },
-    ]},
-  ];
+  const handleOpenPrint = () => {
+    window.open(`${window.location.origin}/maya-menu-print/`, "_blank", "noopener,noreferrer");
+  };
 
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">Modulo Creativo</h2>
+        <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">Diseño de Menú</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Disena tu menu con plantillas premium y planifica tu contenido para redes sociales
-          con un calendario intuitivo de publicaciones.
+          Conect-R diseña y entrega tu menú físico listo para imprimir en tres estilos elegantes
+          que reflejan la identidad de Maya Cantina.
         </p>
       </div>
 
-      {/* Tabs */}
-      <div className="flex gap-2 p-1 bg-muted/20 rounded-xl w-fit mx-auto">
-        {[
-          { id: "menu", label: "Diseno de Menu", icon: Palette },
-          { id: "calendar", label: "Planificador Social", icon: Calendar },
-        ].map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id as "menu" | "calendar")}
-            data-testid={`creativo-tab-${tab.id}`}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-              activeTab === tab.id
-                ? "bg-amber-500 text-black"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            <tab.icon size={16} />
-            {tab.label}
-          </button>
-        ))}
+      {/* Template picker */}
+      <div className="space-y-3">
+        <h3 className="text-base font-semibold text-primary flex items-center gap-2">
+          <Grid size={18} /> Elige el estilo de tu menú
+        </h3>
+        <div className="flex gap-3">
+          {menuTemplates.map((t, idx) => (
+            <button
+              key={t.id}
+              onClick={() => setSelectedTemplate(idx)}
+              data-testid={`template-btn-${idx}`}
+              className={`flex-1 h-20 rounded-xl ${t.preview} border-2 transition-all relative overflow-hidden ${
+                selectedTemplate === idx
+                  ? "border-amber-400 scale-105 shadow-lg shadow-amber-900/30"
+                  : "border-transparent opacity-60 hover:opacity-85"
+              }`}
+            >
+              <div className={`absolute inset-0 flex flex-col items-center justify-center ${t.accentClass}`}>
+                <div className="text-xs font-serif font-bold uppercase tracking-wide leading-tight px-2 text-center">
+                  {t.name}
+                </div>
+                {selectedTemplate === idx && (
+                  <Check size={13} className="mt-1.5" />
+                )}
+              </div>
+            </button>
+          ))}
+        </div>
       </div>
 
-      <AnimatePresence mode="wait">
-        {activeTab === "menu" ? (
-          <motion.div
-            key="menu"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            className="space-y-6"
-          >
-            {/* Template picker */}
-            <div className="space-y-3">
-              <h3 className="text-lg font-semibold text-primary flex items-center gap-2">
-                <Grid size={20} /> Plantillas de Menu
-              </h3>
-              <div className="flex gap-4">
-                {menuTemplates.map((tmpl, idx) => (
-                  <button
-                    key={tmpl.id}
-                    onClick={() => setSelectedTemplate(idx)}
-                    data-testid={`template-btn-${idx}`}
-                    className={`flex-1 h-20 rounded-xl ${tmpl.preview} border-2 transition-all relative overflow-hidden ${
-                      selectedTemplate === idx ? "border-amber-400 scale-105" : "border-transparent opacity-70 hover:opacity-90"
-                    }`}
-                  >
-                    <div className={`absolute inset-0 flex flex-col items-center justify-center ${tmpl.accent}`}>
-                      <div className="text-xs font-serif font-bold">{tmpl.name}</div>
-                      {selectedTemplate === idx && (
-                        <Check size={14} className="mt-1" />
-                      )}
+      {/* Menu preview */}
+      <motion.div
+        key={selectedTemplate}
+        initial={{ opacity: 0, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.25 }}
+        className={`rounded-2xl overflow-hidden bg-gradient-to-br ${tmpl.bg} border ${tmpl.border}`}
+      >
+        {/* Cover header */}
+        <div className={`relative text-center py-8 px-6 border-b ${tmpl.lineClass}`}>
+          {/* Ornament corners */}
+          <div className={`absolute top-4 left-5 w-7 h-7 border ${tmpl.lineClass} rounded-full`} />
+          <div className={`absolute top-4 right-5 w-7 h-7 border ${tmpl.lineClass} rounded-full`} />
+          <div className={`absolute bottom-4 left-5 w-5 h-5 border ${tmpl.lineClass} rounded-full`} />
+          <div className={`absolute bottom-4 right-5 w-5 h-5 border ${tmpl.lineClass} rounded-full`} />
+
+          <div className={`text-[10px] uppercase tracking-[0.25em] ${tmpl.mutedClass} mb-1`}>CARTA</div>
+          <h1 className={`text-3xl font-serif font-bold ${tmpl.accentClass}`} style={{ fontFamily: "Cinzel, Georgia, serif" }}>
+            Maya Cantina
+          </h1>
+          <p className={`text-xs mt-1.5 ${tmpl.mutedClass} tracking-wider`}>
+            Cocina Mexicana Auténtica · Sacramento, CA
+          </p>
+          <div className={`w-24 h-px mx-auto mt-3 bg-current ${tmpl.mutedClass}`} />
+        </div>
+
+        {/* Two-column menu */}
+        <div className="grid grid-cols-2 gap-0 divide-x divide-white/5">
+          {/* Left column */}
+          <div className="p-5 space-y-4">
+            {MENU_SECTIONS.slice(0, 3).map(section => (
+              <div key={section.category}>
+                <div className={`text-[9px] uppercase tracking-[0.22em] ${tmpl.accentClass} mb-2 flex items-center gap-2`}>
+                  <span className={`h-px flex-1 bg-current opacity-25`} />
+                  {section.category}
+                  <span className={`h-px flex-1 bg-current opacity-25`} />
+                </div>
+                <div className="space-y-1.5">
+                  {section.items.map(item => (
+                    <div key={item.name} className="flex items-baseline justify-between gap-2">
+                      <div className="flex items-center gap-1 min-w-0">
+                        {item.star && <Star size={8} className={`${tmpl.accentClass} shrink-0`} fill="currentColor" />}
+                        <span className={`text-[10px] font-medium ${tmpl.accentClass} truncate`}>{item.name}</span>
+                      </div>
+                      <div className={`flex items-center gap-1 shrink-0`}>
+                        <span className={`border-b border-dotted ${tmpl.lineClass} w-4`} />
+                        <span className={`text-[10px] font-bold ${tmpl.accentClass}`}>{item.price}</span>
+                      </div>
                     </div>
-                  </button>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            ))}
+          </div>
 
-            {/* Menu preview */}
-            <motion.div
-              layout
-              key={selectedTemplate}
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className={`rounded-2xl overflow-hidden bg-gradient-to-br ${template.bg} border ${template.border}`}
-            >
-              {/* Menu header */}
-              <div className={`relative text-center py-8 px-6 border-b ${template.border}`}>
-                <div className="absolute top-4 left-6 w-8 h-8 border border-amber-700/40 rounded-full" />
-                <div className="absolute top-4 right-6 w-8 h-8 border border-amber-700/40 rounded-full" />
-                <div className={`text-xs uppercase tracking-widest ${template.accent} mb-2`}>CARTA</div>
-                <h1 className={`text-4xl font-serif font-bold ${template.accent}`}>Restaurante Maya</h1>
-                <p className={`text-sm mt-2 opacity-60 ${template.accent}`}>Cocina Mexicana de Autor</p>
-              </div>
-
-              {/* Menu items */}
-              <div className="p-6 space-y-6">
-                {menuItems.map(section => (
-                  <div key={section.category}>
-                    <div className={`text-xs uppercase tracking-widest ${template.accent} mb-3 flex items-center gap-3`}>
-                      <div className={`h-px flex-1 bg-current opacity-30`} />
-                      {section.category}
-                      <div className={`h-px flex-1 bg-current opacity-30`} />
+          {/* Right column */}
+          <div className="p-5 space-y-4">
+            {MENU_SECTIONS.slice(3).map(section => (
+              <div key={section.category}>
+                <div className={`text-[9px] uppercase tracking-[0.22em] ${tmpl.accentClass} mb-2 flex items-center gap-2`}>
+                  <span className={`h-px flex-1 bg-current opacity-25`} />
+                  {section.category}
+                  <span className={`h-px flex-1 bg-current opacity-25`} />
+                </div>
+                <div className="space-y-1.5">
+                  {section.items.map(item => (
+                    <div key={item.name} className="flex items-baseline justify-between gap-2">
+                      <div className="flex items-center gap-1 min-w-0">
+                        {item.star && <Star size={8} className={`${tmpl.accentClass} shrink-0`} fill="currentColor" />}
+                        <span className={`text-[10px] font-medium ${tmpl.accentClass} truncate`}>{item.name}</span>
+                      </div>
+                      <div className="flex items-center gap-1 shrink-0">
+                        <span className={`border-b border-dotted ${tmpl.lineClass} w-4`} />
+                        <span className={`text-[10px] font-bold ${tmpl.accentClass}`}>{item.price}</span>
+                      </div>
                     </div>
-                    <div className="space-y-3">
-                      {section.items.map(item => (
-                        <div key={item.name} className="flex items-center gap-4">
-                          <div className="w-12 h-12 rounded-xl bg-black/30 flex items-center justify-center text-2xl shrink-0">
-                            {item.photo}
-                          </div>
-                          <div className="flex-1">
-                            <div className={`font-medium ${template.accent}`}>{item.name}</div>
-                            <div className="text-xs text-muted-foreground mt-0.5">Con ingredientes de temporada</div>
-                          </div>
-                          <div className={`text-lg font-serif font-bold ${template.accent}`}>{item.price}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
+            ))}
 
-              {/* Footer */}
-              <div className={`text-center py-4 border-t ${template.border} text-xs text-muted-foreground`}>
-                restaurantemaya.mx • Reservaciones: +52 55 5555 0101
-              </div>
-            </motion.div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {/* Legend at bottom */}
+            <div className={`mt-4 pt-3 border-t ${tmpl.lineClass} flex gap-3 flex-wrap`}>
               {[
-                { icon: Image, title: "Fotos HD incluidas", desc: "Galeria de +500 fotos profesionales de platillos mexicanos" },
-                { icon: Palette, title: "50+ plantillas", desc: "Diseños modernos para cada estilo de restaurante" },
-                { icon: Sparkles, title: "Actualizacion instant.", desc: "Cambios en el menu se reflejan en el sitio y pantallas al instante" },
-              ].map(item => (
-                <div key={item.title} className="maya-card rounded-xl p-4 flex gap-3">
-                  <item.icon size={18} className="text-amber-400 shrink-0 mt-0.5" />
-                  <div>
-                    <div className="text-sm font-semibold">{item.title}</div>
-                    <div className="text-xs text-muted-foreground mt-1">{item.desc}</div>
-                  </div>
+                { symbol: "★", label: "Chef" },
+                { symbol: "●", label: "Picante", color: "text-red-400" },
+                { symbol: "●", label: "Vegano", color: "text-green-400" },
+              ].map(l => (
+                <div key={l.label} className="flex items-center gap-1">
+                  <span className={`text-[8px] ${l.color ?? tmpl.accentClass}`}>{l.symbol}</span>
+                  <span className={`text-[8px] ${tmpl.descClass}`}>{l.label}</span>
                 </div>
               ))}
             </div>
-          </motion.div>
-        ) : (
-          <motion.div
-            key="calendar"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            className="space-y-6"
-          >
-            <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-primary flex items-center gap-2">
-                <Instagram size={20} /> Planificador de Contenido Social
-              </h3>
-              <div className="flex items-center gap-2">
-                <button onClick={() => setWeekOffset(w => w - 1)} className="p-1.5 rounded-lg border border-border hover:border-amber-700/40">
-                  <ChevronLeft size={16} />
-                </button>
-                <span className="text-sm text-muted-foreground px-2">Sem {weekOffset === 0 ? "actual" : weekOffset > 0 ? `+${weekOffset}` : weekOffset}</span>
-                <button onClick={() => setWeekOffset(w => w + 1)} className="p-1.5 rounded-lg border border-border hover:border-amber-700/40">
-                  <ChevronRight size={16} />
-                </button>
-              </div>
-            </div>
+          </div>
+        </div>
 
-            {/* Legend */}
-            <div className="flex flex-wrap gap-3">
-              {Object.entries({ foto: "Foto", story: "Story", promo: "Promo", reel: "Reel", evento: "Evento" }).map(([type, label]) => (
-                <div key={type} className={`text-xs px-2 py-1 rounded-full border ${colorMap[type]}`}>{label}</div>
-              ))}
-            </div>
+        {/* Footer */}
+        <div className={`text-center py-3 border-t ${tmpl.lineClass}`}>
+          <p className={`text-[9px] tracking-widest uppercase ${tmpl.footerClass}`}>
+            @mayacantinasac · tablereserve.conect-r.com/book/roosters-on-the-river
+          </p>
+        </div>
+      </motion.div>
 
-            {/* Calendar grid */}
-            <div className="grid grid-cols-7 gap-2">
-              {daysOfWeek.map((day, idx) => {
-                const post = contentCalendar[String(idx)];
-                const isSelected = selectedDay === String(idx);
-                return (
-                  <button
-                    key={day}
-                    onClick={() => setSelectedDay(isSelected ? null : String(idx))}
-                    data-testid={`calendar-day-${idx}`}
-                    className={`rounded-xl border p-2 text-center transition-all min-h-24 flex flex-col items-center ${
-                      isSelected
-                        ? "border-amber-500 bg-amber-500/10"
-                        : "border-border hover:border-amber-700/30"
-                    }`}
-                  >
-                    <div className="text-xs text-muted-foreground mb-2">{day}</div>
-                    {post ? (
-                      <div className={`text-xs px-1.5 py-0.5 rounded-full border ${colorMap[post.type]} w-full text-center`}>
-                        {post.type}
-                      </div>
-                    ) : (
-                      <div className="w-full flex-1 flex items-center justify-center">
-                        <Plus size={12} className="text-muted-foreground/40" />
-                      </div>
-                    )}
-                    <div className="mt-1 flex gap-0.5 justify-center">
-                      {post?.platform === "ig" || post?.platform === "both" ? <Instagram size={8} className="text-pink-400" /> : null}
-                      {post?.platform === "fb" || post?.platform === "both" ? <Facebook size={8} className="text-blue-400" /> : null}
-                    </div>
-                  </button>
-                );
-              })}
+      {/* CTA to open printable menu */}
+      <div className="flex items-center justify-between p-4 rounded-xl bg-amber-900/10 border border-amber-700/25">
+        <div className="flex items-center gap-3">
+          <Palette size={20} className="text-amber-400 shrink-0" />
+          <div>
+            <div className="text-sm font-semibold">Menú listo para imprimir</div>
+            <div className="text-xs text-muted-foreground mt-0.5">
+              3 páginas · portada, menú completo y contraportada · formato US Letter
             </div>
-
-            {/* Selected day detail */}
-            <AnimatePresence>
-              {selectedDay !== null && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="maya-card rounded-xl p-5 border border-amber-800/30"
-                >
-                  {contentCalendar[selectedDay] ? (
-                    <div>
-                      <div className="flex items-center justify-between mb-3">
-                        <h4 className="text-sm font-semibold text-primary">
-                          {daysOfWeek[parseInt(selectedDay)]} — Publicacion programada
-                        </h4>
-                        <div className={`text-xs px-2 py-1 rounded-full border ${colorMap[contentCalendar[selectedDay].type]}`}>
-                          {contentCalendar[selectedDay].type}
-                        </div>
-                      </div>
-                      <p className="text-sm text-foreground mb-3">{contentCalendar[selectedDay].text}</p>
-                      <div className="flex items-center gap-3">
-                        <span className="text-xs text-muted-foreground">Publicar en:</span>
-                        <div className="flex gap-2">
-                          {(contentCalendar[selectedDay].platform === "ig" || contentCalendar[selectedDay].platform === "both") && (
-                            <span className="flex items-center gap-1 text-xs text-pink-400"><Instagram size={12} /> Instagram</span>
-                          )}
-                          {(contentCalendar[selectedDay].platform === "fb" || contentCalendar[selectedDay].platform === "both") && (
-                            <span className="flex items-center gap-1 text-xs text-blue-400"><Facebook size={12} /> Facebook</span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <div>
-                      <h4 className="text-sm font-semibold text-primary mb-3">
-                        {daysOfWeek[parseInt(selectedDay)]} — Sin publicacion
-                      </h4>
-                      <AnimatePresence>
-                        {addingPost ? (
-                          <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            className="space-y-3"
-                          >
-                            <input
-                              type="text"
-                              placeholder="Describe el contenido a publicar..."
-                              value={newPostText}
-                              onChange={e => setNewPostText(e.target.value)}
-                              className="w-full bg-muted/20 border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-amber-500"
-                            />
-                            <div className="flex gap-2">
-                              <button
-                                onClick={() => { setAddingPost(false); setNewPostText(""); }}
-                                className="px-4 py-2 bg-amber-500 text-black text-sm rounded-lg font-medium"
-                              >
-                                Agregar
-                              </button>
-                              <button onClick={() => setAddingPost(false)} className="px-4 py-2 border border-border rounded-lg text-sm">
-                                Cancelar
-                              </button>
-                            </div>
-                          </motion.div>
-                        ) : (
-                          <button
-                            onClick={() => setAddingPost(true)}
-                            className="flex items-center gap-2 text-sm text-amber-400 hover:text-amber-300 transition-colors"
-                          >
-                            <Plus size={16} /> Agregar publicacion para este dia
-                          </button>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  )}
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {[
-                { label: "Engagement promedio", value: "+185%", desc: "vs publicacion espontanea" },
-                { label: "Alcance semanal", value: "12,400", desc: "personas unicas por semana" },
-                { label: "Nuevos seguidores/mes", value: "+340", desc: "crecimiento organico" },
-                { label: "Conversiones a reserva", value: "8.2%", desc: "de visitas a perfil social" },
-              ].map(stat => (
-                <div key={stat.label} className="maya-card rounded-xl p-4">
-                  <div className="text-2xl font-bold gold-gradient font-serif">{stat.value}</div>
-                  <div className="text-sm font-medium mt-1">{stat.label}</div>
-                  <div className="text-xs text-muted-foreground">{stat.desc}</div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+        <button
+          onClick={handleOpenPrint}
+          className="flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-400 text-black text-sm font-bold rounded-lg transition-colors shrink-0 ml-4"
+        >
+          <ExternalLink size={14} /> Ver menú
+        </button>
+      </div>
     </div>
   );
 }
