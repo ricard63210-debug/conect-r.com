@@ -239,7 +239,7 @@ export default function PresenciaDigital() {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
-                { title: "Reservas en linea", desc: "Boton conectado directo a Toast donde los clientes reservan en tiempo real", icon: ChevronRight },
+                { title: "Reservas en linea", desc: "Boton conectado directo a Table Reserve donde los clientes reservan en tiempo real", icon: ChevronRight },
                 { title: "Menu digital integrado", desc: "Carta actualizada con fotos, descripcion de platillos y eventos de temporada", icon: ChevronRight },
                 { title: "SEO local optimizado", desc: "Visible en Google Maps para 'restaurante mexicano Sacramento' y busquedas cercanas", icon: ChevronRight },
               ].map(item => (
