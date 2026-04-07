@@ -12,29 +12,56 @@ body {
 /* ── Print rules ──────────────────────────────────────────────── */
 @media print {
   @page {
-    size: letter portrait;
-    margin: 0;
+    size: 8.5in 11in;
+    margin: 0mm;
   }
 
-  body {
+  html, body {
+    width: 8.5in;
+    height: 11in;
+    margin: 0 !important;
+    padding: 0 !important;
     background: transparent !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
   }
 
   .no-print {
     display: none !important;
   }
 
-  /* Each .print-page becomes its own sheet */
-  .print-page {
-    page-break-after: always;
-    break-after: page;
-    /* Remove drop shadows on print */
-    box-shadow: none !important;
+  /* wrapper div — no display effects */
+  .print-wrapper {
+    display: block !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    background: transparent !important;
   }
 
-  /* Last page: no extra blank page */
+  /* Each .print-page is exactly one letter sheet */
+  .print-page {
+    width: 8.5in !important;
+    height: 11in !important;
+    min-height: 11in !important;
+    max-height: 11in !important;
+    overflow: hidden !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    display: block !important;
+    position: relative !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    /* preserve gap labels from screen */
+  }
+
   .print-page:last-child {
-    page-break-after: avoid;
-    break-after: avoid;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  /* labels between pages – hide on print */
+  .page-label {
+    display: none !important;
   }
 }

@@ -139,22 +139,22 @@ function MenuItem({
   veg?: boolean;
 }) {
   return (
-    <div style={{ marginBottom: 12, pageBreakInside: "avoid" }}>
+    <div style={{ marginBottom: 9, pageBreakInside: "avoid" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 8 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 5, flex: 1 }}>
-          <span style={{ fontFamily: "Cinzel, serif", fontSize: 11.5, color: DARK_GREEN, fontWeight: 600, letterSpacing: "0.03em" }}>
+          <span style={{ fontFamily: "Cinzel, serif", fontSize: 11, color: DARK_GREEN, fontWeight: 600, letterSpacing: "0.03em" }}>
             {name}
           </span>
-          {star && <span style={{ fontSize: 9, color: GOLD, fontWeight: 700 }}>★ CHEF</span>}
-          {spicy && <span style={{ fontSize: 8.5, color: "#b03a2e" }}>● SPICY</span>}
-          {veg && <span style={{ fontSize: 8.5, color: "#1a7a3c" }}>● VEG</span>}
+          {star && <span style={{ fontSize: 8.5, color: GOLD, fontWeight: 700 }}>★ CHEF</span>}
+          {spicy && <span style={{ fontSize: 8, color: "#b03a2e" }}>● SPICY</span>}
+          {veg && <span style={{ fontSize: 8, color: "#1a7a3c" }}>● VEG</span>}
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0 }}>
-          <div style={{ borderBottom: `1px dotted ${GOLD}88`, width: 30 }} />
-          <span style={{ fontFamily: "Cinzel, serif", fontSize: 11.5, color: WARM_BROWN, fontWeight: 600 }}>${price}</span>
+          <div style={{ borderBottom: `1px dotted ${GOLD}88`, width: 24 }} />
+          <span style={{ fontFamily: "Cinzel, serif", fontSize: 11, color: WARM_BROWN, fontWeight: 600 }}>${price}</span>
         </div>
       </div>
-      <p style={{ fontFamily: "EB Garamond, Georgia, serif", fontSize: 10.5, color: "#5a4a3a", margin: "2px 0 0 0", lineHeight: 1.45, fontStyle: "italic" }}>
+      <p style={{ fontFamily: "EB Garamond, Georgia, serif", fontSize: 10, color: "#5a4a3a", margin: "1px 0 0 0", lineHeight: 1.4, fontStyle: "italic" }}>
         {description}
       </p>
     </div>
@@ -163,8 +163,8 @@ function MenuItem({
 
 function MenuSection({ category, subtitle, icon, items }: typeof MENU[0]) {
   return (
-    <div style={{ marginBottom: 18, pageBreakInside: "avoid" }}>
-      <div style={{ textAlign: "center", marginBottom: 10 }}>
+    <div style={{ marginBottom: 13, pageBreakInside: "avoid" }}>
+      <div style={{ textAlign: "center", marginBottom: 7 }}>
         <div style={{ fontFamily: "Cinzel, serif", fontSize: 13.5, color: GOLD, letterSpacing: "0.18em", fontWeight: 700 }}>
           — {category} —
         </div>
@@ -181,7 +181,7 @@ function MenuSection({ category, subtitle, icon, items }: typeof MENU[0]) {
 
 const PAGE_W = 816;
 const PAGE_H = 1056;
-const PAD = 56;
+const PAD = 44;
 
 function CoverPage() {
   return (
@@ -358,7 +358,7 @@ function MenuPage({ left, right }: { left: typeof MENU; right: typeof MENU }) {
       <div style={{ position: "absolute", bottom: 22, right: 22, transform: "scale(-1,-1)", opacity: 0.6 }}><OrnateCorner /></div>
 
       {/* Top header */}
-      <div style={{ textAlign: "center", marginBottom: 18, flexShrink: 0 }}>
+      <div style={{ textAlign: "center", marginBottom: 12, flexShrink: 0 }}>
         <div style={{ fontFamily: "Cinzel Decorative, Cinzel, serif", fontSize: 22, color: DARK_GREEN, letterSpacing: "0.2em" }}>
           MAYA CANTINA
         </div>
@@ -368,7 +368,7 @@ function MenuPage({ left, right }: { left: typeof MENU; right: typeof MENU }) {
       </div>
 
       {/* Two-column menu */}
-      <div style={{ display: "flex", gap: 36, flex: 1 }}>
+      <div style={{ display: "flex", gap: 28, flex: 1 }}>
         {/* Left column */}
         <div style={{ flex: 1 }}>
           {left.map((section) => (
@@ -388,7 +388,7 @@ function MenuPage({ left, right }: { left: typeof MENU; right: typeof MENU }) {
       </div>
 
       {/* Footer legend */}
-      <div style={{ marginTop: 18, flexShrink: 0 }}>
+      <div style={{ marginTop: 10, flexShrink: 0 }}>
         <Divider color={GOLD} />
         <div style={{ display: "flex", gap: 24, justifyContent: "center", marginTop: 10 }}>
           {[
@@ -649,16 +649,16 @@ export default function MenuPrint() {
       </div>
 
       {/* Pages */}
-      <div ref={printRef} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 32, padding: "32px 0 64px" }}>
+      <div ref={printRef} className="print-wrapper" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 32, padding: "32px 0 64px" }}>
         {/* Page 1: Cover */}
         <div>
-          <div className="no-print" style={{ color: "#666", fontSize: 10, textAlign: "center", marginBottom: 6, letterSpacing: "0.1em" }}>PÁGINA 1 — PORTADA</div>
+          <div className="page-label no-print" style={{ color: "#666", fontSize: 10, textAlign: "center", marginBottom: 6, letterSpacing: "0.1em" }}>PÁGINA 1 — PORTADA</div>
           <CoverPage />
         </div>
 
         {/* Page 2: Menu */}
         <div>
-          <div className="no-print" style={{ color: "#666", fontSize: 10, textAlign: "center", marginBottom: 6, letterSpacing: "0.1em" }}>PÁGINA 2 — MENÚ COMPLETO</div>
+          <div className="page-label no-print" style={{ color: "#666", fontSize: 10, textAlign: "center", marginBottom: 6, letterSpacing: "0.1em" }}>PÁGINA 2 — MENÚ COMPLETO</div>
           <MenuPage
             left={[MENU[0], MENU[1], MENU[2]]}
             right={[MENU[3], MENU[4], MENU[5]]}
@@ -667,7 +667,7 @@ export default function MenuPrint() {
 
         {/* Page 3: Back */}
         <div>
-          <div className="no-print" style={{ color: "#666", fontSize: 10, textAlign: "center", marginBottom: 6, letterSpacing: "0.1em" }}>PÁGINA 3 — CONTRAPORTADA</div>
+          <div className="page-label no-print" style={{ color: "#666", fontSize: 10, textAlign: "center", marginBottom: 6, letterSpacing: "0.1em" }}>PÁGINA 3 — CONTRAPORTADA</div>
           <BackPage />
         </div>
       </div>
