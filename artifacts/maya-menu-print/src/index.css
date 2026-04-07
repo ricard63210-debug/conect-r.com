@@ -1,0 +1,40 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Print rules ──────────────────────────────────────────────── */
+@media print {
+  @page {
+    size: letter portrait;
+    margin: 0;
+  }
+
+  body {
+    background: transparent !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  /* Each .print-page becomes its own sheet */
+  .print-page {
+    page-break-after: always;
+    break-after: page;
+    /* Remove drop shadows on print */
+    box-shadow: none !important;
+  }
+
+  /* Last page: no extra blank page */
+  .print-page:last-child {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+}
