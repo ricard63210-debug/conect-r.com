@@ -1,5 +1,22 @@
-import { useRef } from "react";
-import { Printer } from "lucide-react";
+import { useRef, useState } from "react";
+import { Printer, X, Share } from "lucide-react";
+
+function isIOS() {
+  return (
+    typeof navigator !== "undefined" &&
+    /iPad|iPhone|iPod/.test(navigator.userAgent) &&
+    !(window as any).MSStream
+  );
+}
+
+function isMobileSafari() {
+  return (
+    typeof navigator !== "undefined" &&
+    /Safari/.test(navigator.userAgent) &&
+    /Mobile/.test(navigator.userAgent) &&
+    !/Chrome|CriOS|FxiOS/.test(navigator.userAgent)
+  );
+}
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -487,13 +504,106 @@ function BackPage() {
 
 export default function MenuPrint() {
   const printRef = useRef<HTMLDivElement>(null);
+  const [showIOSModal, setShowIOSModal] = useState(false);
 
   const handlePrint = () => {
-    window.print();
+    if (isIOS() || isMobileSafari()) {
+      setShowIOSModal(true);
+    } else {
+      window.print();
+    }
   };
 
   return (
     <div style={{ background: "#2a2a2a", minHeight: "100vh", fontFamily: "sans-serif" }}>
+
+      {/* iOS instructions modal */}
+      {showIOSModal && (
+        <div
+          className="no-print"
+          onClick={() => setShowIOSModal(false)}
+          style={{
+            position: "fixed", inset: 0, zIndex: 9999,
+            background: "rgba(0,0,0,0.75)",
+            display: "flex", alignItems: "flex-end", justifyContent: "center",
+            padding: "0 0 20px",
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: "#1e1e1e",
+              borderRadius: 20,
+              padding: "28px 24px 32px",
+              width: "100%",
+              maxWidth: 420,
+              border: "1px solid #333",
+              boxShadow: "0 -8px 40px rgba(0,0,0,0.6)",
+            }}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
+              <div style={{ color: GOLD, fontFamily: "serif", fontSize: 17, fontWeight: 700 }}>
+                Guardar / Imprimir en iPhone
+              </div>
+              <button
+                onClick={() => setShowIOSModal(false)}
+                style={{ background: "none", border: "none", color: "#666", cursor: "pointer", padding: 4 }}
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {[
+              { num: "1", icon: "⬆️", text: "Toca el botón Compartir (↑) en la barra de Safari" },
+              { num: "2", icon: "🖨️", text: 'Selecciona "Imprimir" del menú' },
+              { num: "3", icon: "📄", text: 'Para guardar como PDF: pellizca la vista previa y toca "Guardar en Archivos"' },
+            ].map((step) => (
+              <div key={step.num} style={{ display: "flex", gap: 14, marginBottom: 16, alignItems: "flex-start" }}>
+                <div style={{
+                  width: 28, height: 28, borderRadius: "50%",
+                  background: GOLD, color: "#1a1a1a",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontWeight: 800, fontSize: 13, flexShrink: 0, marginTop: 1,
+                }}>
+                  {step.num}
+                </div>
+                <div style={{ color: "#ccc", fontSize: 14, lineHeight: 1.5 }}>
+                  <span style={{ fontSize: 16 }}>{step.icon}</span> {step.text}
+                </div>
+              </div>
+            ))}
+
+            <div style={{
+              marginTop: 20,
+              background: "#2a2a2a",
+              borderRadius: 10,
+              padding: "12px 14px",
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+            }}>
+              <Share size={16} color={GOLD} />
+              <div style={{ color: "#888", fontSize: 12, lineHeight: 1.5 }}>
+                El botón Compartir está en la barra inferior de Safari
+              </div>
+            </div>
+
+            <button
+              onClick={() => setShowIOSModal(false)}
+              style={{
+                marginTop: 20, width: "100%",
+                background: GOLD, color: "#1a1a1a",
+                border: "none", borderRadius: 12,
+                padding: "14px", fontWeight: 700,
+                fontSize: 15, cursor: "pointer",
+              }}
+            >
+              Entendido
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Print button toolbar - hidden on print */}
       <div className="no-print" style={{
         position: "sticky",
@@ -501,18 +611,20 @@ export default function MenuPrint() {
         zIndex: 100,
         background: "#1a1a1a",
         borderBottom: "1px solid #333",
-        padding: "12px 24px",
+        padding: "12px 16px",
         display: "flex",
         alignItems: "center",
-        gap: 16,
+        gap: 12,
+        flexWrap: "wrap",
       }}>
-        <div style={{ flex: 1 }}>
-          <div style={{ color: GOLD, fontFamily: "serif", fontSize: 16, fontWeight: 600 }}>Maya Cantina — Menú Imprimible</div>
-          <div style={{ color: "#888", fontSize: 11, marginTop: 2 }}>3 páginas · US Letter (8.5" × 11") · 96 dpi</div>
+        <div style={{ flex: 1, minWidth: 140 }}>
+          <div style={{ color: GOLD, fontFamily: "serif", fontSize: 15, fontWeight: 600 }}>Maya Cantina — Menú Imprimible</div>
+          <div style={{ color: "#888", fontSize: 10, marginTop: 2 }}>3 páginas · US Letter (8.5" × 11")</div>
         </div>
-        <div style={{ color: "#666", fontSize: 11, textAlign: "right", lineHeight: 1.6 }}>
-          Usa <strong style={{ color: "#aaa" }}>Ctrl+P</strong> / <strong style={{ color: "#aaa" }}>Cmd+P</strong><br />
-          Selecciona "Sin márgenes" · Activar fondos de gráficos
+        <div style={{ color: "#555", fontSize: 10, textAlign: "right", lineHeight: 1.6, display: "none" }}
+             className="desktop-hint">
+          Usa <strong style={{ color: "#888" }}>Ctrl+P</strong> / <strong style={{ color: "#888" }}>Cmd+P</strong><br />
+          Sin márgenes · Activar fondos de gráficos
         </div>
         <button
           onClick={handlePrint}
@@ -521,7 +633,7 @@ export default function MenuPrint() {
             color: "#1a1a1a",
             border: "none",
             borderRadius: 8,
-            padding: "10px 20px",
+            padding: "10px 18px",
             fontWeight: 700,
             fontSize: 13,
             cursor: "pointer",
@@ -529,9 +641,10 @@ export default function MenuPrint() {
             alignItems: "center",
             gap: 7,
             letterSpacing: "0.03em",
+            flexShrink: 0,
           }}
         >
-          <Printer size={15} /> Imprimir
+          <Printer size={15} /> Imprimir / Guardar PDF
         </button>
       </div>
 
