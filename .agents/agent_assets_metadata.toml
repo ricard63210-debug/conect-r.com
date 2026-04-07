@@ -1,0 +1,140 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "7WEFu7q0YZhONFiYxJfkj"
+uri = "file://artifacts/maya-menu/public/images/chilaquiles.png"
+type = "image"
+title = "Chilaquiles Maya"
+
+[[generated]]
+id = "wmPOV200n64iUw7h_IKzr"
+uri = "file://artifacts/maya-menu/public/images/huevos-rancheros.png"
+type = "image"
+title = "Huevos Rancheros"
+
+[[generated]]
+id = "u0BCkQ8FfRvce1M6tck1T"
+uri = "file://artifacts/maya-menu/public/images/pancakes-cajeta.png"
+type = "image"
+title = "Pancakes de Cajeta"
+
+[[generated]]
+id = "cxqyu14ofEnCzjAAM2onz"
+uri = "file://artifacts/maya-menu/public/images/birria-egg-rolls.png"
+type = "image"
+title = "Birria Egg Rolls"
+
+[[generated]]
+id = "Z2TjUYbNic1jp8zSY-88O"
+uri = "file://artifacts/maya-menu/public/images/pork-belly-bites.png"
+type = "image"
+title = "Pork Belly Bites"
+
+[[generated]]
+id = "ponsrLGqtQFsy48_xb3Lb"
+uri = "file://artifacts/maya-menu/public/images/guacamole.png"
+type = "image"
+title = "Guacamole Maya"
+
+[[generated]]
+id = "Um50HheE7Kw0dHWfp6GVU"
+uri = "file://artifacts/maya-menu/public/images/elote-loco.png"
+type = "image"
+title = "Elote Loco"
+
+[[generated]]
+id = "NQfipvmtGcunB6sC3A_wB"
+uri = "file://artifacts/maya-menu/public/images/taco-maya.png"
+type = "image"
+title = "Taco Maya"
+
+[[generated]]
+id = "bFQTcAjPY1SBI7jh4ZcKl"
+uri = "file://artifacts/maya-menu/public/images/taco-birria.png"
+type = "image"
+title = "Taco de Birria"
+
+[[generated]]
+id = "t_ibZSxSMevyY3eF0Gv35"
+uri = "file://artifacts/maya-menu/public/images/taco-carnitas.png"
+type = "image"
+title = "Taco de Carnitas"
+
+[[generated]]
+id = "GE3s1yFdluNj9Z4f32p0l"
+uri = "file://artifacts/maya-menu/public/images/ceviche.png"
+type = "image"
+title = "Ceviche Maya"
+
+[[generated]]
+id = "kIhr2XDU0nHwieIrugkBB"
+uri = "file://artifacts/maya-menu/public/images/tostadas-atun.png"
+type = "image"
+title = "Tostadas de Atún"
+
+[[generated]]
+id = "g1hyph1PWCD2MaxGZwACI"
+uri = "file://artifacts/maya-menu/public/images/aguachile.png"
+type = "image"
+title = "Aguachile Verde"
+
+[[generated]]
+id = "GvTBWQXn3CRo5WykEFr_a"
+uri = "file://artifacts/maya-menu/public/images/mole.png"
+type = "image"
+title = "Mole Negro"
+
+[[generated]]
+id = "sf84aiWgWy8Em4nbEXdPP"
+uri = "file://artifacts/maya-menu/public/images/arrachera.png"
+type = "image"
+title = "Arrachera a la Parrilla"
+
+[[generated]]
+id = "3KV4OimEjoSf9AqSrocYq"
+uri = "file://artifacts/maya-menu/public/images/chile-nogada.png"
+type = "image"
+title = "Chile en Nogada"
+
+[[generated]]
+id = "E8fqh4aL2F2QOhauboZaD"
+uri = "file://artifacts/maya-menu/public/images/camarones-mezcal.png"
+type = "image"
+title = "Camarones al Mezcal"
+
+[[generated]]
+id = "RiCNvvqmXeqTjmIsdl1EH"
+uri = "file://artifacts/maya-menu/public/images/margarita.png"
+type = "image"
+title = "Margarita Clásica"
+
+[[generated]]
+id = "c5TLoTxqd_70YvRDIlJnr"
+uri = "file://artifacts/maya-menu/public/images/margarita-tamarindo.png"
+type = "image"
+title = "Margarita de Tamarindo"
+
+[[generated]]
+id = "j-ZhYDBr4whZKth8zzuUM"
+uri = "file://artifacts/maya-menu/public/images/mezcal-negroni.png"
+type = "image"
+title = "Mezcal Negroni"
+
+[[generated]]
+id = "3XcJesN90AtvXnSZLaxkI"
+uri = "file://artifacts/maya-menu/public/images/michelada.png"
+type = "image"
+title = "Michelada Maya"
+
+[[generated]]
+id = "h7ovV5fsqLJjWP24P0wl1"
+uri = "file://artifacts/maya-menu/public/images/agua-jamaica.png"
+type = "image"
+title = "Agua de Jamaica"
+
+[[generated]]
+id = "JUUZLaMZ3BWXQuJZ8g0cK"
+uri = "file://artifacts/maya-menu/public/images/taco-vegano.png"
+type = "image"
+title = "Taco Vegano"

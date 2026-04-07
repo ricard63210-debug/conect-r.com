@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/maya-menu/"
+title = "Maya Cantina — Menu Digital"
+version = "1.0.0"
+id = "artifacts/maya-menu"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/maya-menu/" ]
+localPort = 19668
+
+[services.development]
+run = "pnpm --filter @workspace/maya-menu run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/maya-menu", "run", "build" ]
+publicDir = "artifacts/maya-menu/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19668"
+BASE_PATH = "/maya-menu/"

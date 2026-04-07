@@ -1,0 +1,25 @@
+Prompt para Replit: "Maya Cantina Digital Menu Experience"
+Contexto del Proyecto:
+"Crea una aplicación web (PWA) que sirva como el menú digital premium para Maya Cantina. El diseño debe inspirarse en la estética de su local en Sacramento: una mezcla de tradición mexicana, toque rústico moderno y un ambiente de cantina vibrante. Debe ser visualmente impactante, con fotografías grandes y descripciones detalladas."
+Estilo Visual y UI:
+• Paleta de Colores: Fondo oscuro elegante (#121212) con acentos en colores tierra, naranja quemado (#D35400) y verde agave (#2E7D32). Usa tipografía 'Montserrat' para títulos y 'Lato' para descripciones.
+• Componentes:
+• Header Dinámico: Logo centrado con un efecto de desenfoque al hacer scroll.
+• Categorías Flotantes: Un menú horizontal superior (Brunch, Starters, Tacos, Mariscos, Platos Fuertes, Drinks).
+• Cartas de Platillos (Cards): Cada plato debe tener una imagen de alta resolución que ocupe el 40% de la card, título en negrita, precio destacado y la descripción del ingrediente.
+Contenido Base (Extraído de Maya Cantina):
+Incluye estos ejemplos para el prototipo:
+1.	Chilaquiles Maya: Tortillas de maíz fritas en salsa roja o verde, queso, arrachera, papas y frijoles ($19.00).
+2.	Birria Egg Rolls: Rollos crujientes rellenos de birria de res y queso, servidos con consomé, cebolla curtida y salsa molcajete ($13.00).
+3.	Pork Belly Bites: Chicharrón de cerdo crujiente con salsa de néctar de agave dulce y picante ($12.00).
+4.	Taco Maya: Inspirado en la dieta maya (maíz, calabaza, frijol) con skirt steak, queso fresco, aguacate y cebolla curtida.
+5.	Sección de Mariscos: Especialidad en Ceviches y platos frescos con ingredientes locales.
+Funcionalidades Especiales:
+• Galería de Fotos: Al hacer clic en un plato, abre un modal con la foto en pantalla completa y etiquetas de 'Picante', 'Vegetariano' o 'Favorito del Chef'.
+• Integración con Redes: Botones flotantes al final que lleven directamente al Instagram (@mayacantinasac) y Facebook de Maya Cantina.
+• Filtro de búsqueda: Una barra de búsqueda rápida para encontrar platillos por ingrediente (ej: 'Camarón', 'Asada').
+• Botón de Reservas: Enlace directo al sistema de OpenTable o Table Reserve de Conect-R.
+Instrucciones Técnicas:
+• Usa React con Tailwind CSS.
+• Asegura que el diseño sea 'Mobile-First' (optimizado para el celular del cliente mientras está en la mesa).
+• Implementa 'Lazy Loading' para que las imágenes de la comida carguen rápido sin afectar la experiencia."
