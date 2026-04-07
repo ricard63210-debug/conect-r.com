@@ -378,11 +378,11 @@ export default function GestionOperativa() {
               <div className="flex items-start gap-3">
                 <ChevronRight size={20} className="text-amber-400 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-sm font-semibold text-foreground mb-1">Sin colas fisicas — 100% digital</h4>
+                  <h4 className="text-sm font-semibold text-foreground mb-1">Sin colas fisicas — gestion digital en tiempo real</h4>
                   <p className="text-sm text-muted-foreground">
-                    El cliente se registra en la lista desde su celular al llegar. Recibe SMS cuando su mesa
-                    esta lista. Puede esperar en el bar o en la calle sin perder el lugar.
-                    <span className="text-amber-400 font-medium"> +28% satisfaccion del cliente</span> en restaurantes que usan NextUp.
+                    Cuando un cliente llega sin reservacion, el staff lo agrega a la lista en segundos desde el sistema.
+                    El cliente recibe un SMS cuando su mesa esta lista y puede esperar en el bar o en la calle
+                    sin perder su lugar — sin papel, sin pizarrones, sin desorden.
                   </p>
                 </div>
               </div>
