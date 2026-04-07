@@ -130,13 +130,13 @@ export default function PresenciaDigital() {
                   <div className="w-3 h-3 rounded-full bg-green-500/60" />
                 </div>
                 <a
-                  href="https://mayacantina.toast.site"
+                  href="https://roosters-sacramento.vercel.app/index.html"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 bg-gray-800 rounded-md px-3 py-1 text-xs text-gray-300 flex items-center gap-2 hover:bg-gray-700 transition-colors"
                 >
                   <Globe size={10} className="text-green-400 shrink-0" />
-                  mayacantina.toast.site
+                  roosters-sacramento.vercel.app/index.html
                   <ExternalLink size={9} className="text-gray-500 ml-auto" />
                 </a>
               </div>
@@ -151,9 +151,14 @@ export default function PresenciaDigital() {
                     <span key={item} className="hover:text-amber-400 cursor-pointer transition-colors">{item}</span>
                   ))}
                 </div>
-                <button className="px-3 py-1.5 bg-amber-500 text-black text-xs rounded-lg font-semibold">
+                <a
+                  href="https://tablereserve.conect-r.com/book/roosters-on-the-river"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1.5 bg-amber-500 text-black text-xs rounded-lg font-semibold hover:bg-amber-400 transition-colors"
+                >
                   Reservar Mesa
-                </button>
+                </a>
               </div>
 
               {/* Hero */}
@@ -172,7 +177,7 @@ export default function PresenciaDigital() {
                   <p className="text-amber-200/70 text-lg mb-7">Cocina Mexicana Autentica • Sacramento, CA</p>
                   <div className="flex flex-wrap gap-3 justify-center">
                     <a
-                      href="https://mayacantina.toast.site/events"
+                      href="https://tablereserve.conect-r.com/book/roosters-on-the-river"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="px-6 py-2.5 bg-amber-500 text-black rounded-full font-semibold text-sm hover:bg-amber-400 transition-colors"
