@@ -2,12 +2,13 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Wifi, BarChart2, Monitor, Globe, Palette, TrendingUp,
-  Menu, X, ChevronRight
+  Menu, X, ChevronRight, Instagram
 } from "lucide-react";
 import SmartTable from "@/components/modules/SmartTable";
 import GestionOperativa from "@/components/modules/GestionOperativa";
 import DigitalSignage from "@/components/modules/DigitalSignage";
 import PresenciaDigital from "@/components/modules/PresenciaDigital";
+import RedesSociales from "@/components/modules/RedesSociales";
 import ModuloCreativo from "@/components/modules/ModuloCreativo";
 import AntesDepues from "@/components/modules/AntesDepues";
 
@@ -43,6 +44,14 @@ const modules = [
     icon: Globe,
     component: PresenciaDigital,
     color: "from-blue-700 to-blue-500",
+  },
+  {
+    id: "redes",
+    label: "Redes Sociales",
+    sublabel: "Instagram & Facebook",
+    icon: Instagram,
+    component: RedesSociales,
+    color: "from-pink-700 to-pink-500",
   },
   {
     id: "creativo",
