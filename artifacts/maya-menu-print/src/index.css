@@ -41,18 +41,12 @@ body {
 
   /* Each .print-page is exactly one letter sheet */
   .print-page {
-    width: 8.5in !important;
-    height: 11in !important;
-    min-height: 11in !important;
-    max-height: 11in !important;
     overflow: hidden !important;
     page-break-after: always !important;
     break-after: page !important;
-    display: block !important;
     position: relative !important;
     margin: 0 !important;
-    padding: 0 !important;
-    /* preserve gap labels from screen */
+    /* Do NOT override width/height/padding — component inline styles control those */
   }
 
   .print-page:last-child {

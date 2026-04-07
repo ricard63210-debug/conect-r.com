@@ -179,17 +179,15 @@ function MenuSection({ category, subtitle, icon, items }: typeof MENU[0]) {
   );
 }
 
-const PAGE_W = 816;
-const PAGE_H = 1056;
-const PAD = 44;
+const PAGE_SIZE = { width: "8.5in", height: "11in" } as const;
+const PAD = "0.46in";
 
 function CoverPage() {
   return (
     <div
       className="print-page"
       style={{
-        width: PAGE_W,
-        height: PAGE_H,
+        ...PAGE_SIZE,
         background: DARK_GREEN,
         position: "relative",
         overflow: "hidden",
@@ -336,8 +334,7 @@ function MenuPage({ left, right }: { left: typeof MENU; right: typeof MENU }) {
     <div
       className="print-page"
       style={{
-        width: PAGE_W,
-        height: PAGE_H,
+        ...PAGE_SIZE,
         background: CREAM,
         position: "relative",
         overflow: "hidden",
@@ -417,8 +414,7 @@ function BackPage() {
     <div
       className="print-page"
       style={{
-        width: PAGE_W,
-        height: PAGE_H,
+        ...PAGE_SIZE,
         background: DARK_GREEN,
         position: "relative",
         overflow: "hidden",
