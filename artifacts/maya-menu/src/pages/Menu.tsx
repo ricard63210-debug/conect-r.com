@@ -13,7 +13,7 @@ const MENU_DATA = [
         title: "Chilaquiles Maya",
         description: "Tortillas de maíz fritas en salsa roja o verde, queso, arrachera, papas y frijoles",
         price: 19.00,
-        image: "/images/chilaquiles.png",
+        image: `${import.meta.env.BASE_URL}images/chilaquiles.png`,
         tags: ["⭐ Favorito del Chef"],
       },
       {
@@ -21,7 +21,7 @@ const MENU_DATA = [
         title: "Huevos Rancheros",
         description: "Huevos sobre tortilla con salsa roja casera, frijoles negros y chorizo",
         price: 16.00,
-        image: "/images/huevos-rancheros.png",
+        image: `${import.meta.env.BASE_URL}images/huevos-rancheros.png`,
         tags: [],
       },
       {
@@ -29,7 +29,7 @@ const MENU_DATA = [
         title: "Pancakes de Cajeta",
         description: "Hot cakes esponjosos con cajeta artesanal, fresas y crema",
         price: 14.00,
-        image: "/images/pancakes-cajeta.png",
+        image: `${import.meta.env.BASE_URL}images/pancakes-cajeta.png`,
         tags: [],
       }
     ]
@@ -42,7 +42,7 @@ const MENU_DATA = [
         title: "Birria Egg Rolls",
         description: "Rollos crujientes rellenos de birria de res y queso, servidos con consomé, cebolla curtida y salsa molcajete",
         price: 13.00,
-        image: "/images/birria-egg-rolls.png",
+        image: `${import.meta.env.BASE_URL}images/birria-egg-rolls.png`,
         tags: ["⭐ Favorito del Chef"],
       },
       {
@@ -50,7 +50,7 @@ const MENU_DATA = [
         title: "Pork Belly Bites",
         description: "Chicharrón de cerdo crujiente con salsa de néctar de agave dulce y picante",
         price: 12.00,
-        image: "/images/pork-belly-bites.png",
+        image: `${import.meta.env.BASE_URL}images/pork-belly-bites.png`,
         tags: ["🌶 Picante"],
       },
       {
@@ -58,7 +58,7 @@ const MENU_DATA = [
         title: "Guacamole Maya",
         description: "Aguacate fresco, jitomate, cilantro, cebolla morada y chile serrano",
         price: 11.00,
-        image: "/images/guacamole.png",
+        image: `${import.meta.env.BASE_URL}images/guacamole.png`,
         tags: ["🌿 Vegetariano"],
       },
       {
@@ -66,7 +66,7 @@ const MENU_DATA = [
         title: "Elote Loco",
         description: "Elote asado con mayonesa, queso cotija, chile piquín y limón",
         price: 9.00,
-        image: "/images/elote-loco.png",
+        image: `${import.meta.env.BASE_URL}images/elote-loco.png`,
         tags: ["🌿 Vegetariano"],
       }
     ]
@@ -79,7 +79,7 @@ const MENU_DATA = [
         title: "Taco Maya",
         description: "Skirt steak, queso fresco, aguacate, cebolla curtida, inspirado en la dieta maya",
         price: 16.00,
-        image: "/images/taco-maya.png",
+        image: `${import.meta.env.BASE_URL}images/taco-maya.png`,
         tags: ["⭐ Favorito del Chef"],
       },
       {
@@ -87,7 +87,7 @@ const MENU_DATA = [
         title: "Taco de Birria",
         description: "Res estofada en consomé con queso, cebolla y cilantro",
         price: 15.00,
-        image: "/images/taco-birria.png",
+        image: `${import.meta.env.BASE_URL}images/taco-birria.png`,
         tags: ["🌶 Picante"],
       },
       {
@@ -95,7 +95,7 @@ const MENU_DATA = [
         title: "Taco de Carnitas",
         description: "Cerdo confitado, salsa verde, cebolla y cilantro",
         price: 14.00,
-        image: "/images/taco-carnitas.png",
+        image: `${import.meta.env.BASE_URL}images/taco-carnitas.png`,
         tags: [],
       },
       {
@@ -103,7 +103,7 @@ const MENU_DATA = [
         title: "Taco Vegano",
         description: "Hongos portobello al pastor, aguacate, pico de gallo",
         price: 13.00,
-        image: "/images/taco-vegano.png",
+        image: `${import.meta.env.BASE_URL}images/taco-vegano.png`,
         tags: ["🌿 Vegetariano"],
       }
     ]
@@ -116,7 +116,7 @@ const MENU_DATA = [
         title: "Ceviche Maya",
         description: "Camarón y pulpo marinados en limón, jitomate, cebolla, cilantro y chile jalapeño",
         price: 18.00,
-        image: "/images/ceviche.png",
+        image: `${import.meta.env.BASE_URL}images/ceviche.png`,
         tags: ["🌶 Picante"],
       },
       {
@@ -124,7 +124,7 @@ const MENU_DATA = [
         title: "Tostadas de Atún",
         description: "Atún fresco con aguacate, mayonesa de chipotle y masago",
         price: 17.00,
-        image: "/images/tostadas-atun.png",
+        image: `${import.meta.env.BASE_URL}images/tostadas-atun.png`,
         tags: ["⭐ Favorito del Chef"],
       },
       {
@@ -132,7 +132,7 @@ const MENU_DATA = [
         title: "Aguachile Verde",
         description: "Camarón crudo marinado en chile serrano, pepino y cebolla morada",
         price: 19.00,
-        image: "/images/aguachile.png",
+        image: `${import.meta.env.BASE_URL}images/aguachile.png`,
         tags: ["🌶 Picante"],
       }
     ]
@@ -145,7 +145,7 @@ const MENU_DATA = [
         title: "Mole Negro",
         description: "Pechuga de pollo bañada en mole negro oaxaqueño, arroz y frijoles",
         price: 22.00,
-        image: "/images/mole.png",
+        image: `${import.meta.env.BASE_URL}images/mole.png`,
         tags: ["⭐ Favorito del Chef"],
       },
       {
@@ -153,7 +153,7 @@ const MENU_DATA = [
         title: "Arrachera a la Parrilla",
         description: "Arrachera marinada con chimichurri maya, papas rústicas y ensalada",
         price: 26.00,
-        image: "/images/arrachera.png",
+        image: `${import.meta.env.BASE_URL}images/arrachera.png`,
         tags: [],
       },
       {
@@ -161,7 +161,7 @@ const MENU_DATA = [
         title: "Chile en Nogada",
         description: "Poblano relleno de picadillo, cubierto de nogada de nuez y granada",
         price: 24.00,
-        image: "/images/chile-nogada.png",
+        image: `${import.meta.env.BASE_URL}images/chile-nogada.png`,
         tags: [],
       },
       {
@@ -169,7 +169,7 @@ const MENU_DATA = [
         title: "Camarones al Mezcal",
         description: "Camarones en mantequilla de ajo y mezcal, arroz negro y tortillas",
         price: 25.00,
-        image: "/images/camarones-mezcal.png",
+        image: `${import.meta.env.BASE_URL}images/camarones-mezcal.png`,
         tags: ["🌶 Picante"],
       }
     ]
@@ -182,7 +182,7 @@ const MENU_DATA = [
         title: "Margarita Clásica",
         description: "Tequila 100% agave, triple sec, limón fresco, sal",
         price: 12.00,
-        image: "/images/margarita.png",
+        image: `${import.meta.env.BASE_URL}images/margarita.png`,
         tags: [],
       },
       {
@@ -190,7 +190,7 @@ const MENU_DATA = [
         title: "Margarita de Tamarindo",
         description: "Con pulpa de tamarindo y chile piquín",
         price: 13.00,
-        image: "/images/margarita-tamarindo.png",
+        image: `${import.meta.env.BASE_URL}images/margarita-tamarindo.png`,
         tags: ["🌶 Picante"],
       },
       {
@@ -198,7 +198,7 @@ const MENU_DATA = [
         title: "Mezcal Negroni",
         description: "Mezcal, Campari, vermut rosso",
         price: 14.00,
-        image: "/images/mezcal-negroni.png",
+        image: `${import.meta.env.BASE_URL}images/mezcal-negroni.png`,
         tags: [],
       },
       {
@@ -206,7 +206,7 @@ const MENU_DATA = [
         title: "Michelada Maya",
         description: "Cerveza con clamato, salsa valentina, limón y especias",
         price: 10.00,
-        image: "/images/michelada.png",
+        image: `${import.meta.env.BASE_URL}images/michelada.png`,
         tags: [],
       },
       {
@@ -214,7 +214,7 @@ const MENU_DATA = [
         title: "Agua de Jamaica",
         description: "Hibisco fresco, sin azúcar añadida",
         price: 5.00,
-        image: "/images/agua-jamaica.png",
+        image: `${import.meta.env.BASE_URL}images/agua-jamaica.png`,
         tags: ["🌿 Vegetariano"],
       }
     ]
@@ -253,12 +253,12 @@ export default function Menu() {
       <header className={`sticky top-0 z-40 transition-all duration-300 ${scrolled ? 'bg-[#121212]/90 backdrop-blur-md shadow-md py-3 border-b border-white/5' : 'bg-transparent py-6'}`}>
         <div className="container mx-auto px-4 flex justify-between items-center relative">
           <div className={`transition-all duration-500 ease-in-out ${scrolled ? 'opacity-0 scale-95 pointer-events-none absolute' : 'opacity-100 scale-100 relative'} flex flex-col items-center justify-center w-full`}>
-            <img src="/maya-logo.jpeg" alt="Maya Cantina" className="w-24 h-24 object-contain rounded-full shadow-lg border-2 border-[#D35400]/20 mb-3" />
+            <img src={`${import.meta.env.BASE_URL}maya-logo.jpeg`} alt="Maya Cantina" className="w-24 h-24 object-contain rounded-full shadow-lg border-2 border-[#D35400]/20 mb-3" />
             <p className="text-xs text-gray-400 mt-1 uppercase tracking-widest text-center font-medium">Cocina Mexicana Autentica • Sacramento, CA</p>
           </div>
           
           <div className={`transition-all duration-500 flex items-center gap-3 ${scrolled ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 pointer-events-none absolute'}`}>
-            <img src="/maya-logo.jpeg" alt="Maya Cantina" className="w-10 h-10 object-contain rounded-full border border-[#D35400]/20" />
+            <img src={`${import.meta.env.BASE_URL}maya-logo.jpeg`} alt="Maya Cantina" className="w-10 h-10 object-contain rounded-full border border-[#D35400]/20" />
             <div className="text-xl font-serif font-bold text-[#D35400]">MAYA</div>
           </div>
 
@@ -404,7 +404,7 @@ export default function Menu() {
 
       {/* Footer */}
       <footer className="bg-black py-12 text-center border-t border-white/5 mt-16 px-4">
-        <img src="/maya-logo.jpeg" alt="Maya Cantina" className="w-16 h-16 object-contain rounded-full mx-auto opacity-50 mb-6 grayscale" />
+        <img src={`${import.meta.env.BASE_URL}maya-logo.jpeg`} alt="Maya Cantina" className="w-16 h-16 object-contain rounded-full mx-auto opacity-50 mb-6 grayscale" />
         <div className="font-serif text-2xl font-bold text-[#D35400] mb-4 opacity-80 tracking-widest">MAYA CANTINA</div>
         <div className="flex justify-center items-center gap-2 text-sm text-gray-400 mb-6 font-medium">
           <MapPin size={16} className="text-[#F0A500]"/> Sacramento, CA
