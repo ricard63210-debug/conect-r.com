@@ -185,7 +185,7 @@ export default function PresenciaDigital() {
                       Reservar Mesa
                     </a>
                     <a
-                      href="https://mayacantina.toast.site"
+                      href="https://roosters-sacramento.vercel.app/menu.html"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="px-6 py-2.5 border border-amber-500/60 text-amber-300 rounded-full text-sm hover:bg-amber-500/10 transition-colors"
