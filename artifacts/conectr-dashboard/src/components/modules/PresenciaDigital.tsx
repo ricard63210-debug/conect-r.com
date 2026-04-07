@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe, MessageCircle, MapPin, Clock, Phone, Star, Send, Bot, User, ChevronRight } from "lucide-react";
+import { Globe, MessageCircle, MapPin, Clock, Phone, Star, Send, Bot, User, ChevronRight, ExternalLink, Instagram, Facebook } from "lucide-react";
 
 interface ChatMessage {
   id: number;
@@ -9,22 +9,28 @@ interface ChatMessage {
 }
 
 const faqAnswers: Record<string, string> = {
-  horario: "Estamos abiertos de Lunes a Domingo de 13:00 a 23:00. Los Viernes y Sabados hasta las 00:30. Dias festivos consultar disponibilidad.",
-  direccion: "Nos encontramos en Av. Insurgentes Sur 1234, Col. Del Valle, CDMX. A 3 minutos del Metro Insurgentes. Contamos con estacionamiento propio.",
-  reserva: "Puedes hacer tu reservacion directamente en nuestro sitio web, llamando al +52 55 5555 0101, o enviando mensaje a este chat. Te confirmamos en menos de 10 minutos.",
-  especialidades: "Nuestros platillos estrella son: Pozole Rojo Estilo Guerrero, Mole Negro Oaxaqueno, Cochinita Pibil de horno de tierra y nuestra famosa Tarta de Tamal. Todos hechos con ingredientes de temporada.",
-  precio: "El ticket promedio por persona es de $350-$550 MXN, incluyendo bebida. Tenemos menu ejecutivo de Lunes a Viernes de $180 con sopa, plato fuerte y agua.",
-  estacionamiento: "Si, contamos con estacionamiento propio con capacidad para 40 vehiculos. El costo es de $30 por hora, con 1 hora gratis al consumir en el restaurante.",
+  horario: "Abrimos Martes a Jueves de 5:00 PM a 10:00 PM. Viernes y Sabado de 5:00 PM a 11:00 PM. Domingos: Brunch de 11:00 AM a 3:00 PM y cena de 5:00 PM a 10:00 PM. Lunes cerrado. Happy Hour: Martes a Jueves de 5pm a 7pm.",
+  direccion: "Nos encuentras en Sacramento, CA. Para ver la ubicacion exacta y como llegar, visita mayacantina.toast.site o busca 'Maya Cantina Sacramento' en Google Maps. Tambien puedes llamarnos y te damos indicaciones.",
+  reserva: "Puedes hacer tu reservacion en mayacantina.toast.site/events, seguirnos en Instagram @mayacantinasac o llamarnos directamente. Para grupos de 8 o mas personas, te recomendamos reservar con anticipacion.",
+  especialidades: "Nuestros platillos estrella son el Mole Negro Oaxaqueno con pollo, los Tacos de Birria con consomme, las Carnitas confitadas, el Chile en Nogada de temporada y los Camarones al Mezcal. Todo hecho con recetas autenticas y ingredientes frescos.",
+  eventos: "Tenemos Noches de Mariachi los Viernes y Sabados a las 8pm, Happy Hour Martes-Jueves 5pm-7pm con 2x1 en Margaritas, Brunch Dominical con Mimosas de 11am a 3pm, y Taco Tuesday con tacos desde $3. Visita mayacantina.toast.site/events para ver todos los eventos.",
+  instagram: "Siguenos en Instagram como @mayacantinasac para ver nuestros platos, eventos especiales, stories y los mejores momentos de Maya Cantina Sacramento. Tambien estamos en Facebook como Maya Cantina SAC.",
+  tacos: "Nuestros tacos mas populares son: Al Pastor (cerdo adobado con pina), Birria (res estofada en consomme con queso), Camarones a la diabla, Hongos con epazote, y Carnitas confitadas. Tortillas de maiz hechas a mano.",
+  margaritas: "Nuestras margaritas son con tequila 100% agave y jugo de limon fresco exprimido al momento. Ofrecemos Clasica, de Tamarindo, de Fresa y de Pepino con Chile. Durante Happy Hour son 2x1 — Martes a Jueves de 5pm a 7pm.",
+  brunch: "Nuestro Brunch Dominical es de 11am a 3pm con Mimosas, Micheladas, Huevos Rancheros, Chilaquiles, Enchiladas de Mole y mucho mas. Una experiencia tipicamente mexicana para el domingo.",
 };
 
 function detectIntent(msg: string): string {
   const lower = msg.toLowerCase();
-  if (lower.includes("horario") || lower.includes("hora") || lower.includes("abren") || lower.includes("cierran")) return "horario";
-  if (lower.includes("direcci") || lower.includes("donde") || lower.includes("ubicaci") || lower.includes("como llegar")) return "direccion";
-  if (lower.includes("reserva") || lower.includes("reservaci") || lower.includes("mesa") || lower.includes("apartar")) return "reserva";
-  if (lower.includes("especialidad") || lower.includes("platillo") || lower.includes("comida") || lower.includes("men") || lower.includes("comer")) return "especialidades";
-  if (lower.includes("precio") || lower.includes("costo") || lower.includes("cuanto") || lower.includes("ticket")) return "precio";
-  if (lower.includes("estaciona") || lower.includes("parking") || lower.includes("carro")) return "estacionamiento";
+  if (lower.includes("horario") || lower.includes("hora") || lower.includes("abren") || lower.includes("cierran") || lower.includes("abierto")) return "horario";
+  if (lower.includes("direcci") || lower.includes("donde") || lower.includes("ubicaci") || lower.includes("como llegar") || lower.includes("sacramento")) return "direccion";
+  if (lower.includes("reserva") || lower.includes("mesa") || lower.includes("apartar") || lower.includes("book")) return "reserva";
+  if (lower.includes("especialidad") || lower.includes("platillo") || lower.includes("comida") || lower.includes("men") || lower.includes("comer") || lower.includes("recomienda")) return "especialidades";
+  if (lower.includes("evento") || lower.includes("noche") || lower.includes("mariachi") || lower.includes("actividad")) return "eventos";
+  if (lower.includes("instagram") || lower.includes("face") || lower.includes("red social") || lower.includes("seguir")) return "instagram";
+  if (lower.includes("taco")) return "tacos";
+  if (lower.includes("margarita") || lower.includes("bebida") || lower.includes("trago") || lower.includes("drink")) return "margaritas";
+  if (lower.includes("brunch") || lower.includes("domingo") || lower.includes("mimosa") || lower.includes("desayuno")) return "brunch";
   return "";
 }
 
@@ -34,7 +40,7 @@ export default function PresenciaDigital() {
     {
       id: 0,
       role: "bot",
-      text: "Hola! Soy el Asistente Virtual del Restaurante Maya. Puedo ayudarte con horarios, reservaciones, nuestra ubicacion y especialidades. Como puedo ayudarte hoy?"
+      text: "Hola! Bienvenido a Maya Cantina Sacramento 🌮 Soy el asistente virtual de Maya. Puedo ayudarte con horarios, reservaciones, nuestra ubicacion, eventos y platillos. Como puedo ayudarte hoy?"
     }
   ]);
   const [input, setInput] = useState("");
@@ -45,34 +51,32 @@ export default function PresenciaDigital() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
-  const handleSend = () => {
-    if (!input.trim()) return;
-    const userMsg: ChatMessage = { id: Date.now(), role: "user", text: input };
+  const sendMessage = (text: string) => {
+    const userMsg: ChatMessage = { id: Date.now(), role: "user", text };
     setMessages(prev => [...prev, userMsg]);
     setInput("");
     setIsTyping(true);
-
     setTimeout(() => {
-      const intent = detectIntent(userMsg.text);
-      let reply = "";
-      if (intent && faqAnswers[intent]) {
-        reply = faqAnswers[intent];
-      } else {
-        reply = "Gracias por tu mensaje. Para consultas especificas, te recomiendo llamar al +52 55 5555 0101 o visitar nuestra pagina web. Nuestro equipo estara feliz de ayudarte!";
-      }
-      const botMsg: ChatMessage = { id: Date.now() + 1, role: "bot", text: reply };
-      setMessages(prev => [...prev, botMsg]);
+      const intent = detectIntent(text);
+      const reply = intent && faqAnswers[intent]
+        ? faqAnswers[intent]
+        : "Gracias por tu mensaje! Para mas informacion visita mayacantina.toast.site, llamanos directamente o siguenos en @mayacantinasac en Instagram. Con gusto te ayudamos.";
+      setMessages(prev => [...prev, { id: Date.now() + 1, role: "bot", text: reply }]);
       setIsTyping(false);
-    }, 1200 + Math.random() * 800);
+    }, 1100 + Math.random() * 700);
   };
 
+  const handleSend = () => { if (input.trim()) sendMessage(input.trim()); };
+
   const quickQuestions = [
-    "Que horario tienen?",
-    "Como llego al restaurante?",
-    "Cuales son sus especialidades?",
+    "Cual es el horario?",
+    "Donde estan ubicados?",
+    "Que eventos tienen?",
+    "Me recomiendan algo?",
     "Como hago una reservacion?",
-    "Tienen estacionamiento?",
-    "Cual es el precio promedio?",
+    "Tienen brunch dominical?",
+    "Que tal son sus tacos?",
+    "Cuales son sus margaritas?",
   ];
 
   return (
@@ -80,8 +84,8 @@ export default function PresenciaDigital() {
       <div className="text-center">
         <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">Presencia Digital</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Sitio web profesional + Asistente Virtual con IA que responde 24/7 a tus clientes,
-          aumenta reservaciones y construye tu presencia online.
+          Sitio web profesional + Asistente Virtual con IA que responde 24/7 a tus clientes
+          con informacion real de Maya Cantina Sacramento.
         </p>
       </div>
 
@@ -125,60 +129,77 @@ export default function PresenciaDigital() {
                   <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
                   <div className="w-3 h-3 rounded-full bg-green-500/60" />
                 </div>
-                <div className="flex-1 bg-gray-800 rounded-md px-3 py-1 text-xs text-gray-400 flex items-center gap-2">
-                  <Globe size={10} className="text-green-400" />
-                  restaurantemaya.mx
-                </div>
-              </div>
-
-              {/* Website hero */}
-              <div
-                className="relative flex flex-col items-center justify-center text-center py-12 px-6"
-                style={{ background: "linear-gradient(135deg, #1a0f07 0%, #2d1a0a 50%, #1a0f07 100%)" }}
-              >
-                <div className="absolute inset-0 opacity-10" style={{
-                  backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4a017' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")"
-                }} />
-
-                <div className="relative">
-                  <div className="w-16 h-16 border-2 border-amber-500/60 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-2xl font-serif font-bold gold-gradient">M</span>
-                  </div>
-                  <h1 className="text-4xl font-serif font-bold gold-gradient mb-2">Restaurante Maya</h1>
-                  <p className="text-amber-200/70 text-lg mb-6">Cocina Mexicana Autentica • CDMX</p>
-                  <div className="flex flex-wrap gap-3 justify-center">
-                    <button className="px-6 py-2.5 bg-amber-500 text-black rounded-full font-semibold text-sm hover:bg-amber-400 transition-colors">
-                      Reservar Mesa
-                    </button>
-                    <button className="px-6 py-2.5 border border-amber-500/60 text-amber-300 rounded-full text-sm hover:bg-amber-500/10 transition-colors">
-                      Ver Menu
-                    </button>
-                  </div>
-                </div>
+                <a
+                  href="https://mayacantina.toast.site"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 bg-gray-800 rounded-md px-3 py-1 text-xs text-gray-300 flex items-center gap-2 hover:bg-gray-700 transition-colors"
+                >
+                  <Globe size={10} className="text-green-400 shrink-0" />
+                  mayacantina.toast.site
+                  <ExternalLink size={9} className="text-gray-500 ml-auto" />
+                </a>
               </div>
 
               {/* Nav bar */}
-              <div className="bg-gray-900/90 px-6 py-3 flex items-center justify-between border-y border-border/20">
-                <div className="font-serif font-bold text-sm gold-gradient">MAYA</div>
-                <div className="hidden sm:flex gap-6 text-xs text-muted-foreground">
-                  {["Inicio", "Menu", "Reservaciones", "Eventos", "Contacto"].map(item => (
+              <div className="bg-gray-950 px-5 py-3 flex items-center justify-between border-b border-border/20">
+                <div className="flex items-center gap-2">
+                  <img src="/maya-logo.jpeg" alt="Maya Cantina" className="h-8 object-contain" />
+                </div>
+                <div className="hidden sm:flex gap-5 text-xs text-muted-foreground">
+                  {["Menu", "Eventos", "Reservar", "Contacto"].map(item => (
                     <span key={item} className="hover:text-amber-400 cursor-pointer transition-colors">{item}</span>
                   ))}
                 </div>
-                <button className="px-3 py-1 bg-amber-500 text-black text-xs rounded-lg font-medium">
-                  Reservar
+                <button className="px-3 py-1.5 bg-amber-500 text-black text-xs rounded-lg font-semibold">
+                  Reservar Mesa
                 </button>
               </div>
 
+              {/* Hero */}
+              <div
+                className="relative flex flex-col items-center justify-center text-center py-14 px-6"
+                style={{ background: "linear-gradient(135deg, #0d0a06 0%, #1e1309 40%, #0d0a06 100%)" }}
+              >
+                {/* Subtle cross pattern */}
+                <div className="absolute inset-0 opacity-8" style={{
+                  backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c8921a' fill-opacity='0.25'%3E%3Cpath d='M21 19h2v2h-2v2h-2v-2h-2v-2h2v-2h2v2zm0-10h2v2h-2v2h-2v-2h-2v-2h2v-2h2v2zm0 20h2v2h-2v2h-2v-2h-2v-2h2v-2h2v2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")"
+                }} />
+
+                <div className="relative z-10">
+                  <img src="/maya-logo.jpeg" alt="Maya Cantina" className="h-24 object-contain mx-auto mb-5" />
+                  <h1 className="text-4xl font-serif font-bold gold-gradient mb-2">Maya Cantina</h1>
+                  <p className="text-amber-200/70 text-lg mb-7">Cocina Mexicana Autentica • Sacramento, CA</p>
+                  <div className="flex flex-wrap gap-3 justify-center">
+                    <a
+                      href="https://mayacantina.toast.site/events"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-6 py-2.5 bg-amber-500 text-black rounded-full font-semibold text-sm hover:bg-amber-400 transition-colors"
+                    >
+                      Reservar Mesa
+                    </a>
+                    <a
+                      href="https://mayacantina.toast.site"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-6 py-2.5 border border-amber-500/60 text-amber-300 rounded-full text-sm hover:bg-amber-500/10 transition-colors"
+                    >
+                      Ver Menu
+                    </a>
+                  </div>
+                </div>
+              </div>
+
               {/* Info strip */}
-              <div className="bg-black/30 px-6 py-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="bg-black/40 px-6 py-4 grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-border/20">
                 {[
-                  { icon: MapPin, label: "Ubicacion", value: "Insurgentes Sur 1234, CDMX" },
-                  { icon: Clock, label: "Horario", value: "Lun-Dom 13:00 - 23:00" },
-                  { icon: Phone, label: "Telefono", value: "+52 55 5555 0101" },
+                  { icon: MapPin, label: "Ubicacion", value: "Sacramento, California" },
+                  { icon: Clock, label: "Horario", value: "Mar-Dom • 5pm–10pm | Dom Brunch 11am" },
+                  { icon: Phone, label: "Reservaciones", value: "mayacantina.toast.site" },
                 ].map(item => (
-                  <div key={item.label} className="flex items-center gap-3">
-                    <item.icon size={16} className="text-amber-400 shrink-0" />
+                  <div key={item.label} className="flex items-start gap-3">
+                    <item.icon size={16} className="text-amber-400 shrink-0 mt-0.5" />
                     <div>
                       <div className="text-xs text-muted-foreground">{item.label}</div>
                       <div className="text-sm font-medium">{item.value}</div>
@@ -187,23 +208,35 @@ export default function PresenciaDigital() {
                 ))}
               </div>
 
-              {/* Stars */}
-              <div className="px-6 py-3 bg-amber-900/10 border-t border-border/20 flex items-center gap-3">
-                <div className="flex gap-0.5">
-                  {[1,2,3,4,5].map(i => (
-                    <Star key={i} size={14} className="fill-amber-400 text-amber-400" />
-                  ))}
+              {/* Stars + social */}
+              <div className="px-6 py-3 bg-amber-900/10 border-t border-border/20 flex items-center justify-between flex-wrap gap-2">
+                <div className="flex items-center gap-2">
+                  <div className="flex gap-0.5">
+                    {[1,2,3,4,5].map(i => (
+                      <Star key={i} size={14} className="fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  <span className="text-sm text-amber-300 font-semibold">4.9</span>
+                  <span className="text-xs text-muted-foreground">Google Reviews</span>
                 </div>
-                <span className="text-sm text-amber-300 font-semibold">4.9</span>
-                <span className="text-xs text-muted-foreground">• 847 resenas en Google</span>
+                <div className="flex gap-2">
+                  <a href="https://www.instagram.com/mayacantinasac" target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-xs text-pink-400 hover:text-pink-300 transition-colors">
+                    <Instagram size={12} /> @mayacantinasac
+                  </a>
+                  <a href="https://www.facebook.com/Mayarestaurantsac" target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300 transition-colors">
+                    <Facebook size={12} /> Maya Cantina SAC
+                  </a>
+                </div>
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
-                { title: "Enlazado a reservas", desc: "Boton de reserva conectado directo al sistema Table Reserve", icon: ChevronRight },
-                { title: "Menu digital integrado", desc: "Menu actualizable en tiempo real desde el panel del dueno", icon: ChevronRight },
-                { title: "SEO local optimizado", desc: "Aparece primero en Google Maps para 'restaurante mexicano CDMX'", icon: ChevronRight },
+                { title: "Reservas en linea", desc: "Boton conectado directo a Toast donde los clientes reservan en tiempo real", icon: ChevronRight },
+                { title: "Menu digital integrado", desc: "Carta actualizada con fotos, descripcion de platillos y eventos de temporada", icon: ChevronRight },
+                { title: "SEO local optimizado", desc: "Visible en Google Maps para 'restaurante mexicano Sacramento' y busquedas cercanas", icon: ChevronRight },
               ].map(item => (
                 <div key={item.title} className="maya-card rounded-xl p-4 flex gap-3">
                   <item.icon size={16} className="text-amber-400 mt-0.5 shrink-0" />
@@ -226,16 +259,14 @@ export default function PresenciaDigital() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Chat interface */}
               <div className="lg:col-span-2">
-                <div className="maya-card rounded-2xl overflow-hidden flex flex-col" style={{ height: "480px" }}>
+                <div className="maya-card rounded-2xl overflow-hidden flex flex-col" style={{ height: "520px" }}>
                   {/* Header */}
                   <div className="px-4 py-3 border-b border-border/40 flex items-center gap-3 bg-amber-900/10">
-                    <div className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center">
-                      <Bot size={16} className="text-black" />
-                    </div>
+                    <img src="/maya-logo.jpeg" alt="Maya" className="w-9 h-9 rounded-full object-cover border border-amber-700/40" />
                     <div>
                       <div className="text-sm font-semibold">Maya — Asistente Virtual</div>
                       <div className="text-xs text-green-400 flex items-center gap-1">
-                        <div className="w-1.5 h-1.5 bg-green-400 rounded-full" /> En linea 24/7
+                        <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" /> En linea 24/7 • Sacramento, CA
                       </div>
                     </div>
                   </div>
@@ -249,11 +280,11 @@ export default function PresenciaDigital() {
                         animate={{ opacity: 1, y: 0 }}
                         className={`flex gap-2 ${msg.role === "user" ? "flex-row-reverse" : ""}`}
                       >
-                        <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 ${
-                          msg.role === "bot" ? "bg-amber-500" : "bg-gray-700"
+                        <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 overflow-hidden ${
+                          msg.role === "bot" ? "" : "bg-gray-700"
                         }`}>
                           {msg.role === "bot"
-                            ? <Bot size={14} className="text-black" />
+                            ? <img src="/maya-logo.jpeg" alt="Maya" className="w-full h-full object-cover" />
                             : <User size={14} className="text-gray-200" />
                           }
                         </div>
@@ -272,17 +303,14 @@ export default function PresenciaDigital() {
                         animate={{ opacity: 1 }}
                         className="flex gap-2 items-center"
                       >
-                        <div className="w-7 h-7 bg-amber-500 rounded-full flex items-center justify-center">
-                          <Bot size={14} className="text-black" />
+                        <div className="w-7 h-7 rounded-full overflow-hidden">
+                          <img src="/maya-logo.jpeg" alt="Maya" className="w-full h-full object-cover" />
                         </div>
                         <div className="bg-amber-900/20 border border-amber-800/30 px-3 py-2 rounded-2xl rounded-tl-sm">
                           <div className="flex gap-1">
                             {[0,1,2].map(i => (
-                              <div
-                                key={i}
-                                className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-bounce"
-                                style={{ animationDelay: `${i * 0.15}s` }}
-                              />
+                              <div key={i} className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-bounce"
+                                style={{ animationDelay: `${i * 0.15}s` }} />
                             ))}
                           </div>
                         </div>
@@ -298,7 +326,7 @@ export default function PresenciaDigital() {
                       value={input}
                       onChange={e => setInput(e.target.value)}
                       onKeyDown={e => e.key === "Enter" && handleSend()}
-                      placeholder="Escribe tu pregunta..."
+                      placeholder="Pregunta sobre horarios, eventos, menu..."
                       data-testid="chat-input"
                       className="flex-1 bg-muted/20 border border-border rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-amber-500"
                     />
@@ -317,27 +345,13 @@ export default function PresenciaDigital() {
               <div className="space-y-4">
                 <div>
                   <h4 className="text-sm font-semibold text-primary mb-3 flex items-center gap-2">
-                    <MessageCircle size={16} /> Preguntas rapidas
+                    <MessageCircle size={16} /> Preguntas frecuentes
                   </h4>
-                  <div className="space-y-2">
+                  <div className="space-y-1.5">
                     {quickQuestions.map(q => (
                       <button
                         key={q}
-                        onClick={() => {
-                          setInput(q);
-                          setTimeout(() => {
-                            setInput("");
-                            const userMsg: ChatMessage = { id: Date.now(), role: "user", text: q };
-                            setMessages(prev => [...prev, userMsg]);
-                            setIsTyping(true);
-                            setTimeout(() => {
-                              const intent = detectIntent(q);
-                              const reply = intent ? faqAnswers[intent] : "Gracias por tu consulta. Te atenderemos a la brevedad.";
-                              setMessages(prev => [...prev, { id: Date.now() + 1, role: "bot", text: reply }]);
-                              setIsTyping(false);
-                            }, 1000);
-                          }, 100);
-                        }}
+                        onClick={() => sendMessage(q)}
                         className="w-full text-left text-xs px-3 py-2.5 bg-muted/20 border border-border rounded-xl text-muted-foreground hover:text-foreground hover:border-amber-700/40 transition-all"
                       >
                         {q}
