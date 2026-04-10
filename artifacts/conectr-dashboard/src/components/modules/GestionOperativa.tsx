@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Clock, MessageSquare, Users, Check, Bell, X, Plus, ChevronRight } from "lucide-react";
+import ImpactPills from "@/components/ImpactPills";
 
 interface Reservation {
   id: number;
@@ -96,6 +97,7 @@ export default function GestionOperativa() {
           rotacion de mesas optimizada, senalizacion digital, presencia web y mas — todo integrado en un solo sistema.
           Tu enfoque: crear experiencias y generar revenue. Lo demas, nosotros lo automatizamos.
         </p>
+        <ImpactPills />
         <div className="inline-block bg-amber-900/20 border border-amber-700/40 rounded-2xl px-6 py-3">
           <p className="text-amber-300 font-serif text-base italic">
             "Tu exito es nuestra razon de ser. Si tu restaurante crece, nosotros crecemos contigo."

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Palette, Grid, Check, ExternalLink, Star } from "lucide-react";
+import ImpactPills from "@/components/ImpactPills";
 
 const menuTemplates = [
   {
@@ -116,6 +117,7 @@ export default function ModuloCreativo() {
           Conect-R diseña y entrega tu menú físico listo para imprimir en tres estilos elegantes
           que reflejan la identidad de Maya Cantina.
         </p>
+        <ImpactPills />
       </div>
 
       {/* Template picker */}

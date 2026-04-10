@@ -5,6 +5,7 @@ import {
   Calendar, TrendingUp, Users, Eye, Camera, PenTool,
   Star, BarChart2, ChevronRight, Sparkles
 } from "lucide-react";
+import ImpactPills from "@/components/ImpactPills";
 
 const GOLD = "#d4a017";
 
@@ -134,6 +135,7 @@ export default function RedesSociales() {
           Conect-R gestiona la presencia de Maya Cantina en Instagram y Facebook —
           contenido profesional, comunidad activa y crecimiento orgánico mes a mes.
         </p>
+        <ImpactPills />
       </div>
 
       {/* KPIs */}

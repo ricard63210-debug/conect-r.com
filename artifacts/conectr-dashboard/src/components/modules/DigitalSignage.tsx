@@ -4,6 +4,7 @@ import {
   Monitor, Check, Clock, Music, Star, Flame, Calendar,
   MessageSquare, Phone, Instagram, Facebook, RefreshCw
 } from "lucide-react";
+import ImpactPills from "@/components/ImpactPills";
 
 interface EventSlide {
   id: string;
@@ -122,6 +123,7 @@ export default function DigitalSignage() {
           Las pantallas del restaurante muestran contenido dinamico en tiempo real: eventos, promociones y el ambiente
           que Maya quiere proyectar. El equipo de Conect-R gestiona cada actualizacion.
         </p>
+        <ImpactPills />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

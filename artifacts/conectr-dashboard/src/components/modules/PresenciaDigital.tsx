@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Globe, MessageCircle, MapPin, Clock, Phone, Star, Send, Bot, User, ChevronRight, ExternalLink, Instagram, Facebook } from "lucide-react";
+import ImpactPills from "@/components/ImpactPills";
 
 interface ChatMessage {
   id: number;
@@ -87,6 +88,7 @@ export default function PresenciaDigital() {
           Sitio web profesional + Asistente Virtual con IA que responde 24/7 a tus clientes
           con informacion real de Maya Cantina Sacramento.
         </p>
+        <ImpactPills />
       </div>
 
       {/* Tabs */}

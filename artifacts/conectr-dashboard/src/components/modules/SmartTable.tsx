@@ -5,6 +5,7 @@ import {
   ChevronRight, Check, Users, TrendingUp, ExternalLink, MessageCircleWarning,
   ThumbsDown, Send, ArrowLeft, Flame, Leaf, Heart
 } from "lucide-react";
+import ImpactPills from "@/components/ImpactPills";
 
 interface FeedbackState {
   rating: number;
@@ -304,6 +305,7 @@ export default function SmartTable() {
           Cada mesa tiene un stand fisico elegante con NFC y codigo QR. El cliente lo toca con su celular
           y accede instantaneamente al portal personalizado del restaurante.
         </p>
+        <ImpactPills />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

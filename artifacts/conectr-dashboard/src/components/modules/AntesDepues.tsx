@@ -3,6 +3,7 @@ import {
   TrendingUp, Star, Clock, Users, DollarSign, Smartphone,
   Instagram, Globe, Monitor, Wifi, Palette, ArrowRight, Zap
 } from "lucide-react";
+import ImpactPills from "@/components/ImpactPills";
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, BarChart, Bar, Legend
@@ -118,6 +119,7 @@ export default function AntesDepues() {
           Basado en el perfil real de Maya Cantina Sacramento — horarios, precios, presencia digital actual
           y benchmarks de restaurantes similares que adoptaron el ecosistema.
         </p>
+        <ImpactPills />
       </div>
 
       {/* Hoy vs Mes 6 */}
