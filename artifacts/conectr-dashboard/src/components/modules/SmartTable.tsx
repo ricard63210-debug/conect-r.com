@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Wifi, Star, Calendar, Instagram, Facebook, Smartphone, QrCode,
   ChevronRight, Check, Users, TrendingUp, ExternalLink, MessageCircleWarning,
-  ThumbsDown, Send, ArrowLeft, Flame, Leaf, Heart
+  ThumbsDown, Send, ArrowLeft, Flame, Leaf, Heart, Gamepad2
 } from "lucide-react";
 import ImpactPills from "@/components/ImpactPills";
 
@@ -256,6 +256,14 @@ export default function SmartTable() {
       color: "from-blue-700 to-blue-500",
       desc: "Pagina oficial y comunidad de Maya en Facebook",
       url: "https://www.facebook.com/Mayarestaurantsac?mibextid=wwXIfr",
+    },
+    {
+      id: "game",
+      label: "Maya King",
+      icon: Gamepad2,
+      color: "from-purple-700 to-violet-500",
+      desc: "🏆 Juega y gana — ¡completa el reto y gana un premio!",
+      url: "https://maya-cantina-dash.replit.app/juego/juego/",
     },
   ];
 
@@ -621,6 +629,25 @@ export default function SmartTable() {
                     </motion.div>
                   )}
                 </AnimatePresence>
+
+                {/* Maya King game banner */}
+                <motion.button
+                  onClick={() => handlePortalButton(portalButtons.find(b => b.id === "game")!)}
+                  whileTap={{ scale: 0.97 }}
+                  data-testid="portal-btn-game-banner"
+                  className="w-full flex items-center gap-3 p-3.5 rounded-2xl border border-purple-700/40 relative overflow-hidden"
+                  style={{ background: "linear-gradient(135deg, rgba(100,30,160,0.22), rgba(212,160,23,0.10))" }}
+                >
+                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-purple-400 to-transparent opacity-60" />
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-700 to-violet-500 flex items-center justify-center shrink-0 shadow-lg shadow-purple-900/40">
+                    <Gamepad2 size={18} className="text-white" />
+                  </div>
+                  <div className="text-left flex-1">
+                    <div className="text-xs font-bold text-purple-200" style={{ fontFamily: "Cinzel, serif" }}>Maya King</div>
+                    <div className="text-xs text-purple-400 mt-0.5">🏆 Juega y gana</div>
+                  </div>
+                  <ExternalLink size={12} className="text-purple-500 shrink-0" />
+                </motion.button>
 
                 {/* Feedback button */}
                 <motion.button
