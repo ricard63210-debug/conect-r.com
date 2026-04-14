@@ -11,8 +11,12 @@ import { getT } from "@/lib/translations";
 
 interface FeedbackState {
   rating: number;
-  issues: string[];
-  comment: string;
+  name: string;
+  tableNum: string;
+  datetime: string;
+  email: string;
+  phone: string;
+  reason: string;
   submitted: boolean;
 }
 
@@ -72,7 +76,7 @@ export default function SmartTable() {
   const [showMenu, setShowMenu] = useState(false);
   const [menuKeyIdx, setMenuKeyIdx] = useState(0);
   const [selectedDish, setSelectedDish] = useState<MenuItem | null>(null);
-  const [feedback, setFeedback] = useState<FeedbackState>({ rating: 0, issues: [], comment: "", submitted: false });
+  const [feedback, setFeedback] = useState<FeedbackState>({ rating: 0, name: "", tableNum: "", datetime: "", email: "", phone: "", reason: "", submitted: false });
 
   const menuKey = MENU_KEYS[menuKeyIdx];
 
@@ -84,9 +88,6 @@ export default function SmartTable() {
   const portalOpenedDesc = lang === "es"
     ? "Herramienta de engagement y marketing directo. Los datos del cliente se capturan en Table Reserve al hacer una reservacion."
     : "Direct engagement and marketing tool. Customer data is captured in Table Reserve when making a reservation.";
-  const problemLabel = lang === "es" ? "Cual fue el problema?" : "What was the problem?";
-  const addMoreLabel = lang === "es" ? "Algo mas que quieras agregar?" : "Anything else you want to add?";
-  const commentPlaceholder = lang === "es" ? "Cuentanos que paso..." : "Tell us what happened...";
   const portalSteps = lang === "es"
     ? [
         { step: "01", title: "Toca el stand", desc: "NFC o QR code — sin app, sin descarga, sin friccion" },
@@ -113,7 +114,7 @@ export default function SmartTable() {
     : "Cooked with fresh ingredients and authentic traditional Mexican recipes.";
 
   const portalButtons = [
-    { id: "menu", label: T.portalButtons.menu, icon: QrCode, color: "from-amber-600 to-amber-400", desc: lang === "es" ? "Carta completa con descripcion y fotos de cada platillo" : "Full menu with photos and descriptions of every dish", url: `${window.location.origin}/maya-menu/`, isMenu: true },
+    { id: "menu", label: T.portalButtons.menu, icon: QrCode, color: "from-sky-600 to-sky-400", desc: lang === "es" ? "Carta completa con descripcion y fotos de cada platillo" : "Full menu with photos and descriptions of every dish", url: "https://restaurante-maya-dash.replit.app/maya-menu/", isMenu: false },
     { id: "reviews", label: T.portalButtons.reviews, icon: Heart, color: "from-yellow-600 to-yellow-400", desc: T.reviewsDesc, url: "https://www.google.com/search?q=carmelitas+google+reviews&ie=UTF-8&oe=UTF-8&hl=en-us&client=safari#ebo=2" },
     { id: "events", label: T.portalButtons.events, icon: Calendar, color: "from-orange-700 to-orange-500", desc: T.eventDesc, url: "https://www.instagram.com/carmelitasgroup" },
     { id: "instagram", label: T.portalButtons.instagram, icon: Instagram, color: "from-pink-700 to-pink-500", desc: T.instagramDesc, url: "https://www.instagram.com/carmelitasgroup?igsh=NTc4MTIwNjQ2YQ==" },
@@ -135,7 +136,7 @@ export default function SmartTable() {
     setActiveButton(null);
     setShowMenu(false);
     setSelectedDish(null);
-    setFeedback({ rating: 0, issues: [], comment: "", submitted: false });
+    setFeedback({ rating: 0, name: "", tableNum: "", datetime: "", email: "", phone: "", reason: "", submitted: false });
   };
 
   const handlePortalButton = (btn: typeof portalButtons[0]) => {
@@ -147,15 +148,6 @@ export default function SmartTable() {
     }
   };
 
-  const toggleIssue = (issue: string) => {
-    setFeedback(prev => ({
-      ...prev,
-      issues: prev.issues.includes(issue)
-        ? prev.issues.filter(i => i !== issue)
-        : [...prev.issues, issue],
-    }));
-  };
-
   const submitFeedback = () => {
     setFeedback(prev => ({ ...prev, submitted: true }));
   };
@@ -165,10 +157,10 @@ export default function SmartTable() {
       <div className="text-center">
         <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">{T.heading}</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          {T.description} <span className="text-amber-400 font-medium">{T.descReviews}</span>
-          {T.desc2}<span className="text-amber-400 font-medium">{T.descClients}</span>
-          {T.desc3}<span className="text-amber-400 font-medium">{T.descSales}</span>
-          {T.desc4}<span className="text-amber-400 font-medium">{T.descWork}</span>{T.desc5}
+          {T.description} <span className="text-sky-400 font-medium">{T.descReviews}</span>
+          {T.desc2}<span className="text-sky-400 font-medium">{T.descClients}</span>
+          {T.desc3}<span className="text-sky-400 font-medium">{T.descSales}</span>
+          {T.desc4}<span className="text-sky-400 font-medium">{T.descWork}</span>{T.desc5}
         </p>
         <ImpactPills />
       </div>
@@ -187,26 +179,26 @@ export default function SmartTable() {
               onClick={handleNfcTap}
               data-testid="nfc-stand"
             >
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-700 via-amber-400 to-amber-700 rounded-t-2xl" />
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-700 via-sky-400 to-amber-700 rounded-t-2xl" />
               <div className="text-center px-4">
-                <img src="/carmelitas-logo.png" alt="Carmelita's" className="h-16 object-contain mx-auto" style={{ filter: "invert(1) brightness(1.1)" }} />
+                <img src="/carmelitas-logo.png" alt="Carmelita's" className="h-24 object-contain mx-auto" style={{ filter: "invert(1) brightness(1.3)" }} />
               </div>
               <div className="relative w-24 h-24 bg-white rounded-xl flex items-center justify-center">
                 <QrCode className="text-gray-800" size={64} />
                 {showAnimation && (
                   <>
-                    <div className="absolute inset-0 rounded-xl nfc-pulse border-2 border-amber-400 opacity-60" />
-                    <div className="absolute inset-0 rounded-xl nfc-pulse border-2 border-amber-400 opacity-40" style={{ animationDelay: "0.4s" }} />
-                    <div className="absolute inset-0 rounded-xl nfc-pulse border-2 border-amber-400 opacity-20" style={{ animationDelay: "0.8s" }} />
+                    <div className="absolute inset-0 rounded-xl nfc-pulse border-2 border-sky-400 opacity-60" />
+                    <div className="absolute inset-0 rounded-xl nfc-pulse border-2 border-sky-400 opacity-40" style={{ animationDelay: "0.4s" }} />
+                    <div className="absolute inset-0 rounded-xl nfc-pulse border-2 border-sky-400 opacity-20" style={{ animationDelay: "0.8s" }} />
                   </>
                 )}
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Wifi size={14} className="text-amber-400" />
+                <Wifi size={14} className="text-sky-400" />
                 <span>{T.nfcTap}</span>
               </div>
               <div className="text-xs text-muted-foreground/60">{T.nfcTable}</div>
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-700 via-amber-400 to-amber-700 rounded-b-2xl" />
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-700 via-sky-400 to-amber-700 rounded-b-2xl" />
             </motion.div>
 
             <p className="mt-3 text-xs text-muted-foreground text-center">{clickHintLabel}</p>
@@ -219,13 +211,13 @@ export default function SmartTable() {
                   exit={{ opacity: 0 }}
                   className="absolute -right-4 top-1/4"
                 >
-                  <div className="w-14 h-24 bg-gray-900 rounded-xl border-2 border-amber-400 flex items-center justify-center shadow-xl">
-                    <Smartphone size={24} className="text-amber-400" />
+                  <div className="w-14 h-24 bg-gray-900 rounded-xl border-2 border-sky-400 flex items-center justify-center shadow-xl">
+                    <Smartphone size={24} className="text-sky-400" />
                   </div>
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: [0, 1.5, 1] }}
-                    className="absolute -top-2 -right-2 w-6 h-6 bg-amber-400 rounded-full flex items-center justify-center"
+                    className="absolute -top-2 -right-2 w-6 h-6 bg-sky-400 rounded-full flex items-center justify-center"
                   >
                     <Wifi size={12} className="text-black" />
                   </motion.div>
@@ -240,14 +232,14 @@ export default function SmartTable() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="maya-card rounded-xl p-4 border border-amber-800/40"
+                className="maya-card rounded-xl p-4 border border-sky-800/40"
               >
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 bg-amber-500/20 rounded-full flex items-center justify-center">
-                      <Check size={14} className="text-amber-400" />
+                    <div className="w-7 h-7 bg-sky-500/20 rounded-full flex items-center justify-center">
+                      <Check size={14} className="text-sky-400" />
                     </div>
-                    <span className="text-sm font-semibold text-amber-400">{portalOpenedLabel}</span>
+                    <span className="text-sm font-semibold text-sky-400">{portalOpenedLabel}</span>
                   </div>
                   <button onClick={resetNfc} className="text-muted-foreground hover:text-foreground text-xs underline">
                     {resetLabel}
@@ -316,8 +308,8 @@ export default function SmartTable() {
                       </div>
                     </div>
                     <p className="text-xs text-gray-300 leading-relaxed">{selectedDish.detail}</p>
-                    <div className="p-3 bg-amber-900/20 border border-amber-800/30 rounded-xl">
-                      <p className="text-xs text-amber-300/80 italic">"{authenticNoteText}"</p>
+                    <div className="p-3 bg-sky-900/20 border border-sky-800/30 rounded-xl">
+                      <p className="text-xs text-sky-300/80 italic">"{authenticNoteText}"</p>
                     </div>
                   </div>
                 </motion.div>
@@ -342,7 +334,7 @@ export default function SmartTable() {
                     >
                       <ArrowLeft size={14} /> {T.menuBack}
                     </button>
-                    <img src="/carmelitas-logo.png" alt="Carmelita's" className="h-14 object-contain" />
+                    <img src="/carmelitas-logo.png" alt="Carmelita's" className="h-20 object-contain" />
                     <p className="text-xs text-gray-500 mt-1">{T.menuSubtitle}</p>
                   </div>
 
@@ -353,7 +345,7 @@ export default function SmartTable() {
                         onClick={() => setMenuKeyIdx(idx)}
                         className={`px-3 py-2.5 text-xs font-medium whitespace-nowrap border-b-2 transition-all ${
                           menuKeyIdx === idx
-                            ? "border-amber-400 text-amber-400"
+                            ? "border-sky-400 text-sky-400"
                             : "border-transparent text-gray-400"
                         }`}
                       >
@@ -412,8 +404,8 @@ export default function SmartTable() {
             {/* ===== PORTAL MAIN VIEW ===== */}
             <div className="absolute inset-0 top-8 bg-gradient-to-b from-gray-950 to-black overflow-y-auto scrollbar-gold">
               <div className="relative h-24 bg-gradient-to-b from-amber-900/60 to-transparent flex flex-col items-center justify-center">
-                <img src="/carmelitas-logo.png" alt="Carmelita's" className="h-14 object-contain" style={{ filter: "invert(1) brightness(1.1)" }} />
-                <div className="text-xs text-amber-300/70 mt-1">{T.portalSubtitle}</div>
+                <img src="/carmelitas-logo.png" alt="Carmelita's" className="h-20 object-contain" style={{ filter: "invert(1) brightness(1.4)" }} />
+                <div className="text-xs text-sky-300/70 mt-1">{T.portalSubtitle}</div>
               </div>
 
               <div className="px-4 pb-6 space-y-3">
@@ -428,7 +420,7 @@ export default function SmartTable() {
                       data-testid={`portal-btn-${btn.id}`}
                       className={`relative flex flex-col items-center gap-2 p-4 rounded-2xl border transition-all duration-200 ${
                         activeButton === btn.id
-                          ? "border-amber-500 bg-amber-500/10"
+                          ? "border-sky-500 bg-sky-500/10"
                           : "border-gray-800 bg-gray-900/60"
                       }`}
                     >
@@ -443,7 +435,7 @@ export default function SmartTable() {
                         <motion.div
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
-                          className="absolute top-2 right-2 w-4 h-4 bg-amber-400 rounded-full flex items-center justify-center"
+                          className="absolute top-2 right-2 w-4 h-4 bg-sky-400 rounded-full flex items-center justify-center"
                         >
                           <Check size={10} className="text-black" />
                         </motion.div>
@@ -458,9 +450,9 @@ export default function SmartTable() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="p-3 bg-amber-900/20 border border-amber-800/40 rounded-xl"
+                      className="p-3 bg-sky-900/20 border border-sky-800/40 rounded-xl"
                     >
-                      <p className="text-xs text-amber-200/80">
+                      <p className="text-xs text-sky-200/80">
                         {portalButtons.find(b => b.id === activeButton)?.desc}
                       </p>
                     </motion.div>
@@ -529,8 +521,10 @@ export default function SmartTable() {
                           <p className="text-xs text-gray-400">{T.feedbackNote}</p>
                         </motion.div>
                       ) : (
-                        <div className="p-3 space-y-3">
+                        <div className="p-3 space-y-2.5">
                           <p className="text-xs font-semibold text-orange-300">{T.feedbackTitle}</p>
+
+                          {/* Star rating */}
                           <div className="flex gap-1 justify-center">
                             {[1, 2, 3, 4, 5].map(star => (
                               <button
@@ -540,47 +534,88 @@ export default function SmartTable() {
                               >
                                 <Star
                                   size={22}
-                                  className={feedback.rating >= star ? "fill-amber-400 text-amber-400" : "text-gray-600"}
+                                  className={feedback.rating >= star ? "fill-orange-400 text-orange-400" : "text-gray-600"}
                                 />
                               </button>
                             ))}
                           </div>
+
+                          {/* Name */}
                           <div>
-                            <p className="text-xs text-gray-400 mb-2">{problemLabel}</p>
-                            <div className="grid grid-cols-2 gap-1.5">
-                              {T.issueOptions.map(issue => (
-                                <button
-                                  key={issue}
-                                  onClick={() => toggleIssue(issue)}
-                                  className={`text-left px-2 py-1.5 rounded-lg border text-xs transition-all ${
-                                    feedback.issues.includes(issue)
-                                      ? "border-orange-600/60 bg-orange-900/30 text-orange-300"
-                                      : "border-gray-700 text-gray-400"
-                                  }`}
-                                >
-                                  {feedback.issues.includes(issue) && (
-                                    <Check size={10} className="inline mr-1 text-orange-400" />
-                                  )}
-                                  {issue}
-                                </button>
-                              ))}
-                            </div>
+                            <p className="text-xs text-gray-400 mb-1">{lang === "es" ? "Nombre *" : "Name *"}</p>
+                            <input
+                              type="text"
+                              value={feedback.name}
+                              onChange={e => setFeedback(prev => ({ ...prev, name: e.target.value }))}
+                              placeholder={lang === "es" ? "Tu nombre" : "Your name"}
+                              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-orange-600"
+                            />
                           </div>
+
+                          {/* Table number */}
                           <div>
-                            <p className="text-xs text-gray-400 mb-1.5">{addMoreLabel}</p>
+                            <p className="text-xs text-gray-400 mb-1">{lang === "es" ? "Mesa / Posición *" : "Table / Position *"}</p>
+                            <input
+                              type="text"
+                              value={feedback.tableNum}
+                              onChange={e => setFeedback(prev => ({ ...prev, tableNum: e.target.value }))}
+                              placeholder={lang === "es" ? "Ej: Mesa 7, Barra, Terraza" : "E.g. Table 7, Bar, Patio"}
+                              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-orange-600"
+                            />
+                          </div>
+
+                          {/* Date and time */}
+                          <div>
+                            <p className="text-xs text-gray-400 mb-1">{lang === "es" ? "Día y hora *" : "Date & time *"}</p>
+                            <input
+                              type="datetime-local"
+                              value={feedback.datetime}
+                              onChange={e => setFeedback(prev => ({ ...prev, datetime: e.target.value }))}
+                              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-orange-600"
+                            />
+                          </div>
+
+                          {/* Email (optional) */}
+                          <div>
+                            <p className="text-xs text-gray-400 mb-1">{lang === "es" ? "Correo electrónico (opcional)" : "Email (optional)"}</p>
+                            <input
+                              type="email"
+                              value={feedback.email}
+                              onChange={e => setFeedback(prev => ({ ...prev, email: e.target.value }))}
+                              placeholder="ejemplo@correo.com"
+                              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-orange-600"
+                            />
+                          </div>
+
+                          {/* Phone (optional) */}
+                          <div>
+                            <p className="text-xs text-gray-400 mb-1">{lang === "es" ? "Teléfono (opcional)" : "Phone (optional)"}</p>
+                            <input
+                              type="tel"
+                              value={feedback.phone}
+                              onChange={e => setFeedback(prev => ({ ...prev, phone: e.target.value }))}
+                              placeholder={lang === "es" ? "+1 (555) 000-0000" : "+1 (555) 000-0000"}
+                              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-orange-600"
+                            />
+                          </div>
+
+                          {/* Reason */}
+                          <div>
+                            <p className="text-xs text-gray-400 mb-1">{lang === "es" ? "Razón de la queja *" : "Reason for complaint *"}</p>
                             <textarea
-                              value={feedback.comment}
-                              onChange={e => setFeedback(prev => ({ ...prev, comment: e.target.value }))}
-                              placeholder={commentPlaceholder}
-                              rows={2}
+                              value={feedback.reason}
+                              onChange={e => setFeedback(prev => ({ ...prev, reason: e.target.value }))}
+                              placeholder={lang === "es" ? "Describe lo que ocurrió..." : "Describe what happened..."}
+                              rows={3}
                               className="w-full bg-gray-800 border border-gray-700 rounded-lg px-2.5 py-2 text-xs text-white focus:outline-none focus:border-orange-600 resize-none"
                             />
                           </div>
+
                           <button
                             onClick={submitFeedback}
-                            disabled={feedback.rating === 0}
+                            disabled={!feedback.name.trim() || !feedback.tableNum.trim() || !feedback.reason.trim()}
                             className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold transition-all ${
-                              feedback.rating > 0
+                              feedback.name.trim() && feedback.tableNum.trim() && feedback.reason.trim()
                                 ? "bg-orange-600 hover:bg-orange-500 text-white"
                                 : "bg-gray-800 text-gray-600 cursor-not-allowed"
                             }`}
@@ -602,8 +637,8 @@ export default function SmartTable() {
                     { label: effLabel, value: "+34%", icon: TrendingUp },
                   ].map((stat) => (
                     <div key={stat.label} className="bg-gray-900/80 rounded-xl p-2 text-center">
-                      <stat.icon size={12} className="text-amber-400 mx-auto mb-1" />
-                      <div className="text-sm font-bold text-amber-300">{stat.value}</div>
+                      <stat.icon size={12} className="text-sky-400 mx-auto mb-1" />
+                      <div className="text-sm font-bold text-sky-300">{stat.value}</div>
                       <div className="text-xs text-gray-500">{stat.label}</div>
                     </div>
                   ))}
@@ -622,8 +657,8 @@ export default function SmartTable() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {portalSteps.map((item) => (
             <div key={item.step} className="flex gap-3">
-              <div className="w-10 h-10 bg-amber-500/10 border border-amber-700/40 rounded-xl flex items-center justify-center shrink-0">
-                <span className="text-xs font-bold text-amber-400">{item.step}</span>
+              <div className="w-10 h-10 bg-sky-500/10 border border-sky-700/40 rounded-xl flex items-center justify-center shrink-0">
+                <span className="text-xs font-bold text-sky-400">{item.step}</span>
               </div>
               <div>
                 <div className="text-sm font-semibold text-foreground">{item.title}</div>

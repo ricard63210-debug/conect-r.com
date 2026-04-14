@@ -30,7 +30,7 @@ const CustomTooltip = ({ active, payload, label, revenueLabel }: {
 }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-gray-900 border border-amber-800/40 rounded-xl p-3 shadow-xl">
+      <div className="bg-gray-900 border border-sky-800/40 rounded-xl p-3 shadow-xl">
         <p className="text-xs text-muted-foreground mb-1.5">{label}</p>
         {payload.map((p) => (
           <p key={p.name} className="text-xs font-medium" style={{ color: p.color }}>
@@ -108,10 +108,10 @@ export default function AntesDepues() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.07 }}
-            className="maya-card rounded-xl p-4 border border-amber-800/20"
+            className="maya-card rounded-xl p-4 border border-sky-800/20"
           >
             <div className="flex items-center justify-between mb-2">
-              {(() => { const Icon = KPI_ICONS[i]; return <Icon size={15} className="text-amber-400" />; })()}
+              {(() => { const Icon = KPI_ICONS[i]; return <Icon size={15} className="text-sky-400" />; })()}
               <span className="text-xs font-bold text-green-400 bg-green-400/10 px-2 py-0.5 rounded-full">
                 {item.delta}
               </span>
@@ -119,8 +119,8 @@ export default function AntesDepues() {
             <div className="text-xs text-muted-foreground mb-2">{item.label}</div>
             <div className="flex items-center gap-2">
               <span className="text-xs line-through text-muted-foreground/50">{item.today}</span>
-              <ArrowRight size={10} className="text-amber-600 shrink-0" />
-              <span className="text-sm font-bold text-amber-300">{item.projected}</span>
+              <ArrowRight size={10} className="text-sky-600 shrink-0" />
+              <span className="text-sm font-bold text-sky-300">{item.projected}</span>
             </div>
           </motion.div>
         ))}
@@ -178,7 +178,7 @@ export default function AntesDepues() {
       {/* Module impact */}
       <div>
         <div className="flex items-center gap-2 mb-4">
-          <Zap size={16} className="text-amber-400" />
+          <Zap size={16} className="text-sky-400" />
           <h3 className="text-sm font-semibold">{T.impactTitle}</h3>
           <span className="text-xs text-muted-foreground ml-1">{T.impactSubtitle}</span>
         </div>
@@ -190,7 +190,7 @@ export default function AntesDepues() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.07 }}
-              className="maya-card rounded-xl p-4 border border-amber-800/20"
+              className="maya-card rounded-xl p-4 border border-sky-800/20"
             >
               <div className="flex items-start gap-3 mb-3">
                 <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${mod.color} flex items-center justify-center shrink-0`}>
@@ -204,8 +204,8 @@ export default function AntesDepues() {
               <p className="text-xs text-muted-foreground leading-relaxed mb-3">{mod.detail}</p>
               <div className="flex items-center gap-2 pt-2 border-t border-border/20">
                 <span className="text-xs text-muted-foreground/60 line-through">{mod.kpi.before}</span>
-                <ArrowRight size={10} className="text-amber-600 shrink-0" />
-                <span className="text-xs text-amber-300 font-semibold">{mod.kpi.after}</span>
+                <ArrowRight size={10} className="text-sky-600 shrink-0" />
+                <span className="text-xs text-sky-300 font-semibold">{mod.kpi.after}</span>
               </div>
             </motion.div>
           ))}
@@ -228,12 +228,12 @@ export default function AntesDepues() {
             <div className="text-4xl font-serif font-bold gold-gradient">+$30K</div>
             <div className="text-xs text-muted-foreground mt-1">{T.revenueLabel}</div>
           </div>
-          <div className="text-3xl text-amber-800/40">·</div>
+          <div className="text-3xl text-sky-800/40">·</div>
           <div className="text-center">
             <div className="text-4xl font-serif font-bold text-green-400">+720</div>
             <div className="text-xs text-muted-foreground mt-1">{additionalCoversLabel}</div>
           </div>
-          <div className="text-3xl text-amber-800/40">·</div>
+          <div className="text-3xl text-sky-800/40">·</div>
           <div className="text-center">
             <div className="text-4xl font-serif font-bold text-pink-400">+2,300</div>
             <div className="text-xs text-muted-foreground mt-1">{T.followersLabel}</div>

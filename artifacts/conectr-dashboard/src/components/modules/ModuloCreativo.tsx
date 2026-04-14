@@ -10,11 +10,11 @@ const menuTemplates = [
     id: 1,
     bg: "from-stone-900 to-amber-950",
     accentColor: "#c9a227",
-    accentClass: "text-amber-400",
-    border: "border-amber-700/40",
+    accentClass: "text-sky-400",
+    border: "border-sky-700/40",
     preview: "bg-gradient-to-br from-stone-900 to-amber-950",
-    mutedClass: "text-amber-400/50",
-    lineClass: "border-amber-700/30",
+    mutedClass: "text-sky-400/50",
+    lineClass: "border-sky-700/30",
     descClass: "text-stone-400",
     footerClass: "text-stone-500",
   },
@@ -27,7 +27,7 @@ const menuTemplates = [
     preview: "bg-gradient-to-br from-amber-900 to-stone-800",
     mutedClass: "text-orange-300/50",
     lineClass: "border-orange-700/30",
-    descClass: "text-amber-200/60",
+    descClass: "text-sky-200/60",
     footerClass: "text-stone-400",
   },
   {
@@ -92,8 +92,8 @@ export default function ModuloCreativo() {
       <div className="text-center">
         <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">{T.heading}</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          {T.description} <span className="text-amber-400 font-medium">{T.descSales}</span> {T.descMid}{" "}
-          <span className="text-amber-400 font-medium">{T.descTicket}</span>{T.descEnd}
+          {T.description} <span className="text-sky-400 font-medium">{T.descSales}</span> {T.descMid}{" "}
+          <span className="text-sky-400 font-medium">{T.descTicket}</span>{T.descEnd}
         </p>
         <ImpactPills />
       </div>
@@ -111,7 +111,7 @@ export default function ModuloCreativo() {
               data-testid={`template-btn-${idx}`}
               className={`flex-1 h-20 rounded-xl ${t.preview} border-2 transition-all relative overflow-hidden ${
                 selectedTemplate === idx
-                  ? "border-amber-400 scale-105 shadow-lg shadow-amber-900/30"
+                  ? "border-sky-400 scale-105 shadow-lg shadow-sky-900/30"
                   : "border-transparent opacity-60 hover:opacity-85"
               }`}
             >
@@ -228,9 +228,9 @@ export default function ModuloCreativo() {
       </motion.div>
 
       {/* CTA */}
-      <div className="flex items-center justify-between p-4 rounded-xl bg-amber-900/10 border border-amber-700/25">
+      <div className="flex items-center justify-between p-4 rounded-xl bg-sky-900/10 border border-sky-700/25">
         <div className="flex items-center gap-3">
-          <Palette size={20} className="text-amber-400 shrink-0" />
+          <Palette size={20} className="text-sky-400 shrink-0" />
           <div>
             <div className="text-sm font-semibold">{printReadyLabel}</div>
             <div className="text-xs text-muted-foreground mt-0.5">{printSubLabel}</div>
@@ -238,7 +238,7 @@ export default function ModuloCreativo() {
         </div>
         <button
           onClick={handleOpenPrint}
-          className="flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-400 text-black text-sm font-bold rounded-lg transition-colors shrink-0 ml-4"
+          className="flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-400 text-black text-sm font-bold rounded-lg transition-colors shrink-0 ml-4"
         >
           <ExternalLink size={14} /> {viewBtn}
         </button>

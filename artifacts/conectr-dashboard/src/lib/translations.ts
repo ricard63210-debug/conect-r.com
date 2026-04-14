@@ -189,7 +189,7 @@ const translations = {
     presencia: {
       heading: "Presencia Digital",
       description:
-        "Sitio web profesional + Asistente Virtual con IA que responde 24/7 a tus clientes con informacion real de Carmelita's Kitchen de Mexico.",
+        "Sitio web profesional + Asistente Virtual con IA que responde 24/7 a tus clientes con informacion real de tu negocio.",
       tabWeb: "Web Builder",
       tabChat: "AI Concierge",
       webFeatures: [
@@ -199,7 +199,7 @@ const translations = {
       ],
       botName: "Carmelita — Asistente Virtual",
       botOnline: "En linea 24/7 • Sacramento, CA",
-      initialMessage: "Hola! Bienvenido a Carmelita's Kitchen de Mexico 🌮 Soy el asistente virtual de Carmelitas. Puedo ayudarte con horarios, reservaciones, ubicacion, eventos y platillos. Como puedo ayudarte hoy?",
+      initialMessage: "Hola! Bienvenido a Carmelitas Mexican Bar & Grill 🌮 Soy Carmelita, tu asistente virtual. Puedo ayudarte con horarios, reservaciones, ubicacion, eventos especiales y platillos del menu. Como puedo ayudarte hoy?",
       inputPlaceholder: "Pregunta sobre horarios, eventos, menu...",
       faqTitle: "Preguntas frecuentes",
       quickQuestions: [
@@ -219,16 +219,16 @@ const translations = {
         { label: "Conversion a reserva", value: "+42%" },
       ],
       faqAnswers: {
-        horario: "Carmelitas abre Lunes a Jueves de 11:00 AM a 9:00 PM, Viernes y Sabado de 11:00 AM a 10:00 PM, y Domingos de 11:00 AM a 8:00 PM. Visita carmelitas-psi.vercel.app para horarios actualizados.",
-        direccion: "Nos encuentras en el area de Sacramento, CA. Para ubicacion exacta y como llegar, visita carmelitas-psi.vercel.app o busca 'Carmelita's Kitchen de Mexico' en Google Maps.",
-        reserva: "Puedes hacer tu reservacion en tablereserve.conect-r.com, seguirnos en Instagram @carmelitasgroup o visitarnos directamente. Para grupos grandes te recomendamos reservar con anticipacion.",
-        especialidades: "En Carmelita's destacan los Tacos de Birria, el Mole autentico, Enchiladas, Fajitas y los famosos Chilaquiles. Cocina mexicana autentica con un ambiente de Mexican Bar & Grill que te va a encantar.",
-        eventos: "Tenemos promociones especiales, Happy Hour con bebidas 2x1, y eventos de fin de semana. Siguenos en @carmelitasgroup en Instagram para ver todos los eventos y promociones especiales.",
-        instagram: "Siguenos en Instagram como @carmelitasgroup para ver nuestros platillos, eventos especiales, reels y los mejores momentos de Carmelita's. Tambien estamos en Facebook como Carmelitas Mexican Bar & Grill.",
-        tacos: "Nuestros tacos mas populares incluyen Birria, Al Pastor, Carnitas, Pollo y opciones vegetarianas. Tortillas de maiz hechas a mano y salsas caseras que complementan cada platillo a la perfeccion.",
-        margaritas: "Tenemos margaritas clasicas, de frutas y opciones especiales de la casa. Durante Happy Hour tenemos bebidas con descuento — consulta nuestro Instagram @carmelitasgroup para las promociones actuales.",
-        brunch: "Tenemos opciones de brunch con platillos mexicanos autenticos, mimosas y un ambiente familiar inigualable. Visita carmelitas-psi.vercel.app para ver el menu completo.",
-        fallback: "Gracias por tu mensaje! Para mas informacion visita carmelitas-psi.vercel.app, siguenos en @carmelitasgroup en Instagram o en Facebook como Carmelitas Mexican Bar & Grill. Con gusto te ayudamos.",
+        horario: "Carmelitas abre Lunes a Jueves de 11:00 AM a 9:00 PM, Viernes y Sabado de 11:00 AM a 10:00 PM, y Domingos de 11:00 AM a 8:00 PM. Para horarios actualizados consulta carmelitasgroup.com/restaurant o nuestro Instagram @carmelitasgroup.",
+        direccion: "Carmelitas Mexican Bar & Grill esta ubicado en Sacramento, CA. Para la direccion exacta, estacionamiento y como llegar visita carmelitasgroup.com/restaurant o busca 'Carmelitas Mexican Bar & Grill' en Google Maps.",
+        reserva: "Puedes reservar tu mesa en tablereserve.conect-r.com — rapido, facil y sin llamadas. Para grupos de 8 o mas personas te recomendamos reservar con al menos 2 dias de anticipacion. Tambien puedes escribirnos en Instagram @carmelitasgroup.",
+        especialidades: "Los favoritos de la casa son los Tacos de Birria con consomme, Mole Negro autentico, Enchiladas Verdes, Fajitas Mixtas y los Chilaquiles Rojos del brunch dominical. Todo preparado con recetas familiares y productos frescos de la region.",
+        eventos: "Tenemos Happy Hour de Lunes a Viernes con bebidas 2x1 y appetizers especiales. Los fines de semana hay musica en vivo y eventos especiales. Siguenos en @carmelitasgroup en Instagram y en Facebook como Carmelitas Mexican Bar & Grill para no perderte nada.",
+        instagram: "Siguenos en Instagram @carmelitasgroup para ver reels de nuestros platillos, stories de eventos, detras de camara y las mejores fotos del restaurante. Tambien en Facebook: facebook.com/pages/Carmelitas-Mexican-Bar-Grill/151034358242633 y en la web: carmelitasgroup.com/restaurant.",
+        tacos: "Nuestros tacos mas pedidos: Birria con consomme para mojar, Al Pastor en comal, Carnitas estilo Michoacan, Pollo asado y opciones vegetarianas. Tortillas de maiz nixtamalizado hechas a mano y 5 salsas caseras disponibles.",
+        margaritas: "Nuestras margaritas tienen fama en Sacramento: la Clasica con limon fresco, la de Mango Habanero, Fresa Basil, Tamarindo con chamoy y la especial de la casa. Durante Happy Hour son 2x1 — ve los horarios en @carmelitasgroup.",
+        brunch: "El Brunch Dominical es uno de los favoritos: Chilaquiles Rojos y Verdes, Huevos Rancheros, Tacos de Barbacoa, Mimosas y Micheladas. De 11 AM a 3 PM todos los domingos. Reserva con anticipacion, se llena rapido!",
+        fallback: "Gracias por escribirnos! Para mas informacion visita carmelitasgroup.com/restaurant, siguenos en Instagram @carmelitasgroup o en Facebook como Carmelitas Mexican Bar & Grill. Puedes reservar en tablereserve.conect-r.com — con mucho gusto te atendemos!",
       },
     },
 
@@ -550,7 +550,7 @@ const translations = {
     presencia: {
       heading: "Digital Presence",
       description:
-        "Professional website + AI Virtual Assistant that responds 24/7 to your customers with real information from Carmelita's Kitchen de Mexico.",
+        "Professional website + AI Virtual Assistant that responds 24/7 to your customers with real information from your business.",
       tabWeb: "Web Builder",
       tabChat: "AI Concierge",
       webFeatures: [
@@ -560,7 +560,7 @@ const translations = {
       ],
       botName: "Carmelita — Virtual Assistant",
       botOnline: "Online 24/7 • Sacramento, CA",
-      initialMessage: "Hi! Welcome to Carmelita's Kitchen de Mexico 🌮 I'm Carmelitas' virtual assistant. I can help you with hours, reservations, location, events and dishes. How can I help you today?",
+      initialMessage: "Hi! Welcome to Carmelitas Mexican Bar & Grill 🌮 I'm Carmelita, your virtual assistant. I can help you with hours, reservations, location, special events and menu items. How can I help you today?",
       inputPlaceholder: "Ask about hours, events, menu...",
       faqTitle: "Frequently asked questions",
       quickQuestions: [
@@ -580,16 +580,16 @@ const translations = {
         { label: "Conversion to reservation", value: "+42%" },
       ],
       faqAnswers: {
-        horario: "Carmelitas is open Monday–Thursday 11:00 AM – 9:00 PM, Friday & Saturday 11:00 AM – 10:00 PM, and Sundays 11:00 AM – 8:00 PM. Visit carmelitas-psi.vercel.app for updated hours.",
-        direccion: "We are located in the Sacramento, CA area. For exact location and directions, visit carmelitas-psi.vercel.app or search 'Carmelita's Kitchen de Mexico' on Google Maps.",
-        reserva: "You can make your reservation at tablereserve.conect-r.com, follow us on Instagram @carmelitasgroup or visit us directly. For large groups we recommend booking in advance.",
-        especialidades: "At Carmelita's we highlight Birria Tacos, authentic Mole, Enchiladas, Fajitas and the famous Chilaquiles. Authentic Mexican cuisine in a Mexican Bar & Grill atmosphere you'll love.",
-        eventos: "We have special promotions, Happy Hour with 2-for-1 drinks, and weekend events. Follow us at @carmelitasgroup on Instagram to see all events and special promotions.",
-        instagram: "Follow us on Instagram as @carmelitasgroup to see our dishes, special events, reels and the best moments at Carmelita's. We're also on Facebook as Carmelitas Mexican Bar & Grill.",
-        tacos: "Our most popular tacos include Birria, Al Pastor, Carnitas, Chicken and vegetarian options. Handmade corn tortillas and homemade salsas that perfectly complement every dish.",
-        margaritas: "We have classic, fruit and house special margaritas. During Happy Hour we have discounted drinks — check our Instagram @carmelitasgroup for current promotions.",
-        brunch: "We have brunch options with authentic Mexican dishes, mimosas and an unbeatable family atmosphere. Visit carmelitas-psi.vercel.app to see the full menu.",
-        fallback: "Thanks for your message! For more information visit carmelitas-psi.vercel.app, follow us at @carmelitasgroup on Instagram or on Facebook as Carmelitas Mexican Bar & Grill. We're happy to help!",
+        horario: "Carmelitas is open Monday–Thursday 11:00 AM – 9:00 PM, Friday & Saturday 11:00 AM – 10:00 PM, and Sundays 11:00 AM – 8:00 PM. For updated hours check carmelitasgroup.com/restaurant or our Instagram @carmelitasgroup.",
+        direccion: "Carmelitas Mexican Bar & Grill is located in Sacramento, CA. For the exact address, parking info and directions visit carmelitasgroup.com/restaurant or search 'Carmelitas Mexican Bar & Grill' on Google Maps.",
+        reserva: "Book your table at tablereserve.conect-r.com — quick, easy, no phone needed. For parties of 8 or more we recommend booking at least 2 days ahead. You can also reach us on Instagram @carmelitasgroup.",
+        especialidades: "House favorites include Birria Tacos with consommé, authentic Black Mole, Green Enchiladas, Mixed Fajitas and the famous Sunday Brunch Chilaquiles — all made with family recipes and fresh local ingredients.",
+        eventos: "We offer Happy Hour Mon–Fri with 2-for-1 drinks and special appetizers. Weekends feature live music and special events. Follow @carmelitasgroup on Instagram and Facebook as Carmelitas Mexican Bar & Grill to stay in the loop.",
+        instagram: "Follow us on Instagram @carmelitasgroup for dish reels, event stories, behind-the-scenes and the best shots from the restaurant. Also on Facebook: facebook.com/pages/Carmelitas-Mexican-Bar-Grill/151034358242633 and online: carmelitasgroup.com/restaurant.",
+        tacos: "Our top-ordered tacos: Birria with dipping consommé, Al Pastor from the comal, Michoacan-style Carnitas, Grilled Chicken, and vegetarian options — all on handmade nixtamal corn tortillas with 5 housemade salsas.",
+        margaritas: "Carmelitas is famous for margaritas in Sacramento: Classic with fresh lime, Mango Habanero, Strawberry Basil, Tamarind with chamoy, and the house special. Happy Hour means 2-for-1 — check hours on @carmelitasgroup.",
+        brunch: "Sunday Brunch is a crowd favorite: Red & Green Chilaquiles, Huevos Rancheros, Barbacoa Tacos, Mimosas and Micheladas. Every Sunday 11 AM – 3 PM. Reserve ahead — it fills up fast!",
+        fallback: "Thanks for reaching out! For more info visit carmelitasgroup.com/restaurant, follow us on Instagram @carmelitasgroup or on Facebook as Carmelitas Mexican Bar & Grill. Book a table at tablereserve.conect-r.com — we'd love to see you!",
       },
     },
 
