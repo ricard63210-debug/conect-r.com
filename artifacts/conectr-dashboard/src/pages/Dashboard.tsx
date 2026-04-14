@@ -50,7 +50,7 @@ export default function Dashboard() {
         <div className="flex items-center justify-between px-4 py-3">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <img src="/conectr-logo.png" alt="Conect-R" className="h-11 object-contain" style={{ filter: "brightness(1.15)" }} />
+            <img src="/conectr-logo.png" alt="Conect-R" className="h-[5.5rem] object-contain" style={{ filter: "brightness(1.15)" }} />
             <div className="text-xs text-muted-foreground leading-none">{T.global.ecosistema}</div>
           </div>
 

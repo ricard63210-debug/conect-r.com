@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Wifi, Star, Calendar, Instagram, Facebook, Smartphone, QrCode,
@@ -77,6 +77,7 @@ export default function SmartTable() {
   const [menuKeyIdx, setMenuKeyIdx] = useState(0);
   const [selectedDish, setSelectedDish] = useState<MenuItem | null>(null);
   const [feedback, setFeedback] = useState<FeedbackState>({ rating: 0, name: "", tableNum: "", datetime: "", email: "", phone: "", reason: "", submitted: false });
+  const feedbackFormRef = useRef<HTMLDivElement>(null);
 
   const menuKey = MENU_KEYS[menuKeyIdx];
 
@@ -480,7 +481,13 @@ export default function SmartTable() {
 
                 {/* Feedback button */}
                 <motion.button
-                  onClick={() => setActiveButton(activeButton === "feedback" ? null : "feedback")}
+                  onClick={() => {
+                    const opening = activeButton !== "feedback";
+                    setActiveButton(opening ? "feedback" : null);
+                    if (opening) {
+                      setTimeout(() => feedbackFormRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 120);
+                    }
+                  }}
                   whileTap={{ scale: 0.98 }}
                   data-testid="portal-btn-feedback"
                   className={`w-full flex items-center gap-3 p-3.5 rounded-2xl border transition-all duration-200 ${
@@ -503,10 +510,12 @@ export default function SmartTable() {
                 <AnimatePresence>
                   {activeButton === "feedback" && (
                     <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="border border-orange-800/40 rounded-2xl overflow-hidden bg-gray-900/80"
+                      ref={feedbackFormRef}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.25 }}
+                      className="border border-orange-800/40 rounded-2xl bg-gray-900/80"
                     >
                       {feedback.submitted ? (
                         <motion.div
