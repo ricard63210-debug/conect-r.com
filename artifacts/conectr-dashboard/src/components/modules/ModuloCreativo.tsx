@@ -2,11 +2,12 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Palette, Grid, Check, ExternalLink, Star } from "lucide-react";
 import ImpactPills from "@/components/ImpactPills";
+import { useLang } from "@/lib/i18n";
+import { getT } from "@/lib/translations";
 
 const menuTemplates = [
   {
     id: 1,
-    name: "Elegante Oscuro",
     bg: "from-stone-900 to-amber-950",
     accentColor: "#c9a227",
     accentClass: "text-amber-400",
@@ -19,7 +20,6 @@ const menuTemplates = [
   },
   {
     id: 2,
-    name: "Madera Rustica",
     bg: "from-amber-900 to-stone-800",
     accentColor: "#f4a261",
     accentClass: "text-orange-300",
@@ -32,7 +32,6 @@ const menuTemplates = [
   },
   {
     id: 3,
-    name: "Moderno Minimalista",
     bg: "from-zinc-950 to-neutral-900",
     accentColor: "#e5e5e5",
     accentClass: "text-white",
@@ -45,77 +44,56 @@ const menuTemplates = [
   },
 ];
 
-const MENU_SECTIONS = [
-  {
-    category: "BRUNCH",
-    items: [
-      { name: "Chilaquiles Carmelitas", price: "$19", star: true },
-      { name: "Huevos Rancheros", price: "$16" },
-      { name: "Pancakes de Cajeta", price: "$14" },
-    ],
-  },
-  {
-    category: "STARTERS",
-    items: [
-      { name: "Birria Egg Rolls", price: "$13", star: true },
-      { name: "Pork Belly Bites", price: "$12" },
-      { name: "Guacamole de la Casa", price: "$11" },
-      { name: "Elote Loco", price: "$9" },
-    ],
-  },
-  {
-    category: "TACOS",
-    items: [
-      { name: "Taco Carmelitas", price: "$16", star: true },
-      { name: "Taco de Birria", price: "$15" },
-      { name: "Taco de Carnitas", price: "$14" },
-      { name: "Taco Vegano", price: "$13" },
-    ],
-  },
-  {
-    category: "MARISCOS",
-    items: [
-      { name: "Ceviche de la Casa", price: "$18" },
-      { name: "Tostadas de Atún", price: "$17", star: true },
-      { name: "Aguachile Verde", price: "$19" },
-    ],
-  },
-  {
-    category: "PLATOS FUERTES",
-    items: [
-      { name: "Mole Negro", price: "$22", star: true },
-      { name: "Arrachera a la Parrilla", price: "$26" },
-      { name: "Chile en Nogada", price: "$24" },
-      { name: "Camarones al Mezcal", price: "$25" },
-    ],
-  },
-  {
-    category: "DRINKS",
-    items: [
-      { name: "Margarita Clásica", price: "$12" },
-      { name: "Margarita de Tamarindo", price: "$13" },
-      { name: "Mezcal Negroni", price: "$14" },
-      { name: "Michelada Carmelitas", price: "$10" },
-      { name: "Agua de Jamaica", price: "$5" },
-    ],
-  },
-];
-
 export default function ModuloCreativo() {
   const [selectedTemplate, setSelectedTemplate] = useState(0);
   const tmpl = menuTemplates[selectedTemplate];
+  const { lang } = useLang();
+  const T = getT(lang).creativo;
 
   const handleOpenPrint = () => {
     window.open(`${window.location.origin}/maya-menu-print/`, "_blank", "noopener,noreferrer");
   };
 
+  const sectionKeys = ["Brunch", "Starters", "Tacos", lang === "es" ? "Mariscos" : "Seafood", "Bar"] as const;
+  const sectionDisplay = lang === "es"
+    ? ["BRUNCH", "STARTERS", "TACOS", "MARISCOS", "BAR"]
+    : ["BRUNCH", "STARTERS", "TACOS", "SEAFOOD", "BAR"];
+
+  const menuData = lang === "es"
+    ? [
+        { category: sectionDisplay[0], items: T.menuItems.Brunch },
+        { category: sectionDisplay[1], items: T.menuItems.Starters },
+        { category: sectionDisplay[2], items: T.menuItems.Tacos },
+        { category: sectionDisplay[3], items: T.menuItems.Seafood },
+        { category: sectionDisplay[4], items: T.menuItems.Bar },
+      ]
+    : [
+        { category: sectionDisplay[0], items: T.menuItems.Brunch },
+        { category: sectionDisplay[1], items: T.menuItems.Starters },
+        { category: sectionDisplay[2], items: T.menuItems.Tacos },
+        { category: sectionDisplay[3], items: T.menuItems.Seafood },
+        { category: sectionDisplay[4], items: T.menuItems.Bar },
+      ];
+
+  const legendItems = lang === "es"
+    ? [{ symbol: "★", label: "Chef" }, { symbol: "●", label: "Picante", color: "text-red-400" }, { symbol: "●", label: "Vegano", color: "text-green-400" }]
+    : [{ symbol: "★", label: "Chef" }, { symbol: "●", label: "Spicy", color: "text-red-400" }, { symbol: "●", label: "Vegan", color: "text-green-400" }];
+
+  const printReadyLabel = lang === "es" ? "Menú listo para imprimir" : "Print-ready menu";
+  const printSubLabel = lang === "es"
+    ? "3 páginas · portada, menú completo y contraportada · formato US Letter"
+    : "3 pages · cover, full menu and back cover · US Letter format";
+  const viewBtn = lang === "es" ? "Ver menú" : "View menu";
+  const pickStyleLabel = lang === "es" ? "Elige el estilo de tu menú" : "Choose your menu style";
+  const templateLabel = lang === "es" ? "Plantilla:" : "Template:";
+
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">Diseño de Menú</h2>
+        <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">{T.heading}</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Conect-R diseña y entrega tu menú físico listo para imprimir en tres estilos elegantes
-          que reflejan la identidad de tu restaurante — más ventas con una presentación profesional que llama la atención.
+          {T.description} <span className="text-amber-400 font-medium">{T.descSales}</span> {T.descMid}{" "}
+          <span className="text-amber-400 font-medium">{T.descTicket}</span>{T.descEnd}
         </p>
         <ImpactPills />
       </div>
@@ -123,7 +101,7 @@ export default function ModuloCreativo() {
       {/* Template picker */}
       <div className="space-y-3">
         <h3 className="text-base font-semibold text-primary flex items-center gap-2">
-          <Grid size={18} /> Elige el estilo de tu menú
+          <Grid size={18} /> {pickStyleLabel}
         </h3>
         <div className="flex gap-3">
           {menuTemplates.map((t, idx) => (
@@ -139,7 +117,7 @@ export default function ModuloCreativo() {
             >
               <div className={`absolute inset-0 flex flex-col items-center justify-center ${t.accentClass}`}>
                 <div className="text-xs font-serif font-bold uppercase tracking-wide leading-tight px-2 text-center">
-                  {t.name}
+                  {T.templates[idx]}
                 </div>
                 {selectedTemplate === idx && (
                   <Check size={13} className="mt-1.5" />
@@ -160,12 +138,10 @@ export default function ModuloCreativo() {
       >
         {/* Cover header */}
         <div className={`relative text-center py-8 px-6 border-b ${tmpl.lineClass}`}>
-          {/* Ornament corners */}
           <div className={`absolute top-4 left-5 w-7 h-7 border ${tmpl.lineClass} rounded-full`} />
           <div className={`absolute top-4 right-5 w-7 h-7 border ${tmpl.lineClass} rounded-full`} />
           <div className={`absolute bottom-4 left-5 w-5 h-5 border ${tmpl.lineClass} rounded-full`} />
           <div className={`absolute bottom-4 right-5 w-5 h-5 border ${tmpl.lineClass} rounded-full`} />
-
           <div className={`text-[10px] uppercase tracking-[0.25em] ${tmpl.mutedClass} mb-1`}>CARTA</div>
           <img
             src="/carmelitas-logo.png"
@@ -181,9 +157,8 @@ export default function ModuloCreativo() {
 
         {/* Two-column menu */}
         <div className="grid grid-cols-2 gap-0 divide-x divide-white/5">
-          {/* Left column */}
           <div className="p-5 space-y-4">
-            {MENU_SECTIONS.slice(0, 3).map(section => (
+            {menuData.slice(0, 3).map(section => (
               <div key={section.category}>
                 <div className={`text-[9px] uppercase tracking-[0.22em] ${tmpl.accentClass} mb-2 flex items-center gap-2`}>
                   <span className={`h-px flex-1 bg-current opacity-25`} />
@@ -208,9 +183,8 @@ export default function ModuloCreativo() {
             ))}
           </div>
 
-          {/* Right column */}
           <div className="p-5 space-y-4">
-            {MENU_SECTIONS.slice(3).map(section => (
+            {menuData.slice(3).map(section => (
               <div key={section.category}>
                 <div className={`text-[9px] uppercase tracking-[0.22em] ${tmpl.accentClass} mb-2 flex items-center gap-2`}>
                   <span className={`h-px flex-1 bg-current opacity-25`} />
@@ -234,13 +208,8 @@ export default function ModuloCreativo() {
               </div>
             ))}
 
-            {/* Legend at bottom */}
             <div className={`mt-4 pt-3 border-t ${tmpl.lineClass} flex gap-3 flex-wrap`}>
-              {[
-                { symbol: "★", label: "Chef" },
-                { symbol: "●", label: "Picante", color: "text-red-400" },
-                { symbol: "●", label: "Vegano", color: "text-green-400" },
-              ].map(l => (
+              {legendItems.map(l => (
                 <div key={l.label} className="flex items-center gap-1">
                   <span className={`text-[8px] ${l.color ?? tmpl.accentClass}`}>{l.symbol}</span>
                   <span className={`text-[8px] ${tmpl.descClass}`}>{l.label}</span>
@@ -253,27 +222,25 @@ export default function ModuloCreativo() {
         {/* Footer */}
         <div className={`text-center py-3 border-t ${tmpl.lineClass}`}>
           <p className={`text-[9px] tracking-widest uppercase ${tmpl.footerClass}`}>
-            @carmelitasgroup · tablereserve.conect-r.com
+            {T.menuFooter}
           </p>
         </div>
       </motion.div>
 
-      {/* CTA to open printable menu */}
+      {/* CTA */}
       <div className="flex items-center justify-between p-4 rounded-xl bg-amber-900/10 border border-amber-700/25">
         <div className="flex items-center gap-3">
           <Palette size={20} className="text-amber-400 shrink-0" />
           <div>
-            <div className="text-sm font-semibold">Menú listo para imprimir</div>
-            <div className="text-xs text-muted-foreground mt-0.5">
-              3 páginas · portada, menú completo y contraportada · formato US Letter
-            </div>
+            <div className="text-sm font-semibold">{printReadyLabel}</div>
+            <div className="text-xs text-muted-foreground mt-0.5">{printSubLabel}</div>
           </div>
         </div>
         <button
           onClick={handleOpenPrint}
           className="flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-400 text-black text-sm font-bold rounded-lg transition-colors shrink-0 ml-4"
         >
-          <ExternalLink size={14} /> Ver menú
+          <ExternalLink size={14} /> {viewBtn}
         </button>
       </div>
     </div>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Wifi, BarChart2, Monitor, Globe, Palette, TrendingUp,
-  Menu, X, ChevronRight, Instagram
+  Menu, X, ChevronRight, Instagram, Languages
 } from "lucide-react";
 import SmartTable from "@/components/modules/SmartTable";
 import GestionOperativa from "@/components/modules/GestionOperativa";
@@ -11,69 +11,34 @@ import PresenciaDigital from "@/components/modules/PresenciaDigital";
 import RedesSociales from "@/components/modules/RedesSociales";
 import ModuloCreativo from "@/components/modules/ModuloCreativo";
 import AntesDepues from "@/components/modules/AntesDepues";
+import { useLang } from "@/lib/i18n";
+import { getT } from "@/lib/translations";
 
-const modules = [
-  {
-    id: "smart-table",
-    label: "Smart Table",
-    sublabel: "NFC / QR",
-    icon: Wifi,
-    component: SmartTable,
-    color: "from-amber-600 to-amber-400",
-  },
-  {
-    id: "gestion",
-    label: "Ecosistema Softwares All Inclusive",
-    sublabel: "Todo en uno para crecer",
-    icon: BarChart2,
-    component: GestionOperativa,
-    color: "from-orange-700 to-orange-500",
-  },
-  {
-    id: "signage",
-    label: "Pantallas Digitales",
-    sublabel: "Digital Signage",
-    icon: Monitor,
-    component: DigitalSignage,
-    color: "from-teal-700 to-teal-500",
-  },
-  {
-    id: "presencia",
-    label: "Presencia Digital",
-    sublabel: "Web & AI Chat",
-    icon: Globe,
-    component: PresenciaDigital,
-    color: "from-blue-700 to-blue-500",
-  },
-  {
-    id: "redes",
-    label: "Redes Sociales",
-    sublabel: "Instagram & Facebook",
-    icon: Instagram,
-    component: RedesSociales,
-    color: "from-pink-700 to-pink-500",
-  },
-  {
-    id: "creativo",
-    label: "Diseño de Menú",
-    sublabel: "Menú Imprimible",
-    icon: Palette,
-    component: ModuloCreativo,
-    color: "from-purple-700 to-purple-500",
-  },
-  {
-    id: "resultados",
-    label: "Proyección",
-    sublabel: "Con Conect-R",
-    icon: TrendingUp,
-    component: AntesDepues,
-    color: "from-green-700 to-green-500",
-  },
+const MODULE_ICONS = [Wifi, BarChart2, Monitor, Globe, Instagram, Palette, TrendingUp];
+const MODULE_COLORS = [
+  "from-amber-600 to-amber-400",
+  "from-orange-700 to-orange-500",
+  "from-teal-700 to-teal-500",
+  "from-blue-700 to-blue-500",
+  "from-pink-700 to-pink-500",
+  "from-purple-700 to-purple-500",
+  "from-green-700 to-green-500",
 ];
+const MODULE_IDS = ["smart-table", "gestion", "signage", "presencia", "redes", "creativo", "resultados"];
+const MODULE_COMPONENTS = [SmartTable, GestionOperativa, DigitalSignage, PresenciaDigital, RedesSociales, ModuloCreativo, AntesDepues];
 
 export default function Dashboard() {
   const [activeModule, setActiveModule] = useState("smart-table");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { lang, toggle } = useLang();
+  const T = getT(lang);
+
+  const modules = T.modules.map((m, i) => ({
+    ...m,
+    icon: MODULE_ICONS[i],
+    color: MODULE_COLORS[i],
+    component: MODULE_COMPONENTS[i],
+  }));
 
   const ActiveComponent = modules.find(m => m.id === activeModule)?.component ?? SmartTable;
   const activeInfo = modules.find(m => m.id === activeModule);
@@ -86,7 +51,7 @@ export default function Dashboard() {
           {/* Logo */}
           <div className="flex items-center gap-3">
             <img src="/conectr-logo.png" alt="Conect-R" className="h-8 object-contain" style={{ filter: "brightness(1.2)" }} />
-            <div className="text-xs text-muted-foreground leading-none">Ecosistema</div>
+            <div className="text-xs text-muted-foreground leading-none">{T.global.ecosistema}</div>
           </div>
 
           {/* Desktop nav */}
@@ -108,14 +73,28 @@ export default function Dashboard() {
             ))}
           </nav>
 
-          {/* Mobile menu toggle */}
-          <button
-            className="lg:hidden p-2 text-muted-foreground"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            data-testid="mobile-menu-btn"
-          >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+          {/* Right: lang toggle + mobile menu */}
+          <div className="flex items-center gap-2">
+            {/* Language toggle */}
+            <motion.button
+              onClick={toggle}
+              whileTap={{ scale: 0.93 }}
+              data-testid="lang-toggle"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-amber-700/40 bg-amber-500/10 text-amber-300 text-xs font-semibold hover:bg-amber-500/20 transition-colors"
+            >
+              <Languages size={13} />
+              {T.global.langBtn}
+            </motion.button>
+
+            {/* Mobile menu toggle */}
+            <button
+              className="lg:hidden p-2 text-muted-foreground"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              data-testid="mobile-menu-btn"
+            >
+              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile menu */}
@@ -153,7 +132,7 @@ export default function Dashboard() {
         {/* Sidebar (desktop only) */}
         <aside className="hidden xl:flex flex-col w-56 shrink-0 border-r border-border/40 bg-sidebar/50 p-3 sticky top-[57px] h-[calc(100vh-57px)]">
           <div className="space-y-1">
-            {modules.map((mod, idx) => (
+            {modules.map((mod) => (
               <motion.button
                 key={mod.id}
                 onClick={() => setActiveModule(mod.id)}
@@ -183,10 +162,8 @@ export default function Dashboard() {
 
           {/* Bottom card */}
           <div className="mt-auto p-3 rounded-xl border border-amber-800/30 bg-amber-900/10">
-            <div className="text-xs font-semibold text-amber-400 mb-1">Demo Interactiva</div>
-            <p className="text-xs text-muted-foreground">
-              Explorа cada modulo y descubre como Conect-R transforma tu restaurante.
-            </p>
+            <div className="text-xs font-semibold text-amber-400 mb-1">{T.global.demoCard.title}</div>
+            <p className="text-xs text-muted-foreground">{T.global.demoCard.body}</p>
           </div>
         </aside>
 

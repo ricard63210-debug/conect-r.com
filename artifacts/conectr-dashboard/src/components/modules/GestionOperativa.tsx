@@ -2,6 +2,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Clock, MessageSquare, Users, Check, Bell, X, Plus, ChevronRight } from "lucide-react";
 import ImpactPills from "@/components/ImpactPills";
+import { useLang } from "@/lib/i18n";
+import { getT } from "@/lib/translations";
 
 interface Reservation {
   id: number;
@@ -22,12 +24,15 @@ interface WaitlistEntry {
 }
 
 export default function GestionOperativa() {
+  const { lang } = useLang();
+  const T = getT(lang).gestion;
+
   const [activeTab, setActiveTab] = useState<"reserve" | "nextup">("reserve");
   const [reservations, setReservations] = useState<Reservation[]>([
-    { id: 1, name: "Ana Garcia", time: "19:00", guests: 4, table: "Mesa 03", status: "confirmed", phone: "+52 55 8765 4321" },
-    { id: 2, name: "Roberto Diaz", time: "19:30", guests: 2, table: "Mesa 07", status: "confirmed", phone: "+52 55 2345 6789" },
-    { id: 3, name: "Familia Reyes", time: "20:00", guests: 6, table: "Mesa 12", status: "pending", phone: "+52 55 9876 5432" },
-    { id: 4, name: "Patricia Luna", time: "20:30", guests: 2, table: "Mesa 05", status: "arrived", phone: "+52 55 3456 7890" },
+    { id: 1, name: "Ana Garcia", time: "7:00 PM", guests: 4, table: "Table 03", status: "confirmed", phone: "+52 55 8765 4321" },
+    { id: 2, name: "Roberto Diaz", time: "7:30 PM", guests: 2, table: "Table 07", status: "confirmed", phone: "+52 55 2345 6789" },
+    { id: 3, name: "Familia Reyes", time: "8:00 PM", guests: 6, table: "Table 12", status: "pending", phone: "+52 55 9876 5432" },
+    { id: 4, name: "Patricia Luna", time: "8:30 PM", guests: 2, table: "Table 05", status: "arrived", phone: "+52 55 3456 7890" },
   ]);
 
   const [waitlist, setWaitlist] = useState<WaitlistEntry[]>([
@@ -82,36 +87,28 @@ export default function GestionOperativa() {
     arrived: "text-blue-400 bg-blue-400/10 border-blue-700/40",
   };
 
-  const statusLabels = {
-    confirmed: "Confirmado",
-    pending: "Pendiente",
-    arrived: "En mesa",
-  };
-
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">Ecosistema Softwares All Inclusive</h2>
+        <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">{T.heading}</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto mb-4">
-          Reservaciones automaticas, listas de espera digitales, confirmaciones por SMS, gestion de personal con Chamba,
-          captura de datos del cliente para campanas de marketing que generan <span className="text-amber-400 font-medium">mas ventas</span> y <span className="text-amber-400 font-medium">mas clientes</span> —
-          todo integrado en un solo ecosistema de softwares. Tu enfoque: crear experiencias. Lo demas, Conect-R lo automatiza
-          para que tengas <span className="text-amber-400 font-medium">menos trabajo</span> y <span className="text-amber-400 font-medium">mas reviews</span>.
+          {T.description} <span className="text-amber-400 font-medium">{T.descSales}</span> {T.descAnd}{" "}
+          <span className="text-amber-400 font-medium">{T.descClients}</span> {T.descMid}{" "}
+          <span className="text-amber-400 font-medium">{T.descWork}</span> {T.descAnd2}{" "}
+          <span className="text-amber-400 font-medium">{T.descReviews}</span>.
         </p>
         <ImpactPills />
         <div className="inline-block bg-amber-900/20 border border-amber-700/40 rounded-2xl px-6 py-3">
-          <p className="text-amber-300 font-serif text-base italic">
-            "Tu exito es nuestra razon de ser. Si tu restaurante crece, nosotros crecemos contigo."
-          </p>
-          <p className="text-amber-500/60 text-xs mt-1 text-center">— El equipo de Conect-R</p>
+          <p className="text-amber-300 font-serif text-base italic">{T.quote}</p>
+          <p className="text-amber-500/60 text-xs mt-1 text-center">{T.quoteAuthor}</p>
         </div>
       </div>
 
       {/* Tabs */}
       <div className="flex gap-2 p-1 bg-muted/20 rounded-xl w-fit mx-auto">
         {[
-          { id: "reserve", label: "Table Reserve", logo: "/logo-table-reserve.jpeg" },
-          { id: "nextup", label: "NextUp — Lista de Espera", logo: "/logo-nextup.jpeg" },
+          { id: "reserve", label: T.tabReserve, logo: "/logo-table-reserve.jpeg" },
+          { id: "nextup", label: T.tabNextup, logo: "/logo-nextup.jpeg" },
         ].map((tab) => (
           <button
             key={tab.id}
@@ -140,10 +137,10 @@ export default function GestionOperativa() {
           >
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold text-primary flex items-center gap-2">
-                <Calendar size={20} /> Reservaciones del dia — Viernes 4 Abr
+                <Calendar size={20} /> {T.reserveTitle}
               </h3>
               <div className="text-sm text-muted-foreground">
-                {reservations.filter(r => r.status === "confirmed").length} confirmadas
+                {reservations.filter(r => r.status === "confirmed").length} {T.reserveConfirmed}
               </div>
             </div>
 
@@ -163,7 +160,7 @@ export default function GestionOperativa() {
                       <div className="font-semibold">{res.name}</div>
                       <div className="text-sm text-muted-foreground flex items-center gap-3">
                         <span className="flex items-center gap-1">
-                          <Users size={12} /> {res.guests} personas
+                          <Users size={12} /> {res.guests} {T.persons}
                         </span>
                         <span>{res.table}</span>
                       </div>
@@ -172,7 +169,7 @@ export default function GestionOperativa() {
 
                   <div className="flex items-center gap-3">
                     <span className={`text-xs px-2.5 py-1 rounded-full border font-medium ${statusColors[res.status]}`}>
-                      {statusLabels[res.status]}
+                      {T.statusLabels[res.status]}
                     </span>
 
                     {res.status !== "confirmed" && (
@@ -183,7 +180,7 @@ export default function GestionOperativa() {
                         className="flex items-center gap-2 px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-black text-xs rounded-lg font-medium transition-colors"
                       >
                         <MessageSquare size={12} />
-                        {smsSent === res.id ? "Enviado!" : "Confirmar via SMS"}
+                        {smsSent === res.id ? T.smsSent : T.smsBtn}
                       </motion.button>
                     )}
 
@@ -193,7 +190,7 @@ export default function GestionOperativa() {
                         animate={{ scale: 1, opacity: 1 }}
                         className="flex items-center gap-1 text-xs text-green-400"
                       >
-                        <Check size={14} /> SMS enviado a {res.phone}
+                        <Check size={14} /> {T.smsSentTo} {res.phone}
                       </motion.div>
                     )}
                   </div>
@@ -201,20 +198,12 @@ export default function GestionOperativa() {
               ))}
             </div>
 
-            {/* Data captured automatically on reservation */}
             <div className="maya-card rounded-xl p-5 border border-amber-800/30">
               <h4 className="text-sm font-semibold text-amber-400 mb-4 flex items-center gap-2">
-                <Check size={16} /> Datos capturados automaticamente al reservar
+                <Check size={16} /> {T.dataTitle}
               </h4>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
-                {[
-                  { label: "Nombre completo", value: "Ana Garcia" },
-                  { label: "Telefono", value: "+52 55 8765 4321" },
-                  { label: "Email", value: "ana@email.com" },
-                  { label: "Personas", value: "4 comensales" },
-                  { label: "Fecha y hora", value: "Vie 4 Abr 19:00" },
-                  { label: "Ocasion especial", value: "Cumpleanos" },
-                ].map(item => (
+                {T.dataFields.map(item => (
                   <div key={item.label} className="bg-muted/10 border border-border/40 rounded-xl p-3">
                     <div className="text-xs text-muted-foreground mb-1">{item.label}</div>
                     <div className="text-sm font-medium text-foreground">{item.value}</div>
@@ -222,24 +211,19 @@ export default function GestionOperativa() {
                 ))}
               </div>
               <div className="text-xs text-muted-foreground/70 bg-amber-900/10 border border-amber-800/20 rounded-lg p-3">
-                Estos datos se guardan automaticamente en el CRM al momento de la reserva — sin que el staff tenga que ingresarlos manualmente.
+                {T.dataNote}
               </div>
             </div>
 
-            {/* SMS confirmation simulation */}
             <div className="maya-card rounded-xl p-5">
               <h4 className="text-sm font-semibold text-amber-400 mb-3 flex items-center gap-2">
-                <Bell size={16} /> Confirmacion SMS automatica
+                <Bell size={16} /> {T.smsFlowTitle}
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-                {[
-                  { step: "1", text: "Cliente hace reserva online o por telefono" },
-                  { step: "2", text: "Sistema envia SMS: 'Hola Ana, reserva confirmada Vie 19:00 Mesa 03'" },
-                  { step: "3", text: "Sistema sincroniza con Chamba (gestion de personal) para asignar mesero segun turno y disponibilidad" },
-                ].map(item => (
-                  <div key={item.step} className="flex gap-3 items-start">
-                    <div className="w-6 h-6 bg-amber-500 text-black rounded-full text-xs font-bold flex items-center justify-center shrink-0">{item.step}</div>
-                    <p className="text-muted-foreground">{item.text}</p>
+                {T.smsSteps.map((text, i) => (
+                  <div key={i} className="flex gap-3 items-start">
+                    <div className="w-6 h-6 bg-amber-500 text-black rounded-full text-xs font-bold flex items-center justify-center shrink-0">{i + 1}</div>
+                    <p className="text-muted-foreground">{text}</p>
                   </div>
                 ))}
               </div>
@@ -255,14 +239,14 @@ export default function GestionOperativa() {
           >
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold text-primary flex items-center gap-2">
-                <Users size={20} /> Lista de Espera Digital — NextUp
+                <Users size={20} /> {T.waitlistTitle}
               </h3>
               <button
                 onClick={() => setShowNewReservation(!showNewReservation)}
                 data-testid="add-waitlist-btn"
                 className="flex items-center gap-2 px-3 py-1.5 bg-amber-500 text-black text-sm rounded-lg font-medium hover:bg-amber-400 transition-colors"
               >
-                <Plus size={14} /> Agregar
+                <Plus size={14} /> {T.addBtn}
               </button>
             </div>
 
@@ -276,18 +260,18 @@ export default function GestionOperativa() {
                 >
                   <div className="flex gap-3 items-end">
                     <div className="flex-1">
-                      <label className="text-xs text-muted-foreground mb-1 block">Nombre</label>
+                      <label className="text-xs text-muted-foreground mb-1 block">{T.nameLabel}</label>
                       <input
                         type="text"
                         value={newName}
                         onChange={e => setNewName(e.target.value)}
-                        placeholder="Nombre del cliente"
+                        placeholder={T.namePlaceholder}
                         data-testid="waitlist-name-input"
                         className="w-full bg-muted/20 border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-amber-500"
                       />
                     </div>
                     <div className="w-24">
-                      <label className="text-xs text-muted-foreground mb-1 block">Personas</label>
+                      <label className="text-xs text-muted-foreground mb-1 block">{T.personsLabel}</label>
                       <select
                         value={newGuests}
                         onChange={e => setNewGuests(e.target.value)}
@@ -302,7 +286,7 @@ export default function GestionOperativa() {
                       onClick={handleAddWaitlist}
                       className="px-4 py-2 bg-amber-500 text-black rounded-lg text-sm font-medium"
                     >
-                      Agregar
+                      {T.addBtn}
                     </button>
                     <button onClick={() => setShowNewReservation(false)} className="p-2 text-muted-foreground">
                       <X size={16} />
@@ -336,8 +320,8 @@ export default function GestionOperativa() {
                       <div>
                         <div className="font-semibold">{entry.name}</div>
                         <div className="text-sm text-muted-foreground flex items-center gap-3">
-                          <span className="flex items-center gap-1"><Users size={12} /> {entry.guests} personas</span>
-                          <span className="flex items-center gap-1"><Clock size={12} /> ~{entry.waitTime} min</span>
+                          <span className="flex items-center gap-1"><Users size={12} /> {entry.guests} {T.persons}</span>
+                          <span className="flex items-center gap-1"><Clock size={12} /> ~{entry.waitTime} {T.waitMin}</span>
                         </div>
                       </div>
                     </div>
@@ -349,26 +333,26 @@ export default function GestionOperativa() {
                           data-testid={`call-btn-${entry.id}`}
                           className="flex items-center gap-2 px-3 py-1.5 bg-amber-500 text-black text-xs rounded-lg font-medium hover:bg-amber-400 transition-colors"
                         >
-                          <Bell size={12} /> Llamar
+                          <Bell size={12} /> {T.callBtn}
                         </button>
                       )}
                       {entry.status === "called" && (
                         <>
                           <span className="text-xs text-amber-400 flex items-center gap-1">
-                            <Bell size={12} /> Llamado
+                            <Bell size={12} /> {T.calledLabel}
                           </span>
                           <button
                             onClick={() => handleSeat(entry.id)}
                             data-testid={`seat-btn-${entry.id}`}
                             className="flex items-center gap-2 px-3 py-1.5 bg-green-600 text-white text-xs rounded-lg font-medium"
                           >
-                            <Check size={12} /> Sentar
+                            <Check size={12} /> {T.seatBtn}
                           </button>
                         </>
                       )}
                       {entry.status === "seated" && (
                         <span className="text-xs text-green-400 flex items-center gap-1">
-                          <Check size={14} /> Sentado
+                          <Check size={14} /> {T.seatedLabel}
                         </span>
                       )}
                     </div>
@@ -381,12 +365,8 @@ export default function GestionOperativa() {
               <div className="flex items-start gap-3">
                 <ChevronRight size={20} className="text-amber-400 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-sm font-semibold text-foreground mb-1">Sin colas fisicas — gestion digital en tiempo real</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Cuando un cliente llega sin reservacion, el staff lo agrega a la lista en segundos desde el sistema.
-                    El cliente recibe un SMS cuando su mesa esta lista y puede esperar en el bar o en la calle
-                    sin perder su lugar — sin papel, sin pizarrones, sin desorden.
-                  </p>
+                  <h4 className="text-sm font-semibold text-foreground mb-1">{T.noQueueTitle}</h4>
+                  <p className="text-sm text-muted-foreground">{T.noQueueDesc}</p>
                 </div>
               </div>
             </div>
@@ -394,7 +374,7 @@ export default function GestionOperativa() {
         )}
       </AnimatePresence>
 
-      {/* Chamba — Software de Gestión de Personal */}
+      {/* Chamba */}
       <div className="maya-card rounded-2xl p-6 border border-blue-800/30" style={{ background: "linear-gradient(135deg, rgba(30,58,138,0.12), rgba(15,23,42,0.8))" }}>
         <div className="flex items-start gap-4 mb-5">
           <div className="w-16 h-16 rounded-2xl bg-white/5 border border-blue-700/30 flex items-center justify-center shrink-0 overflow-hidden">
@@ -402,25 +382,17 @@ export default function GestionOperativa() {
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
-              <h4 className="text-base font-bold text-blue-300">Chamba — Gestión de Personal</h4>
-              <span className="text-xs px-2 py-0.5 bg-blue-500/15 border border-blue-500/30 text-blue-300 rounded-full">Integrado</span>
+              <h4 className="text-base font-bold text-blue-300">{T.chambaTitle}</h4>
+              <span className="text-xs px-2 py-0.5 bg-blue-500/15 border border-blue-500/30 text-blue-300 rounded-full">{T.chambaBadge}</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Sistema de gestión de personal diseñado específicamente para restaurantes. Menos trabajo administrativo,
-              más <span className="text-blue-300 font-medium">control y eficiencia</span> en tu equipo.
+              {T.chambaDesc} <span className="text-blue-300 font-medium">{T.chambaHighlight}</span> {T.chambaDesc2}
             </p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {[
-            { emoji: "🕐", title: "Check-in / Check-out", desc: "Control de asistencia digital — cada empleado registra entrada y salida desde su celular" },
-            { emoji: "💰", title: "Gestión de Propinas", desc: "Distribución y registro automático de propinas por turno, puesto y día trabajado" },
-            { emoji: "📅", title: "Horarios y Turnos", desc: "Los mismos trabajadores pueden intercambiar turnos entre sí de forma organizada y transparente" },
-            { emoji: "📂", title: "Archivo Digital", desc: "Documentos del empleado (contrato, ID, certificaciones) guardados de forma segura en la nube" },
-            { emoji: "💳", title: "Integración POS", desc: "Se conecta con los principales POS de restaurantes para automatizar el cierre de caja por mesero" },
-            { emoji: "🏦", title: "Payroll Connect", desc: "Integración con compañías de payroll — horas, propinas y deducciones se envían automáticamente" },
-          ].map(item => (
+          {T.chambaFeatures.map(item => (
             <div key={item.title} className="flex gap-3 p-3 bg-blue-900/10 border border-blue-800/20 rounded-xl">
               <span className="text-xl shrink-0">{item.emoji}</span>
               <div>

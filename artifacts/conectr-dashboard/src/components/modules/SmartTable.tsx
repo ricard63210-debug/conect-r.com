@@ -6,6 +6,8 @@ import {
   ThumbsDown, Send, ArrowLeft, Flame, Leaf, Heart, Gamepad2
 } from "lucide-react";
 import ImpactPills from "@/components/ImpactPills";
+import { useLang } from "@/lib/i18n";
+import { getT } from "@/lib/translations";
 
 interface FeedbackState {
   rating: number;
@@ -24,247 +26,99 @@ interface MenuItem {
   veg?: boolean;
 }
 
-const ISSUE_OPTIONS = [
-  "Tiempo de espera",
-  "Calidad de la comida",
-  "Atencion del mesero",
-  "Temperatura de la comida",
-  "Ambiente / ruido",
-  "Limpieza",
-  "Precio vs calidad",
-  "Otro",
-];
+const MENU_KEYS = ["Entradas", "Tacos", "Platos Fuertes", "Bebidas", "Postres"] as const;
+type MenuKey = typeof MENU_KEYS[number];
 
-const MENU_CATEGORIES = ["Entradas", "Tacos", "Platos Fuertes", "Bebidas", "Postres"] as const;
-type MenuCategory = typeof MENU_CATEGORIES[number];
-
-const MENU_ITEMS: Record<MenuCategory, MenuItem[]> = {
+const MENU_ITEMS: Record<MenuKey, MenuItem[]> = {
   Entradas: [
-    {
-      name: "Guacamole Artesanal",
-      desc: "Aguacate, jitomate, cilantro, limon, jalapeño",
-      detail: "Preparado al momento en molcajete de piedra volcanica. Usamos aguacates Hass maduros, jitomate asado, cilantro fresco, limon de Colima y jalapeño picado. Servido con totopos artesanales recien hechos. Una receta familiar que llevamos mas de 15 anos perfeccionando.",
-      emoji: "🥑",
-      gradient: "from-green-700 to-emerald-500",
-      veg: true,
-    },
-    {
-      name: "Queso Fundido",
-      desc: "Queso Oaxaca derretido con chorizo y rajas",
-      detail: "Una cazuela de barro directo al horno con queso Oaxaca de hebra fundido a la perfeccion, coronado con chorizo artesanal de la casa y rajas de chile poblano asado. Se sirve con tortillas de maiz recien hechas. Ideal para compartir.",
-      emoji: "🧀",
-      gradient: "from-yellow-600 to-orange-500",
-      spicy: true,
-    },
-    {
-      name: "Tostadas de Ceviche",
-      desc: "Camaron fresco, limon, chile serrano, pepino",
-      detail: "Camaron fresco marinado en jugo de limon durante 4 horas, mezclado con pepino, cebolla morada, chile serrano y cilantro. Servido sobre tostadas crujientes artesanales con aguacate y salsa botanera. Sabor del mar en cada bocado.",
-      emoji: "🦐",
-      gradient: "from-orange-600 to-red-500",
-    },
-    {
-      name: "Sopa de Lima",
-      desc: "Caldo de pollo, tortilla crujiente, lima yucateca",
-      detail: "Receta tradicional yucateca con caldo de pollo dorado, pechuga desmenuzada, jitomate asado, cebolla morada, chile habanero suave y el toque distintivo de lima yucateca. Se decora con tiras de tortilla crujiente y aguacate. Confort en cada cucharada.",
-      emoji: "🍋",
-      gradient: "from-yellow-500 to-amber-400",
-    },
+    { name: "Guacamole Artesanal", desc: "Aguacate, jitomate, cilantro, limon, jalapeño", detail: "Preparado al momento en molcajete de piedra volcanica. Usamos aguacates Hass maduros, jitomate asado, cilantro fresco, limon de Colima y jalapeño picado. Servido con totopos artesanales recien hechos.", emoji: "🥑", gradient: "from-green-700 to-emerald-500", veg: true },
+    { name: "Queso Fundido", desc: "Queso Oaxaca derretido con chorizo y rajas", detail: "Una cazuela de barro directo al horno con queso Oaxaca de hebra fundido a la perfeccion, coronado con chorizo artesanal de la casa y rajas de chile poblano asado. Se sirve con tortillas de maiz recien hechas.", emoji: "🧀", gradient: "from-yellow-600 to-orange-500", spicy: true },
+    { name: "Tostadas de Ceviche", desc: "Camaron fresco, limon, chile serrano, pepino", detail: "Camaron fresco marinado en jugo de limon durante 4 horas, mezclado con pepino, cebolla morada, chile serrano y cilantro. Servido sobre tostadas crujientes artesanales con aguacate y salsa botanera.", emoji: "🦐", gradient: "from-orange-600 to-red-500" },
+    { name: "Sopa de Lima", desc: "Caldo de pollo, tortilla crujiente, lima yucateca", detail: "Receta tradicional yucateca con caldo de pollo dorado, pechuga desmenuzada, jitomate asado, cebolla morada, chile habanero suave y el toque distintivo de lima yucateca. Se decora con tiras de tortilla crujiente.", emoji: "🍋", gradient: "from-yellow-500 to-amber-400" },
   ],
   Tacos: [
-    {
-      name: "Al Pastor",
-      desc: "Cerdo adobado, pina, cilantro, cebolla",
-      detail: "Cerdo marinado 24 horas en achiote, chiles guajillo y ancho, oregano y especias. Cocinado en trompo vertical y cortado al momento. Servido con pina natural, cilantro fresco, cebolla blanca y salsa verde tatemada. El taco mas icónico de la cultura mexicana.",
-      emoji: "🌮",
-      gradient: "from-red-600 to-orange-500",
-      spicy: true,
-    },
-    {
-      name: "Birria",
-      desc: "Res estofada en consomme, queso, cilantro",
-      detail: "Res cocida lentamente por 6 horas en consomme de chiles guajillo, ancho y pasilla con especias mexicanas. Servida con queso Chihuahua fundido, cilantro y cebolla. Acompanada de consomme caliente para mojar. La receta favorita de nuestros clientes.",
-      emoji: "🥩",
-      gradient: "from-rose-700 to-red-500",
-    },
-    {
-      name: "Camarones",
-      desc: "Camaron a la diabla, col morada, chipotle",
-      detail: "Camarones jumbo salteados en salsa a la diabla con chile de arbol, chipotle ahumado y mantequilla de ajo. Servidos sobre tortilla de maiz azul con col morada encurtida, crema de chipotle y jugo de limon. Picantes y llenos de sabor del oceano.",
-      emoji: "🦐",
-      gradient: "from-pink-700 to-red-600",
-      spicy: true,
-    },
-    {
-      name: "Hongos",
-      desc: "Hongos salteados, epazote, chile poblano",
-      detail: "Mix de hongos de temporada — portobello, shiitake y ostra — salteados con ajo, epazote fresco, chile poblano asado y mantequilla. Servidos en tortilla de maiz hecha a mano con frijoles negros, queso Oaxaca y salsa verde. Opcion vegetariana de sabor intenso.",
-      emoji: "🍄",
-      gradient: "from-amber-700 to-yellow-600",
-      veg: true,
-    },
-    {
-      name: "Carnitas",
-      desc: "Cerdo confitado, salsa verde, cebolla morada",
-      detail: "Cerdo confitado en manteca de cerdo durante 4 horas con naranja, canela, hojas de laurel y ajo hasta lograr una textura que se deshace. Crujiente por fuera, jugoso por dentro. Servido con salsa verde tatemada, cebolla morada y chile serrano.",
-      emoji: "🐷",
-      gradient: "from-amber-600 to-orange-500",
-    },
+    { name: "Al Pastor", desc: "Cerdo adobado, pina, cilantro, cebolla", detail: "Cerdo marinado 24 horas en achiote, chiles guajillo y ancho, oregano y especias. Cocinado en trompo vertical y cortado al momento. Servido con pina natural, cilantro fresco, cebolla blanca y salsa verde tatemada.", emoji: "🌮", gradient: "from-red-600 to-orange-500", spicy: true },
+    { name: "Birria", desc: "Res estofada en consomme, queso, cilantro", detail: "Res cocida lentamente por 6 horas en consomme de chiles guajillo, ancho y pasilla con especias mexicanas. Servida con queso Chihuahua fundido, cilantro y cebolla. Acompanada de consomme caliente para mojar.", emoji: "🥩", gradient: "from-rose-700 to-red-500" },
+    { name: "Camarones", desc: "Camaron a la diabla, col morada, chipotle", detail: "Camarones jumbo salteados en salsa a la diabla con chile de arbol, chipotle ahumado y mantequilla de ajo. Servidos sobre tortilla de maiz azul con col morada encurtida, crema de chipotle y jugo de limon.", emoji: "🦐", gradient: "from-pink-700 to-red-600", spicy: true },
+    { name: "Hongos", desc: "Hongos salteados, epazote, chile poblano", detail: "Mix de hongos de temporada — portobello, shiitake y ostra — salteados con ajo, epazote fresco, chile poblano asado y mantequilla. Servidos en tortilla de maiz hecha a mano con frijoles negros y queso Oaxaca.", emoji: "🍄", gradient: "from-amber-700 to-yellow-600", veg: true },
+    { name: "Carnitas", desc: "Cerdo confitado, salsa verde, cebolla morada", detail: "Cerdo confitado en manteca de cerdo durante 4 horas con naranja, canela, hojas de laurel y ajo hasta lograr una textura que se deshace. Crujiente por fuera, jugoso por dentro.", emoji: "🐷", gradient: "from-amber-600 to-orange-500" },
   ],
   "Platos Fuertes": [
-    {
-      name: "Mole Negro",
-      desc: "Pollo bañado en mole negro oaxaqueño, arroz, frijoles",
-      detail: "Nuestro mole negro es una receta de mas de 30 ingredientes: chiles mulato, pasilla, chihuacle negro, chocolate amargo, platano macho, ajonjoli y especias. Cocinado lentamente por 8 horas. Servido sobre muslo de pollo rostizado, arroz rojo y frijoles negros con epazote. Patrimonio de la cocina mexicana.",
-      emoji: "🍗",
-      gradient: "from-stone-700 to-amber-800",
-    },
-    {
-      name: "Chile en Nogada",
-      desc: "Chile poblano relleno, nogada de nuez, granadas",
-      detail: "Chile poblano asado relleno de picadillo de res y cerdo con frutas de temporada — durazno, pera, platano y almendras — bañado en nogada de nuez de Castilla fresca, decorado con granada roja y perejil. Los colores de la bandera mexicana en un solo plato.",
-      emoji: "🌶️",
-      gradient: "from-green-700 to-emerald-600",
-      veg: true,
-    },
-    {
-      name: "Ribeye a la Mexicana",
-      desc: "300g, nopal asado, salsa roja, frijoles charros",
-      detail: "Corte de Ribeye de 300g al punto deseado, sazonado con especias mexicanas y sellado en comal de hierro. Acompanado de nopal asado con ensalada de chile de arbol, frijoles charros con tocino y chorizo, y salsa roja de molcajete. El favorito de los carnivoros.",
-      emoji: "🥩",
-      gradient: "from-red-800 to-rose-700",
-      spicy: true,
-    },
-    {
-      name: "Camarones al Mezcal",
-      desc: "Camarones jumbo, crema de chile ancho, arroz verde",
-      detail: "Camarones gigantes flambeados en mezcal Joven con mantequilla de ajo negro, servidos sobre crema de chile ancho tatemado y arroz verde de cilantro. Un plato que combina la tradicion del mezcal artesanal con ingredientes del Pacifico mexicano. Experiencia gourmet.",
-      emoji: "🦐",
-      gradient: "from-blue-700 to-teal-600",
-    },
+    { name: "Mole Negro", desc: "Pollo bañado en mole negro oaxaqueño, arroz, frijoles", detail: "Nuestro mole negro es una receta de mas de 30 ingredientes: chiles mulato, pasilla, chihuacle negro, chocolate amargo, platano macho, ajonjoli y especias. Cocinado lentamente por 8 horas. Patrimonio de la cocina mexicana.", emoji: "🍗", gradient: "from-stone-700 to-amber-800" },
+    { name: "Chile en Nogada", desc: "Chile poblano relleno, nogada de nuez, granadas", detail: "Chile poblano asado relleno de picadillo de res y cerdo con frutas de temporada — durazno, pera, platano y almendras — bañado en nogada de nuez de Castilla fresca, decorado con granada roja y perejil.", emoji: "🌶️", gradient: "from-green-700 to-emerald-600", veg: true },
+    { name: "Ribeye a la Mexicana", desc: "300g, nopal asado, salsa roja, frijoles charros", detail: "Corte de Ribeye de 300g al punto deseado, sazonado con especias mexicanas y sellado en comal de hierro. Acompanado de nopal asado, frijoles charros con tocino y chorizo, y salsa roja de molcajete.", emoji: "🥩", gradient: "from-red-800 to-rose-700", spicy: true },
+    { name: "Camarones al Mezcal", desc: "Camarones jumbo, crema de chile ancho, arroz verde", detail: "Camarones gigantes flambeados en mezcal Joven con mantequilla de ajo negro, servidos sobre crema de chile ancho tatemado y arroz verde de cilantro. Experiencia gourmet.", emoji: "🦐", gradient: "from-blue-700 to-teal-600" },
   ],
   Bebidas: [
-    {
-      name: "Margarita Clasica",
-      desc: "Tequila blanco, limon, triple sec, sal",
-      detail: "La clasica bien hecha: tequila blanco 100% agave, jugo de limon exprimido al momento, triple sec premium y una pizca de sal de grano. Servida en copa escarcha con sal de grano y limon. Simple, perfecta, inigualable. La base de toda buena cantina.",
-      emoji: "🍹",
-      gradient: "from-yellow-500 to-lime-500",
-    },
-    {
-      name: "Mezcal Negroni",
-      desc: "Mezcal Joven, Campari, Vermut Rojo",
-      detail: "Un Negroni con caracter mexicano: mezcal joven artesanal de Oaxaca en lugar del gin clasico, Campari italiano y Vermut Rojo dulce. Servido en vaso old fashioned con hielo esferico y una piel de naranja expresada. Para los amantes de lo amargo y lo complejo.",
-      emoji: "🥃",
-      gradient: "from-red-700 to-amber-600",
-    },
-    {
-      name: "Agua de Jamaica",
-      desc: "Flor de Jamaica, azucar de cana, hierbabuena",
-      detail: "Infusion artesanal de flor de Jamaica seca de Guerrero, endulzada con azucar de cana natural, enfriada lentamente y servida con hierbabuena fresca y limon. Una bebida sin alcohol llena de antioxidantes y sabor genuino. Refrescante y natural.",
-      emoji: "🌺",
-      gradient: "from-pink-700 to-fuchsia-600",
-      veg: true,
-    },
-    {
-      name: "Michelada Carmelitas",
-      desc: "Cerveza, clamato, limon, chamoy, tajin",
-      detail: "La michelada de la casa: cerveza lager fria mezclada con clamato, jugo de limon fresco, salsa Worcestershire, Tabasco y sal de ajo. Vaso escarcha con chamoy y tajin. Decorada con camarones encurtidos y pepino. Una explosion de sabores que te va a encantar.",
-      emoji: "🍺",
-      gradient: "from-amber-600 to-red-500",
-      spicy: true,
-    },
+    { name: "Margarita Clasica", desc: "Tequila blanco, limon, triple sec, sal", detail: "La clasica bien hecha: tequila blanco 100% agave, jugo de limon exprimido al momento, triple sec premium y una pizca de sal de grano. Servida en copa escarcha. Simple, perfecta, inigualable.", emoji: "🍹", gradient: "from-yellow-500 to-lime-500" },
+    { name: "Mezcal Negroni", desc: "Mezcal Joven, Campari, Vermut Rojo", detail: "Un Negroni con caracter mexicano: mezcal joven artesanal de Oaxaca, Campari italiano y Vermut Rojo dulce. Servido en vaso old fashioned con hielo esferico y una piel de naranja expresada.", emoji: "🥃", gradient: "from-red-700 to-amber-600" },
+    { name: "Agua de Jamaica", desc: "Flor de Jamaica, azucar de cana, hierbabuena", detail: "Infusion artesanal de flor de Jamaica seca de Guerrero, endulzada con azucar de cana natural y servida con hierbabuena fresca y limon. Una bebida sin alcohol llena de antioxidantes.", emoji: "🌺", gradient: "from-pink-700 to-fuchsia-600", veg: true },
+    { name: "Michelada Carmelitas", desc: "Cerveza, clamato, limon, chamoy, tajin", detail: "La michelada de la casa: cerveza lager fria mezclada con clamato, jugo de limon fresco, salsa Worcestershire, Tabasco y sal de ajo. Vaso escarcha con chamoy y tajin. Decorada con camarones encurtidos.", emoji: "🍺", gradient: "from-amber-600 to-red-500", spicy: true },
   ],
   Postres: [
-    {
-      name: "Tres Leches",
-      desc: "Bizcocho esponjoso empapado en tres leches, crema batida",
-      detail: "Bizcocho casero horneado en el momento y empapado en la mezcla de leche entera, leche evaporada y leche condensada. Cubierto con crema batida artesanal y decorado con canela en polvo. Ligero, humedo y con ese sabor dulce que recuerda la cocina de la abuela.",
-      emoji: "🍰",
-      gradient: "from-amber-200 to-yellow-300",
-      veg: true,
-    },
-    {
-      name: "Churros con Chocolate",
-      desc: "Churros crujientes, chocolate caliente, cajeta",
-      detail: "Churros fritos al momento con masa de choux, crujientes por fuera y suaves por dentro, espolvoreados con azucar y canela. Servidos con chocolate caliente artesanal de cacao mexicano de Tabasco y cajeta de cabra para mojar. El postre mas pedido de la casa.",
-      emoji: "🍫",
-      gradient: "from-amber-700 to-yellow-600",
-    },
-    {
-      name: "Helado de Elote",
-      desc: "Helado artesanal de elote dulce, cajeta, canela",
-      detail: "Helado elaborado con elote dulce fresco de temporada, leche entera y crema. De textura cremosa y sabor inconfundible. Servido en copa con cajeta artesanal de Celaya, canela molida y nuez tostada. Una interpretacion gourmet de un sabor tipicamente mexicano.",
-      emoji: "🌽",
-      gradient: "from-yellow-400 to-amber-400",
-      veg: true,
-    },
+    { name: "Tres Leches", desc: "Bizcocho esponjoso empapado en tres leches, crema batida", detail: "Bizcocho casero horneado en el momento y empapado en la mezcla de leche entera, leche evaporada y leche condensada. Cubierto con crema batida artesanal y decorado con canela en polvo.", emoji: "🍰", gradient: "from-amber-200 to-yellow-300", veg: true },
+    { name: "Churros con Chocolate", desc: "Churros crujientes, chocolate caliente, cajeta", detail: "Churros fritos al momento, crujientes por fuera y suaves por dentro, espolvoreados con azucar y canela. Servidos con chocolate caliente artesanal de cacao mexicano de Tabasco y cajeta de cabra.", emoji: "🍫", gradient: "from-amber-700 to-yellow-600" },
+    { name: "Helado de Elote", desc: "Helado artesanal de elote dulce, cajeta, canela", detail: "Helado elaborado con elote dulce fresco de temporada, leche entera y crema. Servido con cajeta artesanal de Celaya, canela molida y nuez tostada. Una interpretacion gourmet de un sabor tipicamente mexicano.", emoji: "🌽", gradient: "from-yellow-400 to-amber-400", veg: true },
   ],
 };
 
 export default function SmartTable() {
+  const { lang } = useLang();
+  const T = getT(lang).smartTable;
+
   const [activeButton, setActiveButton] = useState<string | null>(null);
   const [showAnimation, setShowAnimation] = useState(false);
   const [portalOpen, setPortalOpen] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-  const [menuCategory, setMenuCategory] = useState<MenuCategory>("Entradas");
+  const [menuKeyIdx, setMenuKeyIdx] = useState(0);
   const [selectedDish, setSelectedDish] = useState<MenuItem | null>(null);
-  const [feedback, setFeedback] = useState<FeedbackState>({
-    rating: 0,
-    issues: [],
-    comment: "",
-    submitted: false,
-  });
+  const [feedback, setFeedback] = useState<FeedbackState>({ rating: 0, issues: [], comment: "", submitted: false });
+
+  const menuKey = MENU_KEYS[menuKeyIdx];
+
+  const spicyLabel = lang === "es" ? "Picante" : "Spicy";
+  const vegLabel = lang === "es" ? "Vegetariano" : "Vegetarian";
+  const goBackLabel = lang === "es" ? "Regresar" : "Go Back";
+  const resetLabel = lang === "es" ? "Reiniciar" : "Reset";
+  const portalOpenedLabel = lang === "es" ? "Portal abierto en el celular" : "Portal opened on phone";
+  const portalOpenedDesc = lang === "es"
+    ? "Herramienta de engagement y marketing directo. Los datos del cliente se capturan en Table Reserve al hacer una reservacion."
+    : "Direct engagement and marketing tool. Customer data is captured in Table Reserve when making a reservation.";
+  const problemLabel = lang === "es" ? "Cual fue el problema?" : "What was the problem?";
+  const addMoreLabel = lang === "es" ? "Algo mas que quieras agregar?" : "Anything else you want to add?";
+  const commentPlaceholder = lang === "es" ? "Cuentanos que paso..." : "Tell us what happened...";
+  const portalSteps = lang === "es"
+    ? [
+        { step: "01", title: "Toca el stand", desc: "NFC o QR code — sin app, sin descarga, sin friccion" },
+        { step: "02", title: "Ve el menu digital", desc: "Carta completa con fotos y descripcion detallada de cada platillo" },
+        { step: "03", title: "Cualquier link que el dueno elija", desc: "Juegos, trivias, promociones, videos — cualquier destino en internet adaptado a lo que el restaurante necesita" },
+        { step: "04", title: "Comparte su experiencia", desc: "Acceso directo a Google Business para calificar con 5 estrellas en segundos" },
+      ]
+    : [
+        { step: "01", title: "Tap the stand", desc: "NFC or QR code — no app, no download, no friction" },
+        { step: "02", title: "View the digital menu", desc: "Full menu with photos and detailed descriptions of every dish" },
+        { step: "03", title: "Any link the owner chooses", desc: "Games, trivia, promotions, videos — any internet destination tailored to what the restaurant needs" },
+        { step: "04", title: "Share their experience", desc: "Direct access to Google Business to rate with 5 stars in seconds" },
+      ];
+  const portalSectionTitle = lang === "es" ? "Que puede hacer el cliente desde el portal" : "What can the customer do from the portal";
+  const clickHintLabel = lang === "es" ? "Haz clic en el stand para simular un toque NFC" : "Click the stand to simulate an NFC tap";
+  const gameLabel = lang === "es" ? "Juega y gana" : "Play and win";
+  const badExpLabel = lang === "es" ? "Tuviste una mala experiencia?" : "Had a bad experience?";
+  const helpUsLabel = lang === "es" ? "Ayudanos a mejorar" : "Help us improve";
+  const reviewsLabel = lang === "es" ? "Resenas" : "Reviews";
+  const tablesLabel = lang === "es" ? "Mesas" : "Tables";
+  const effLabel = lang === "es" ? "Efic." : "Eff.";
+  const authenticNoteText = lang === "es"
+    ? "Cocinado con ingredientes frescos y recetas autenticas de la cocina mexicana tradicional."
+    : "Cooked with fresh ingredients and authentic traditional Mexican recipes.";
 
   const portalButtons = [
-    {
-      id: "menu",
-      label: "Menu Digital",
-      icon: QrCode,
-      color: "from-amber-600 to-amber-400",
-      desc: "Carta completa con descripcion y fotos de cada platillo",
-      url: `${window.location.origin}/maya-menu/`,
-    },
-    {
-      id: "reviews",
-      label: "Comparte tu experiencia",
-      icon: Heart,
-      color: "from-yellow-600 to-yellow-400",
-      desc: "Disfrutaste con nosotros? Dejanos una reseña en Google y ayuda a mas personas a conocernos.",
-      url: "https://www.google.com/search?q=carmelitas+google+reviews&ie=UTF-8&oe=UTF-8&hl=en-us&client=safari#ebo=2",
-    },
-    {
-      id: "events",
-      label: "Eventos",
-      icon: Calendar,
-      color: "from-orange-700 to-orange-500",
-      desc: "Noches especiales, maridajes y celebraciones en Carmelitas",
-      url: "https://www.instagram.com/carmelitasgroup",
-    },
-    {
-      id: "instagram",
-      label: "Instagram",
-      icon: Instagram,
-      color: "from-pink-700 to-pink-500",
-      desc: "Siguenos en Instagram y ve nuestros reels, stories y lo mejor de Carmelitas",
-      url: "https://www.instagram.com/carmelitasgroup?igsh=NTc4MTIwNjQ2YQ==",
-    },
-    {
-      id: "facebook",
-      label: "Facebook",
-      icon: Facebook,
-      color: "from-blue-700 to-blue-500",
-      desc: "Pagina oficial y comunidad de Carmelitas en Facebook",
-      url: "https://www.facebook.com/pages/Carmelitas-Mexican-Bar-Grill/151034358242633?mibextid=wwXIfr",
-    },
-    {
-      id: "reserve",
-      label: "Reservar Mesa",
-      icon: Calendar,
-      color: "from-amber-700 to-amber-500",
-      desc: "Reserva tu mesa en segundos — confirmacion instantanea y recordatorio automatico",
-      url: "https://tablereserve.conect-r.com",
-    },
+    { id: "menu", label: T.portalButtons.menu, icon: QrCode, color: "from-amber-600 to-amber-400", desc: lang === "es" ? "Carta completa con descripcion y fotos de cada platillo" : "Full menu with photos and descriptions of every dish", url: `${window.location.origin}/maya-menu/`, isMenu: true },
+    { id: "reviews", label: T.portalButtons.reviews, icon: Heart, color: "from-yellow-600 to-yellow-400", desc: T.reviewsDesc, url: "https://www.google.com/search?q=carmelitas+google+reviews&ie=UTF-8&oe=UTF-8&hl=en-us&client=safari#ebo=2" },
+    { id: "events", label: T.portalButtons.events, icon: Calendar, color: "from-orange-700 to-orange-500", desc: T.eventDesc, url: "https://www.instagram.com/carmelitasgroup" },
+    { id: "instagram", label: T.portalButtons.instagram, icon: Instagram, color: "from-pink-700 to-pink-500", desc: T.instagramDesc, url: "https://www.instagram.com/carmelitasgroup?igsh=NTc4MTIwNjQ2YQ==" },
+    { id: "facebook", label: T.portalButtons.facebook, icon: Facebook, color: "from-blue-700 to-blue-500", desc: T.facebookDesc, url: "https://www.facebook.com/pages/Carmelitas-Mexican-Bar-Grill/151034358242633?mibextid=wwXIfr" },
+    { id: "reserve", label: T.portalButtons.reserve, icon: Calendar, color: "from-amber-700 to-amber-500", desc: T.reserveDesc, url: "https://tablereserve.conect-r.com" },
   ];
 
   const handleNfcTap = () => {
@@ -286,7 +140,9 @@ export default function SmartTable() {
 
   const handlePortalButton = (btn: typeof portalButtons[0]) => {
     setActiveButton(btn.id);
-    if (btn.url) {
+    if (btn.id === "menu") {
+      setShowMenu(true);
+    } else if (btn.url) {
       window.open(btn.url, "_blank", "noopener,noreferrer");
     }
   };
@@ -306,15 +162,13 @@ export default function SmartTable() {
 
   return (
     <div className="space-y-8">
-      {/* Header */}
       <div className="text-center">
-        <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">Smart Table — NFC / QR</h2>
+        <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">{T.heading}</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Cada mesa tiene un stand fisico elegante con NFC y codigo QR. El cliente lo toca con su celular
-          y accede al portal del restaurante — donde deja su reseña Google (<span className="text-amber-400 font-medium">más reviews</span>),
-          hace reservaciones (<span className="text-amber-400 font-medium">más clientes</span>), ve el menu digital
-          (<span className="text-amber-400 font-medium">más ventas</span>) y Conect-R colecta sus datos para campanas
-          de marketing dirigidas — todo automatico (<span className="text-amber-400 font-medium">menos trabajo</span>).
+          {T.description} <span className="text-amber-400 font-medium">{T.descReviews}</span>
+          {T.desc2}<span className="text-amber-400 font-medium">{T.descClients}</span>
+          {T.desc3}<span className="text-amber-400 font-medium">{T.descSales}</span>
+          {T.desc4}<span className="text-amber-400 font-medium">{T.descWork}</span>{T.desc5}
         </p>
         <ImpactPills />
       </div>
@@ -323,7 +177,7 @@ export default function SmartTable() {
         {/* NFC Stand Visualizer */}
         <div className="space-y-4">
           <h3 className="text-lg font-semibold text-primary flex items-center gap-2">
-            <Wifi size={20} /> Visualizador del Stand NFC
+            <Wifi size={20} /> {T.nfcTitle}
           </h3>
 
           <div className="relative flex flex-col items-center">
@@ -349,15 +203,13 @@ export default function SmartTable() {
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Wifi size={14} className="text-amber-400" />
-                <span>Toca aqui con tu celular</span>
+                <span>{T.nfcTap}</span>
               </div>
-              <div className="text-xs text-muted-foreground/60">Mesa #07 • Salon Principal</div>
+              <div className="text-xs text-muted-foreground/60">{T.nfcTable}</div>
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-700 via-amber-400 to-amber-700 rounded-b-2xl" />
             </motion.div>
 
-            <p className="mt-3 text-xs text-muted-foreground text-center">
-              Haz clic en el stand para simular un toque NFC
-            </p>
+            <p className="mt-3 text-xs text-muted-foreground text-center">{clickHintLabel}</p>
 
             <AnimatePresence>
               {showAnimation && (
@@ -395,17 +247,13 @@ export default function SmartTable() {
                     <div className="w-7 h-7 bg-amber-500/20 rounded-full flex items-center justify-center">
                       <Check size={14} className="text-amber-400" />
                     </div>
-                    <span className="text-sm font-semibold text-amber-400">Portal abierto en el celular</span>
+                    <span className="text-sm font-semibold text-amber-400">{portalOpenedLabel}</span>
                   </div>
                   <button onClick={resetNfc} className="text-muted-foreground hover:text-foreground text-xs underline">
-                    Reiniciar
+                    {resetLabel}
                   </button>
                 </div>
-                <p className="text-xs text-muted-foreground">
-                  Herramienta de <span className="text-amber-300 font-medium">engagement y marketing directo</span>.
-                  Los datos del cliente se capturan en <span className="text-amber-300 font-medium">Table Reserve</span> al hacer una reservacion.
-                  Los botones con enlace real abren el sitio en una nueva pestana.
-                </p>
+                <p className="text-xs text-muted-foreground">{portalOpenedDesc}</p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -414,7 +262,7 @@ export default function SmartTable() {
         {/* Portal Cliente — Phone mockup */}
         <div className="space-y-4">
           <h3 className="text-lg font-semibold text-primary flex items-center gap-2">
-            <Smartphone size={20} /> Portal del Cliente — Links Reales
+            <Smartphone size={20} /> {T.portalTitle}
           </h3>
 
           <div className="relative mx-auto w-72 bg-gray-950 rounded-[2.5rem] border-4 border-gray-800 shadow-2xl overflow-hidden" style={{ height: "680px" }}>
@@ -439,18 +287,16 @@ export default function SmartTable() {
                   transition={{ type: "tween", duration: 0.28 }}
                   className="absolute inset-0 top-8 bg-gray-950 z-20 flex flex-col overflow-y-auto"
                 >
-                  {/* Photo area */}
                   <div className={`relative h-52 bg-gradient-to-br ${selectedDish.gradient} flex flex-col items-center justify-center shrink-0`}>
                     <button
                       onClick={() => setSelectedDish(null)}
                       className="absolute top-3 left-3 flex items-center gap-1 bg-black/40 backdrop-blur-sm px-2.5 py-1.5 rounded-full text-xs text-white font-medium"
                     >
-                      <ArrowLeft size={13} /> Regresar
+                      <ArrowLeft size={13} /> {goBackLabel}
                     </button>
                     <span className="text-7xl drop-shadow-lg">{selectedDish.emoji}</span>
                   </div>
 
-                  {/* Info */}
                   <div className="p-4 space-y-3">
                     <div className="flex items-start gap-2">
                       <div className="flex-1">
@@ -458,24 +304,20 @@ export default function SmartTable() {
                         <div className="flex items-center gap-2 mt-1">
                           {selectedDish.spicy && (
                             <span className="flex items-center gap-1 text-xs text-orange-400 bg-orange-900/30 px-2 py-0.5 rounded-full">
-                              <Flame size={10} /> Picante
+                              <Flame size={10} /> {spicyLabel}
                             </span>
                           )}
                           {selectedDish.veg && (
                             <span className="flex items-center gap-1 text-xs text-green-400 bg-green-900/30 px-2 py-0.5 rounded-full">
-                              <Leaf size={10} /> Vegetariano
+                              <Leaf size={10} /> {vegLabel}
                             </span>
                           )}
                         </div>
                       </div>
                     </div>
-
                     <p className="text-xs text-gray-300 leading-relaxed">{selectedDish.detail}</p>
-
                     <div className="p-3 bg-amber-900/20 border border-amber-800/30 rounded-xl">
-                      <p className="text-xs text-amber-300/80 italic">
-                        "Cocinado con ingredientes frescos y recetas autenticas de la cocina mexicana tradicional."
-                      </p>
+                      <p className="text-xs text-amber-300/80 italic">"{authenticNoteText}"</p>
                     </div>
                   </div>
                 </motion.div>
@@ -493,26 +335,24 @@ export default function SmartTable() {
                   transition={{ type: "tween", duration: 0.3 }}
                   className="absolute inset-0 top-8 bg-gray-950 z-10 flex flex-col"
                 >
-                  {/* Menu header */}
                   <div className="relative bg-white flex flex-col items-center pt-4 pb-3 shrink-0">
                     <button
                       onClick={() => { setShowMenu(false); setActiveButton(null); setSelectedDish(null); }}
                       className="absolute left-3 top-4 flex items-center gap-1 text-xs text-blue-600 font-medium"
                     >
-                      <ArrowLeft size={14} /> Volver
+                      <ArrowLeft size={14} /> {T.menuBack}
                     </button>
                     <img src="/carmelitas-logo.png" alt="Carmelita's" className="h-14 object-contain" />
-                    <p className="text-xs text-gray-500 mt-1">Cocina Mexicana • SAC, CA</p>
+                    <p className="text-xs text-gray-500 mt-1">{T.menuSubtitle}</p>
                   </div>
 
-                  {/* Category tabs */}
                   <div className="flex gap-0 bg-gray-900 border-b border-gray-800 overflow-x-auto shrink-0" style={{ scrollbarWidth: "none" }}>
-                    {MENU_CATEGORIES.map(cat => (
+                    {T.menuCategories.map((cat, idx) => (
                       <button
                         key={cat}
-                        onClick={() => setMenuCategory(cat)}
+                        onClick={() => setMenuKeyIdx(idx)}
                         className={`px-3 py-2.5 text-xs font-medium whitespace-nowrap border-b-2 transition-all ${
-                          menuCategory === cat
+                          menuKeyIdx === idx
                             ? "border-amber-400 text-amber-400"
                             : "border-transparent text-gray-400"
                         }`}
@@ -522,25 +362,23 @@ export default function SmartTable() {
                     ))}
                   </div>
 
-                  {/* Menu items — tappable */}
                   <div className="flex-1 overflow-y-auto">
                     <AnimatePresence mode="wait">
                       <motion.div
-                        key={menuCategory}
+                        key={menuKey}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.15 }}
                         className="divide-y divide-gray-800"
                       >
-                        {MENU_ITEMS[menuCategory].map((item) => (
+                        {MENU_ITEMS[menuKey].map((item) => (
                           <motion.button
                             key={item.name}
                             onClick={() => setSelectedDish(item)}
                             whileTap={{ scale: 0.98 }}
                             className="w-full flex items-center gap-3 p-3 text-left active:bg-gray-800/60"
                           >
-                            {/* Mini photo */}
                             <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shrink-0`}>
                               <span className="text-2xl">{item.emoji}</span>
                             </div>
@@ -559,13 +397,12 @@ export default function SmartTable() {
                     </AnimatePresence>
                   </div>
 
-                  {/* Legend */}
                   <div className="flex gap-3 px-3 py-2 border-t border-gray-800 bg-gray-900 shrink-0">
                     <div className="flex items-center gap-1 text-xs text-gray-500">
-                      <Flame size={10} className="text-orange-500" /> Picante
+                      <Flame size={10} className="text-orange-500" /> {spicyLabel}
                     </div>
                     <div className="flex items-center gap-1 text-xs text-gray-500">
-                      <Leaf size={10} className="text-green-500" /> Vegetariano
+                      <Leaf size={10} className="text-green-500" /> {vegLabel}
                     </div>
                   </div>
                 </motion.div>
@@ -576,13 +413,12 @@ export default function SmartTable() {
             <div className="absolute inset-0 top-8 bg-gradient-to-b from-gray-950 to-black overflow-y-auto scrollbar-gold">
               <div className="relative h-24 bg-gradient-to-b from-amber-900/60 to-transparent flex flex-col items-center justify-center">
                 <img src="/carmelitas-logo.png" alt="Carmelita's" className="h-14 object-contain" style={{ filter: "invert(1) brightness(1.1)" }} />
-                <div className="text-xs text-amber-300/70 mt-1">Kitchen de Mexico</div>
+                <div className="text-xs text-amber-300/70 mt-1">{T.portalSubtitle}</div>
               </div>
 
               <div className="px-4 pb-6 space-y-3">
-                <p className="text-xs text-center text-gray-400">Selecciona una opcion</p>
+                <p className="text-xs text-center text-gray-400">{T.portalPrompt}</p>
 
-                {/* Main buttons grid */}
                 <div className="grid grid-cols-2 gap-3">
                   {portalButtons.map((btn) => (
                     <motion.button
@@ -616,7 +452,6 @@ export default function SmartTable() {
                   ))}
                 </div>
 
-                {/* Active button description */}
                 <AnimatePresence>
                   {activeButton && activeButton !== "feedback" && activeButton !== "menu" && (
                     <motion.div
@@ -646,7 +481,7 @@ export default function SmartTable() {
                   </div>
                   <div className="text-left flex-1">
                     <div className="text-xs font-bold text-purple-200" style={{ fontFamily: "Cinzel, serif" }}>Maya King</div>
-                    <div className="text-xs text-purple-400 mt-0.5">🏆 Juega y gana</div>
+                    <div className="text-xs text-purple-400 mt-0.5">🏆 {gameLabel}</div>
                   </div>
                   <ExternalLink size={12} className="text-purple-500 shrink-0" />
                 </motion.button>
@@ -666,8 +501,8 @@ export default function SmartTable() {
                     <ThumbsDown size={18} className="text-white" />
                   </div>
                   <div className="text-left">
-                    <div className="text-xs font-semibold text-orange-300">Tuviste una mala experiencia?</div>
-                    <div className="text-xs text-gray-500 mt-0.5">Ayudanos a mejorar</div>
+                    <div className="text-xs font-semibold text-orange-300">{badExpLabel}</div>
+                    <div className="text-xs text-gray-500 mt-0.5">{helpUsLabel}</div>
                   </div>
                   <MessageCircleWarning size={14} className="text-orange-500 ml-auto" />
                 </motion.button>
@@ -690,12 +525,12 @@ export default function SmartTable() {
                           <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
                             <Check size={24} className="text-green-400" />
                           </div>
-                          <p className="text-sm font-semibold text-green-400 mb-1">Gracias por tu retroalimentacion</p>
-                          <p className="text-xs text-gray-400">Tu opinion nos ayuda a mejorar cada dia. El equipo de Carmelitas la revisara personalmente.</p>
+                          <p className="text-sm font-semibold text-green-400 mb-1">{T.feedbackSuccess}</p>
+                          <p className="text-xs text-gray-400">{T.feedbackNote}</p>
                         </motion.div>
                       ) : (
                         <div className="p-3 space-y-3">
-                          <p className="text-xs font-semibold text-orange-300">Como fue tu experiencia hoy?</p>
+                          <p className="text-xs font-semibold text-orange-300">{T.feedbackTitle}</p>
                           <div className="flex gap-1 justify-center">
                             {[1, 2, 3, 4, 5].map(star => (
                               <button
@@ -711,9 +546,9 @@ export default function SmartTable() {
                             ))}
                           </div>
                           <div>
-                            <p className="text-xs text-gray-400 mb-2">Cual fue el problema?</p>
+                            <p className="text-xs text-gray-400 mb-2">{problemLabel}</p>
                             <div className="grid grid-cols-2 gap-1.5">
-                              {ISSUE_OPTIONS.map(issue => (
+                              {T.issueOptions.map(issue => (
                                 <button
                                   key={issue}
                                   onClick={() => toggleIssue(issue)}
@@ -732,11 +567,11 @@ export default function SmartTable() {
                             </div>
                           </div>
                           <div>
-                            <p className="text-xs text-gray-400 mb-1.5">Algo mas que quieras agregar?</p>
+                            <p className="text-xs text-gray-400 mb-1.5">{addMoreLabel}</p>
                             <textarea
                               value={feedback.comment}
                               onChange={e => setFeedback(prev => ({ ...prev, comment: e.target.value }))}
-                              placeholder="Cuentanos que paso..."
+                              placeholder={commentPlaceholder}
                               rows={2}
                               className="w-full bg-gray-800 border border-gray-700 rounded-lg px-2.5 py-2 text-xs text-white focus:outline-none focus:border-orange-600 resize-none"
                             />
@@ -751,7 +586,7 @@ export default function SmartTable() {
                             }`}
                           >
                             <Send size={12} />
-                            Enviar mi opinion
+                            {T.sendBtn}
                           </button>
                         </div>
                       )}
@@ -762,9 +597,9 @@ export default function SmartTable() {
                 {/* Stats bar */}
                 <div className="grid grid-cols-3 gap-2 pt-1">
                   {[
-                    { label: "Resenas", value: "4.9", icon: Star },
-                    { label: "Mesas", value: "24", icon: Users },
-                    { label: "Efic.", value: "+34%", icon: TrendingUp },
+                    { label: reviewsLabel, value: "4.9", icon: Star },
+                    { label: tablesLabel, value: "24", icon: Users },
+                    { label: effLabel, value: "+34%", icon: TrendingUp },
                   ].map((stat) => (
                     <div key={stat.label} className="bg-gray-900/80 rounded-xl p-2 text-center">
                       <stat.icon size={12} className="text-amber-400 mx-auto mb-1" />
@@ -779,18 +614,13 @@ export default function SmartTable() {
         </div>
       </div>
 
-      {/* What happens in the portal */}
+      {/* Portal steps */}
       <div className="maya-card rounded-2xl p-6">
         <h3 className="text-lg font-semibold text-primary mb-4 flex items-center gap-2">
-          <ChevronRight size={20} /> Que puede hacer el cliente desde el portal
+          <ChevronRight size={20} /> {portalSectionTitle}
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          {[
-            { step: "01", title: "Toca el stand", desc: "NFC o QR code — sin app, sin descarga, sin friccion" },
-            { step: "02", title: "Ve el menu digital", desc: "Carta completa con fotos y descripcion detallada de cada platillo" },
-            { step: "03", title: "Cualquier link que el dueno elija", desc: "Juegos, trivias, promociones, videos — cualquier destino en internet adaptado a lo que el restaurante necesita" },
-            { step: "04", title: "Comparte su experiencia", desc: "Acceso directo a Google Business para calificar con 5 estrellas en segundos" },
-          ].map((item) => (
+          {portalSteps.map((item) => (
             <div key={item.step} className="flex gap-3">
               <div className="w-10 h-10 bg-amber-500/10 border border-amber-700/40 rounded-xl flex items-center justify-center shrink-0">
                 <span className="text-xs font-bold text-amber-400">{item.step}</span>

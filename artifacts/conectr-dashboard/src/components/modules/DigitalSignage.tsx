@@ -5,101 +5,44 @@ import {
   MessageSquare, Phone, Instagram, Facebook, RefreshCw
 } from "lucide-react";
 import ImpactPills from "@/components/ImpactPills";
+import { useLang } from "@/lib/i18n";
+import { getT } from "@/lib/translations";
 
-interface EventSlide {
-  id: string;
-  tag: string;
-  tagIcon: typeof Music;
-  title: string;
-  subtitle: string;
-  detail: string;
-  bg: string;
-  accent: string;
-  days: string;
-  time: string;
-}
-
-const EVENT_SLIDES: EventSlide[] = [
-  {
-    id: "mariachi",
-    tag: "Noche Especial",
-    tagIcon: Music,
-    title: "Noches de Mariachi",
-    subtitle: "Musica en vivo con los mejores mariachis de Sacramento",
-    detail: "Ambiente, sabor y tradicion",
-    bg: "from-purple-950 via-indigo-950 to-stone-950",
-    accent: "text-purple-300",
-    days: "Viernes y Sabado",
-    time: "8:00 PM",
-  },
-  {
-    id: "happyhour",
-    tag: "Happy Hour",
-    tagIcon: Flame,
-    title: "2x1 en Margaritas",
-    subtitle: "Clasicas • Frozen • De la Casa",
-    detail: "La mejor hora del dia en Carmelitas",
-    bg: "from-amber-950 via-orange-950 to-stone-950",
-    accent: "text-amber-300",
-    days: "Lunes a Jueves",
-    time: "3:00 PM – 6:00 PM",
-  },
-  {
-    id: "brunch",
-    tag: "Brunch Dominical",
-    tagIcon: Star,
-    title: "Sunday Brunch Carmelitas",
-    subtitle: "Mimosas sin limite • Menú especial de brunch mexicano",
-    detail: "El domingo mas sabroso de SAC",
-    bg: "from-rose-950 via-pink-950 to-stone-950",
-    accent: "text-rose-300",
-    days: "Domingos",
-    time: "11:00 AM – 3:00 PM",
-  },
-  {
-    id: "cenaRomantica",
-    tag: "Experiencia Unica",
-    tagIcon: Star,
-    title: "Cena Romantica",
-    subtitle: "Mesa para dos • Menu degustacion • Maridaje de mezcal",
-    detail: "Reservaciones limitadas",
-    bg: "from-red-950 via-rose-950 to-stone-950",
-    accent: "text-red-300",
-    days: "Viernes y Sabado",
-    time: "7:00 PM – 10:00 PM",
-  },
-  {
-    id: "tacotuesday",
-    tag: "Promo Semanal",
-    tagIcon: Flame,
-    title: "Taco Tuesday",
-    subtitle: "Tacos desde $3 • Micheladas 2x1 • Vibras de barrio",
-    detail: "El martes mas chido de la semana",
-    bg: "from-green-950 via-emerald-950 to-stone-950",
-    accent: "text-green-300",
-    days: "Martes",
-    time: "12:00 PM – 9:00 PM",
-  },
+const SLIDE_ICONS = [Music, Flame, Star, Star, Flame];
+const SLIDE_BG = [
+  "from-purple-950 via-indigo-950 to-stone-950",
+  "from-amber-950 via-orange-950 to-stone-950",
+  "from-rose-950 via-pink-950 to-stone-950",
+  "from-red-950 via-rose-950 to-stone-950",
+  "from-green-950 via-emerald-950 to-stone-950",
 ];
-
-const LOCATIONS = ["Barra", "Terraza"];
+const SLIDE_ACCENT = ["text-purple-300", "text-amber-300", "text-rose-300", "text-red-300", "text-green-300"];
 
 export default function DigitalSignage() {
+  const { lang } = useLang();
+  const T = getT(lang).signage;
+
+  const slides = T.slides.map((s, i) => ({
+    ...s,
+    tagIcon: SLIDE_ICONS[i],
+    bg: SLIDE_BG[i],
+    accent: SLIDE_ACCENT[i],
+  }));
+
   const [activeIdx, setActiveIdx] = useState(0);
   const [updating, setUpdating] = useState(false);
   const [updated, setUpdated] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
 
-  const activeSlide = EVENT_SLIDES[activeIdx];
+  const activeSlide = slides[activeIdx];
 
-  // Auto-cycle every 5 seconds
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
-      setActiveIdx(prev => (prev + 1) % EVENT_SLIDES.length);
+      setActiveIdx(prev => (prev + 1) % slides.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [isPaused]);
+  }, [isPaused, slides.length]);
 
   const selectSlide = (idx: number) => {
     setUpdating(true);
@@ -118,10 +61,11 @@ export default function DigitalSignage() {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">Pantallas Digitales — Digital Signage</h2>
+        <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">{T.heading}</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Las pantallas del restaurante muestran contenido dinamico en tiempo real: eventos, promociones y el ambiente
-          que Carmelitas quiere proyectar. Conect-R gestiona cada actualizacion — mas ventas pasivas, mas clientes nuevos y menos trabajo para tu equipo.
+          {T.description} <span className="text-amber-400 font-medium">{T.descSales}</span> {T.descMid}{" "}
+          <span className="text-amber-400 font-medium">{T.descClients}</span> {T.descAnd}{" "}
+          <span className="text-amber-400 font-medium">{T.descWork}</span> {T.descEnd}
         </p>
         <ImpactPills />
       </div>
@@ -130,10 +74,9 @@ export default function DigitalSignage() {
         {/* TV Screens */}
         <div className="space-y-4">
           <h3 className="text-lg font-semibold text-primary flex items-center gap-2">
-            <Monitor size={20} /> Pantallas del Restaurante — En Vivo
+            <Monitor size={20} /> {T.screensTitle}
           </h3>
 
-          {/* Main TV */}
           <div className="relative">
             <div className="bg-gray-900 rounded-2xl p-2 border-4 border-gray-700 tv-glow">
               <div className="bg-gray-950 rounded-xl overflow-hidden" style={{ aspectRatio: "16/9" }}>
@@ -148,7 +91,7 @@ export default function DigitalSignage() {
                     >
                       <div className="text-center">
                         <RefreshCw size={32} className="text-amber-400 animate-spin mx-auto mb-3" />
-                        <p className="text-amber-300 text-sm">Actualizando pantallas...</p>
+                        <p className="text-amber-300 text-sm">{T.updating}</p>
                       </div>
                     </motion.div>
                   ) : (
@@ -160,16 +103,14 @@ export default function DigitalSignage() {
                       transition={{ duration: 0.6 }}
                       className={`w-full h-full bg-gradient-to-br ${activeSlide.bg} relative flex flex-col items-center justify-center px-6 py-4`}
                     >
-                      {/* Ambient glow */}
                       <div className="absolute inset-0 opacity-20"
                         style={{ backgroundImage: "radial-gradient(ellipse at center, rgba(212,160,23,0.3) 0%, transparent 70%)" }}
                       />
 
-                      {/* Top bar */}
                       <div className="absolute top-3 left-4 right-4 flex items-center justify-between">
                         <span className="text-xs text-white/30 font-serif tracking-widest uppercase">Carmelitas</span>
                         <div className="flex gap-1">
-                          {EVENT_SLIDES.map((_, i) => (
+                          {slides.map((_, i) => (
                             <div
                               key={i}
                               className={`h-0.5 rounded-full transition-all duration-300 ${
@@ -180,7 +121,6 @@ export default function DigitalSignage() {
                         </div>
                       </div>
 
-                      {/* Content */}
                       <div className="text-center relative z-10">
                         <motion.div
                           initial={{ y: 10, opacity: 0 }}
@@ -220,7 +160,6 @@ export default function DigitalSignage() {
                         </motion.p>
                       </div>
 
-                      {/* Bottom bar */}
                       <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
                         <div className="flex items-center gap-1.5 text-xs text-white/40">
                           <Calendar size={10} />
@@ -244,9 +183,8 @@ export default function DigitalSignage() {
             </div>
           </div>
 
-          {/* Small screens */}
           <div className="grid grid-cols-2 gap-3">
-            {LOCATIONS.map((loc) => (
+            {T.locations.map((loc) => (
               <div key={loc} className="bg-gray-900 rounded-xl p-1 border-2 border-gray-700">
                 <div className="bg-gray-950 rounded-lg overflow-hidden">
                   <div
@@ -267,20 +205,19 @@ export default function DigitalSignage() {
               animate={{ opacity: 1, y: 0 }}
               className="flex items-center gap-2 text-sm text-green-400 bg-green-400/10 border border-green-700/40 rounded-xl px-4 py-2.5"
             >
-              <Check size={16} /> 3 pantallas actualizadas en tiempo real
+              <Check size={16} /> {T.updated}
             </motion.div>
           )}
         </div>
 
         {/* Right panel */}
         <div className="space-y-4">
-          {/* Event selector */}
           <h3 className="text-lg font-semibold text-primary flex items-center gap-2">
-            <Calendar size={20} /> Eventos Activos de Carmelitas
+            <Calendar size={20} /> {T.eventsTitle}
           </h3>
 
           <div className="space-y-2">
-            {EVENT_SLIDES.map((slide, idx) => (
+            {slides.map((slide, idx) => (
               <motion.button
                 key={slide.id}
                 whileTap={{ scale: 0.98 }}
@@ -306,37 +243,27 @@ export default function DigitalSignage() {
             ))}
           </div>
 
-          {/* How updates work */}
           <div className="maya-card rounded-2xl p-5 border border-amber-800/30 space-y-4">
             <div>
               <div className="text-sm font-semibold text-amber-400 mb-1 flex items-center gap-2">
-                <MessageSquare size={15} /> Como actualizamos tu contenido
+                <MessageSquare size={15} /> {T.howTitle}
               </div>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Tu nos dices que quieres mostrar y nosotros lo cambiamos en tiempo real.
-                Sin tecnicos, sin complicaciones — un mensaje y listo.
-              </p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{T.howDesc}</p>
             </div>
 
             <div className="space-y-2">
-              {[
-                { icon: Phone, text: "Nos contactas por WhatsApp, llamada o mensaje" },
-                { icon: MessageSquare, text: "Nos dices: nuevo evento, promo, horario o imagen" },
-                { icon: RefreshCw, text: "Actualizamos todas tus pantallas en minutos" },
-                { icon: Check, text: "Tu restaurante siempre con contenido fresco y relevante" },
-              ].map((item, i) => (
+              {[Phone, MessageSquare, RefreshCw, Check].map((Icon, i) => (
                 <div key={i} className="flex items-start gap-2.5">
                   <div className="w-6 h-6 rounded-full bg-amber-500/10 border border-amber-700/30 flex items-center justify-center shrink-0 mt-0.5">
-                    <item.icon size={11} className="text-amber-400" />
+                    <Icon size={11} className="text-amber-400" />
                   </div>
-                  <p className="text-xs text-muted-foreground">{item.text}</p>
+                  <p className="text-xs text-muted-foreground">{T.howSteps[i]}</p>
                 </div>
               ))}
             </div>
 
-            {/* Social channels */}
             <div className="border-t border-border/30 pt-3">
-              <p className="text-xs text-muted-foreground/60 mb-2">Siguenos para inspiracion de contenido:</p>
+              <p className="text-xs text-muted-foreground/60 mb-2">{T.followUs}</p>
               <div className="flex gap-2">
                 <a
                   href="https://www.instagram.com/carmelitasgroup?igsh=NTc4MTIwNjQ2YQ=="
