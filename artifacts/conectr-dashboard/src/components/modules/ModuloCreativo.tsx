@@ -49,7 +49,7 @@ const MENU_SECTIONS = [
   {
     category: "BRUNCH",
     items: [
-      { name: "Chilaquiles Maya", price: "$19", star: true },
+      { name: "Chilaquiles Carmelitas", price: "$19", star: true },
       { name: "Huevos Rancheros", price: "$16" },
       { name: "Pancakes de Cajeta", price: "$14" },
     ],
@@ -59,14 +59,14 @@ const MENU_SECTIONS = [
     items: [
       { name: "Birria Egg Rolls", price: "$13", star: true },
       { name: "Pork Belly Bites", price: "$12" },
-      { name: "Guacamole Maya", price: "$11" },
+      { name: "Guacamole de la Casa", price: "$11" },
       { name: "Elote Loco", price: "$9" },
     ],
   },
   {
     category: "TACOS",
     items: [
-      { name: "Taco Maya", price: "$16", star: true },
+      { name: "Taco Carmelitas", price: "$16", star: true },
       { name: "Taco de Birria", price: "$15" },
       { name: "Taco de Carnitas", price: "$14" },
       { name: "Taco Vegano", price: "$13" },
@@ -75,7 +75,7 @@ const MENU_SECTIONS = [
   {
     category: "MARISCOS",
     items: [
-      { name: "Ceviche Maya", price: "$18" },
+      { name: "Ceviche de la Casa", price: "$18" },
       { name: "Tostadas de Atún", price: "$17", star: true },
       { name: "Aguachile Verde", price: "$19" },
     ],
@@ -95,7 +95,7 @@ const MENU_SECTIONS = [
       { name: "Margarita Clásica", price: "$12" },
       { name: "Margarita de Tamarindo", price: "$13" },
       { name: "Mezcal Negroni", price: "$14" },
-      { name: "Michelada Maya", price: "$10" },
+      { name: "Michelada Carmelitas", price: "$10" },
       { name: "Agua de Jamaica", price: "$5" },
     ],
   },
@@ -115,7 +115,7 @@ export default function ModuloCreativo() {
         <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">Diseño de Menú</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
           Conect-R diseña y entrega tu menú físico listo para imprimir en tres estilos elegantes
-          que reflejan la identidad de Maya Cantina.
+          que reflejan la identidad de tu restaurante — más ventas con una presentación profesional que llama la atención.
         </p>
         <ImpactPills />
       </div>
@@ -167,11 +167,14 @@ export default function ModuloCreativo() {
           <div className={`absolute bottom-4 right-5 w-5 h-5 border ${tmpl.lineClass} rounded-full`} />
 
           <div className={`text-[10px] uppercase tracking-[0.25em] ${tmpl.mutedClass} mb-1`}>CARTA</div>
-          <h1 className={`text-3xl font-serif font-bold ${tmpl.accentClass}`} style={{ fontFamily: "Cinzel, Georgia, serif" }}>
-            Maya Cantina
-          </h1>
+          <img
+            src="/carmelitas-logo.png"
+            alt="Carmelita's"
+            className="h-14 object-contain mx-auto mb-1"
+            style={{ filter: "brightness(0.15) sepia(1) saturate(3) hue-rotate(10deg)" }}
+          />
           <p className={`text-xs mt-1.5 ${tmpl.mutedClass} tracking-wider`}>
-            Cocina Mexicana Auténtica · Sacramento, CA
+            Kitchen de Mexico · Mexican Bar &amp; Grill
           </p>
           <div className={`w-24 h-px mx-auto mt-3 bg-current ${tmpl.mutedClass}`} />
         </div>
@@ -250,7 +253,7 @@ export default function ModuloCreativo() {
         {/* Footer */}
         <div className={`text-center py-3 border-t ${tmpl.lineClass}`}>
           <p className={`text-[9px] tracking-widest uppercase ${tmpl.footerClass}`}>
-            @mayacantinasac · tablereserve.conect-r.com/book/roosters-on-the-river
+            @carmelitasgroup · tablereserve.conect-r.com
           </p>
         </div>
       </motion.div>

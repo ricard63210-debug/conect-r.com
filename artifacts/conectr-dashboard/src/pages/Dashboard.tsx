@@ -23,7 +23,7 @@ const modules = [
   },
   {
     id: "gestion",
-    label: "Ecosistema All Inclusive",
+    label: "Ecosistema Softwares All Inclusive",
     sublabel: "Todo en uno para crecer",
     icon: BarChart2,
     component: GestionOperativa,
@@ -85,13 +85,8 @@ export default function Dashboard() {
         <div className="flex items-center justify-between px-4 py-3">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-amber-500/20 border border-amber-600/40 rounded-lg flex items-center justify-center">
-              <span className="text-sm font-serif font-bold text-amber-400">C</span>
-            </div>
-            <div>
-              <div className="font-serif font-bold text-sm gold-gradient leading-none">Conect-R</div>
-              <div className="text-xs text-muted-foreground leading-none mt-0.5">Ecosistema Restaurante Maya</div>
-            </div>
+            <img src="/conectr-logo.png" alt="Conect-R" className="h-8 object-contain" style={{ filter: "brightness(1.2)" }} />
+            <div className="text-xs text-muted-foreground leading-none">Ecosistema</div>
           </div>
 
           {/* Desktop nav */}

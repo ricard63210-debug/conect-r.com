@@ -87,7 +87,7 @@ const modules = [
     label: "Gestión Redes Sociales",
     color: "from-pink-700 to-pink-500",
     impact: "+55% seguidores",
-    detail: "Conect-R crea y publica 5–7 posts/semana en @mayacantinasac y Mayarestaurantsac. Alcance mensual proyectado: 34K personas en Sacramento.",
+    detail: "Conect-R crea y publica 5–7 posts/semana en @carmelitasgroup y en Facebook. Alcance mensual proyectado: 34K personas en Sacramento.",
     kpi: { before: "4.2K seguidores IG", after: "6.5K seguidores IG" },
   },
   {
@@ -116,8 +116,8 @@ export default function AntesDepues() {
       <div className="text-center">
         <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">Proyección con Conect-R</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Basado en el perfil real de Maya Cantina Sacramento — horarios, precios, presencia digital actual
-          y benchmarks de restaurantes similares que adoptaron el ecosistema.
+          Basado en el perfil real de Carmelita's Kitchen de Mexico — horarios, precios, presencia digital actual
+          y benchmarks de restaurantes similares que adoptaron el ecosistema Conect-R para generar mas ventas, mas reviews y mas clientes.
         </p>
         <ImpactPills />
       </div>
@@ -205,7 +205,7 @@ export default function AntesDepues() {
         <div className="flex items-center gap-2 mb-4">
           <Zap size={16} className="text-amber-400" />
           <h3 className="text-sm font-semibold">Impacto por módulo</h3>
-          <span className="text-xs text-muted-foreground ml-1">— qué mueve la aguja en Maya Cantina</span>
+          <span className="text-xs text-muted-foreground ml-1">— qué mueve la aguja en Carmelitas</span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {modules.map((mod, i) => (
@@ -265,7 +265,7 @@ export default function AntesDepues() {
           </div>
         </div>
         <p className="text-sm text-muted-foreground">
-          Proyección a 6 meses con ecosistema Conect-R completo · basada en perfil de Maya Cantina Sacramento
+          Proyección a 6 meses con ecosistema Conect-R completo · basada en perfil de Carmelita's Kitchen de Mexico
         </p>
         <p className="text-xs text-muted-foreground/50 mt-1">
           Ticket promedio $40 USD · 6 días operativos/semana · Aforo estimado 80 personas

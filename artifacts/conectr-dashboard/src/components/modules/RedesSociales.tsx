@@ -15,7 +15,7 @@ const mockPosts = [
     type: "reel",
     platform: "instagram",
     image: "🌮",
-    caption: "¡Nuestros Tacos de Birria están de otro nivel! 🔥 Res estofada en consomé, queso fundido y tortilla de maíz hecha a mano. Happy Hour Mar–Jue 5–7pm. #MayaCantina #SacramentoEats #Birria",
+    caption: "¡Nuestros Tacos de Birria están de otro nivel! 🔥 Res estofada en consomé, queso fundido y tortilla de maíz hecha a mano. Happy Hour Mar–Jue 5–7pm. #CarmelitasKitchen #SacramentoEats #Birria",
     likes: 847,
     comments: 63,
     shares: 124,
@@ -29,7 +29,7 @@ const mockPosts = [
     type: "post",
     platform: "instagram",
     image: "🥑",
-    caption: "Nuestro Guacamole Maya — aguacate fresco, jítomate, cilantro, cebolla morada y chile serrano. Hecho al momento, siempre. 🥑✨ #GuacaDay #AuténticoMexicano",
+    caption: "Nuestro Guacamole de la Casa — aguacate fresco, jítomate, cilantro, cebolla morada y chile serrano. Hecho al momento, siempre. 🥑✨ #GuacaDay #AuténticoMexicano",
     likes: 621,
     comments: 42,
     shares: 88,
@@ -43,7 +43,7 @@ const mockPosts = [
     type: "story",
     platform: "facebook",
     image: "🍹",
-    caption: "¿Planes para el domingo? Únete a nuestro Brunch 11am–3pm 🌅 Mimosas, Micheladas y lo mejor de la cocina mexicana. ¡Trae a la familia! Reserva en el link. #BrunchDominical #MayaSac",
+    caption: "¿Planes para el domingo? Únete a nuestro Brunch 11am–3pm 🌅 Mimosas, Micheladas y lo mejor de la cocina mexicana. ¡Trae a la familia! Reserva en el link. #BrunchDominical #Carmelitas",
     likes: 312,
     comments: 28,
     shares: 55,
@@ -57,7 +57,7 @@ const mockPosts = [
     type: "reel",
     platform: "instagram",
     image: "🎭",
-    caption: "¡Esta noche Mariachi en vivo! 🎺🎸 Ven a celebrar al ritmo de la mejor música mexicana — Viernes y Sábados a las 8pm. Mesas disponibles. ¡No te lo pierdas! #Mariachi #MayaCantinaSAC",
+    caption: "¡Esta noche Mariachi en vivo! 🎺🎸 Ven a celebrar al ritmo de la mejor música mexicana — Viernes y Sábados a las 8pm. Mesas disponibles. ¡No te lo pierdas! #Mariachi #CarmelitasSAC",
     likes: 1103,
     comments: 89,
     shares: 201,
@@ -88,7 +88,7 @@ const services = [
   {
     icon: PenTool,
     title: "Copywriting & Diseño",
-    desc: "Redacción de captions en español con voz auténtica de Maya, diseño de stories, carruseles y gráficos para cada plataforma.",
+    desc: "Redacción de captions en español con voz auténtica de Carmelitas, diseño de stories, carruseles y gráficos para cada plataforma.",
     color: "from-amber-700 to-amber-500",
   },
   {
@@ -132,8 +132,9 @@ export default function RedesSociales() {
       <div className="text-center">
         <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">Redes Sociales</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Conect-R gestiona la presencia de Maya Cantina en Instagram y Facebook —
-          contenido profesional, comunidad activa y crecimiento orgánico mes a mes.
+          Conect-R gestiona la presencia de Carmelitas en Instagram y Facebook —
+          contenido profesional, comunidad activa y crecimiento organico mes a mes para
+          generar <span className="text-amber-400 font-medium">más reviews</span>, <span className="text-amber-400 font-medium">más clientes</span> y <span className="text-amber-400 font-medium">más ventas</span>.
         </p>
         <ImpactPills />
       </div>
@@ -195,7 +196,7 @@ export default function RedesSociales() {
               <div className="relative">
                 <div className="w-14 h-14 rounded-full overflow-hidden border-2 p-0.5"
                   style={{ borderColor: GOLD }}>
-                  <img src="/maya-logo.jpeg" alt="Maya Cantina" className="w-full h-full rounded-full object-cover" />
+                  <img src="/carmelitas-logo.png" alt="Carmelitas" className="w-full h-full rounded-full object-cover" style={{ filter: "brightness(0.85)" }} />
                 </div>
                 <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-gradient-to-br from-pink-500 to-orange-400 rounded-full flex items-center justify-center">
                   <Instagram size={10} className="text-white" />
@@ -203,10 +204,10 @@ export default function RedesSociales() {
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-2">
-                  <span className="font-semibold text-sm">@mayacantinasac</span>
+                  <span className="font-semibold text-sm">@carmelitasgroup</span>
                   <span className="text-xs px-2 py-0.5 bg-blue-500/15 border border-blue-500/30 text-blue-300 rounded-full">Verificado</span>
                 </div>
-                <div className="text-xs text-muted-foreground mt-0.5">Maya Cantina Sacramento · Cocina Mexicana Auténtica</div>
+                <div className="text-xs text-muted-foreground mt-0.5">Carmelita's Kitchen de Mexico · Mexican Bar &amp; Grill</div>
               </div>
               <div className="hidden sm:flex gap-5 text-center">
                 {[
@@ -236,9 +237,9 @@ export default function RedesSociales() {
                   <div className="px-4 py-3 flex items-center justify-between border-b border-border/20">
                     <div className="flex items-center gap-2">
                       <div className="w-7 h-7 rounded-full overflow-hidden border border-amber-700/40">
-                        <img src="/maya-logo.jpeg" alt="Maya" className="w-full h-full object-cover" />
+                        <img src="/carmelitas-logo.png" alt="Carmelitas" className="w-full h-full object-cover" style={{ filter: "brightness(0.8)" }} />
                       </div>
-                      <span className="text-xs font-semibold">mayacantinasac</span>
+                      <span className="text-xs font-semibold">carmelitasgroup</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className={`text-xs font-medium ${post.tagColor}`}>{post.tag}</span>
@@ -261,7 +262,7 @@ export default function RedesSociales() {
                   {/* Caption */}
                   <div className="px-4 py-3">
                     <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
-                      <span className="font-semibold text-foreground">mayacantinasac</span>{" "}
+                      <span className="font-semibold text-foreground">carmelitasgroup</span>{" "}
                       {post.caption}
                     </p>
                   </div>
@@ -290,7 +291,7 @@ export default function RedesSociales() {
             <div className="maya-card rounded-xl p-4 border border-amber-800/20 flex items-start gap-3">
               <Star size={16} className="text-amber-400 shrink-0 mt-0.5" />
               <p className="text-xs text-muted-foreground leading-relaxed">
-                Todo el contenido es creado y publicado por el equipo de Conect-R — sin esfuerzo adicional para Maya Cantina.
+                Todo el contenido es creado y publicado por el equipo de Conect-R — sin esfuerzo adicional para Carmelitas.
                 Nos encargamos de la fotografía, el copy, la programación y la respuesta a la comunidad.
               </p>
             </div>
@@ -370,7 +371,7 @@ export default function RedesSociales() {
                 },
                 {
                   title: "Estrategia de hashtags",
-                  items: ["#SacramentoEats #MayaCantinaSAC", "#CocinaM exicana #TacosBirria", "Geotags: Sacramento, CA"],
+                  items: ["#SacramentoEats #CarmelitasKitchen", "#CocinaM exicana #TacosBirria", "Geotags: Sacramento, CA"],
                   icon: Star,
                 },
               ].map(card => (
@@ -432,7 +433,7 @@ export default function RedesSociales() {
                   </div>
                   <div className="flex-1">
                     <div className="font-semibold text-sm">Instagram</div>
-                    <div className="text-xs text-muted-foreground">@mayacantinasac</div>
+                    <div className="text-xs text-muted-foreground">@carmelitasgroup</div>
                     <div className="text-xs text-pink-300 mt-1">Posts · Reels · Stories · Highlights</div>
                   </div>
                   <div className="text-right">
@@ -447,7 +448,7 @@ export default function RedesSociales() {
                   </div>
                   <div className="flex-1">
                     <div className="font-semibold text-sm">Facebook</div>
-                    <div className="text-xs text-muted-foreground">Mayarestaurantsac</div>
+                    <div className="text-xs text-muted-foreground">Carmelitas Mexican Bar & Grill</div>
                     <div className="text-xs text-blue-300 mt-1">Posts · Eventos · Reviews · Ads</div>
                   </div>
                   <div className="text-right">

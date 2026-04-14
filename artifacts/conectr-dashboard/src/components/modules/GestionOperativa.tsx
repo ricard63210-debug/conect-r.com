@@ -91,11 +91,12 @@ export default function GestionOperativa() {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">Ecosistema All Inclusive</h2>
+        <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">Ecosistema Softwares All Inclusive</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto mb-4">
-          Reservaciones automaticas, listas de espera digitales, confirmaciones por SMS, captura de datos del cliente,
-          rotacion de mesas optimizada, senalizacion digital, presencia web y mas — todo integrado en un solo sistema.
-          Tu enfoque: crear experiencias y generar revenue. Lo demas, nosotros lo automatizamos.
+          Reservaciones automaticas, listas de espera digitales, confirmaciones por SMS, gestion de personal con Chamba,
+          captura de datos del cliente para campanas de marketing que generan <span className="text-amber-400 font-medium">mas ventas</span> y <span className="text-amber-400 font-medium">mas clientes</span> —
+          todo integrado en un solo ecosistema de softwares. Tu enfoque: crear experiencias. Lo demas, Conect-R lo automatiza
+          para que tengas <span className="text-amber-400 font-medium">menos trabajo</span> y <span className="text-amber-400 font-medium">mas reviews</span>.
         </p>
         <ImpactPills />
         <div className="inline-block bg-amber-900/20 border border-amber-700/40 rounded-2xl px-6 py-3">
@@ -234,7 +235,7 @@ export default function GestionOperativa() {
                 {[
                   { step: "1", text: "Cliente hace reserva online o por telefono" },
                   { step: "2", text: "Sistema envia SMS: 'Hola Ana, reserva confirmada Vie 19:00 Mesa 03'" },
-                  { step: "3", text: "2h antes: recordatorio automatico con link para cancelar o modificar" },
+                  { step: "3", text: "Sistema sincroniza con Chamba (gestion de personal) para asignar mesero segun turno y disponibilidad" },
                 ].map(item => (
                   <div key={item.step} className="flex gap-3 items-start">
                     <div className="w-6 h-6 bg-amber-500 text-black rounded-full text-xs font-bold flex items-center justify-center shrink-0">{item.step}</div>
@@ -392,6 +393,44 @@ export default function GestionOperativa() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Chamba — Software de Gestión de Personal */}
+      <div className="maya-card rounded-2xl p-6 border border-blue-800/30" style={{ background: "linear-gradient(135deg, rgba(30,58,138,0.12), rgba(15,23,42,0.8))" }}>
+        <div className="flex items-start gap-4 mb-5">
+          <div className="w-16 h-16 rounded-2xl bg-white/5 border border-blue-700/30 flex items-center justify-center shrink-0 overflow-hidden">
+            <img src="/chamba-logo.png" alt="Chamba" className="w-14 h-14 object-contain" />
+          </div>
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-1">
+              <h4 className="text-base font-bold text-blue-300">Chamba — Gestión de Personal</h4>
+              <span className="text-xs px-2 py-0.5 bg-blue-500/15 border border-blue-500/30 text-blue-300 rounded-full">Integrado</span>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Sistema de gestión de personal diseñado específicamente para restaurantes. Menos trabajo administrativo,
+              más <span className="text-blue-300 font-medium">control y eficiencia</span> en tu equipo.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {[
+            { emoji: "🕐", title: "Check-in / Check-out", desc: "Control de asistencia digital — cada empleado registra entrada y salida desde su celular" },
+            { emoji: "💰", title: "Gestión de Propinas", desc: "Distribución y registro automático de propinas por turno, puesto y día trabajado" },
+            { emoji: "📅", title: "Horarios y Turnos", desc: "Los mismos trabajadores pueden intercambiar turnos entre sí de forma organizada y transparente" },
+            { emoji: "📂", title: "Archivo Digital", desc: "Documentos del empleado (contrato, ID, certificaciones) guardados de forma segura en la nube" },
+            { emoji: "💳", title: "Integración POS", desc: "Se conecta con los principales POS de restaurantes para automatizar el cierre de caja por mesero" },
+            { emoji: "🏦", title: "Payroll Connect", desc: "Integración con compañías de payroll — horas, propinas y deducciones se envían automáticamente" },
+          ].map(item => (
+            <div key={item.title} className="flex gap-3 p-3 bg-blue-900/10 border border-blue-800/20 rounded-xl">
+              <span className="text-xl shrink-0">{item.emoji}</span>
+              <div>
+                <div className="text-xs font-semibold text-blue-200 mb-0.5">{item.title}</div>
+                <div className="text-xs text-muted-foreground leading-snug">{item.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

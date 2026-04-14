@@ -10,15 +10,15 @@ interface ChatMessage {
 }
 
 const faqAnswers: Record<string, string> = {
-  horario: "Abrimos Martes a Jueves de 5:00 PM a 10:00 PM. Viernes y Sabado de 5:00 PM a 11:00 PM. Domingos: Brunch de 11:00 AM a 3:00 PM y cena de 5:00 PM a 10:00 PM. Lunes cerrado. Happy Hour: Martes a Jueves de 5pm a 7pm.",
-  direccion: "Nos encuentras en Sacramento, CA. Para ver la ubicacion exacta y como llegar, visita mayacantina.toast.site o busca 'Maya Cantina Sacramento' en Google Maps. Tambien puedes llamarnos y te damos indicaciones.",
-  reserva: "Puedes hacer tu reservacion en mayacantina.toast.site/events, seguirnos en Instagram @mayacantinasac o llamarnos directamente. Para grupos de 8 o mas personas, te recomendamos reservar con anticipacion.",
-  especialidades: "Nuestros platillos estrella son el Mole Negro Oaxaqueno con pollo, los Tacos de Birria con consomme, las Carnitas confitadas, el Chile en Nogada de temporada y los Camarones al Mezcal. Todo hecho con recetas autenticas y ingredientes frescos.",
-  eventos: "Tenemos Noches de Mariachi los Viernes y Sabados a las 8pm, Happy Hour Martes-Jueves 5pm-7pm con 2x1 en Margaritas, Brunch Dominical con Mimosas de 11am a 3pm, y Taco Tuesday con tacos desde $3. Visita mayacantina.toast.site/events para ver todos los eventos.",
-  instagram: "Siguenos en Instagram como @mayacantinasac para ver nuestros platos, eventos especiales, stories y los mejores momentos de Maya Cantina Sacramento. Tambien estamos en Facebook como Maya Cantina SAC.",
-  tacos: "Nuestros tacos mas populares son: Al Pastor (cerdo adobado con pina), Birria (res estofada en consomme con queso), Camarones a la diabla, Hongos con epazote, y Carnitas confitadas. Tortillas de maiz hechas a mano.",
-  margaritas: "Nuestras margaritas son con tequila 100% agave y jugo de limon fresco exprimido al momento. Ofrecemos Clasica, de Tamarindo, de Fresa y de Pepino con Chile. Durante Happy Hour son 2x1 — Martes a Jueves de 5pm a 7pm.",
-  brunch: "Nuestro Brunch Dominical es de 11am a 3pm con Mimosas, Micheladas, Huevos Rancheros, Chilaquiles, Enchiladas de Mole y mucho mas. Una experiencia tipicamente mexicana para el domingo.",
+  horario: "Carmelitas abre Lunes a Jueves de 11:00 AM a 9:00 PM, Viernes y Sabado de 11:00 AM a 10:00 PM, y Domingos de 11:00 AM a 8:00 PM. Visita carmelitas-psi.vercel.app para horarios actualizados.",
+  direccion: "Nos encuentras en el area de Sacramento, CA. Para ubicacion exacta y como llegar, visita carmelitas-psi.vercel.app o busca 'Carmelita's Kitchen de Mexico' en Google Maps.",
+  reserva: "Puedes hacer tu reservacion en tablereserve.conect-r.com, seguirnos en Instagram @carmelitasgroup o visitarnos directamente. Para grupos grandes te recomendamos reservar con anticipacion.",
+  especialidades: "En Carmelita's destacan los Tacos de Birria, el Mole autentico, Enchiladas, Fajitas y los famosos Chilaquiles. Cocina mexicana autentica con un ambiente de Mexican Bar & Grill que te va a encantar.",
+  eventos: "Tenemos promociones especiales, Happy Hour con bebidas 2x1, y eventos de fin de semana. Siguenos en @carmelitasgroup en Instagram para ver todos los eventos y promociones especiales.",
+  instagram: "Siguenos en Instagram como @carmelitasgroup para ver nuestros platillos, eventos especiales, reels y los mejores momentos de Carmelita's. Tambien estamos en Facebook como Carmelitas Mexican Bar & Grill.",
+  tacos: "Nuestros tacos mas populares incluyen Birria, Al Pastor, Carnitas, Pollo y opciones vegetarianas. Tortillas de maiz hechas a mano y salsas caseras que complementan cada platillo a la perfeccion.",
+  margaritas: "Tenemos margaritas clasicas, de frutas y opciones especiales de la casa. Durante Happy Hour tenemos bebidas con descuento — consulta nuestro Instagram @carmelitasgroup para las promociones actuales.",
+  brunch: "Tenemos opciones de brunch con platillos mexicanos autenticos, mimosas y un ambiente familiar inigualable. Visita carmelitas-psi.vercel.app para ver el menu completo.",
 };
 
 function detectIntent(msg: string): string {
@@ -41,7 +41,7 @@ export default function PresenciaDigital() {
     {
       id: 0,
       role: "bot",
-      text: "Hola! Bienvenido a Maya Cantina Sacramento 🌮 Soy el asistente virtual de Maya. Puedo ayudarte con horarios, reservaciones, nuestra ubicacion, eventos y platillos. Como puedo ayudarte hoy?"
+      text: "Hola! Bienvenido a Carmelita's Kitchen de Mexico 🌮 Soy el asistente virtual de Carmelitas. Puedo ayudarte con horarios, reservaciones, ubicacion, eventos y platillos. Como puedo ayudarte hoy?"
     }
   ]);
   const [input, setInput] = useState("");
@@ -61,7 +61,7 @@ export default function PresenciaDigital() {
       const intent = detectIntent(text);
       const reply = intent && faqAnswers[intent]
         ? faqAnswers[intent]
-        : "Gracias por tu mensaje! Para mas informacion visita mayacantina.toast.site, llamanos directamente o siguenos en @mayacantinasac en Instagram. Con gusto te ayudamos.";
+        : "Gracias por tu mensaje! Para mas informacion visita carmelitas-psi.vercel.app, siguenos en @carmelitasgroup en Instagram o en Facebook como Carmelitas Mexican Bar & Grill. Con gusto te ayudamos.";
       setMessages(prev => [...prev, { id: Date.now() + 1, role: "bot", text: reply }]);
       setIsTyping(false);
     }, 1100 + Math.random() * 700);
@@ -86,7 +86,7 @@ export default function PresenciaDigital() {
         <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">Presencia Digital</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
           Sitio web profesional + Asistente Virtual con IA que responde 24/7 a tus clientes
-          con informacion real de Maya Cantina Sacramento.
+          con informacion real de Carmelita's Kitchen de Mexico.
         </p>
         <ImpactPills />
       </div>
@@ -122,7 +122,7 @@ export default function PresenciaDigital() {
             exit={{ opacity: 0, x: 20 }}
             className="space-y-6"
           >
-            {/* Website preview */}
+            {/* Website preview — live iframe */}
             <div className="maya-card rounded-2xl overflow-hidden border border-amber-800/20">
               {/* Browser chrome */}
               <div className="bg-gray-900 px-4 py-2.5 flex items-center gap-3 border-b border-border/40">
@@ -132,110 +132,25 @@ export default function PresenciaDigital() {
                   <div className="w-3 h-3 rounded-full bg-green-500/60" />
                 </div>
                 <a
-                  href="https://roosters-sacramento.vercel.app/index.html"
+                  href="https://carmelitas-psi.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 bg-gray-800 rounded-md px-3 py-1 text-xs text-gray-300 flex items-center gap-2 hover:bg-gray-700 transition-colors"
                 >
                   <Globe size={10} className="text-green-400 shrink-0" />
-                  roosters-sacramento.vercel.app/index.html
+                  carmelitas-psi.vercel.app
                   <ExternalLink size={9} className="text-gray-500 ml-auto" />
                 </a>
               </div>
-
-              {/* Nav bar */}
-              <div className="bg-gray-950 px-5 py-3 flex items-center justify-between border-b border-border/20">
-                <div className="flex items-center gap-2">
-                  <img src="/maya-logo.jpeg" alt="Maya Cantina" className="h-8 object-contain" />
-                </div>
-                <div className="hidden sm:flex gap-5 text-xs text-muted-foreground">
-                  {["Menu", "Eventos", "Reservar", "Contacto"].map(item => (
-                    <span key={item} className="hover:text-amber-400 cursor-pointer transition-colors">{item}</span>
-                  ))}
-                </div>
-                <a
-                  href="https://tablereserve.conect-r.com/book/roosters-on-the-river"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3 py-1.5 bg-amber-500 text-black text-xs rounded-lg font-semibold hover:bg-amber-400 transition-colors"
-                >
-                  Reservar Mesa
-                </a>
-              </div>
-
-              {/* Hero */}
-              <div
-                className="relative flex flex-col items-center justify-center text-center py-14 px-6"
-                style={{ background: "linear-gradient(135deg, #0d0a06 0%, #1e1309 40%, #0d0a06 100%)" }}
-              >
-                {/* Subtle cross pattern */}
-                <div className="absolute inset-0 opacity-8" style={{
-                  backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c8921a' fill-opacity='0.25'%3E%3Cpath d='M21 19h2v2h-2v2h-2v-2h-2v-2h2v-2h2v2zm0-10h2v2h-2v2h-2v-2h-2v-2h2v-2h2v2zm0 20h2v2h-2v2h-2v-2h-2v-2h2v-2h2v2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")"
-                }} />
-
-                <div className="relative z-10">
-                  <img src="/maya-logo.jpeg" alt="Maya Cantina" className="h-24 object-contain mx-auto mb-5" />
-                  <h1 className="text-4xl font-serif font-bold gold-gradient mb-2">Maya Cantina</h1>
-                  <p className="text-amber-200/70 text-lg mb-7">Cocina Mexicana Autentica • Sacramento, CA</p>
-                  <div className="flex flex-wrap gap-3 justify-center">
-                    <a
-                      href="https://tablereserve.conect-r.com/book/roosters-on-the-river"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-6 py-2.5 bg-amber-500 text-black rounded-full font-semibold text-sm hover:bg-amber-400 transition-colors"
-                    >
-                      Reservar Mesa
-                    </a>
-                    <a
-                      href="https://roosters-sacramento.vercel.app/menu.html"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-6 py-2.5 border border-amber-500/60 text-amber-300 rounded-full text-sm hover:bg-amber-500/10 transition-colors"
-                    >
-                      Ver Menu
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Info strip */}
-              <div className="bg-black/40 px-6 py-4 grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-border/20">
-                {[
-                  { icon: MapPin, label: "Ubicacion", value: "Sacramento, California" },
-                  { icon: Clock, label: "Horario", value: "Mar-Dom • 5pm–10pm | Dom Brunch 11am" },
-                  { icon: Phone, label: "Reservaciones", value: "mayacantina.toast.site" },
-                ].map(item => (
-                  <div key={item.label} className="flex items-start gap-3">
-                    <item.icon size={16} className="text-amber-400 shrink-0 mt-0.5" />
-                    <div>
-                      <div className="text-xs text-muted-foreground">{item.label}</div>
-                      <div className="text-sm font-medium">{item.value}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Stars + social */}
-              <div className="px-6 py-3 bg-amber-900/10 border-t border-border/20 flex items-center justify-between flex-wrap gap-2">
-                <div className="flex items-center gap-2">
-                  <div className="flex gap-0.5">
-                    {[1,2,3,4,5].map(i => (
-                      <Star key={i} size={14} className="fill-amber-400 text-amber-400" />
-                    ))}
-                  </div>
-                  <span className="text-sm text-amber-300 font-semibold">4.9</span>
-                  <span className="text-xs text-muted-foreground">Google Reviews</span>
-                </div>
-                <div className="flex gap-2">
-                  <a href="https://www.instagram.com/mayacantinasac" target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-xs text-pink-400 hover:text-pink-300 transition-colors">
-                    <Instagram size={12} /> @mayacantinasac
-                  </a>
-                  <a href="https://www.facebook.com/Mayarestaurantsac" target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300 transition-colors">
-                    <Facebook size={12} /> Maya Cantina SAC
-                  </a>
-                </div>
+              {/* Live iframe */}
+              <div style={{ height: "420px" }}>
+                <iframe
+                  src="https://carmelitas-psi.vercel.app/"
+                  title="Carmelita's Kitchen de Mexico"
+                  className="w-full h-full border-0"
+                  loading="lazy"
+                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                />
               </div>
             </div>
 
@@ -269,9 +184,9 @@ export default function PresenciaDigital() {
                 <div className="maya-card rounded-2xl overflow-hidden flex flex-col" style={{ height: "520px" }}>
                   {/* Header */}
                   <div className="px-4 py-3 border-b border-border/40 flex items-center gap-3 bg-amber-900/10">
-                    <img src="/maya-logo.jpeg" alt="Maya" className="w-9 h-9 rounded-full object-cover border border-amber-700/40" />
+                    <img src="/carmelitas-logo.png" alt="Carmelitas" className="w-9 h-9 rounded-full object-cover border border-amber-700/40" style={{ filter: "brightness(0.8)" }} />
                     <div>
-                      <div className="text-sm font-semibold">Maya — Asistente Virtual</div>
+                      <div className="text-sm font-semibold">Carmelita — Asistente Virtual</div>
                       <div className="text-xs text-green-400 flex items-center gap-1">
                         <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" /> En linea 24/7 • Sacramento, CA
                       </div>
@@ -291,7 +206,7 @@ export default function PresenciaDigital() {
                           msg.role === "bot" ? "" : "bg-gray-700"
                         }`}>
                           {msg.role === "bot"
-                            ? <img src="/maya-logo.jpeg" alt="Maya" className="w-full h-full object-cover" />
+                            ? <img src="/carmelitas-logo.png" alt="Carmelitas" className="w-full h-full object-cover" style={{ filter: "brightness(0.8)" }} />
                             : <User size={14} className="text-gray-200" />
                           }
                         </div>
@@ -311,7 +226,7 @@ export default function PresenciaDigital() {
                         className="flex gap-2 items-center"
                       >
                         <div className="w-7 h-7 rounded-full overflow-hidden">
-                          <img src="/maya-logo.jpeg" alt="Maya" className="w-full h-full object-cover" />
+                          <img src="/carmelitas-logo.png" alt="Carmelitas" className="w-full h-full object-cover" style={{ filter: "brightness(0.8)" }} />
                         </div>
                         <div className="bg-amber-900/20 border border-amber-800/30 px-3 py-2 rounded-2xl rounded-tl-sm">
                           <div className="flex gap-1">

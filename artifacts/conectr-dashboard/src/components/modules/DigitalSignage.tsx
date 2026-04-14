@@ -38,7 +38,7 @@ const EVENT_SLIDES: EventSlide[] = [
     tagIcon: Flame,
     title: "2x1 en Margaritas",
     subtitle: "Clasicas • Frozen • De la Casa",
-    detail: "La mejor hora del dia en Maya",
+    detail: "La mejor hora del dia en Carmelitas",
     bg: "from-amber-950 via-orange-950 to-stone-950",
     accent: "text-amber-300",
     days: "Lunes a Jueves",
@@ -48,7 +48,7 @@ const EVENT_SLIDES: EventSlide[] = [
     id: "brunch",
     tag: "Brunch Dominical",
     tagIcon: Star,
-    title: "Sunday Brunch Maya",
+    title: "Sunday Brunch Carmelitas",
     subtitle: "Mimosas sin limite • Menú especial de brunch mexicano",
     detail: "El domingo mas sabroso de SAC",
     bg: "from-rose-950 via-pink-950 to-stone-950",
@@ -121,7 +121,7 @@ export default function DigitalSignage() {
         <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">Pantallas Digitales — Digital Signage</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
           Las pantallas del restaurante muestran contenido dinamico en tiempo real: eventos, promociones y el ambiente
-          que Maya quiere proyectar. El equipo de Conect-R gestiona cada actualizacion.
+          que Carmelitas quiere proyectar. Conect-R gestiona cada actualizacion — mas ventas pasivas, mas clientes nuevos y menos trabajo para tu equipo.
         </p>
         <ImpactPills />
       </div>
@@ -167,7 +167,7 @@ export default function DigitalSignage() {
 
                       {/* Top bar */}
                       <div className="absolute top-3 left-4 right-4 flex items-center justify-between">
-                        <span className="text-xs text-white/30 font-serif tracking-widest uppercase">Maya Cantina</span>
+                        <span className="text-xs text-white/30 font-serif tracking-widest uppercase">Carmelitas</span>
                         <div className="flex gap-1">
                           {EVENT_SLIDES.map((_, i) => (
                             <div
@@ -276,7 +276,7 @@ export default function DigitalSignage() {
         <div className="space-y-4">
           {/* Event selector */}
           <h3 className="text-lg font-semibold text-primary flex items-center gap-2">
-            <Calendar size={20} /> Eventos Activos de Maya
+            <Calendar size={20} /> Eventos Activos de Carmelitas
           </h3>
 
           <div className="space-y-2">
@@ -339,20 +339,20 @@ export default function DigitalSignage() {
               <p className="text-xs text-muted-foreground/60 mb-2">Siguenos para inspiracion de contenido:</p>
               <div className="flex gap-2">
                 <a
-                  href="https://www.instagram.com/mayacantinasac"
+                  href="https://www.instagram.com/carmelitasgroup?igsh=NTc4MTIwNjQ2YQ=="
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-1.5 px-3 py-1.5 bg-pink-900/20 border border-pink-800/30 rounded-lg text-xs text-pink-300 hover:bg-pink-900/30 transition-colors"
                 >
-                  <Instagram size={12} /> @mayacantinasac
+                  <Instagram size={12} /> @carmelitasgroup
                 </a>
                 <a
-                  href="https://www.facebook.com/Mayarestaurantsac"
+                  href="https://www.facebook.com/pages/Carmelitas-Mexican-Bar-Grill/151034358242633?mibextid=wwXIfr"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-1.5 px-3 py-1.5 bg-blue-900/20 border border-blue-800/30 rounded-lg text-xs text-blue-300 hover:bg-blue-900/30 transition-colors"
                 >
-                  <Facebook size={12} /> Maya SAC
+                  <Facebook size={12} /> Carmelitas
                 </a>
               </div>
             </div>

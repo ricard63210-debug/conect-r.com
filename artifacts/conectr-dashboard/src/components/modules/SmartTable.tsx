@@ -167,9 +167,9 @@ const MENU_ITEMS: Record<MenuCategory, MenuItem[]> = {
       veg: true,
     },
     {
-      name: "Michelada Maya",
+      name: "Michelada Carmelitas",
       desc: "Cerveza, clamato, limon, chamoy, tajin",
-      detail: "La michelada de la casa: cerveza lager fria mezclada con clamato, jugo de limon fresco, salsa Worcestershire, Tabasco y sal de ajo. Vaso escarcha con chamoy y tajin. Decorada con camarones encurtidos y pepino. Una explosion de sabores que solo Maya sabe hacer.",
+      detail: "La michelada de la casa: cerveza lager fria mezclada con clamato, jugo de limon fresco, salsa Worcestershire, Tabasco y sal de ajo. Vaso escarcha con chamoy y tajin. Decorada con camarones encurtidos y pepino. Una explosion de sabores que te va a encantar.",
       emoji: "🍺",
       gradient: "from-amber-600 to-red-500",
       spicy: true,
@@ -230,40 +230,40 @@ export default function SmartTable() {
       label: "Comparte tu experiencia",
       icon: Heart,
       color: "from-yellow-600 to-yellow-400",
-      desc: "Disfrutaste con nosotros? Compartelo con la gente.",
-      url: "https://www.google.com/search?q=maya+cantina+reviews+google",
+      desc: "Disfrutaste con nosotros? Dejanos una reseña en Google y ayuda a mas personas a conocernos.",
+      url: "https://www.google.com/search?q=carmelitas+google+reviews&ie=UTF-8&oe=UTF-8&hl=en-us&client=safari#ebo=2",
     },
     {
       id: "events",
       label: "Eventos",
       icon: Calendar,
       color: "from-orange-700 to-orange-500",
-      desc: "Noche Maya, maridajes y celebraciones especiales",
-      url: "https://mayacantina.toast.site/events",
+      desc: "Noches especiales, maridajes y celebraciones en Carmelitas",
+      url: "https://www.instagram.com/carmelitasgroup",
     },
     {
       id: "instagram",
       label: "Instagram",
       icon: Instagram,
       color: "from-pink-700 to-pink-500",
-      desc: "Siguenos en Instagram y ve nuestros reels y stories",
-      url: "https://www.instagram.com/mayacantinasac?igsh=NTc4MTIwNjQ2YQ==",
+      desc: "Siguenos en Instagram y ve nuestros reels, stories y lo mejor de Carmelitas",
+      url: "https://www.instagram.com/carmelitasgroup?igsh=NTc4MTIwNjQ2YQ==",
     },
     {
       id: "facebook",
       label: "Facebook",
       icon: Facebook,
       color: "from-blue-700 to-blue-500",
-      desc: "Pagina oficial y comunidad de Maya en Facebook",
-      url: "https://www.facebook.com/Mayarestaurantsac?mibextid=wwXIfr",
+      desc: "Pagina oficial y comunidad de Carmelitas en Facebook",
+      url: "https://www.facebook.com/pages/Carmelitas-Mexican-Bar-Grill/151034358242633?mibextid=wwXIfr",
     },
     {
-      id: "game",
-      label: "Maya King",
-      icon: Gamepad2,
-      color: "from-purple-700 to-violet-500",
-      desc: "🏆 Juega y gana — ¡completa el reto y gana un premio!",
-      url: "https://maya-cantina-dash.replit.app/juego/juego/",
+      id: "reserve",
+      label: "Reservar Mesa",
+      icon: Calendar,
+      color: "from-amber-700 to-amber-500",
+      desc: "Reserva tu mesa en segundos — confirmacion instantanea y recordatorio automatico",
+      url: "https://tablereserve.conect-r.com",
     },
   ];
 
@@ -311,7 +311,10 @@ export default function SmartTable() {
         <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">Smart Table — NFC / QR</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
           Cada mesa tiene un stand fisico elegante con NFC y codigo QR. El cliente lo toca con su celular
-          y accede instantaneamente al portal personalizado del restaurante.
+          y accede al portal del restaurante — donde deja su reseña Google (<span className="text-amber-400 font-medium">más reviews</span>),
+          hace reservaciones (<span className="text-amber-400 font-medium">más clientes</span>), ve el menu digital
+          (<span className="text-amber-400 font-medium">más ventas</span>) y Conect-R colecta sus datos para campanas
+          de marketing dirigidas — todo automatico (<span className="text-amber-400 font-medium">menos trabajo</span>).
         </p>
         <ImpactPills />
       </div>
@@ -331,9 +334,8 @@ export default function SmartTable() {
               data-testid="nfc-stand"
             >
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-700 via-amber-400 to-amber-700 rounded-t-2xl" />
-              <div className="text-center">
-                <div className="text-2xl font-serif font-bold gold-gradient">Restaurante</div>
-                <div className="text-3xl font-serif font-bold gold-gradient">MAYA</div>
+              <div className="text-center px-4">
+                <img src="/carmelitas-logo.png" alt="Carmelita's" className="h-16 object-contain mx-auto" style={{ filter: "invert(1) brightness(1.1)" }} />
               </div>
               <div className="relative w-24 h-24 bg-white rounded-xl flex items-center justify-center">
                 <QrCode className="text-gray-800" size={64} />
@@ -499,7 +501,7 @@ export default function SmartTable() {
                     >
                       <ArrowLeft size={14} /> Volver
                     </button>
-                    <img src="/maya-logo.jpeg" alt="Maya Cantina" className="h-14 object-contain" />
+                    <img src="/carmelitas-logo.png" alt="Carmelita's" className="h-14 object-contain" />
                     <p className="text-xs text-gray-500 mt-1">Cocina Mexicana • SAC, CA</p>
                   </div>
 
@@ -573,8 +575,8 @@ export default function SmartTable() {
             {/* ===== PORTAL MAIN VIEW ===== */}
             <div className="absolute inset-0 top-8 bg-gradient-to-b from-gray-950 to-black overflow-y-auto scrollbar-gold">
               <div className="relative h-24 bg-gradient-to-b from-amber-900/60 to-transparent flex flex-col items-center justify-center">
-                <div className="text-xl font-serif font-bold gold-gradient">RESTAURANTE MAYA</div>
-                <div className="text-xs text-amber-300/70 mt-1">Cocina Mexicana Autentica</div>
+                <img src="/carmelitas-logo.png" alt="Carmelita's" className="h-14 object-contain" style={{ filter: "invert(1) brightness(1.1)" }} />
+                <div className="text-xs text-amber-300/70 mt-1">Kitchen de Mexico</div>
               </div>
 
               <div className="px-4 pb-6 space-y-3">
@@ -632,7 +634,7 @@ export default function SmartTable() {
 
                 {/* Maya King game banner */}
                 <motion.button
-                  onClick={() => handlePortalButton(portalButtons.find(b => b.id === "game")!)}
+                  onClick={() => window.open("https://maya-cantina-dash.replit.app/juego/juego/", "_blank", "noopener,noreferrer")}
                   whileTap={{ scale: 0.97 }}
                   data-testid="portal-btn-game-banner"
                   className="w-full flex items-center gap-3 p-3.5 rounded-2xl border border-purple-700/40 relative overflow-hidden"
@@ -689,7 +691,7 @@ export default function SmartTable() {
                             <Check size={24} className="text-green-400" />
                           </div>
                           <p className="text-sm font-semibold text-green-400 mb-1">Gracias por tu retroalimentacion</p>
-                          <p className="text-xs text-gray-400">Tu opinion nos ayuda a mejorar cada dia. El equipo de Maya la revisara personalmente.</p>
+                          <p className="text-xs text-gray-400">Tu opinion nos ayuda a mejorar cada dia. El equipo de Carmelitas la revisara personalmente.</p>
                         </motion.div>
                       ) : (
                         <div className="p-3 space-y-3">
