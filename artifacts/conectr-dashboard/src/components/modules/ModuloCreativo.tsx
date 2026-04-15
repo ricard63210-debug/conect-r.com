@@ -146,8 +146,8 @@ export default function ModuloCreativo() {
           <img
             src="/carmelitas-logo.png"
             alt="Carmelita's"
-            className="h-14 object-contain mx-auto mb-1"
-            style={{ filter: "brightness(0.15) sepia(1) saturate(3) hue-rotate(10deg)" }}
+            className="h-28 object-contain mx-auto mb-1"
+            style={{ filter: "invert(1) brightness(1.8) sepia(0.15)" }}
           />
           <p className={`text-xs mt-1.5 ${tmpl.mutedClass} tracking-wider`}>
             Kitchen de Mexico · Mexican Bar &amp; Grill

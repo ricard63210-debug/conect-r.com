@@ -142,9 +142,7 @@ export default function SmartTable() {
 
   const handlePortalButton = (btn: typeof portalButtons[0]) => {
     setActiveButton(btn.id);
-    if (btn.id === "menu") {
-      setShowMenu(true);
-    } else if (btn.url) {
+    if (btn.url) {
       window.open(btn.url, "_blank", "noopener,noreferrer");
     }
   };
