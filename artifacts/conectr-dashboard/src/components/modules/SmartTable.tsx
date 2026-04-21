@@ -117,7 +117,7 @@ export default function SmartTable() {
   const portalButtons = [
     { id: "menu", label: T.portalButtons.menu, icon: QrCode, color: "from-sky-600 to-sky-400", desc: lang === "es" ? "Carta completa con descripcion y fotos de cada platillo" : "Full menu with photos and descriptions of every dish", url: "https://restaurante-maya-dash.replit.app/maya-menu/", isMenu: false },
     { id: "reviews", label: T.portalButtons.reviews, icon: Heart, color: "from-yellow-600 to-yellow-400", desc: T.reviewsDesc, url: "https://www.google.com/search?q=carmelitas+google+reviews&ie=UTF-8&oe=UTF-8&hl=en-us&client=safari#ebo=2" },
-    { id: "events", label: T.portalButtons.events, icon: Calendar, color: "from-orange-700 to-orange-500", desc: T.eventDesc, url: "https://www.instagram.com/carmelitasgroup" },
+    { id: "events", label: T.portalButtons.events, icon: Calendar, color: "from-orange-700 to-orange-500", desc: T.eventDesc, url: "https://carmelitasgroup.com/private-events" },
     { id: "instagram", label: T.portalButtons.instagram, icon: Instagram, color: "from-pink-700 to-pink-500", desc: T.instagramDesc, url: "https://www.instagram.com/carmelitasgroup?igsh=NTc4MTIwNjQ2YQ==" },
     { id: "facebook", label: T.portalButtons.facebook, icon: Facebook, color: "from-blue-700 to-blue-500", desc: T.facebookDesc, url: "https://www.facebook.com/pages/Carmelitas-Mexican-Bar-Grill/151034358242633?mibextid=wwXIfr" },
     { id: "reserve", label: T.portalButtons.reserve, icon: Calendar, color: "from-amber-700 to-amber-500", desc: T.reserveDesc, url: "https://tablereserve.conect-r.com" },

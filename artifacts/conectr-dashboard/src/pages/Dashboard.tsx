@@ -49,10 +49,10 @@ export default function Dashboard() {
       <header className="sticky top-0 z-50 border-b border-border/40 bg-background/95 backdrop-blur">
         <div className="flex items-center justify-between px-4 py-3">
           {/* Logo */}
-          <div className="flex items-center gap-3">
-            <img src="/conectr-logo.png" alt="Conect-R" className="h-[5.5rem] object-contain" style={{ filter: "brightness(1.15)" }} />
-            <div className="text-xs text-muted-foreground leading-none">{T.global.ecosistema}</div>
-          </div>
+          <a href={import.meta.env.BASE_URL} className="flex items-center gap-3 shrink-0">
+            <img src="/conectr-logo.png" alt="Conect-R" className="h-14 lg:h-16 object-contain" style={{ filter: "brightness(1.15)" }} />
+            <div className="hidden xl:block text-xs text-muted-foreground leading-none">{T.global.ecosistema}</div>
+          </a>
 
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-1">

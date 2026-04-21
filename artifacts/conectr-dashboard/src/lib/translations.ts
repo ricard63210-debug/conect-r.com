@@ -9,6 +9,31 @@ const translations = {
         body: "Explorа cada modulo y descubre como Conect-R transforma tu restaurante.",
       },
       langBtn: "English",
+      backHome: "Inicio",
+    },
+
+    landing: {
+      heroTagline: "El ecosistema completo para hacer crecer tu restaurante",
+      heroSubtitle: "NFC, IA, redes sociales, menus digitales y mas — todo integrado en una sola plataforma diseñada para restaurantes que quieren crecer sin contratar mas personal.",
+      ctaDemo: "Ver Demo Interactiva",
+      ctaContact: "Contactanos",
+      localBadge: "Compañia local en California",
+      localTitle: "Hechos en California, sirviendo a nuestra comunidad",
+      localBody: "Conect-R es una compañia local de California, con base en el area de Sacramento. Servimos principalmente a restaurantes de Sacramento y sus alrededores — Elk Grove, Roseville, Folsom, Davis, Rocklin y toda la region. Conocemos el mercado local, hablamos tu idioma y entendemos las necesidades de los restaurantes familiares mexicanos, latinos y americanos de la zona.",
+      whatTitle: "Que es Conect-R?",
+      whatBody: "Somos un ecosistema de software all-inclusive para restaurantes. En lugar de pagar 7 servicios diferentes y volverte loco gestionandolos, Conect-R reune todo en una sola plataforma: NFC en mesa, asistente virtual con IA, gestion de Instagram y Facebook, pantallas digitales, menu digital e imprimible, sistema de reservas y reportes de ventas — todo conectado, todo automatico.",
+      modulesTitle: "7 modulos, un solo ecosistema",
+      modulesIntro: "Cada modulo resuelve un problema real. Juntos, transforman tu restaurante.",
+      statsTitle: "Resultados reales en restaurantes locales",
+      stats: [
+        { label: "Mas reviews en Google", value: "+340%" },
+        { label: "Mas reservaciones online", value: "+120%" },
+        { label: "Horas ahorradas por semana", value: "18h" },
+        { label: "Crecimiento en redes", value: "+85%" },
+      ],
+      ctaTitle: "Listo para hacer crecer tu restaurante?",
+      ctaBody: "Habla con nosotros — somos locales, hablamos español e ingles, y conocemos tu mercado. Te mostramos cuanto puede crecer tu negocio con Conect-R.",
+      footerTagline: "Sacramento, California · Hecho con orgullo local",
     },
 
     modules: [
@@ -370,6 +395,31 @@ const translations = {
         body: "Explore each module and discover how Conect-R transforms your restaurant.",
       },
       langBtn: "Español",
+      backHome: "Home",
+    },
+
+    landing: {
+      heroTagline: "The complete ecosystem to grow your restaurant",
+      heroSubtitle: "NFC, AI, social media, digital menus and more — all integrated into a single platform built for restaurants that want to grow without hiring more staff.",
+      ctaDemo: "View Interactive Demo",
+      ctaContact: "Contact Us",
+      localBadge: "Local company in California",
+      localTitle: "Made in California, serving our community",
+      localBody: "Conect-R is a local California company based in the Sacramento area. We primarily serve restaurants in Sacramento and surrounding areas — Elk Grove, Roseville, Folsom, Davis, Rocklin and the entire region. We know the local market, we speak your language, and we understand the needs of family-owned Mexican, Latin and American restaurants in the area.",
+      whatTitle: "What is Conect-R?",
+      whatBody: "We're an all-inclusive software ecosystem for restaurants. Instead of paying for 7 different services and going crazy managing them, Conect-R brings it all together in one platform: tableside NFC, AI virtual assistant, Instagram and Facebook management, digital signage, digital and printable menus, reservation system, and sales reports — all connected, all automatic.",
+      modulesTitle: "7 modules, one ecosystem",
+      modulesIntro: "Each module solves a real problem. Together, they transform your restaurant.",
+      statsTitle: "Real results in local restaurants",
+      stats: [
+        { label: "More Google reviews", value: "+340%" },
+        { label: "More online reservations", value: "+120%" },
+        { label: "Hours saved per week", value: "18h" },
+        { label: "Social media growth", value: "+85%" },
+      ],
+      ctaTitle: "Ready to grow your restaurant?",
+      ctaBody: "Talk to us — we're local, we speak English and Spanish, and we know your market. Let us show you how much your business can grow with Conect-R.",
+      footerTagline: "Sacramento, California · Made with local pride",
     },
 
     modules: [
