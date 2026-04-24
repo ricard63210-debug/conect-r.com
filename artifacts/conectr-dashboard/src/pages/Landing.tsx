@@ -10,6 +10,7 @@ import { useLang } from "@/lib/i18n";
 import { getT } from "@/lib/translations";
 
 const MODULE_ICONS = [Wifi, BarChart3, Monitor, Globe, Instagram, Palette, TrendingUp];
+const MODULE_HASHES = ["smart-table", "gestion", "signage", "presencia", "redes", "creativo", "resultados"];
 
 function useTheme() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -84,14 +85,14 @@ export default function Landing() {
             >
               {L.nav.signIn}
             </Link>
-            <a
-              href="mailto:contact@conect-r.com"
+            <Link
+              href="/dashboard"
               className="inline-flex items-center gap-1.5 bg-orange-500 hover:bg-orange-600 text-white px-3.5 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold shadow-lg shadow-orange-500/20 transition-all"
             >
               <span className="hidden sm:inline">{L.nav.scheduleDemo}</span>
               <span className="sm:hidden">Demo</span>
               <ArrowUpRight size={14} />
-            </a>
+            </Link>
           </div>
         </div>
       </header>
@@ -135,13 +136,13 @@ export default function Landing() {
             transition={{ delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-3"
           >
-            <a
-              href="mailto:contact@conect-r.com"
+            <Link
+              href="/dashboard"
               className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-7 py-3.5 rounded-xl font-semibold text-base shadow-xl shadow-orange-500/25 transition-all"
             >
               {L.hero.ctaPrimary}
               <ArrowRight size={16} />
-            </a>
+            </Link>
             <button
               onClick={() => scrollTo("ecosystem")}
               className="inline-flex items-center gap-2 border border-border text-foreground px-7 py-3.5 rounded-xl font-semibold text-base hover:bg-muted transition-all"
@@ -174,13 +175,20 @@ export default function Landing() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.4, delay: i * 0.04 }}
-                  className="group rounded-2xl border border-border bg-card p-5 hover:border-orange-500/40 hover:bg-orange-500/[0.03] transition-all"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center mb-4 group-hover:bg-orange-500/20 transition-colors">
-                    <Icon size={18} className="text-orange-500" />
-                  </div>
-                  <div className="font-bold text-foreground mb-1">{mod.label}</div>
-                  <div className="text-sm text-muted-foreground">{mod.sublabel}</div>
+                  <Link
+                    href={`/dashboard#${MODULE_HASHES[i]}`}
+                    className="group block rounded-2xl border border-border bg-card p-5 hover:border-orange-500/40 hover:bg-orange-500/[0.03] hover:-translate-y-0.5 transition-all cursor-pointer"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center mb-4 group-hover:bg-orange-500/20 transition-colors">
+                      <Icon size={18} className="text-orange-500" />
+                    </div>
+                    <div className="font-bold text-foreground mb-1 flex items-center gap-1.5">
+                      {mod.label}
+                      <ArrowUpRight size={14} className="text-orange-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <div className="text-sm text-muted-foreground">{mod.sublabel}</div>
+                  </Link>
                 </motion.div>
               );
             })}

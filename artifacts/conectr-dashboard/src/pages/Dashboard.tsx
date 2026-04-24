@@ -28,7 +28,19 @@ const MODULE_IDS = ["smart-table", "gestion", "signage", "presencia", "redes", "
 const MODULE_COMPONENTS = [SmartTable, GestionOperativa, DigitalSignage, PresenciaDigital, RedesSociales, ModuloCreativo, AntesDepues];
 
 export default function Dashboard() {
-  const [activeModule, setActiveModule] = useState("smart-table");
+  const [activeModule, setActiveModule] = useState(() => {
+    if (typeof window === "undefined") return "smart-table";
+    const hash = window.location.hash.replace("#", "");
+    return MODULE_IDS.includes(hash) ? hash : "smart-table";
+  });
+  useEffect(() => {
+    const onHash = () => {
+      const h = window.location.hash.replace("#", "");
+      if (MODULE_IDS.includes(h)) setActiveModule(h);
+    };
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { lang, toggle } = useLang();
   const T = getT(lang);
