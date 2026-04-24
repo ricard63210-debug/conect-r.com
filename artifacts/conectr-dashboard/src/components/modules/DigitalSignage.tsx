@@ -16,7 +16,7 @@ const SLIDE_BG = [
   "from-red-950 via-rose-950 to-stone-950",
   "from-green-950 via-emerald-950 to-stone-950",
 ];
-const SLIDE_ACCENT = ["text-purple-300", "text-sky-300", "text-rose-300", "text-red-300", "text-green-300"];
+const SLIDE_ACCENT = ["text-purple-300", "text-orange-400", "text-rose-300", "text-red-300", "text-green-300"];
 
 export default function DigitalSignage() {
   const { lang } = useLang();
@@ -63,9 +63,9 @@ export default function DigitalSignage() {
       <div className="text-center">
         <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">{T.heading}</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          {T.description} <span className="text-sky-400 font-medium">{T.descSales}</span> {T.descMid}{" "}
-          <span className="text-sky-400 font-medium">{T.descClients}</span> {T.descAnd}{" "}
-          <span className="text-sky-400 font-medium">{T.descWork}</span> {T.descEnd}
+          {T.description} <span className="text-orange-500 font-medium">{T.descSales}</span> {T.descMid}{" "}
+          <span className="text-orange-500 font-medium">{T.descClients}</span> {T.descAnd}{" "}
+          <span className="text-orange-500 font-medium">{T.descWork}</span> {T.descEnd}
         </p>
         <ImpactPills />
       </div>
@@ -90,8 +90,8 @@ export default function DigitalSignage() {
                       className="w-full h-full flex items-center justify-center bg-gray-950"
                     >
                       <div className="text-center">
-                        <RefreshCw size={32} className="text-sky-400 animate-spin mx-auto mb-3" />
-                        <p className="text-sky-300 text-sm">{T.updating}</p>
+                        <RefreshCw size={32} className="text-orange-500 animate-spin mx-auto mb-3" />
+                        <p className="text-orange-400 text-sm">{T.updating}</p>
                       </div>
                     </motion.div>
                   ) : (
@@ -114,7 +114,7 @@ export default function DigitalSignage() {
                             <div
                               key={i}
                               className={`h-0.5 rounded-full transition-all duration-300 ${
-                                i === activeIdx ? "w-6 bg-sky-400" : "w-2 bg-white/20"
+                                i === activeIdx ? "w-6 bg-orange-500" : "w-2 bg-white/20"
                               }`}
                             />
                           ))}
@@ -128,8 +128,8 @@ export default function DigitalSignage() {
                           transition={{ delay: 0.2 }}
                           className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 border border-white/20 rounded-full mb-3"
                         >
-                          <activeSlide.tagIcon size={12} className="text-sky-400" />
-                          <span className="text-xs text-sky-300 uppercase tracking-widest">{activeSlide.tag}</span>
+                          <activeSlide.tagIcon size={12} className="text-orange-500" />
+                          <span className="text-xs text-orange-400 uppercase tracking-widest">{activeSlide.tag}</span>
                         </motion.div>
 
                         <motion.h2
@@ -191,7 +191,7 @@ export default function DigitalSignage() {
                     className={`bg-gradient-to-br ${activeSlide.bg} flex flex-col items-center justify-center p-3`}
                     style={{ aspectRatio: "16/9" }}
                   >
-                    <p className="text-xs text-sky-300 font-serif font-bold text-center leading-tight">{activeSlide.title}</p>
+                    <p className="text-xs text-orange-400 font-serif font-bold text-center leading-tight">{activeSlide.title}</p>
                     <p className="text-white/40 text-center mt-1" style={{ fontSize: "9px" }}>{loc}</p>
                   </div>
                 </div>
@@ -224,18 +224,18 @@ export default function DigitalSignage() {
                 onClick={() => selectSlide(idx)}
                 className={`w-full flex items-center gap-3 p-3 rounded-xl border text-left transition-all duration-200 ${
                   activeIdx === idx
-                    ? "border-sky-600/60 bg-sky-500/10"
+                    ? "border-orange-600/60 bg-orange-500/10"
                     : "border-gray-800 bg-gray-900/60 hover:border-gray-700"
                 }`}
               >
                 <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${slide.bg} flex items-center justify-center shrink-0`}>
-                  <slide.tagIcon size={15} className="text-sky-400" />
+                  <slide.tagIcon size={15} className="text-orange-500" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="text-xs font-semibold text-foreground">{slide.title}</div>
                   <div className="text-xs text-muted-foreground mt-0.5 truncate">{slide.days} • {slide.time}</div>
                 </div>
-                {activeIdx === idx && <Check size={14} className="text-sky-400 shrink-0" />}
+                {activeIdx === idx && <Check size={14} className="text-orange-500 shrink-0" />}
                 {activeIdx !== idx && (
                   <div className="w-1.5 h-1.5 rounded-full bg-gray-700 shrink-0" />
                 )}
@@ -243,9 +243,9 @@ export default function DigitalSignage() {
             ))}
           </div>
 
-          <div className="maya-card rounded-2xl p-5 border border-sky-800/30 space-y-4">
+          <div className="maya-card rounded-2xl p-5 border border-orange-800/30 space-y-4">
             <div>
-              <div className="text-sm font-semibold text-sky-400 mb-1 flex items-center gap-2">
+              <div className="text-sm font-semibold text-orange-500 mb-1 flex items-center gap-2">
                 <MessageSquare size={15} /> {T.howTitle}
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed">{T.howDesc}</p>
@@ -254,8 +254,8 @@ export default function DigitalSignage() {
             <div className="space-y-2">
               {[Phone, MessageSquare, RefreshCw, Check].map((Icon, i) => (
                 <div key={i} className="flex items-start gap-2.5">
-                  <div className="w-6 h-6 rounded-full bg-sky-500/10 border border-sky-700/30 flex items-center justify-center shrink-0 mt-0.5">
-                    <Icon size={11} className="text-sky-400" />
+                  <div className="w-6 h-6 rounded-full bg-orange-500/10 border border-orange-700/30 flex items-center justify-center shrink-0 mt-0.5">
+                    <Icon size={11} className="text-orange-500" />
                   </div>
                   <p className="text-xs text-muted-foreground">{T.howSteps[i]}</p>
                 </div>

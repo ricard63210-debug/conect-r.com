@@ -83,7 +83,7 @@ export default function GestionOperativa() {
 
   const statusColors = {
     confirmed: "text-green-400 bg-green-400/10 border-green-700/40",
-    pending: "text-sky-400 bg-sky-400/10 border-sky-700/40",
+    pending: "text-orange-500 bg-orange-500/10 border-orange-700/40",
     arrived: "text-blue-400 bg-blue-400/10 border-blue-700/40",
   };
 
@@ -92,15 +92,15 @@ export default function GestionOperativa() {
       <div className="text-center">
         <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">{T.heading}</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto mb-4">
-          {T.description} <span className="text-sky-400 font-medium">{T.descSales}</span> {T.descAnd}{" "}
-          <span className="text-sky-400 font-medium">{T.descClients}</span> {T.descMid}{" "}
-          <span className="text-sky-400 font-medium">{T.descWork}</span> {T.descAnd2}{" "}
-          <span className="text-sky-400 font-medium">{T.descReviews}</span>.
+          {T.description} <span className="text-orange-500 font-medium">{T.descSales}</span> {T.descAnd}{" "}
+          <span className="text-orange-500 font-medium">{T.descClients}</span> {T.descMid}{" "}
+          <span className="text-orange-500 font-medium">{T.descWork}</span> {T.descAnd2}{" "}
+          <span className="text-orange-500 font-medium">{T.descReviews}</span>.
         </p>
         <ImpactPills />
-        <div className="inline-block bg-sky-900/20 border border-sky-700/40 rounded-2xl px-6 py-3">
-          <p className="text-sky-300 font-serif text-base italic">{T.quote}</p>
-          <p className="text-sky-500/60 text-xs mt-1 text-center">{T.quoteAuthor}</p>
+        <div className="inline-block bg-orange-900/20 border border-orange-700/40 rounded-2xl px-6 py-3">
+          <p className="text-orange-400 font-serif text-base italic">{T.quote}</p>
+          <p className="text-orange-500/60 text-xs mt-1 text-center">{T.quoteAuthor}</p>
         </div>
       </div>
 
@@ -116,7 +116,7 @@ export default function GestionOperativa() {
             data-testid={`tab-${tab.id}`}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
               activeTab === tab.id
-                ? "bg-sky-500 text-black"
+                ? "bg-orange-500 text-black"
                 : "text-muted-foreground hover:text-foreground"
             }`}
           >
@@ -152,9 +152,9 @@ export default function GestionOperativa() {
                   className="maya-card rounded-xl p-4 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-sky-500/10 border border-sky-700/30 rounded-xl flex flex-col items-center justify-center">
-                      <Clock size={14} className="text-sky-400" />
-                      <span className="text-xs font-bold text-sky-400 mt-0.5">{res.time}</span>
+                    <div className="w-12 h-12 bg-orange-500/10 border border-orange-700/30 rounded-xl flex flex-col items-center justify-center">
+                      <Clock size={14} className="text-orange-500" />
+                      <span className="text-xs font-bold text-orange-500 mt-0.5">{res.time}</span>
                     </div>
                     <div>
                       <div className="font-semibold">{res.name}</div>
@@ -177,7 +177,7 @@ export default function GestionOperativa() {
                         whileTap={{ scale: 0.95 }}
                         onClick={() => handleSendSMS(res.id)}
                         data-testid={`sms-btn-${res.id}`}
-                        className="flex items-center gap-2 px-3 py-1.5 bg-sky-500 hover:bg-sky-400 text-black text-xs rounded-lg font-medium transition-colors"
+                        className="flex items-center gap-2 px-3 py-1.5 bg-orange-500 hover:bg-orange-500 text-black text-xs rounded-lg font-medium transition-colors"
                       >
                         <MessageSquare size={12} />
                         {smsSent === res.id ? T.smsSent : T.smsBtn}
@@ -198,8 +198,8 @@ export default function GestionOperativa() {
               ))}
             </div>
 
-            <div className="maya-card rounded-xl p-5 border border-sky-800/30">
-              <h4 className="text-sm font-semibold text-sky-400 mb-4 flex items-center gap-2">
+            <div className="maya-card rounded-xl p-5 border border-orange-800/30">
+              <h4 className="text-sm font-semibold text-orange-500 mb-4 flex items-center gap-2">
                 <Check size={16} /> {T.dataTitle}
               </h4>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
@@ -210,19 +210,19 @@ export default function GestionOperativa() {
                   </div>
                 ))}
               </div>
-              <div className="text-xs text-muted-foreground/70 bg-sky-900/10 border border-sky-800/20 rounded-lg p-3">
+              <div className="text-xs text-muted-foreground/70 bg-orange-900/10 border border-orange-800/20 rounded-lg p-3">
                 {T.dataNote}
               </div>
             </div>
 
             <div className="maya-card rounded-xl p-5">
-              <h4 className="text-sm font-semibold text-sky-400 mb-3 flex items-center gap-2">
+              <h4 className="text-sm font-semibold text-orange-500 mb-3 flex items-center gap-2">
                 <Bell size={16} /> {T.smsFlowTitle}
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
                 {T.smsSteps.map((text, i) => (
                   <div key={i} className="flex gap-3 items-start">
-                    <div className="w-6 h-6 bg-sky-500 text-black rounded-full text-xs font-bold flex items-center justify-center shrink-0">{i + 1}</div>
+                    <div className="w-6 h-6 bg-orange-500 text-black rounded-full text-xs font-bold flex items-center justify-center shrink-0">{i + 1}</div>
                     <p className="text-muted-foreground">{text}</p>
                   </div>
                 ))}
@@ -244,7 +244,7 @@ export default function GestionOperativa() {
               <button
                 onClick={() => setShowNewReservation(!showNewReservation)}
                 data-testid="add-waitlist-btn"
-                className="flex items-center gap-2 px-3 py-1.5 bg-sky-500 text-black text-sm rounded-lg font-medium hover:bg-sky-400 transition-colors"
+                className="flex items-center gap-2 px-3 py-1.5 bg-orange-500 text-black text-sm rounded-lg font-medium hover:bg-orange-500 transition-colors"
               >
                 <Plus size={14} /> {T.addBtn}
               </button>
@@ -256,7 +256,7 @@ export default function GestionOperativa() {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="maya-card rounded-xl p-4 border border-sky-800/40"
+                  className="maya-card rounded-xl p-4 border border-orange-800/40"
                 >
                   <div className="flex gap-3 items-end">
                     <div className="flex-1">
@@ -267,7 +267,7 @@ export default function GestionOperativa() {
                         onChange={e => setNewName(e.target.value)}
                         placeholder={T.namePlaceholder}
                         data-testid="waitlist-name-input"
-                        className="w-full bg-muted/20 border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-sky-500"
+                        className="w-full bg-muted/20 border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-500"
                       />
                     </div>
                     <div className="w-24">
@@ -275,7 +275,7 @@ export default function GestionOperativa() {
                       <select
                         value={newGuests}
                         onChange={e => setNewGuests(e.target.value)}
-                        className="w-full bg-muted/20 border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-sky-500"
+                        className="w-full bg-muted/20 border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-500"
                       >
                         {[1,2,3,4,5,6,7,8].map(n => (
                           <option key={n} value={n}>{n}</option>
@@ -284,7 +284,7 @@ export default function GestionOperativa() {
                     </div>
                     <button
                       onClick={handleAddWaitlist}
-                      className="px-4 py-2 bg-sky-500 text-black rounded-lg text-sm font-medium"
+                      className="px-4 py-2 bg-orange-500 text-black rounded-lg text-sm font-medium"
                     >
                       {T.addBtn}
                     </button>
@@ -311,7 +311,7 @@ export default function GestionOperativa() {
                   >
                     <div className="flex items-center gap-4">
                       <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg ${
-                        entry.status === "called" ? "bg-sky-500 text-black" :
+                        entry.status === "called" ? "bg-orange-500 text-black" :
                         entry.status === "seated" ? "bg-green-600 text-white" :
                         "bg-muted/40 text-muted-foreground"
                       }`}>
@@ -331,14 +331,14 @@ export default function GestionOperativa() {
                         <button
                           onClick={() => handleCallNext(entry.id)}
                           data-testid={`call-btn-${entry.id}`}
-                          className="flex items-center gap-2 px-3 py-1.5 bg-sky-500 text-black text-xs rounded-lg font-medium hover:bg-sky-400 transition-colors"
+                          className="flex items-center gap-2 px-3 py-1.5 bg-orange-500 text-black text-xs rounded-lg font-medium hover:bg-orange-500 transition-colors"
                         >
                           <Bell size={12} /> {T.callBtn}
                         </button>
                       )}
                       {entry.status === "called" && (
                         <>
-                          <span className="text-xs text-sky-400 flex items-center gap-1">
+                          <span className="text-xs text-orange-500 flex items-center gap-1">
                             <Bell size={12} /> {T.calledLabel}
                           </span>
                           <button
@@ -363,7 +363,7 @@ export default function GestionOperativa() {
 
             <div className="maya-card rounded-xl p-5">
               <div className="flex items-start gap-3">
-                <ChevronRight size={20} className="text-sky-400 shrink-0 mt-0.5" />
+                <ChevronRight size={20} className="text-orange-500 shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-sm font-semibold text-foreground mb-1">{T.noQueueTitle}</h4>
                   <p className="text-sm text-muted-foreground">{T.noQueueDesc}</p>

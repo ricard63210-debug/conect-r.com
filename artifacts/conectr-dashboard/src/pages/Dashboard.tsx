@@ -19,7 +19,7 @@ const MODULE_COLORS = [
   "from-amber-600 to-amber-400",
   "from-orange-700 to-orange-500",
   "from-teal-700 to-teal-500",
-  "from-blue-700 to-blue-500",
+  "from-orange-700 to-orange-500",
   "from-pink-700 to-pink-500",
   "from-purple-700 to-purple-500",
   "from-green-700 to-green-500",
@@ -63,7 +63,7 @@ export default function Dashboard() {
                 data-testid={`nav-${mod.id}`}
                 className={`flex items-center gap-2 px-3 py-2 rounded-xl text-sm transition-all duration-200 ${
                   activeModule === mod.id
-                    ? "bg-sky-500/10 border border-sky-700/40 text-sky-300"
+                    ? "bg-orange-500/10 border border-orange-700/40 text-orange-400"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/20"
                 }`}
               >
@@ -80,7 +80,7 @@ export default function Dashboard() {
               onClick={toggle}
               whileTap={{ scale: 0.93 }}
               data-testid="lang-toggle"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-sky-700/40 bg-sky-500/10 text-sky-300 text-xs font-semibold hover:bg-sky-500/20 transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-orange-700/40 bg-orange-500/10 text-orange-400 text-xs font-semibold hover:bg-orange-500/20 transition-colors"
             >
               <Languages size={13} />
               {T.global.langBtn}
@@ -114,7 +114,7 @@ export default function Dashboard() {
                     data-testid={`mobile-nav-${mod.id}`}
                     className={`flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm transition-all ${
                       activeModule === mod.id
-                        ? "bg-sky-500/10 border border-sky-700/40 text-sky-300"
+                        ? "bg-orange-500/10 border border-orange-700/40 text-orange-400"
                         : "text-muted-foreground hover:text-foreground border border-transparent"
                     }`}
                   >
@@ -140,7 +140,7 @@ export default function Dashboard() {
                 whileHover={{ x: 2 }}
                 className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl text-left transition-all duration-200 group ${
                   activeModule === mod.id
-                    ? "bg-sky-500/10 border border-sky-700/40"
+                    ? "bg-orange-500/10 border border-orange-700/40"
                     : "hover:bg-muted/20 border border-transparent"
                 }`}
               >
@@ -148,21 +148,21 @@ export default function Dashboard() {
                   <mod.icon size={14} className="text-white" />
                 </div>
                 <div>
-                  <div className={`text-xs font-semibold ${activeModule === mod.id ? "text-sky-300" : "text-foreground"}`}>
+                  <div className={`text-xs font-semibold ${activeModule === mod.id ? "text-orange-400" : "text-foreground"}`}>
                     {mod.label}
                   </div>
                   <div className="text-xs text-muted-foreground">{mod.sublabel}</div>
                 </div>
                 {activeModule === mod.id && (
-                  <ChevronRight size={12} className="text-sky-400 ml-auto" />
+                  <ChevronRight size={12} className="text-orange-500 ml-auto" />
                 )}
               </motion.button>
             ))}
           </div>
 
           {/* Bottom card */}
-          <div className="mt-auto p-3 rounded-xl border border-sky-800/30 bg-sky-900/10">
-            <div className="text-xs font-semibold text-sky-400 mb-1">{T.global.demoCard.title}</div>
+          <div className="mt-auto p-3 rounded-xl border border-orange-800/30 bg-orange-900/10">
+            <div className="text-xs font-semibold text-orange-500 mb-1">{T.global.demoCard.title}</div>
             <p className="text-xs text-muted-foreground">{T.global.demoCard.body}</p>
           </div>
         </aside>

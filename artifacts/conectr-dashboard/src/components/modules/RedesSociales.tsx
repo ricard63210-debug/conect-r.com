@@ -15,7 +15,7 @@ const SERVICE_ICONS = [Camera, PenTool, MessageCircle, TrendingUp, BarChart2, St
 const SERVICE_COLORS = [
   "from-pink-700 to-pink-500",
   "from-amber-700 to-amber-500",
-  "from-blue-700 to-blue-500",
+  "from-orange-700 to-orange-500",
   "from-green-700 to-green-500",
   "from-teal-700 to-teal-500",
   "from-purple-700 to-purple-500",
@@ -25,15 +25,15 @@ const calendarWeek = [
   { key: "mon", type: null },
   { key: "tue", type: "reel", icon: "🎬", color: "bg-pink-500/20 border-pink-500/40 text-pink-300" },
   { key: "wed", type: "story", icon: "📣", color: "bg-blue-500/20 border-blue-500/40 text-blue-300" },
-  { key: "thu", type: "post", icon: "📸", color: "bg-sky-500/20 border-sky-500/40 text-sky-300" },
+  { key: "thu", type: "post", icon: "📸", color: "bg-orange-500/20 border-orange-500/40 text-orange-400" },
   { key: "fri", type: "reel", icon: "🎬", color: "bg-pink-500/20 border-pink-500/40 text-pink-300" },
   { key: "sat", type: "story", icon: "📣", color: "bg-blue-500/20 border-blue-500/40 text-blue-300" },
-  { key: "sun", type: "post", icon: "📸", color: "bg-sky-500/20 border-sky-500/40 text-sky-300" },
+  { key: "sun", type: "post", icon: "📸", color: "bg-orange-500/20 border-orange-500/40 text-orange-400" },
 ];
 
 const postData = [
   { id: 1, platform: "instagram", image: "🌮", tag: "🎬 Reel", tagColor: "text-pink-400", likes: 847, comments: 63, shares: 124, reach: 4200, daysAgo: 2 },
-  { id: 2, platform: "instagram", image: "🥑", tag: "📸 Foto", tagColor: "text-sky-400", likes: 621, comments: 42, shares: 88, reach: 3100, daysAgo: 4 },
+  { id: 2, platform: "instagram", image: "🥑", tag: "📸 Foto", tagColor: "text-orange-500", likes: 621, comments: 42, shares: 88, reach: 3100, daysAgo: 4 },
   { id: 3, platform: "facebook", image: "🍹", tag: "📣 Story", tagColor: "text-blue-400", likes: 312, comments: 28, shares: 55, reach: 1800, daysAgo: 6 },
   { id: 4, platform: "instagram", image: "🎭", tag: "🎬 Reel", tagColor: "text-pink-400", likes: 1103, comments: 89, shares: 201, reach: 5600, daysAgo: 7 },
 ];
@@ -70,9 +70,9 @@ export default function RedesSociales() {
       <div className="text-center">
         <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">{T.heading}</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          {T.description} <span className="text-sky-400 font-medium">{T.descEngagement}</span>{T.descMid}{" "}
-          <span className="text-sky-400 font-medium">{T.descFollowers}</span> {T.descAnd}{" "}
-          <span className="text-sky-400 font-medium">{T.descClients}</span>{T.descEnd}
+          {T.description} <span className="text-orange-500 font-medium">{T.descEngagement}</span>{T.descMid}{" "}
+          <span className="text-orange-500 font-medium">{T.descFollowers}</span> {T.descAnd}{" "}
+          <span className="text-orange-500 font-medium">{T.descClients}</span>{T.descEnd}
         </p>
         <ImpactPills />
       </div>
@@ -84,9 +84,9 @@ export default function RedesSociales() {
             key={m.label}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            className="maya-card rounded-xl p-4 border border-sky-800/20"
+            className="maya-card rounded-xl p-4 border border-orange-800/20"
           >
-            <div className="text-2xl font-bold text-sky-300">{m.value}</div>
+            <div className="text-2xl font-bold text-orange-400">{m.value}</div>
             <div className="text-xs text-muted-foreground mt-0.5">{m.label}</div>
           </motion.div>
         ))}
@@ -105,7 +105,7 @@ export default function RedesSociales() {
             data-testid={`redes-tab-${tab.id}`}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
               activeTab === tab.id
-                ? "bg-sky-500 text-black"
+                ? "bg-orange-500 text-black"
                 : "text-muted-foreground hover:text-foreground"
             }`}
           >
@@ -125,7 +125,7 @@ export default function RedesSociales() {
             className="space-y-4"
           >
             {/* Profile header */}
-            <div className="maya-card rounded-2xl p-4 border border-sky-800/20 flex items-center gap-4">
+            <div className="maya-card rounded-2xl p-4 border border-orange-800/20 flex items-center gap-4">
               <div className="relative">
                 <div className="w-14 h-14 rounded-full overflow-hidden border-2 p-0.5"
                   style={{ borderColor: GOLD }}>
@@ -164,11 +164,11 @@ export default function RedesSociales() {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.07 }}
-                  className="maya-card rounded-2xl overflow-hidden border border-sky-800/20"
+                  className="maya-card rounded-2xl overflow-hidden border border-orange-800/20"
                 >
                   <div className="px-4 py-3 flex items-center justify-between border-b border-border/20">
                     <div className="flex items-center gap-2">
-                      <div className="w-7 h-7 rounded-full overflow-hidden border border-sky-700/40">
+                      <div className="w-7 h-7 rounded-full overflow-hidden border border-orange-700/40">
                         <img src="/carmelitas-logo.png" alt="Carmelitas" className="w-full h-full object-cover" style={{ filter: "brightness(0.8)" }} />
                       </div>
                       <span className="text-xs font-semibold">carmelitasgroup</span>
@@ -201,7 +201,7 @@ export default function RedesSociales() {
                         <Share2 size={14} /> {post.shares}
                       </button>
                     </div>
-                    <div className="flex items-center gap-1 text-xs text-sky-400">
+                    <div className="flex items-center gap-1 text-xs text-orange-500">
                       <Eye size={12} /> {post.reach.toLocaleString()}
                     </div>
                   </div>
@@ -209,8 +209,8 @@ export default function RedesSociales() {
               ))}
             </div>
 
-            <div className="maya-card rounded-xl p-4 border border-sky-800/20 flex items-start gap-3">
-              <Star size={16} className="text-sky-400 shrink-0 mt-0.5" />
+            <div className="maya-card rounded-xl p-4 border border-orange-800/20 flex items-start gap-3">
+              <Star size={16} className="text-orange-500 shrink-0 mt-0.5" />
               <p className="text-xs text-muted-foreground leading-relaxed">{T.publishNote}</p>
             </div>
           </motion.div>
@@ -224,15 +224,15 @@ export default function RedesSociales() {
             exit={{ opacity: 0, y: -10 }}
             className="space-y-6"
           >
-            <div className="maya-card rounded-2xl p-5 border border-sky-800/20">
+            <div className="maya-card rounded-2xl p-5 border border-orange-800/20">
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <h3 className="text-sm font-semibold">{CL.calTitle}</h3>
                   <p className="text-xs text-muted-foreground mt-0.5">{CL.calSub}</p>
                 </div>
-                <div className="flex items-center gap-1.5 px-3 py-1.5 bg-sky-500/10 border border-sky-700/30 rounded-full">
+                <div className="flex items-center gap-1.5 px-3 py-1.5 bg-orange-500/10 border border-orange-700/30 rounded-full">
                   <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
-                  <span className="text-xs text-sky-300">{CL.live}</span>
+                  <span className="text-xs text-orange-400">{CL.live}</span>
                 </div>
               </div>
 
@@ -263,7 +263,7 @@ export default function RedesSociales() {
               <div className="flex flex-wrap gap-3 mt-4 pt-4 border-t border-border/20">
                 {[
                   { icon: "🎬", label: CL.reel, color: "text-pink-400" },
-                  { icon: "📸", label: CL.photo, color: "text-sky-400" },
+                  { icon: "📸", label: CL.photo, color: "text-orange-500" },
                   { icon: "📣", label: CL.story, color: "text-blue-400" },
                 ].map(t => (
                   <div key={t.label} className="flex items-center gap-1.5 text-xs">
@@ -276,15 +276,15 @@ export default function RedesSociales() {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {T.calendarStrats.map((card, i) => (
-                <div key={card.title} className="maya-card rounded-xl p-4 border border-sky-800/20">
+                <div key={card.title} className="maya-card rounded-xl p-4 border border-orange-800/20">
                   <div className="flex items-center gap-2 mb-3">
-                    {(() => { const Icon = stratCardIcons[i]; return <Icon size={15} className="text-sky-400" />; })()}
+                    {(() => { const Icon = stratCardIcons[i]; return <Icon size={15} className="text-orange-500" />; })()}
                     <div className="text-sm font-semibold">{card.title}</div>
                   </div>
                   <ul className="space-y-1.5">
                     {card.items.map(item => (
                       <li key={item} className="flex items-start gap-2 text-xs text-muted-foreground">
-                        <ChevronRight size={12} className="text-sky-600 mt-0.5 shrink-0" />
+                        <ChevronRight size={12} className="text-orange-600 mt-0.5 shrink-0" />
                         {item}
                       </li>
                     ))}
@@ -310,7 +310,7 @@ export default function RedesSociales() {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.07 }}
-                  className="maya-card rounded-xl p-5 border border-sky-800/20 flex gap-4"
+                  className="maya-card rounded-xl p-5 border border-orange-800/20 flex gap-4"
                 >
                   <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${svc.color} flex items-center justify-center shrink-0`}>
                     <svc.icon size={17} className="text-white" />
@@ -324,7 +324,7 @@ export default function RedesSociales() {
             </div>
 
             {/* Platform coverage */}
-            <div className="maya-card rounded-2xl p-5 border border-sky-800/20">
+            <div className="maya-card rounded-2xl p-5 border border-orange-800/20">
               <h3 className="text-sm font-semibold mb-4">{T.platformNote}</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-pink-900/20 to-orange-900/20 border border-pink-800/20">
@@ -343,7 +343,7 @@ export default function RedesSociales() {
                 </div>
 
                 <div className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-blue-900/20 to-blue-800/10 border border-blue-800/20">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-700 to-blue-500 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-700 to-orange-500 flex items-center justify-center">
                     <Facebook size={18} className="text-white" />
                   </div>
                   <div className="flex-1">

@@ -81,7 +81,7 @@ export default function PresenciaDigital() {
             data-testid={`presencia-tab-${tab.id}`}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
               activeTab === tab.id
-                ? "bg-sky-500 text-black"
+                ? "bg-orange-500 text-black"
                 : "text-muted-foreground hover:text-foreground"
             }`}
           >
@@ -101,7 +101,7 @@ export default function PresenciaDigital() {
             className="space-y-6"
           >
             {/* Live site iframe */}
-            <div className="maya-card rounded-2xl overflow-hidden border border-sky-800/20">
+            <div className="maya-card rounded-2xl overflow-hidden border border-orange-800/20">
               <div className="bg-gray-900 px-4 py-2.5 flex items-center gap-3 border-b border-border/40">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-500/60" />
@@ -133,7 +133,7 @@ export default function PresenciaDigital() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {T.webFeatures.map(item => (
                 <div key={item.title} className="maya-card rounded-xl p-4 flex gap-3">
-                  <ChevronRight size={16} className="text-sky-400 mt-0.5 shrink-0" />
+                  <ChevronRight size={16} className="text-orange-500 mt-0.5 shrink-0" />
                   <div>
                     <div className="text-sm font-semibold">{item.title}</div>
                     <div className="text-xs text-muted-foreground mt-1">{item.desc}</div>
@@ -155,8 +155,8 @@ export default function PresenciaDigital() {
               <div className="lg:col-span-2">
                 <div className="maya-card rounded-2xl overflow-hidden flex flex-col" style={{ height: "520px" }}>
                   {/* Header */}
-                  <div className="px-4 py-3 border-b border-border/40 flex items-center gap-3 bg-sky-900/10">
-                    <img src="/carmelitas-logo.png" alt="Carmelitas" className="w-9 h-9 rounded-full object-cover border border-sky-700/40" style={{ filter: "brightness(0.8)" }} />
+                  <div className="px-4 py-3 border-b border-border/40 flex items-center gap-3 bg-orange-900/10">
+                    <img src="/carmelitas-logo.png" alt="Carmelitas" className="w-9 h-9 rounded-full object-cover border border-orange-700/40" style={{ filter: "brightness(0.8)" }} />
                     <div>
                       <div className="text-sm font-semibold">{T.botName}</div>
                       <div className="text-xs text-green-400 flex items-center gap-1">
@@ -184,7 +184,7 @@ export default function PresenciaDigital() {
                         </div>
                         <div className={`max-w-xs px-3 py-2 rounded-2xl text-sm leading-relaxed ${
                           msg.role === "bot"
-                            ? "bg-sky-900/20 border border-sky-800/30 text-foreground rounded-tl-sm"
+                            ? "bg-orange-900/20 border border-orange-800/30 text-foreground rounded-tl-sm"
                             : "bg-gray-700 text-white rounded-tr-sm"
                         }`}>
                           {msg.text}
@@ -200,10 +200,10 @@ export default function PresenciaDigital() {
                         <div className="w-7 h-7 rounded-full overflow-hidden">
                           <img src="/carmelitas-logo.png" alt="Carmelitas" className="w-full h-full object-cover" style={{ filter: "brightness(0.8)" }} />
                         </div>
-                        <div className="bg-sky-900/20 border border-sky-800/30 px-3 py-2 rounded-2xl rounded-tl-sm">
+                        <div className="bg-orange-900/20 border border-orange-800/30 px-3 py-2 rounded-2xl rounded-tl-sm">
                           <div className="flex gap-1">
                             {[0,1,2].map(i => (
-                              <div key={i} className="w-1.5 h-1.5 bg-sky-400 rounded-full animate-bounce"
+                              <div key={i} className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-bounce"
                                 style={{ animationDelay: `${i * 0.15}s` }} />
                             ))}
                           </div>
@@ -222,12 +222,12 @@ export default function PresenciaDigital() {
                       onKeyDown={e => e.key === "Enter" && handleSend()}
                       placeholder={T.inputPlaceholder}
                       data-testid="chat-input"
-                      className="flex-1 bg-muted/20 border border-border rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-sky-500"
+                      className="flex-1 bg-muted/20 border border-border rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-orange-500"
                     />
                     <button
                       onClick={handleSend}
                       data-testid="chat-send-btn"
-                      className="w-9 h-9 bg-sky-500 text-black rounded-xl flex items-center justify-center hover:bg-sky-400 transition-colors"
+                      className="w-9 h-9 bg-orange-500 text-black rounded-xl flex items-center justify-center hover:bg-orange-500 transition-colors"
                     >
                       <Send size={14} />
                     </button>
@@ -246,7 +246,7 @@ export default function PresenciaDigital() {
                       <button
                         key={q}
                         onClick={() => sendMessage(q)}
-                        className="w-full text-left text-xs px-3 py-2.5 bg-muted/20 border border-border rounded-xl text-muted-foreground hover:text-foreground hover:border-sky-700/40 transition-all"
+                        className="w-full text-left text-xs px-3 py-2.5 bg-muted/20 border border-border rounded-xl text-muted-foreground hover:text-foreground hover:border-orange-700/40 transition-all"
                       >
                         {q}
                       </button>
@@ -254,13 +254,13 @@ export default function PresenciaDigital() {
                   </div>
                 </div>
 
-                <div className="maya-card rounded-xl p-4 border border-sky-800/20">
-                  <div className="text-xs font-semibold text-sky-400 mb-2">{T.impactTitle}</div>
+                <div className="maya-card rounded-xl p-4 border border-orange-800/20">
+                  <div className="text-xs font-semibold text-orange-500 mb-2">{T.impactTitle}</div>
                   <div className="space-y-2">
                     {T.impactItems.map(item => (
                       <div key={item.label} className="flex justify-between text-xs">
                         <span className="text-muted-foreground">{item.label}</span>
-                        <span className="text-sky-400 font-semibold">{item.value}</span>
+                        <span className="text-orange-500 font-semibold">{item.value}</span>
                       </div>
                     ))}
                   </div>

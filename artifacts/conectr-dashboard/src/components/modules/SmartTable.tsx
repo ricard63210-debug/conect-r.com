@@ -51,7 +51,7 @@ const MENU_ITEMS: Record<MenuKey, MenuItem[]> = {
     { name: "Mole Negro", desc: "Pollo bañado en mole negro oaxaqueño, arroz, frijoles", detail: "Nuestro mole negro es una receta de mas de 30 ingredientes: chiles mulato, pasilla, chihuacle negro, chocolate amargo, platano macho, ajonjoli y especias. Cocinado lentamente por 8 horas. Patrimonio de la cocina mexicana.", emoji: "🍗", gradient: "from-stone-700 to-amber-800" },
     { name: "Chile en Nogada", desc: "Chile poblano relleno, nogada de nuez, granadas", detail: "Chile poblano asado relleno de picadillo de res y cerdo con frutas de temporada — durazno, pera, platano y almendras — bañado en nogada de nuez de Castilla fresca, decorado con granada roja y perejil.", emoji: "🌶️", gradient: "from-green-700 to-emerald-600", veg: true },
     { name: "Ribeye a la Mexicana", desc: "300g, nopal asado, salsa roja, frijoles charros", detail: "Corte de Ribeye de 300g al punto deseado, sazonado con especias mexicanas y sellado en comal de hierro. Acompanado de nopal asado, frijoles charros con tocino y chorizo, y salsa roja de molcajete.", emoji: "🥩", gradient: "from-red-800 to-rose-700", spicy: true },
-    { name: "Camarones al Mezcal", desc: "Camarones jumbo, crema de chile ancho, arroz verde", detail: "Camarones gigantes flambeados en mezcal Joven con mantequilla de ajo negro, servidos sobre crema de chile ancho tatemado y arroz verde de cilantro. Experiencia gourmet.", emoji: "🦐", gradient: "from-blue-700 to-teal-600" },
+    { name: "Camarones al Mezcal", desc: "Camarones jumbo, crema de chile ancho, arroz verde", detail: "Camarones gigantes flambeados en mezcal Joven con mantequilla de ajo negro, servidos sobre crema de chile ancho tatemado y arroz verde de cilantro. Experiencia gourmet.", emoji: "🦐", gradient: "from-orange-700 to-teal-600" },
   ],
   Bebidas: [
     { name: "Margarita Clasica", desc: "Tequila blanco, limon, triple sec, sal", detail: "La clasica bien hecha: tequila blanco 100% agave, jugo de limon exprimido al momento, triple sec premium y una pizca de sal de grano. Servida en copa escarcha. Simple, perfecta, inigualable.", emoji: "🍹", gradient: "from-yellow-500 to-lime-500" },
@@ -115,11 +115,11 @@ export default function SmartTable() {
     : "Cooked with fresh ingredients and authentic traditional Mexican recipes.";
 
   const portalButtons = [
-    { id: "menu", label: T.portalButtons.menu, icon: QrCode, color: "from-sky-600 to-sky-400", desc: lang === "es" ? "Carta completa con descripcion y fotos de cada platillo" : "Full menu with photos and descriptions of every dish", url: "https://restaurante-maya-dash.replit.app/maya-menu/", isMenu: false },
+    { id: "menu", label: T.portalButtons.menu, icon: QrCode, color: "from-orange-600 to-orange-500", desc: lang === "es" ? "Carta completa con descripcion y fotos de cada platillo" : "Full menu with photos and descriptions of every dish", url: "https://restaurante-maya-dash.replit.app/maya-menu/", isMenu: false },
     { id: "reviews", label: T.portalButtons.reviews, icon: Heart, color: "from-yellow-600 to-yellow-400", desc: T.reviewsDesc, url: "https://www.google.com/search?q=carmelitas+google+reviews&ie=UTF-8&oe=UTF-8&hl=en-us&client=safari#ebo=2" },
     { id: "events", label: T.portalButtons.events, icon: Calendar, color: "from-orange-700 to-orange-500", desc: T.eventDesc, url: "https://carmelitasgroup.com/private-events" },
     { id: "instagram", label: T.portalButtons.instagram, icon: Instagram, color: "from-pink-700 to-pink-500", desc: T.instagramDesc, url: "https://www.instagram.com/carmelitasgroup?igsh=NTc4MTIwNjQ2YQ==" },
-    { id: "facebook", label: T.portalButtons.facebook, icon: Facebook, color: "from-blue-700 to-blue-500", desc: T.facebookDesc, url: "https://www.facebook.com/pages/Carmelitas-Mexican-Bar-Grill/151034358242633?mibextid=wwXIfr" },
+    { id: "facebook", label: T.portalButtons.facebook, icon: Facebook, color: "from-orange-700 to-orange-500", desc: T.facebookDesc, url: "https://www.facebook.com/pages/Carmelitas-Mexican-Bar-Grill/151034358242633?mibextid=wwXIfr" },
     { id: "reserve", label: T.portalButtons.reserve, icon: Calendar, color: "from-amber-700 to-amber-500", desc: T.reserveDesc, url: "https://tablereserve.conect-r.com" },
   ];
 
@@ -156,10 +156,10 @@ export default function SmartTable() {
       <div className="text-center">
         <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">{T.heading}</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          {T.description} <span className="text-sky-400 font-medium">{T.descReviews}</span>
-          {T.desc2}<span className="text-sky-400 font-medium">{T.descClients}</span>
-          {T.desc3}<span className="text-sky-400 font-medium">{T.descSales}</span>
-          {T.desc4}<span className="text-sky-400 font-medium">{T.descWork}</span>{T.desc5}
+          {T.description} <span className="text-orange-500 font-medium">{T.descReviews}</span>
+          {T.desc2}<span className="text-orange-500 font-medium">{T.descClients}</span>
+          {T.desc3}<span className="text-orange-500 font-medium">{T.descSales}</span>
+          {T.desc4}<span className="text-orange-500 font-medium">{T.descWork}</span>{T.desc5}
         </p>
         <ImpactPills />
       </div>
@@ -178,7 +178,7 @@ export default function SmartTable() {
               onClick={handleNfcTap}
               data-testid="nfc-stand"
             >
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-700 via-sky-400 to-amber-700 rounded-t-2xl" />
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-700 via-orange-500 to-amber-700 rounded-t-2xl" />
               <div className="text-center px-4">
                 <img src="/carmelitas-logo.png" alt="Carmelita's" className="h-24 object-contain mx-auto" style={{ filter: "invert(1) brightness(1.3)" }} />
               </div>
@@ -186,18 +186,18 @@ export default function SmartTable() {
                 <QrCode className="text-gray-800" size={64} />
                 {showAnimation && (
                   <>
-                    <div className="absolute inset-0 rounded-xl nfc-pulse border-2 border-sky-400 opacity-60" />
-                    <div className="absolute inset-0 rounded-xl nfc-pulse border-2 border-sky-400 opacity-40" style={{ animationDelay: "0.4s" }} />
-                    <div className="absolute inset-0 rounded-xl nfc-pulse border-2 border-sky-400 opacity-20" style={{ animationDelay: "0.8s" }} />
+                    <div className="absolute inset-0 rounded-xl nfc-pulse border-2 border-orange-500 opacity-60" />
+                    <div className="absolute inset-0 rounded-xl nfc-pulse border-2 border-orange-500 opacity-40" style={{ animationDelay: "0.4s" }} />
+                    <div className="absolute inset-0 rounded-xl nfc-pulse border-2 border-orange-500 opacity-20" style={{ animationDelay: "0.8s" }} />
                   </>
                 )}
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Wifi size={14} className="text-sky-400" />
+                <Wifi size={14} className="text-orange-500" />
                 <span>{T.nfcTap}</span>
               </div>
               <div className="text-xs text-muted-foreground/60">{T.nfcTable}</div>
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-700 via-sky-400 to-amber-700 rounded-b-2xl" />
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-700 via-orange-500 to-amber-700 rounded-b-2xl" />
             </motion.div>
 
             <p className="mt-3 text-xs text-muted-foreground text-center">{clickHintLabel}</p>
@@ -210,13 +210,13 @@ export default function SmartTable() {
                   exit={{ opacity: 0 }}
                   className="absolute -right-4 top-1/4"
                 >
-                  <div className="w-14 h-24 bg-gray-900 rounded-xl border-2 border-sky-400 flex items-center justify-center shadow-xl">
-                    <Smartphone size={24} className="text-sky-400" />
+                  <div className="w-14 h-24 bg-gray-900 rounded-xl border-2 border-orange-500 flex items-center justify-center shadow-xl">
+                    <Smartphone size={24} className="text-orange-500" />
                   </div>
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: [0, 1.5, 1] }}
-                    className="absolute -top-2 -right-2 w-6 h-6 bg-sky-400 rounded-full flex items-center justify-center"
+                    className="absolute -top-2 -right-2 w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center"
                   >
                     <Wifi size={12} className="text-black" />
                   </motion.div>
@@ -231,14 +231,14 @@ export default function SmartTable() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="maya-card rounded-xl p-4 border border-sky-800/40"
+                className="maya-card rounded-xl p-4 border border-orange-800/40"
               >
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 bg-sky-500/20 rounded-full flex items-center justify-center">
-                      <Check size={14} className="text-sky-400" />
+                    <div className="w-7 h-7 bg-orange-500/20 rounded-full flex items-center justify-center">
+                      <Check size={14} className="text-orange-500" />
                     </div>
-                    <span className="text-sm font-semibold text-sky-400">{portalOpenedLabel}</span>
+                    <span className="text-sm font-semibold text-orange-500">{portalOpenedLabel}</span>
                   </div>
                   <button onClick={resetNfc} className="text-muted-foreground hover:text-foreground text-xs underline">
                     {resetLabel}
@@ -307,8 +307,8 @@ export default function SmartTable() {
                       </div>
                     </div>
                     <p className="text-xs text-gray-300 leading-relaxed">{selectedDish.detail}</p>
-                    <div className="p-3 bg-sky-900/20 border border-sky-800/30 rounded-xl">
-                      <p className="text-xs text-sky-300/80 italic">"{authenticNoteText}"</p>
+                    <div className="p-3 bg-orange-900/20 border border-orange-800/30 rounded-xl">
+                      <p className="text-xs text-orange-400/80 italic">"{authenticNoteText}"</p>
                     </div>
                   </div>
                 </motion.div>
@@ -344,7 +344,7 @@ export default function SmartTable() {
                         onClick={() => setMenuKeyIdx(idx)}
                         className={`px-3 py-2.5 text-xs font-medium whitespace-nowrap border-b-2 transition-all ${
                           menuKeyIdx === idx
-                            ? "border-sky-400 text-sky-400"
+                            ? "border-orange-500 text-orange-500"
                             : "border-transparent text-gray-400"
                         }`}
                       >
@@ -404,7 +404,7 @@ export default function SmartTable() {
             <div className="absolute inset-0 top-8 bg-gradient-to-b from-gray-950 to-black overflow-y-auto scrollbar-gold">
               <div className="relative h-24 bg-gradient-to-b from-amber-900/60 to-transparent flex flex-col items-center justify-center">
                 <img src="/carmelitas-logo.png" alt="Carmelita's" className="h-20 object-contain" style={{ filter: "invert(1) brightness(1.4)" }} />
-                <div className="text-xs text-sky-300/70 mt-1">{T.portalSubtitle}</div>
+                <div className="text-xs text-orange-400/70 mt-1">{T.portalSubtitle}</div>
               </div>
 
               <div className="px-4 pb-6 space-y-3">
@@ -419,7 +419,7 @@ export default function SmartTable() {
                       data-testid={`portal-btn-${btn.id}`}
                       className={`relative flex flex-col items-center gap-2 p-4 rounded-2xl border transition-all duration-200 ${
                         activeButton === btn.id
-                          ? "border-sky-500 bg-sky-500/10"
+                          ? "border-orange-500 bg-orange-500/10"
                           : "border-gray-800 bg-gray-900/60"
                       }`}
                     >
@@ -434,7 +434,7 @@ export default function SmartTable() {
                         <motion.div
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
-                          className="absolute top-2 right-2 w-4 h-4 bg-sky-400 rounded-full flex items-center justify-center"
+                          className="absolute top-2 right-2 w-4 h-4 bg-orange-500 rounded-full flex items-center justify-center"
                         >
                           <Check size={10} className="text-black" />
                         </motion.div>
@@ -449,7 +449,7 @@ export default function SmartTable() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="p-3 bg-sky-900/20 border border-sky-800/40 rounded-xl"
+                      className="p-3 bg-orange-900/20 border border-orange-800/40 rounded-xl"
                     >
                       <p className="text-xs text-sky-200/80">
                         {portalButtons.find(b => b.id === activeButton)?.desc}
@@ -644,8 +644,8 @@ export default function SmartTable() {
                     { label: effLabel, value: "+34%", icon: TrendingUp },
                   ].map((stat) => (
                     <div key={stat.label} className="bg-gray-900/80 rounded-xl p-2 text-center">
-                      <stat.icon size={12} className="text-sky-400 mx-auto mb-1" />
-                      <div className="text-sm font-bold text-sky-300">{stat.value}</div>
+                      <stat.icon size={12} className="text-orange-500 mx-auto mb-1" />
+                      <div className="text-sm font-bold text-orange-400">{stat.value}</div>
                       <div className="text-xs text-gray-500">{stat.label}</div>
                     </div>
                   ))}
@@ -664,8 +664,8 @@ export default function SmartTable() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {portalSteps.map((item) => (
             <div key={item.step} className="flex gap-3">
-              <div className="w-10 h-10 bg-sky-500/10 border border-sky-700/40 rounded-xl flex items-center justify-center shrink-0">
-                <span className="text-xs font-bold text-sky-400">{item.step}</span>
+              <div className="w-10 h-10 bg-orange-500/10 border border-orange-700/40 rounded-xl flex items-center justify-center shrink-0">
+                <span className="text-xs font-bold text-orange-500">{item.step}</span>
               </div>
               <div>
                 <div className="text-sm font-semibold text-foreground">{item.title}</div>
