@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Wifi, BarChart2, Monitor, Globe, Palette, TrendingUp,
-  Menu, X, ChevronRight, Instagram, Languages
+  Menu, X, ChevronRight, Instagram, Languages, Sun, Moon
 } from "lucide-react";
 import SmartTable from "@/components/modules/SmartTable";
 import GestionOperativa from "@/components/modules/GestionOperativa";
@@ -32,6 +32,17 @@ export default function Dashboard() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { lang, toggle } = useLang();
   const T = getT(lang);
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    if (typeof window === "undefined") return "dark";
+    return document.documentElement.classList.contains("dark") ? "dark" : "light";
+  });
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === "dark") root.classList.add("dark");
+    else root.classList.remove("dark");
+    try { localStorage.setItem("conectr-theme", theme); } catch {}
+  }, [theme]);
+  const toggleTheme = () => setTheme(t => t === "dark" ? "light" : "dark");
 
   const modules = T.modules.map((m, i) => ({
     ...m,
@@ -73,8 +84,17 @@ export default function Dashboard() {
             ))}
           </nav>
 
-          {/* Right: lang toggle + mobile menu */}
+          {/* Right: theme + lang toggle + mobile menu */}
           <div className="flex items-center gap-2">
+            {/* Theme toggle */}
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              data-testid="theme-toggle"
+              className="hidden sm:flex w-8 h-8 items-center justify-center rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+            >
+              {theme === "dark" ? <Sun size={14} /> : <Moon size={14} />}
+            </button>
             {/* Language toggle */}
             <motion.button
               onClick={toggle}
