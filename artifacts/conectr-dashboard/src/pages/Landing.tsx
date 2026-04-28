@@ -3,14 +3,16 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import {
   ArrowUpRight, ArrowRight, Check, MapPin, Sun, Moon, Languages,
-  Wifi, BarChart3, Monitor, Globe, Instagram, Palette, TrendingUp,
-  MessageCircle, Mail, Sparkles, Star,
+  Globe, Briefcase, CalendarCheck, ListOrdered, Smartphone, Monitor,
+  Eye, Target, Shield, Lock, FileText, AlertTriangle,
+  Zap, Megaphone, Layers, Award, Sparkles, MessageCircle, Mail,
 } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import { getT } from "@/lib/translations";
 
-const MODULE_ICONS = [Wifi, BarChart3, Monitor, Globe, Instagram, Palette, TrendingUp];
-const MODULE_HASHES = ["smart-table", "gestion", "signage", "presencia", "redes", "creativo", "resultados"];
+const MODULE_ICONS = [Globe, Briefcase, CalendarCheck, ListOrdered, Smartphone, Monitor];
+const EXPANSION_ICONS = [Zap, Megaphone, Layers, Award];
+const LEGAL_ICONS = [FileText, Lock, Shield, AlertTriangle];
 
 function useTheme() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -49,7 +51,6 @@ export default function Landing() {
   const { theme, toggle: toggleTheme } = useTheme();
   const T = getT(lang);
   const L = T.landing;
-  const modules = T.modules;
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -153,7 +154,53 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ECOSYSTEM */}
+      {/* ABOUT — Executive Summary + Vision/Mission */}
+      <section id="about" className="border-t border-border bg-muted/20">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-20 sm:py-24">
+          <div className="text-center mb-12">
+            <div className="flex justify-center mb-6"><Pill>{L.about.pill}</Pill></div>
+            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-[1.05] mb-5">
+              {L.about.title1}<br />
+              <span className="text-orange-500">{L.about.title2}</span>
+            </h2>
+            <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              {L.about.body}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 max-w-3xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4 }}
+              className="rounded-2xl border border-border bg-background p-6"
+            >
+              <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center mb-4">
+                <Eye size={18} className="text-orange-500" />
+              </div>
+              <div className="text-xs font-bold tracking-widest text-orange-500 mb-2">{L.about.vision.label.toUpperCase()}</div>
+              <p className="text-sm sm:text-base text-foreground leading-relaxed">{L.about.vision.body}</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4, delay: 0.08 }}
+              className="rounded-2xl border border-border bg-background p-6"
+            >
+              <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center mb-4">
+                <Target size={18} className="text-orange-500" />
+              </div>
+              <div className="text-xs font-bold tracking-widest text-orange-500 mb-2">{L.about.mission.label.toUpperCase()}</div>
+              <p className="text-sm sm:text-base text-foreground leading-relaxed">{L.about.mission.body}</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ECOSYSTEM — Application Portfolio */}
       <section id="ecosystem" className="border-t border-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
           <div className="text-center mb-14">
@@ -162,32 +209,35 @@ export default function Landing() {
               {L.ecosystem.title1}<br />
               {L.ecosystem.title2}
             </h2>
-            <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto">{L.ecosystem.body}</p>
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">{L.ecosystem.body}</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-            {modules.map((mod, i) => {
-              const Icon = MODULE_ICONS[i];
+            {L.appPortfolio.map((mod, i) => {
+              const Icon = MODULE_ICONS[i] || Globe;
               return (
                 <motion.div
-                  key={mod.id}
+                  key={mod.name}
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.4, delay: i * 0.04 }}
                 >
                   <Link
-                    href={`/dashboard#${MODULE_HASHES[i]}`}
-                    className="group block rounded-2xl border border-border bg-card p-5 hover:border-orange-500/40 hover:bg-orange-500/[0.03] hover:-translate-y-0.5 transition-all cursor-pointer"
+                    href={`/dashboard#${mod.dashHash}`}
+                    className="group block h-full rounded-2xl border border-border bg-card p-6 hover:border-orange-500/40 hover:bg-orange-500/[0.03] hover:-translate-y-0.5 transition-all cursor-pointer"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center mb-4 group-hover:bg-orange-500/20 transition-colors">
-                      <Icon size={18} className="text-orange-500" />
+                    <div className="w-11 h-11 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center mb-4 group-hover:bg-orange-500/20 transition-colors">
+                      <Icon size={19} className="text-orange-500" />
                     </div>
-                    <div className="font-bold text-foreground mb-1 flex items-center gap-1.5">
-                      {mod.label}
-                      <ArrowUpRight size={14} className="text-orange-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="font-bold text-foreground text-lg mb-1.5 flex items-center gap-1.5">
+                      {mod.name}
+                      <ArrowUpRight size={15} className="text-orange-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
-                    <div className="text-sm text-muted-foreground">{mod.sublabel}</div>
+                    <div className="text-[11px] font-bold tracking-wider text-orange-500 mb-3">
+                      {mod.tagline}
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{mod.body}</p>
                   </Link>
                 </motion.div>
               );
@@ -232,7 +282,9 @@ export default function Landing() {
                 <div className="absolute top-4 right-5 text-5xl font-extrabold text-orange-500/15 leading-none">
                   {step.num}
                 </div>
-                <div className="text-orange-500 font-bold text-xs tracking-wider mb-3">PASO {step.num}</div>
+                <div className="text-orange-500 font-bold text-xs tracking-wider mb-3">
+                  {lang === "es" ? "PASO" : "STEP"} {step.num}
+                </div>
                 <h3 className="font-bold text-foreground text-lg mb-2 leading-tight">{step.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{step.body}</p>
               </motion.div>
@@ -243,7 +295,7 @@ export default function Landing() {
 
       {/* LOCAL CALIFORNIA */}
       <section id="local" className="border-t border-border">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-20 sm:py-24">
           <div className="rounded-3xl border border-orange-500/30 bg-gradient-to-br from-orange-500/10 via-orange-500/5 to-transparent p-7 sm:p-12">
             <div className="flex flex-col md:flex-row items-start gap-7">
               <div className="w-14 h-14 rounded-2xl bg-orange-500 flex items-center justify-center shrink-0 shadow-lg shadow-orange-500/30">
@@ -275,68 +327,235 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* PRICING */}
-      <section id="pricing" className="border-t border-border bg-muted/20">
+      {/* USA EXPANSION */}
+      <section id="expansion" className="border-t border-border bg-muted/20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-24">
+          <div className="text-center mb-14">
+            <div className="flex justify-center mb-6"><Pill>{L.expansion.pill}</Pill></div>
+            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-[1.05] mb-5">
+              {L.expansion.title1}<br />
+              <span className="text-orange-500">{L.expansion.title2}</span>
+            </h2>
+            <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              {L.expansion.body}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 max-w-4xl mx-auto">
+            {L.expansion.items.map((item, i) => {
+              const Icon = EXPANSION_ICONS[i] || Zap;
+              return (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.4, delay: i * 0.06 }}
+                  className="rounded-2xl border border-border bg-background p-6"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center shrink-0">
+                      <Icon size={18} className="text-orange-500" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-bold text-foreground text-base mb-1.5 leading-tight">
+                        {item.title.replace(/\*/g, "")}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{item.body}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* PRICING — Table + Bundle */}
+      <section id="pricing" className="border-t border-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
           <div className="text-center mb-14">
             <div className="flex justify-center mb-6"><Pill>{L.pricing.pill}</Pill></div>
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] mb-5">
               {L.pricing.title1}<br />
-              {L.pricing.title2}
+              <span className="text-orange-500">{L.pricing.title2}</span>
             </h2>
-            <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto">{L.pricing.body}</p>
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">{L.pricing.body}</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 max-w-5xl mx-auto">
-            {L.pricing.tiers.map((tier, i) => {
-              const isPro = i === 1;
+          {/* Pricing Table */}
+          <div className="max-w-5xl mx-auto rounded-3xl border border-border bg-card overflow-hidden mb-10">
+            {/* Header */}
+            <div className="hidden sm:grid sm:grid-cols-[2fr_1fr_1fr] gap-4 px-6 py-4 border-b border-border bg-muted/40">
+              <div className="text-[11px] font-bold tracking-widest text-foreground/60">
+                {L.pricing.table.header.service.toUpperCase()}
+              </div>
+              <div className="text-[11px] font-bold tracking-widest text-foreground/60 text-right">
+                {L.pricing.table.header.setup.toUpperCase()}
+              </div>
+              <div className="text-[11px] font-bold tracking-widest text-foreground/60 text-right">
+                {L.pricing.table.header.monthly.toUpperCase()}
+              </div>
+            </div>
+
+            {/* Rows */}
+            <div className="divide-y divide-border">
+              {L.pricing.table.rows.map((row, i) => (
+                <Link
+                  key={row.service}
+                  href={`/dashboard#${row.hash}`}
+                  className="group block px-6 py-5 hover:bg-orange-500/[0.04] transition-colors"
+                >
+                  <div className="grid grid-cols-2 sm:grid-cols-[2fr_1fr_1fr] gap-3 sm:gap-4 items-center">
+                    <div className="col-span-2 sm:col-span-1">
+                      <div className="font-bold text-foreground text-sm sm:text-base flex items-center gap-1.5">
+                        {row.service}
+                        <ArrowUpRight size={13} className="text-orange-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                      <div className="text-xs text-muted-foreground mt-0.5">{row.note}</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-[10px] sm:hidden font-bold tracking-widest text-foreground/50 mb-0.5">SETUP</div>
+                      <div className="font-bold text-foreground text-sm sm:text-base">{row.setup}</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-[10px] sm:hidden font-bold tracking-widest text-foreground/50 mb-0.5">SAAS</div>
+                      <div className="font-bold text-foreground text-sm sm:text-base">
+                        {row.monthly}<span className="text-xs text-muted-foreground font-normal">{L.pricing.period}</span>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            {/* Total row */}
+            <div className="grid grid-cols-2 sm:grid-cols-[2fr_1fr_1fr] gap-3 sm:gap-4 items-center px-6 py-5 border-t-2 border-border bg-muted/30">
+              <div className="col-span-2 sm:col-span-1 text-sm font-bold text-foreground">
+                {L.pricing.table.totalLabel}
+              </div>
+              <div className="text-right text-base sm:text-lg font-extrabold text-foreground">
+                {L.pricing.table.totalSetup}
+              </div>
+              <div className="text-right text-base sm:text-lg font-extrabold text-foreground">
+                {L.pricing.table.totalMonthly}<span className="text-xs text-muted-foreground font-normal">{L.pricing.period}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Bundle Highlight */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5 }}
+            className="max-w-5xl mx-auto rounded-3xl border-2 border-orange-500 bg-gradient-to-br from-orange-500/10 via-orange-500/5 to-transparent p-7 sm:p-10 relative overflow-hidden shadow-xl shadow-orange-500/15"
+          >
+            <div className="absolute top-0 right-0 w-72 h-72 bg-orange-500/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+
+            <div className="relative">
+              <div className="flex flex-wrap items-center gap-3 mb-5">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-orange-500 text-white text-[11px] font-extrabold tracking-wider shadow-lg">
+                  <Sparkles size={11} fill="currentColor" />
+                  {L.pricing.bundle.badge}
+                </span>
+              </div>
+
+              <h3 className="text-2xl sm:text-4xl font-extrabold tracking-tight mb-3">
+                {L.pricing.bundle.title}
+              </h3>
+              <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mb-8 leading-relaxed">
+                {L.pricing.bundle.body}
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 mb-7">
+                {/* Setup */}
+                <div className="rounded-2xl border border-border bg-background/80 backdrop-blur p-6">
+                  <div className="text-xs font-bold tracking-widest text-foreground/60 mb-3">
+                    {L.pricing.bundle.setupLabel.toUpperCase()}
+                  </div>
+                  <div className="flex items-baseline gap-3 mb-1.5">
+                    <span className="text-4xl sm:text-5xl font-extrabold text-orange-500 tracking-tight">
+                      {L.pricing.bundle.setupNow}
+                    </span>
+                    <span className="text-base sm:text-lg text-muted-foreground line-through">
+                      {L.pricing.bundle.setupOriginal}
+                    </span>
+                  </div>
+                  <div className="text-xs sm:text-sm font-semibold text-orange-500">
+                    {L.pricing.bundle.setupSavings}
+                  </div>
+                </div>
+
+                {/* Monthly */}
+                <div className="rounded-2xl border border-border bg-background/80 backdrop-blur p-6">
+                  <div className="text-xs font-bold tracking-widest text-foreground/60 mb-3">
+                    {L.pricing.bundle.monthlyLabel.toUpperCase()}
+                  </div>
+                  <div className="flex items-baseline gap-3 mb-1.5 flex-wrap">
+                    <span className="text-4xl sm:text-5xl font-extrabold text-orange-500 tracking-tight">
+                      {L.pricing.bundle.monthlyNow}
+                    </span>
+                    <span className="text-sm sm:text-base text-muted-foreground">{L.pricing.period}</span>
+                    <span className="text-base sm:text-lg text-muted-foreground line-through">
+                      {L.pricing.bundle.monthlyOriginal}
+                    </span>
+                  </div>
+                  <div className="text-xs sm:text-sm font-semibold text-orange-500">
+                    {L.pricing.bundle.monthlySavings}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                <a
+                  href="mailto:contact@conect-r.com"
+                  className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-7 py-3.5 rounded-xl font-semibold text-base shadow-xl shadow-orange-500/25 transition-all"
+                >
+                  {L.pricing.bundle.cta}
+                  <ArrowRight size={16} />
+                </a>
+                <p className="text-xs text-muted-foreground italic max-w-md leading-relaxed">
+                  {L.pricing.bundle.note}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* LEGAL */}
+      <section id="legal" className="border-t border-border bg-muted/20">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
+          <div className="text-center mb-10">
+            <div className="flex justify-center mb-5"><Pill>{L.legal.pill}</Pill></div>
+            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-4">
+              {L.legal.title}
+            </h2>
+            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">{L.legal.body}</p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            {L.legal.items.map((item, i) => {
+              const Icon = LEGAL_ICONS[i] || Shield;
               return (
                 <motion.div
-                  key={tier.name}
-                  initial={{ opacity: 0, y: 16 }}
+                  key={item.title}
+                  initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.4, delay: i * 0.08 }}
-                  className={`rounded-2xl p-7 relative ${
-                    isPro
-                      ? "border-2 border-orange-500 bg-background shadow-xl shadow-orange-500/15 md:scale-[1.03]"
-                      : "border border-border bg-background"
-                  }`}
+                  transition={{ duration: 0.4, delay: i * 0.05 }}
+                  className="rounded-2xl border border-border bg-background p-5"
                 >
-                  {isPro && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 bg-orange-500 text-white text-[11px] font-bold tracking-wide px-3 py-1 rounded-full shadow-lg">
-                      <Star size={10} fill="currentColor" />
-                      {L.pricing.popular.toUpperCase()}
+                  <div className="flex items-start gap-3">
+                    <div className="w-9 h-9 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center shrink-0">
+                      <Icon size={16} className="text-orange-500" />
                     </div>
-                  )}
-                  <div className="font-bold text-foreground text-lg mb-1">{tier.name}</div>
-                  <p className="text-xs text-muted-foreground mb-5 leading-relaxed">{tier.desc}</p>
-                  <div className="flex items-baseline gap-1.5 mb-6">
-                    <span className="text-4xl font-extrabold tracking-tight">{tier.price}</span>
-                    {tier.price.startsWith("$") && (
-                      <span className="text-sm text-muted-foreground">{L.pricing.period}</span>
-                    )}
+                    <div className="flex-1">
+                      <h3 className="font-bold text-foreground text-sm mb-1">{item.title}</h3>
+                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{item.body}</p>
+                    </div>
                   </div>
-                  <a
-                    href="mailto:contact@conect-r.com"
-                    className={`block text-center px-5 py-3 rounded-xl text-sm font-semibold mb-6 transition-all ${
-                      isPro
-                        ? "bg-orange-500 hover:bg-orange-600 text-white shadow-lg shadow-orange-500/20"
-                        : "border border-border text-foreground hover:bg-muted"
-                    }`}
-                  >
-                    {tier.cta}
-                  </a>
-                  <ul className="space-y-2.5">
-                    {tier.features.map(f => (
-                      <li key={f} className="flex items-start gap-2 text-sm text-foreground/85">
-                        <div className="w-4 h-4 rounded-full bg-orange-500/15 flex items-center justify-center shrink-0 mt-0.5">
-                          <Check size={10} className="text-orange-500" />
-                        </div>
-                        <span>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </motion.div>
               );
             })}
@@ -417,7 +636,7 @@ export default function Landing() {
             </div>
             <div>
               <div className="text-xs font-bold tracking-widest text-foreground/50 mb-4">
-                CONTACTO
+                {lang === "es" ? "CONTACTO" : "CONTACT"}
               </div>
               <a
                 href="mailto:contact@conect-r.com"
