@@ -3,16 +3,65 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import {
   ArrowUpRight, ArrowRight, Check, MapPin, Sun, Moon, Languages,
-  Globe, Briefcase, CalendarCheck, ListOrdered, Smartphone, Monitor,
+  Globe, Smartphone, Monitor, HeartHandshake,
   Eye, Target, Shield, Lock, FileText, AlertTriangle,
   Zap, Megaphone, Layers, Award, Sparkles, MessageCircle, Mail,
 } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import { getT } from "@/lib/translations";
 
-const MODULE_ICONS = [Globe, Briefcase, CalendarCheck, ListOrdered, Smartphone, Monitor];
+const PHONE_DIGITS = "19168120873";
+const PHONE_DISPLAY = "+1 916 812 0873";
+
+/* ───────────── Custom Brand Icons (orange) ───────────── */
+
+function ChefHatIcon({ size = 18 }: { size?: number }) {
+  // Chamba — Chef hat (estilo del logo, recoloreado en naranja)
+  return (
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 30c-4 0-8-3.2-8-8s4-8 8-8c1 0 2 .2 2.8.6C20 9.5 24 7 28.5 7c3.2 0 6 1.3 8 3.4 2-2.1 4.8-3.4 8-3.4 4.5 0 8.5 2.5 9.7 7.6.8-.4 1.8-.6 2.8-.6 4 0 8 3.2 8 8s-4 8-8 8" />
+      <path d="M14 30h36c0 0 -.5 6 -3 8c-2.5 2 -3.5 4 -3.5 6.5l0 5h-23l0-5c0-2.5 -1-4.5 -3.5-6.5C14.5 36 14 30 14 30Z" />
+      <path d="M22 51 q4 4 10 4 q4 0 6-3" />
+    </svg>
+  );
+}
+
+function ForkKnifeIcon({ size = 18 }: { size?: number }) {
+  // Table Reserve — Knife + Fork (recoloreado en naranja)
+  return (
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 8v18c0 4-2 6-5 6 v24" />
+      <path d="M14 8v12" />
+      <path d="M26 8v12" />
+      <path d="M44 8c-6 0-10 6-10 12c0 6 4 10 10 10v26" />
+    </svg>
+  );
+}
+
+function NextUpIcon({ size = 18 }: { size?: number }) {
+  // NextUp — N estilizada con flecha hacia arriba (recoloreada en naranja)
+  return (
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 50 V18 L40 44 V18" />
+      <path d="M40 18 L52 6" />
+      <path d="M44 6 H52 V14" />
+    </svg>
+  );
+}
+
+const MODULE_ICONS: Array<React.ComponentType<{ size?: number }>> = [
+  Globe,           // Premium Website
+  ChefHatIcon,     // Chamba
+  ForkKnifeIcon,   // Table Reserve
+  NextUpIcon,      // NextUp
+  Smartphone,      // NFC Stands
+  Monitor,         // TV Menu Boards
+  HeartHandshake,  // Asesoria para Negocios
+];
 const EXPANSION_ICONS = [Zap, Megaphone, Layers, Award];
 const LEGAL_ICONS = [FileText, Lock, Shield, AlertTriangle];
+
+/* ───────────── Theme ───────────── */
 
 function useTheme() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -37,14 +86,43 @@ function Pill({ children }: { children: React.ReactNode }) {
   );
 }
 
+/* ───────────── Wordmark — "Conect-" + R con ondas wifi en naranja ───────────── */
+
 function Wordmark({ size = "base" }: { size?: "base" | "lg" }) {
-  const cls = size === "lg" ? "text-3xl sm:text-4xl" : "text-xl sm:text-2xl";
+  // Tamaño coincide con las letras de la primera foto
+  const h = size === "lg" ? 38 : 26;
+  const fontSize = h;
   return (
-    <span className={`${cls} font-extrabold tracking-tight text-foreground`}>
-      Conect<span className="text-orange-500">-R</span>
+    <span
+      className="inline-flex items-center leading-none font-extrabold tracking-tight"
+      style={{ height: h, fontSize, lineHeight: 1 }}
+    >
+      <span className="text-foreground">Conect</span>
+      <span className="text-orange-500">-</span>
+      {/* R con ondas wifi superpuestas (replica el logo oficial) */}
+      <span className="relative inline-block text-orange-500" style={{ paddingRight: h * 0.45 }}>
+        R
+        <svg
+          viewBox="0 0 24 24"
+          width={h * 0.55}
+          height={h * 0.55}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.6"
+          strokeLinecap="round"
+          className="absolute"
+          style={{ right: -h * 0.05, top: -h * 0.05 }}
+        >
+          <path d="M3 12 q9 -9 18 0" />
+          <path d="M7 16 q5 -5 10 0" />
+          <circle cx="12" cy="20" r="1.5" fill="currentColor" stroke="none" />
+        </svg>
+      </span>
     </span>
   );
 }
+
+/* ───────────── Page ───────────── */
 
 export default function Landing() {
   const { lang, toggle: toggleLang } = useLang();
@@ -227,8 +305,8 @@ export default function Landing() {
                     href={`/dashboard#${mod.dashHash}`}
                     className="group block h-full rounded-2xl border border-border bg-card p-6 hover:border-orange-500/40 hover:bg-orange-500/[0.03] hover:-translate-y-0.5 transition-all cursor-pointer"
                   >
-                    <div className="w-11 h-11 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center mb-4 group-hover:bg-orange-500/20 transition-colors">
-                      <Icon size={19} className="text-orange-500" />
+                    <div className="w-11 h-11 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center mb-4 text-orange-500 group-hover:bg-orange-500/20 transition-colors">
+                      <Icon size={19} />
                     </div>
                     <div className="font-bold text-foreground text-lg mb-1.5 flex items-center gap-1.5">
                       {mod.name}
@@ -257,44 +335,8 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* FLOW */}
-      <section id="flow" className="border-t border-border bg-muted/20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
-          <div className="text-center mb-14">
-            <div className="flex justify-center mb-6"><Pill>{L.flow.pill}</Pill></div>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] mb-5">
-              {L.flow.title1}<br />
-              {L.flow.title2}
-            </h2>
-            <p className="text-base sm:text-lg text-muted-foreground">{L.flow.body}</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 max-w-4xl mx-auto">
-            {L.flow.steps.map((step, i) => (
-              <motion.div
-                key={step.num}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="rounded-2xl border border-border bg-background p-6 relative overflow-hidden"
-              >
-                <div className="absolute top-4 right-5 text-5xl font-extrabold text-orange-500/15 leading-none">
-                  {step.num}
-                </div>
-                <div className="text-orange-500 font-bold text-xs tracking-wider mb-3">
-                  {lang === "es" ? "PASO" : "STEP"} {step.num}
-                </div>
-                <h3 className="font-bold text-foreground text-lg mb-2 leading-tight">{step.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{step.body}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* LOCAL CALIFORNIA */}
-      <section id="local" className="border-t border-border">
+      <section id="local" className="border-t border-border bg-muted/20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-20 sm:py-24">
           <div className="rounded-3xl border border-orange-500/30 bg-gradient-to-br from-orange-500/10 via-orange-500/5 to-transparent p-7 sm:p-12">
             <div className="flex flex-col md:flex-row items-start gap-7">
@@ -328,7 +370,7 @@ export default function Landing() {
       </section>
 
       {/* USA EXPANSION */}
-      <section id="expansion" className="border-t border-border bg-muted/20">
+      <section id="expansion" className="border-t border-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-24">
           <div className="text-center mb-14">
             <div className="flex justify-center mb-6"><Pill>{L.expansion.pill}</Pill></div>
@@ -372,7 +414,7 @@ export default function Landing() {
       </section>
 
       {/* PRICING — Table + Bundle */}
-      <section id="pricing" className="border-t border-border">
+      <section id="pricing" className="border-t border-border bg-muted/20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
           <div className="text-center mb-14">
             <div className="flex justify-center mb-6"><Pill>{L.pricing.pill}</Pill></div>
@@ -385,7 +427,6 @@ export default function Landing() {
 
           {/* Pricing Table */}
           <div className="max-w-5xl mx-auto rounded-3xl border border-border bg-card overflow-hidden mb-10">
-            {/* Header */}
             <div className="hidden sm:grid sm:grid-cols-[2fr_1fr_1fr] gap-4 px-6 py-4 border-b border-border bg-muted/40">
               <div className="text-[11px] font-bold tracking-widest text-foreground/60">
                 {L.pricing.table.header.service.toUpperCase()}
@@ -398,9 +439,8 @@ export default function Landing() {
               </div>
             </div>
 
-            {/* Rows */}
             <div className="divide-y divide-border">
-              {L.pricing.table.rows.map((row, i) => (
+              {L.pricing.table.rows.map((row) => (
                 <Link
                   key={row.service}
                   href={`/dashboard#${row.hash}`}
@@ -429,7 +469,6 @@ export default function Landing() {
               ))}
             </div>
 
-            {/* Total row */}
             <div className="grid grid-cols-2 sm:grid-cols-[2fr_1fr_1fr] gap-3 sm:gap-4 items-center px-6 py-5 border-t-2 border-border bg-muted/30">
               <div className="col-span-2 sm:col-span-1 text-sm font-bold text-foreground">
                 {L.pricing.table.totalLabel}
@@ -469,7 +508,6 @@ export default function Landing() {
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 mb-7">
-                {/* Setup */}
                 <div className="rounded-2xl border border-border bg-background/80 backdrop-blur p-6">
                   <div className="text-xs font-bold tracking-widest text-foreground/60 mb-3">
                     {L.pricing.bundle.setupLabel.toUpperCase()}
@@ -487,7 +525,6 @@ export default function Landing() {
                   </div>
                 </div>
 
-                {/* Monthly */}
                 <div className="rounded-2xl border border-border bg-background/80 backdrop-blur p-6">
                   <div className="text-xs font-bold tracking-widest text-foreground/60 mb-3">
                     {L.pricing.bundle.monthlyLabel.toUpperCase()}
@@ -525,7 +562,7 @@ export default function Landing() {
       </section>
 
       {/* LEGAL */}
-      <section id="legal" className="border-t border-border bg-muted/20">
+      <section id="legal" className="border-t border-border">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
           <div className="text-center mb-10">
             <div className="flex justify-center mb-5"><Pill>{L.legal.pill}</Pill></div>
@@ -564,7 +601,7 @@ export default function Landing() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="border-t border-border">
+      <section className="border-t border-border bg-muted/20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-20 sm:py-28 text-center">
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] mb-5">
             {L.finalCta.title}
@@ -574,8 +611,7 @@ export default function Landing() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
-              href="https://wa.me/19165551234"
-              target="_blank" rel="noopener noreferrer"
+              href={`sms:+${PHONE_DIGITS}`}
               className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-7 py-3.5 rounded-xl font-semibold text-base shadow-xl shadow-orange-500/25 transition-all"
             >
               <MessageCircle size={16} />
@@ -588,6 +624,14 @@ export default function Landing() {
             >
               <Mail size={16} />
               {L.finalCta.email}
+            </a>
+          </div>
+          <div className="mt-5 text-sm text-muted-foreground">
+            <a
+              href={`tel:+${PHONE_DIGITS}`}
+              className="font-semibold text-foreground hover:text-orange-500 transition-colors"
+            >
+              {PHONE_DISPLAY}
             </a>
           </div>
         </div>
@@ -645,11 +689,16 @@ export default function Landing() {
                 contact@conect-r.com
               </a>
               <a
-                href="https://wa.me/19165551234"
-                target="_blank" rel="noopener noreferrer"
+                href={`tel:+${PHONE_DIGITS}`}
+                className="text-sm text-muted-foreground hover:text-orange-500 transition-colors block mb-2"
+              >
+                {PHONE_DISPLAY}
+              </a>
+              <a
+                href={`sms:+${PHONE_DIGITS}`}
                 className="text-sm text-muted-foreground hover:text-orange-500 transition-colors block"
               >
-                WhatsApp
+                WhatsApp / SMS
               </a>
             </div>
           </div>

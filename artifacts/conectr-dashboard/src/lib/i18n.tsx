@@ -7,11 +7,11 @@ interface LangContextValue {
   toggle: () => void;
 }
 
-const LangContext = createContext<LangContextValue>({ lang: "es", toggle: () => {} });
+const LangContext = createContext<LangContextValue>({ lang: "en", toggle: () => {} });
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>("es");
-  const toggle = () => setLang(l => (l === "es" ? "en" : "es"));
+  const [lang, setLang] = useState<Lang>("en");
+  const toggle = () => setLang(l => (l === "en" ? "es" : "en"));
   return <LangContext.Provider value={{ lang, toggle }}>{children}</LangContext.Provider>;
 }
 

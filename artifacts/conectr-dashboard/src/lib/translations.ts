@@ -73,6 +73,12 @@ const translations = {
           body: "Sistemas de pantallas digitales colocadas estrategicamente en el establecimiento (barras o zonas de comida rapida). Muestran menu, videos promocionales y especiales de manera atractiva y dinamica — empujando ventas visualmente.",
           dashHash: "signage",
         },
+        {
+          name: "Asesoria para Negocios",
+          tagline: "CONSULTORIA ESTRATEGICA PARA RESTAURANTES",
+          body: "Acompanamos a tu restaurante mas alla del software: analisis operativo, estrategia de marketing, recomendaciones de menu, optimizacion de costos y plan de crecimiento. Conect-R como tu socio estrategico — no solo proveedor de tecnologia.",
+          dashHash: "gestion",
+        },
       ],
       flow: {
         pill: "ASI FUNCIONA",
@@ -155,14 +161,13 @@ const translations = {
       finalCta: {
         title: "¿Listo para llenar mas mesas?",
         body: "Agenda una demo de 30 minutos. Sin compromisos. Te mostramos el ecosistema en accion para tu restaurante.",
-        whatsapp: "Agendar por WhatsApp",
+        whatsapp: "Agendar por texto o WhatsApp",
         email: "Enviar email",
       },
       footer: {
         tagline: "Ecosistema digital para restaurantes. Atrae, atiende y retiene a tus clientes.",
         productLabel: "Producto",
         productLinks: [
-          { label: "Funciones", href: "/dashboard" },
           { label: "Demo interactiva", href: "/dashboard" },
           { label: "Planes", href: "#pricing" },
           { label: "Contacto", href: "mailto:contact@conect-r.com" },
@@ -595,6 +600,12 @@ const translations = {
           body: "Digital screen systems strategically placed in the establishment (bars or fast-food areas). They display menus, promotional videos, and specials in an attractive and dynamic way — visually boosting sales.",
           dashHash: "signage",
         },
+        {
+          name: "Business Consulting",
+          tagline: "STRATEGIC ADVISORY FOR RESTAURANTS",
+          body: "We support your restaurant beyond the software: operational analysis, marketing strategy, menu recommendations, cost optimization, and growth planning. Conect-R as your strategic partner — not just a technology vendor.",
+          dashHash: "gestion",
+        },
       ],
       flow: {
         pill: "HOW IT WORKS",
@@ -677,14 +688,13 @@ const translations = {
       finalCta: {
         title: "Ready to fill more tables?",
         body: "Book a 30-minute demo. No commitments. We'll show you the ecosystem in action for your restaurant.",
-        whatsapp: "Book via WhatsApp",
+        whatsapp: "Book by text or WhatsApp",
         email: "Send email",
       },
       footer: {
         tagline: "Digital ecosystem for restaurants. Attract, serve, and retain your customers.",
         productLabel: "Product",
         productLinks: [
-          { label: "Features", href: "/dashboard" },
           { label: "Interactive demo", href: "/dashboard" },
           { label: "Plans", href: "#pricing" },
           { label: "Contact", href: "mailto:contact@conect-r.com" },
