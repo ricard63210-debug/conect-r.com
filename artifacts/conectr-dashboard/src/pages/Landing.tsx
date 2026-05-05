@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import { getT } from "@/lib/translations";
+import conectrLogo from "@/assets/conectr-logo.png";
 
 const PHONE_DIGITS = "19168120873";
 const PHONE_DISPLAY = "+1 916 812 0873";
@@ -108,52 +109,15 @@ function Pill({ children }: { children: React.ReactNode }) {
 /* ───────────── Wordmark — "Conect-" + R con ondas wifi en naranja ───────────── */
 
 function Wordmark({ size = "base" }: { size?: "base" | "lg" }) {
-  // Replica logo oficial (IMG 2): "conect-" en minúsculas + R con 3 arcos concéntricos.
   const h = size === "lg" ? 38 : 26;
   return (
-    <span
-      className="inline-flex items-center leading-none font-extrabold tracking-tight"
-      style={{ height: h, fontSize: h, lineHeight: 1 }}
-    >
-      <span className="text-foreground lowercase">conect</span>
-      <span className="text-orange-500">-</span>
-      {/* R estilizada: 3 arcos concéntricos abriendo a la izquierda + pierna diagonal (replica IMG 2) */}
-      <svg
-        viewBox="0 0 80 80"
-        height={h * 1.45}
-        width={h * 1.45}
-        fill="none"
-        stroke="currentColor"
-        className="text-orange-500"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        style={{ marginLeft: 2 }}
-        aria-hidden="true"
-      >
-        {/* Arco exterior (más grande) con pierna diagonal hacia abajo-derecha */}
-        <path
-          d="M10 8
-             Q56 8 56 38
-             Q56 60 26 64
-             L62 78"
-          strokeWidth="10"
-        />
-        {/* Arco medio */}
-        <path
-          d="M10 22
-             Q42 22 42 38
-             Q42 50 22 52"
-          strokeWidth="8"
-        />
-        {/* Arco interno (más pequeño) */}
-        <path
-          d="M10 34
-             Q28 34 28 40
-             Q28 44 20 44"
-          strokeWidth="7"
-        />
-      </svg>
-    </span>
+    <img
+      src={conectrLogo}
+      alt="Conect-R"
+      style={{ height: h, width: "auto" }}
+      className="object-contain select-none"
+      draggable={false}
+    />
   );
 }
 
