@@ -161,7 +161,7 @@ const translations = {
       finalCta: {
         title: "¿Listo para llenar mas mesas?",
         body: "Agenda una demo de 30 minutos. Sin compromisos. Te mostramos el ecosistema en accion para tu restaurante.",
-        whatsapp: "Agendar por texto o WhatsApp",
+        whatsapp: "Reservar por WhatsApp",
         email: "Enviar email",
       },
       footer: {
@@ -688,7 +688,7 @@ const translations = {
       finalCta: {
         title: "Ready to fill more tables?",
         body: "Book a 30-minute demo. No commitments. We'll show you the ecosystem in action for your restaurant.",
-        whatsapp: "Book by text or WhatsApp",
+        whatsapp: "Book by WhatsApp",
         email: "Send email",
       },
       footer: {

@@ -40,15 +40,19 @@ function ChefHatIcon({ size = 18 }: { size?: number }) {
 function ForkKnifeIcon({ size = 18 }: { size?: number }) {
   // Table Reserve — Cuchillo + Tenedor cruzados en X (replica IMG_3614 en naranja)
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="3.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      {/* Cuchillo: hoja triangular arriba-izquierda, mango baja a la derecha */}
-      <path d="M10 12 Q14 8 20 10 L36 30 L30 36 Z" />
-      <path d="M32 34 L52 54" />
-      {/* Tenedor: 3 púas arriba-derecha, mango baja a la izquierda */}
-      <path d="M52 8 L48 18" />
-      <path d="M56 12 L48 20" />
-      <path d="M54 18 L46 22" />
-      <path d="M48 20 Q44 24 46 30 L26 50 Q22 54 18 54" />
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="3.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {/* TENEDOR — rotado +45° (mango abajo-izquierda, púas arriba-derecha) */}
+      <g transform="rotate(45 32 32)">
+        <path d="M22 8 L22 18 Q22 22 26 22" />
+        <path d="M28 8 L28 18" />
+        <path d="M34 8 L34 18 Q34 22 30 22" />
+        <path d="M28 22 L28 56" />
+      </g>
+      {/* CUCHILLO — rotado -45° (hoja arriba-derecha, mango abajo-izquierda) */}
+      <g transform="rotate(-45 32 32)">
+        <path d="M28 8 Q24 12 24 22 Q24 32 32 34 Q40 32 40 22 Q40 12 36 8 Z" />
+        <path d="M32 34 L32 56" />
+      </g>
     </svg>
   );
 }
@@ -115,9 +119,9 @@ function Wordmark({ size = "base" }: { size?: "base" | "lg" }) {
       <span className="text-orange-500">-</span>
       {/* R estilizada: 3 arcos concéntricos abriendo a la izquierda + pierna diagonal (replica IMG 2) */}
       <svg
-        viewBox="0 0 64 80"
-        height={h * 1.5}
-        width={h * 1.2}
+        viewBox="0 0 80 80"
+        height={h * 1.45}
+        width={h * 1.45}
         fill="none"
         stroke="currentColor"
         className="text-orange-500"
@@ -126,23 +130,26 @@ function Wordmark({ size = "base" }: { size?: "base" | "lg" }) {
         style={{ marginLeft: 2 }}
         aria-hidden="true"
       >
-        {/* Arco exterior + pierna diagonal continua */}
+        {/* Arco exterior (más grande) con pierna diagonal hacia abajo-derecha */}
         <path
           d="M10 8
-             A28 28 0 0 1 10 64
-             L52 78"
-          strokeWidth="9"
+             Q56 8 56 38
+             Q56 60 26 64
+             L62 78"
+          strokeWidth="10"
         />
         {/* Arco medio */}
         <path
-          d="M10 18
-             A18 18 0 0 1 10 54"
+          d="M10 22
+             Q42 22 42 38
+             Q42 50 22 52"
           strokeWidth="8"
         />
-        {/* Arco interno */}
+        {/* Arco interno (más pequeño) */}
         <path
-          d="M10 28
-             A8 8 0 0 1 10 44"
+          d="M10 34
+             Q28 34 28 40
+             Q28 44 20 44"
           strokeWidth="7"
         />
       </svg>
@@ -175,7 +182,7 @@ export default function Landing() {
             <button
               onClick={toggleTheme}
               aria-label="Toggle theme"
-              className="hidden sm:flex w-9 h-9 items-center justify-center rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+              className="flex w-9 h-9 items-center justify-center rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
             >
               {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
             </button>
@@ -639,7 +646,9 @@ export default function Landing() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
-              href={`sms:+${PHONE_DIGITS}`}
+              href={`https://wa.me/${PHONE_DIGITS}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-7 py-3.5 rounded-xl font-semibold text-base shadow-xl shadow-orange-500/25 transition-all"
             >
               <MessageCircle size={16} />
@@ -654,12 +663,15 @@ export default function Landing() {
               {L.finalCta.email}
             </a>
           </div>
-          <div className="mt-5 text-sm text-muted-foreground">
+          <div className="mt-5">
             <a
-              href={`tel:+${PHONE_DIGITS}`}
-              className="font-semibold text-foreground hover:text-orange-500 transition-colors"
+              href={`sms:+${PHONE_DIGITS}`}
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-lg border border-border text-sm font-semibold text-foreground hover:text-orange-500 hover:border-orange-500/40 transition-colors"
             >
-              {PHONE_DISPLAY}
+              <MessageCircle size={14} />
+              {lang === "es" ? "Enviar texto" : "Text"}
+              <span className="text-muted-foreground font-normal">·</span>
+              <span className="text-muted-foreground font-normal">{PHONE_DISPLAY}</span>
             </a>
           </div>
         </div>
@@ -717,16 +729,18 @@ export default function Landing() {
                 contact@conect-r.com
               </a>
               <a
-                href={`tel:+${PHONE_DIGITS}`}
+                href={`sms:+${PHONE_DIGITS}`}
                 className="text-sm text-muted-foreground hover:text-orange-500 transition-colors block mb-2"
               >
-                {PHONE_DISPLAY}
+                {lang === "es" ? "Enviar texto" : "Text"} · {PHONE_DISPLAY}
               </a>
               <a
-                href={`sms:+${PHONE_DIGITS}`}
+                href={`https://wa.me/${PHONE_DIGITS}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-sm text-muted-foreground hover:text-orange-500 transition-colors block"
               >
-                WhatsApp / SMS
+                WhatsApp · {PHONE_DISPLAY}
               </a>
             </div>
           </div>
