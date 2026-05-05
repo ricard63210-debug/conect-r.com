@@ -16,24 +16,39 @@ const PHONE_DISPLAY = "+1 916 812 0873";
 /* ───────────── Custom Brand Icons (orange) ───────────── */
 
 function ChefHatIcon({ size = 18 }: { size?: number }) {
-  // Chamba — Chef hat (estilo del logo, recoloreado en naranja)
+  // Chamba — Chef hat estilo "cloud" con band y swoosh (replica IMG_3612 en naranja)
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M16 30c-4 0-8-3.2-8-8s4-8 8-8c1 0 2 .2 2.8.6C20 9.5 24 7 28.5 7c3.2 0 6 1.3 8 3.4 2-2.1 4.8-3.4 8-3.4 4.5 0 8.5 2.5 9.7 7.6.8-.4 1.8-.6 2.8-.6 4 0 8 3.2 8 8s-4 8-8 8" />
-      <path d="M14 30h36c0 0 -.5 6 -3 8c-2.5 2 -3.5 4 -3.5 6.5l0 5h-23l0-5c0-2.5 -1-4.5 -3.5-6.5C14.5 36 14 30 14 30Z" />
-      <path d="M22 51 q4 4 10 4 q4 0 6-3" />
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="3.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {/* Top: tres lóbulos puffy formando una nube */}
+      <path d="M18 32
+               c-5 0 -9 -4 -9 -9
+               c0 -5.5 4.5 -10 10 -10
+               c1.2 0 2.3 .2 3.3 .5
+               c1.5 -4.5 6 -7.5 11.7 -7.5
+               c5.7 0 10.2 3 11.7 7.5
+               c1 -.3 2.1 -.5 3.3 -.5
+               c5.5 0 10 4.5 10 10
+               c0 5 -4 9 -9 9 Z" />
+      {/* Band rectangular debajo del top */}
+      <path d="M19 32 L19 44 L45 44 L45 32" />
+      {/* Swoosh/tail saliendo de la esquina inferior-derecha */}
+      <path d="M40 44 c4 6 9 8 14 6" strokeWidth="3.5" />
     </svg>
   );
 }
 
 function ForkKnifeIcon({ size = 18 }: { size?: number }) {
-  // Table Reserve — Knife + Fork (recoloreado en naranja)
+  // Table Reserve — Cuchillo + Tenedor cruzados en X (replica IMG_3614 en naranja)
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 8v18c0 4-2 6-5 6 v24" />
-      <path d="M14 8v12" />
-      <path d="M26 8v12" />
-      <path d="M44 8c-6 0-10 6-10 12c0 6 4 10 10 10v26" />
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="3.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {/* Cuchillo: hoja triangular arriba-izquierda, mango baja a la derecha */}
+      <path d="M10 12 Q14 8 20 10 L36 30 L30 36 Z" />
+      <path d="M32 34 L52 54" />
+      {/* Tenedor: 3 púas arriba-derecha, mango baja a la izquierda */}
+      <path d="M52 8 L48 18" />
+      <path d="M56 12 L48 20" />
+      <path d="M54 18 L46 22" />
+      <path d="M48 20 Q44 24 46 30 L26 50 Q22 54 18 54" />
     </svg>
   );
 }
@@ -89,35 +104,48 @@ function Pill({ children }: { children: React.ReactNode }) {
 /* ───────────── Wordmark — "Conect-" + R con ondas wifi en naranja ───────────── */
 
 function Wordmark({ size = "base" }: { size?: "base" | "lg" }) {
-  // Tamaño coincide con las letras de la primera foto
+  // Replica logo oficial (IMG 2): "conect-" en minúsculas + R con 3 arcos concéntricos.
   const h = size === "lg" ? 38 : 26;
-  const fontSize = h;
   return (
     <span
       className="inline-flex items-center leading-none font-extrabold tracking-tight"
-      style={{ height: h, fontSize, lineHeight: 1 }}
+      style={{ height: h, fontSize: h, lineHeight: 1 }}
     >
-      <span className="text-foreground">Conect</span>
+      <span className="text-foreground lowercase">conect</span>
       <span className="text-orange-500">-</span>
-      {/* R con ondas wifi superpuestas (replica el logo oficial) */}
-      <span className="relative inline-block text-orange-500" style={{ paddingRight: h * 0.45 }}>
-        R
-        <svg
-          viewBox="0 0 24 24"
-          width={h * 0.55}
-          height={h * 0.55}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.6"
-          strokeLinecap="round"
-          className="absolute"
-          style={{ right: -h * 0.05, top: -h * 0.05 }}
-        >
-          <path d="M3 12 q9 -9 18 0" />
-          <path d="M7 16 q5 -5 10 0" />
-          <circle cx="12" cy="20" r="1.5" fill="currentColor" stroke="none" />
-        </svg>
-      </span>
+      {/* R estilizada: 3 arcos concéntricos abriendo a la izquierda + pierna diagonal (replica IMG 2) */}
+      <svg
+        viewBox="0 0 64 80"
+        height={h * 1.5}
+        width={h * 1.2}
+        fill="none"
+        stroke="currentColor"
+        className="text-orange-500"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{ marginLeft: 2 }}
+        aria-hidden="true"
+      >
+        {/* Arco exterior + pierna diagonal continua */}
+        <path
+          d="M10 8
+             A28 28 0 0 1 10 64
+             L52 78"
+          strokeWidth="9"
+        />
+        {/* Arco medio */}
+        <path
+          d="M10 18
+             A18 18 0 0 1 10 54"
+          strokeWidth="8"
+        />
+        {/* Arco interno */}
+        <path
+          d="M10 28
+             A8 8 0 0 1 10 44"
+          strokeWidth="7"
+        />
+      </svg>
     </span>
   );
 }
