@@ -6,7 +6,7 @@ const BASE = import.meta.env.BASE_URL;
 const LINKS = {
   menu: "/maya-menu/",
   reserve: "https://tablereserve.conect-r.com/book/roosters-on-the-river",
-  review: "https://search.google.com/local/writereview?query=Maya+Cantina+Sacramento+CA",
+  review: "https://www.google.com/search?q=Maya+Cantina+Sacramento+CA+reviews",
   events: "https://www.instagram.com/mayacantinasac/",
   instagram: "https://www.instagram.com/mayacantinasac/",
   facebook: "https://www.facebook.com/Mayarestaurantsac",
