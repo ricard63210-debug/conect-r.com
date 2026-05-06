@@ -6,6 +6,7 @@ import { LanguageProvider } from "@/lib/i18n";
 import Landing from "@/pages/Landing";
 import Dashboard from "@/pages/Dashboard";
 import NotFound from "@/pages/not-found";
+import AssistantWidget from "@/components/AssistantWidget";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ function App() {
         <LanguageProvider>
           <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
             <Router />
+            <AssistantWidget />
           </WouterRouter>
           <Toaster />
         </LanguageProvider>
