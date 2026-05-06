@@ -282,8 +282,11 @@ export default function AssistantWidget() {
   const [step, setStep] = useState(0);
   const [booking, setBooking] = useState<BookingForm>(EMPTY_BOOKING);
   const [errorKey, setErrorKey] = useState<keyof BookingForm | null>(null);
+  const [thinking, setThinking] = useState(false);
 
   const scrollRef = useRef<HTMLDivElement>(null);
+  const aiHistoryRef = useRef<{ role: "user" | "assistant"; content: string }[]>([]);
+  const apiBase = import.meta.env.BASE_URL.replace(/\/$/, "");
 
   // Reset greeting when language changes (or first open)
   useEffect(() => {
@@ -291,6 +294,7 @@ export default function AssistantWidget() {
     setMode("menu");
     setStep(0);
     setErrorKey(null);
+    aiHistoryRef.current = [{ role: "assistant", content: t.greet }];
   }, [lang, t.greet]);
 
   // Auto-scroll
@@ -322,18 +326,57 @@ export default function AssistantWidget() {
 
   const startFaq = () => {
     pushUser(t.optAsk);
+    aiHistoryRef.current.push({ role: "user", content: t.optAsk });
     pushBot(t.faqIntro);
+    aiHistoryRef.current.push({ role: "assistant", content: t.faqIntro });
     setMode("faq");
   };
 
   const startTalk = () => {
     pushUser(t.optTalk);
     pushBot(t.talk);
+    aiHistoryRef.current.push(
+      { role: "user", content: t.optTalk },
+      { role: "assistant", content: t.talk },
+    );
   };
 
-  const onFaqPick = (q: string, a: string) => {
-    pushUser(q);
-    pushBot(a);
+  const askAI = async (userText: string) => {
+    pushUser(userText);
+    aiHistoryRef.current.push({ role: "user", content: userText });
+    setInput("");
+    setThinking(true);
+    try {
+      const res = await fetch(`${apiBase}/api/assistant/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: aiHistoryRef.current.slice(-16),
+          lang,
+        }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = (await res.json()) as { reply?: string };
+      const reply =
+        (data.reply && data.reply.trim()) ||
+        (lang === "es"
+          ? "Disculpa, tuve un problema. ¿Puedes intentarlo de nuevo?"
+          : "Sorry, I hit a snag. Could you try again?");
+      pushBot(reply);
+      aiHistoryRef.current.push({ role: "assistant", content: reply });
+    } catch {
+      const fallback =
+        lang === "es"
+          ? `Tuve un problema de conexion. Mientras tanto, escribenos a ${CONTACT_EMAIL} o llama al ${PHONE_DISPLAY}.`
+          : `I had a connection issue. In the meantime, email ${CONTACT_EMAIL} or call ${PHONE_DISPLAY}.`;
+      pushBot(fallback);
+    } finally {
+      setThinking(false);
+    }
+  };
+
+  const onFaqPick = (q: string) => {
+    void askAI(q);
   };
 
   const advanceBooking = (rawValue: string) => {
@@ -371,14 +414,8 @@ export default function AssistantWidget() {
     }
     if (mode === "faq") {
       const q = input.trim();
-      if (!q) return;
-      pushUser(q);
-      const lower = q.toLowerCase();
-      const hit = t.faqTopics.find((f) =>
-        lower.split(/\s+/).some((w) => w.length > 3 && f.q.toLowerCase().includes(w))
-      );
-      pushBot(hit ? hit.a : t.didntCatch);
-      setInput("");
+      if (!q || thinking) return;
+      void askAI(q);
       return;
     }
     setInput("");
@@ -482,15 +519,26 @@ export default function AssistantWidget() {
                 </div>
               )}
 
-              {/* FAQ topics */}
-              {mode === "faq" && (
+              {/* FAQ topics — conversation starters fed to the AI */}
+              {mode === "faq" && messages.length <= 4 && (
                 <div className="flex flex-wrap gap-2 pt-1">
                   {t.faqTopics.map((f) => (
-                    <ChipButton key={f.q} small onClick={() => onFaqPick(f.q, f.a)}>
+                    <ChipButton key={f.q} small onClick={() => onFaqPick(f.q)}>
                       {f.q}
                     </ChipButton>
                   ))}
                   <ChipButton small onClick={startBooking}>{t.optBook}</ChipButton>
+                </div>
+              )}
+
+              {/* Typing indicator */}
+              {thinking && (
+                <div className="flex justify-start">
+                  <div className="bg-card border border-border rounded-2xl rounded-tl-sm px-3.5 py-2.5 inline-flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-bounce [animation-delay:-0.3s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-bounce [animation-delay:-0.15s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-bounce" />
+                  </div>
                 </div>
               )}
 
