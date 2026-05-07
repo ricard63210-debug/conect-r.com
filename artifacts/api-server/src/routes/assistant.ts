@@ -1,7 +1,9 @@
 import { Router, type IRouter } from "express";
 import OpenAI from "openai";
+import { getUncachableSendGridClient } from "../lib/sendgrid";
 
 const router: IRouter = Router();
+const TEAM_EMAIL = "contact@conect-r.com";
 
 const apiKey = process.env.OPENAI_API_KEY ?? process.env.AI_INTEGRATIONS_OPENAI_API_KEY;
 const baseURL = process.env.OPENAI_API_KEY
@@ -188,6 +190,183 @@ router.post("/assistant/chat", async (req, res) => {
   } catch (err: unknown) {
     req.log.error({ err }, "assistant chat failed");
     res.status(500).json({ error: "assistant_failed" });
+  }
+});
+
+type Appointment = {
+  businessName?: string;
+  businessType?: string;
+  locations?: string;
+  website?: string;
+  challenge?: string;
+  currentTech?: string;
+  interest?: string;
+  touchpoints?: string;
+  budget?: string;
+  attendees?: string;
+  contactName?: string;
+  contactRole?: string;
+  phone?: string;
+  email?: string;
+};
+
+function row(label: string, value: string | undefined) {
+  const v = (value ?? "").trim();
+  return v
+    ? `<tr><td style="padding:6px 12px 6px 0;color:#64748b;font-size:13px;vertical-align:top;width:200px">${label}</td><td style="padding:6px 0;color:#0f172a;font-size:13px;font-weight:500">${v}</td></tr>`
+    : "";
+}
+
+function buildHtml(lang: "es" | "en", a: Appointment) {
+  const t =
+    lang === "es"
+      ? {
+          intro:
+            "¡Gracias por agendar tu demo con Conect-R! Aquí está el resumen que compartimos con el equipo.",
+          profile: "Perfil del Negocio",
+          diagnosis: "Diagnóstico",
+          interest: "Interés",
+          budgetSection: "Presupuesto y decisión",
+          contact: "Contacto",
+          businessName: "Nombre del negocio",
+          businessType: "Giro",
+          locations: "Ubicaciones",
+          website: "Sitio / redes",
+          challenge: "Reto actual",
+          currentTech: "Tecnología actual",
+          interestField: "Solución de interés",
+          touchpoints: "Puntos a digitalizar",
+          budget: "Presupuesto",
+          attendees: "Participantes",
+          contactName: "Contacto",
+          role: "Cargo",
+          phone: "Teléfono",
+          email: "Correo",
+          footer:
+            "El equipo de Conect-R se pondrá en contacto contigo en las próximas 24 horas. Si necesitas algo antes, escríbenos a contact@conect-r.com o al +1 916 812 0873.",
+        }
+      : {
+          intro:
+            "Thanks for booking a demo with Conect-R! Here's the summary we shared with the team.",
+          profile: "Business profile",
+          diagnosis: "Diagnosis",
+          interest: "Interest",
+          budgetSection: "Budget & decision",
+          contact: "Contact",
+          businessName: "Business name",
+          businessType: "Industry",
+          locations: "Locations",
+          website: "Website / social",
+          challenge: "Current challenge",
+          currentTech: "Current tech",
+          interestField: "Solution of interest",
+          touchpoints: "Touchpoints",
+          budget: "Budget",
+          attendees: "Attendees",
+          contactName: "Contact",
+          role: "Role",
+          phone: "Phone",
+          email: "Email",
+          footer:
+            "The Conect-R team will reach out within 24 hours. If you need anything sooner, email contact@conect-r.com or call +1 916 812 0873.",
+        };
+
+  const section = (title: string, rows: string) =>
+    `<tr><td colspan="2" style="padding:18px 0 6px;font-size:11px;font-weight:700;letter-spacing:0.12em;color:#f97316;text-transform:uppercase">${title}</td></tr>${rows}`;
+
+  return `<!doctype html><html><body style="margin:0;background:#f8fafc;font-family:-apple-system,Segoe UI,Roboto,sans-serif">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;padding:24px 12px"><tr><td align="center">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:18px;border:1px solid #e2e8f0;overflow:hidden;max-width:600px">
+<tr><td style="padding:24px 28px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff">
+<div style="font-size:11px;font-weight:700;letter-spacing:0.16em;opacity:0.85">CONECT-R</div>
+<div style="font-size:22px;font-weight:800;margin-top:4px">${lang === "es" ? "Resumen de tu cita" : "Your appointment summary"}</div>
+</td></tr>
+<tr><td style="padding:24px 28px;color:#0f172a;font-size:14px;line-height:1.55">${t.intro}</td></tr>
+<tr><td style="padding:0 28px 24px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+${section(t.profile, row(t.businessName, a.businessName) + row(t.businessType, a.businessType) + row(t.locations, a.locations) + row(t.website, a.website))}
+${section(t.diagnosis, row(t.challenge, a.challenge) + row(t.currentTech, a.currentTech))}
+${section(t.interest, row(t.interestField, a.interest) + row(t.touchpoints, a.touchpoints))}
+${section(t.budgetSection, row(t.budget, a.budget) + row(t.attendees, a.attendees))}
+${section(t.contact, row(t.contactName, a.contactName) + row(t.role, a.contactRole) + row(t.phone, a.phone) + row(t.email, a.email))}
+</table></td></tr>
+<tr><td style="padding:18px 28px 26px;color:#64748b;font-size:12px;line-height:1.55;border-top:1px solid #e2e8f0">${t.footer}</td></tr>
+</table></td></tr></table></body></html>`;
+}
+
+function buildText(lang: "es" | "en", a: Appointment) {
+  const lines = [
+    lang === "es" ? "Resumen de cita — Conect-R" : "Appointment summary — Conect-R",
+    "",
+    `Business: ${a.businessName || "—"} (${a.businessType || "—"})`,
+    `Locations: ${a.locations || "—"}`,
+    `Website: ${a.website || "—"}`,
+    `Challenge: ${a.challenge || "—"}`,
+    `Current tech: ${a.currentTech || "—"}`,
+    `Interest: ${a.interest || "—"}`,
+    `Touchpoints: ${a.touchpoints || "—"}`,
+    `Budget: ${a.budget || "—"}`,
+    `Attendees: ${a.attendees || "—"}`,
+    `Contact: ${a.contactName || "—"}${a.contactRole ? ` (${a.contactRole})` : ""}`,
+    `Phone: ${a.phone || "—"}`,
+    `Email: ${a.email || "—"}`,
+  ];
+  return lines.join("\n");
+}
+
+router.post("/assistant/send-appointment", async (req, res) => {
+  try {
+    const body = req.body as { appointment?: Appointment; lang?: "es" | "en" };
+    const a = body.appointment;
+    const lang = body.lang === "es" ? "es" : "en";
+    if (!a || !a.email || !a.contactName || !a.businessName) {
+      res.status(400).json({ error: "missing_required_fields" });
+      return;
+    }
+
+    const { client, fromEmail } = await getUncachableSendGridClient();
+
+    const subjectClient =
+      lang === "es"
+        ? `Conect-R · Tu cita está agendada (${a.businessName})`
+        : `Conect-R · Your appointment is booked (${a.businessName})`;
+    const subjectTeam = `[Demo] ${a.businessName} — ${a.contactName}`;
+
+    const html = buildHtml(lang, a);
+    const text = buildText(lang, a);
+
+    const sends = await Promise.allSettled([
+      client.send({
+        to: a.email,
+        from: fromEmail,
+        subject: subjectClient,
+        text,
+        html,
+        replyTo: TEAM_EMAIL,
+      }),
+      client.send({
+        to: TEAM_EMAIL,
+        from: fromEmail,
+        subject: subjectTeam,
+        text,
+        html,
+        replyTo: a.email,
+      }),
+    ]);
+
+    const errors = sends
+      .map((s, i) => (s.status === "rejected" ? { i, reason: s.reason } : null))
+      .filter(Boolean);
+    if (errors.length) {
+      req.log.warn({ errors }, "send-appointment partial failure");
+    }
+    if (errors.length === 2) {
+      res.status(502).json({ error: "send_failed" });
+      return;
+    }
+    res.json({ ok: true, sent: sends.length - errors.length });
+  } catch (err: unknown) {
+    req.log.error({ err }, "send-appointment failed");
+    res.status(500).json({ error: "send_failed" });
   }
 });
 

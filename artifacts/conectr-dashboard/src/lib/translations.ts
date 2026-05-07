@@ -182,9 +182,46 @@ const translations = {
       { id: "gestion", label: "Ecosistema Softwares All Inclusive", sublabel: "Todo en uno para crecer" },
       { id: "signage", label: "Pantallas Digitales", sublabel: "Digital Signage" },
       { id: "presencia", label: "Presencia Digital", sublabel: "Web & AI Chat" },
-      { id: "redes", label: "Redes Sociales", sublabel: "Instagram & Facebook" },
-      { id: "creativo", label: "Diseño de Menú", sublabel: "Menú Imprimible" },
+      { id: "consulting", label: "Asesoría de Negocio", sublabel: "Estudios y optimización" },
     ],
+
+    consulting: {
+      heading: "Asesoría de Negocio — Estudios y Optimización",
+      description:
+        "Analizamos tu restaurante a fondo y aplicamos optimizaciones medibles para que cada mesa, cada platillo y cada turno generen más utilidad.",
+      steps: [
+        { title: "Diagnóstico Operativo", body: "Estudio de ventas, costos, tiempos de servicio, mermas, rotación de mesas y datos del POS para detectar dónde se va el dinero." },
+        { title: "Plan Estratégico", body: "Recomendaciones concretas: ajuste de menú, ingeniería de precios, reorganización de turnos, propinas, marketing local y digitalización." },
+        { title: "Implementación Guiada", body: "Activamos los módulos Conect-R necesarios, capacitamos al equipo y dejamos procesos documentados para que la operación no dependa de una sola persona." },
+        { title: "Medición de Utilidad", body: "Tablero mensual con KPIs: ticket promedio, food cost %, labor %, ocupación y utilidad neta — comparativo antes vs. después." },
+      ],
+      focusTitle: "Áreas de optimización",
+      focus: [
+        { title: "Ingeniería de Menú", body: "Identificamos platillos estrella, vacas, perros y enigmas. Subimos el ticket promedio rediseñando carta y precios." },
+        { title: "Personal y Turnos", body: "Optimizamos labor cost cruzando ventas por hora vs. staffing — menos sobrepersonal, mejor servicio en horas pico." },
+        { title: "Marketing Local", body: "Estrategia de reseñas Google, presencia digital y campañas que llenan mesas en horarios débiles." },
+        { title: "Procesos y Controles", body: "SOPs, control de inventario, recetas estándar y reportes diarios para frenar mermas y robos hormiga." },
+      ],
+      chart: {
+        title: "Utilidad mensual proyectada",
+        subtitle: "Restaurante promedio · 90 días tras la optimización",
+        before: "Antes",
+        after: "Con Conect-R",
+        points: [
+          { label: "Mes 1", before: 12000, after: 13500 },
+          { label: "Mes 2", before: 12500, after: 16800 },
+          { label: "Mes 3", before: 12200, after: 19400 },
+          { label: "Mes 4", before: 12800, after: 22100 },
+          { label: "Mes 5", before: 12600, after: 24800 },
+          { label: "Mes 6", before: 13000, after: 27500 },
+        ],
+      },
+      metrics: [
+        { value: "+28%", label: "Utilidad neta promedio" },
+        { value: "-18%", label: "Food cost después de ingeniería de menú" },
+        { value: "+34%", label: "Ticket promedio en horarios optimizados" },
+      ],
+    },
 
     smartTable: {
       heading: "Smart Table — NFC / QR",
@@ -708,9 +745,46 @@ const translations = {
       { id: "gestion", label: "All-Inclusive Software Ecosystem", sublabel: "All-in-one to grow" },
       { id: "signage", label: "Digital Screens", sublabel: "Digital Signage" },
       { id: "presencia", label: "Digital Presence", sublabel: "Web & AI Chat" },
-      { id: "redes", label: "Social Media", sublabel: "Instagram & Facebook" },
-      { id: "creativo", label: "Menu Design", sublabel: "Printable Menu" },
+      { id: "consulting", label: "Business Consulting", sublabel: "Studies & optimization" },
     ],
+
+    consulting: {
+      heading: "Business Consulting — Studies & Optimization",
+      description:
+        "We analyze your restaurant in depth and roll out measurable optimizations so every table, every dish and every shift drives more profit.",
+      steps: [
+        { title: "Operational Diagnosis", body: "Deep study of sales, costs, service times, waste, table turnover and POS data — pinpointing exactly where money is leaking." },
+        { title: "Strategic Plan", body: "Concrete recommendations: menu re-engineering, price strategy, shift redesign, tip policy, local marketing and digital activation." },
+        { title: "Guided Implementation", body: "We activate the Conect-R modules you need, train the team and leave processes documented so the business no longer depends on one person." },
+        { title: "Profit Measurement", body: "Monthly KPI dashboard: average check, food cost %, labor %, occupancy and net profit — clear before vs. after comparison." },
+      ],
+      focusTitle: "Optimization areas",
+      focus: [
+        { title: "Menu Engineering", body: "We identify stars, plowhorses, dogs and puzzles. Higher average ticket through smart menu and pricing redesign." },
+        { title: "Staffing & Shifts", body: "We optimize labor cost cross-referencing hourly sales vs. staffing — less overstaffing, better service in peak hours." },
+        { title: "Local Marketing", body: "Google review strategy, digital presence and campaigns that fill tables during weak hours." },
+        { title: "Process Controls", body: "SOPs, inventory control, standard recipes and daily reports to stop waste and shrinkage." },
+      ],
+      chart: {
+        title: "Projected monthly profit",
+        subtitle: "Average restaurant · 90 days after optimization",
+        before: "Before",
+        after: "With Conect-R",
+        points: [
+          { label: "M1", before: 12000, after: 13500 },
+          { label: "M2", before: 12500, after: 16800 },
+          { label: "M3", before: 12200, after: 19400 },
+          { label: "M4", before: 12800, after: 22100 },
+          { label: "M5", before: 12600, after: 24800 },
+          { label: "M6", before: 13000, after: 27500 },
+        ],
+      },
+      metrics: [
+        { value: "+28%", label: "Average net profit lift" },
+        { value: "-18%", label: "Food cost after menu engineering" },
+        { value: "+34%", label: "Average ticket in optimized hours" },
+      ],
+    },
 
     smartTable: {
       heading: "Smart Table — NFC / QR",

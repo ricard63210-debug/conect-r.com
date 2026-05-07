@@ -1,29 +1,27 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Wifi, BarChart2, Monitor, Globe, Palette,
-  Menu, X, ChevronRight, Instagram, Languages, Sun, Moon
+  Wifi, BarChart2, Monitor, Globe, HeartHandshake,
+  Menu, X, ChevronRight, Languages, Sun, Moon
 } from "lucide-react";
 import SmartTable from "@/components/modules/SmartTable";
 import GestionOperativa from "@/components/modules/GestionOperativa";
 import DigitalSignage from "@/components/modules/DigitalSignage";
 import PresenciaDigital from "@/components/modules/PresenciaDigital";
-import RedesSociales from "@/components/modules/RedesSociales";
-import ModuloCreativo from "@/components/modules/ModuloCreativo";
+import BusinessConsulting from "@/components/modules/BusinessConsulting";
 import { useLang } from "@/lib/i18n";
 import { getT } from "@/lib/translations";
 
-const MODULE_ICONS = [Wifi, BarChart2, Monitor, Globe, Instagram, Palette];
+const MODULE_ICONS = [Wifi, BarChart2, Monitor, Globe, HeartHandshake];
 const MODULE_COLORS = [
   "from-amber-600 to-amber-400",
   "from-orange-700 to-orange-500",
   "from-teal-700 to-teal-500",
   "from-orange-700 to-orange-500",
-  "from-pink-700 to-pink-500",
-  "from-purple-700 to-purple-500",
+  "from-orange-600 to-amber-500",
 ];
-const MODULE_IDS = ["smart-table", "gestion", "signage", "presencia", "redes", "creativo"];
-const MODULE_COMPONENTS = [SmartTable, GestionOperativa, DigitalSignage, PresenciaDigital, RedesSociales, ModuloCreativo];
+const MODULE_IDS = ["smart-table", "gestion", "signage", "presencia", "consulting"];
+const MODULE_COMPONENTS = [SmartTable, GestionOperativa, DigitalSignage, PresenciaDigital, BusinessConsulting];
 
 export default function Dashboard() {
   const [activeModule, setActiveModule] = useState(() => {
@@ -71,7 +69,7 @@ export default function Dashboard() {
         <div className="flex items-center justify-between px-4 py-3">
           {/* Logo */}
           <a href={import.meta.env.BASE_URL} className="flex items-center gap-3 shrink-0">
-            <img src={`${import.meta.env.BASE_URL}conectr-logo.png`} alt="Conect-R" className="h-14 lg:h-16 object-contain" />
+            <img src={`${import.meta.env.BASE_URL}conectr-logo.png`} alt="Conect-R" className="h-28 lg:h-32 object-contain" />
             <div className="hidden xl:block text-xs text-muted-foreground leading-none">{T.global.ecosistema}</div>
           </a>
 

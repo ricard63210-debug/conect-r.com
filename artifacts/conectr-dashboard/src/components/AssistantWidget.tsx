@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Mail } from "lucide-react";
+import { MessageCircle, X, Send, Mail, Check } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 
 const CONTACT_EMAIL = "contact@conect-r.com";
@@ -38,7 +38,7 @@ const STR = {
     fallback: `Tuve un problemita de conexión. Mientras, escríbeme a ${CONTACT_EMAIL} o al ${PHONE_DISPLAY}.`,
     summaryTitle: "Resumen para el equipo",
     summaryHint: "Revisa los datos y mándalos cuando estés listo.",
-    sendBtn: "Enviar correo",
+    sendBtn: "Enviar resumen por correo",
     edit: "Editar",
     labels: {
       profile: "Perfil del Negocio",
@@ -74,7 +74,7 @@ const STR = {
     fallback: `Hit a connection snag. Meanwhile, drop me a line at ${CONTACT_EMAIL} or call ${PHONE_DISPLAY}.`,
     summaryTitle: "Summary for the team",
     summaryHint: "Review your details and send when ready.",
-    sendBtn: "Send email",
+    sendBtn: "Send summary",
     edit: "Edit",
     labels: {
       profile: "Business profile",
@@ -154,18 +154,44 @@ export default function AssistantWidget() {
   const [appointment, setAppointment] = useState<Appointment | null>(null);
   const [editing, setEditing] = useState(false);
   const [unread, setUnread] = useState(false);
+  const [sendStatus, setSendStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const customGreetRef = useRef<string | null>(null);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const aiHistoryRef = useRef<{ role: "user" | "assistant"; content: string }[]>([]);
   const apiBase = import.meta.env.BASE_URL.replace(/\/$/, "");
 
-  // Initialize / language change
+  // Initialize / language change (skip if a custom greeting was just set externally)
   useEffect(() => {
+    if (customGreetRef.current) {
+      // Reset flag — the event handler already seeded messages
+      customGreetRef.current = null;
+      return;
+    }
     setMessages([{ id: uid(), from: "bot", text: t.greet }]);
     aiHistoryRef.current = [{ role: "assistant", content: t.greet }];
     setAppointment(null);
     setEditing(false);
+    setSendStatus("idle");
   }, [lang, t.greet]);
+
+  // Listen for external "open chat with greeting" events (Book a demo buttons)
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const ce = e as CustomEvent<{ greeting?: string; lang?: Lang }>;
+      const greet = ce.detail?.greeting?.trim() || t.greet;
+      customGreetRef.current = greet;
+      setMessages([{ id: uid(), from: "bot", text: greet }]);
+      aiHistoryRef.current = [{ role: "assistant", content: greet }];
+      setAppointment(null);
+      setEditing(false);
+      setSendStatus("idle");
+      setOpen(true);
+    };
+    window.addEventListener("conectr:open-chat", handler as EventListener);
+    return () =>
+      window.removeEventListener("conectr:open-chat", handler as EventListener);
+  }, [t.greet]);
 
   // Auto-scroll
   useEffect(() => {
@@ -252,9 +278,27 @@ export default function AssistantWidget() {
     }
   };
 
-  const sendEmail = () => {
-    if (!appointment) return;
-    window.location.href = buildMailto(lang, appointment);
+  const sendEmail = async () => {
+    if (!appointment || sendStatus === "sending") return;
+    setSendStatus("sending");
+    try {
+      const res = await fetch(`${apiBase}/api/assistant/send-appointment`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ appointment, lang }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setSendStatus("sent");
+      pushBot(
+        lang === "es"
+          ? "¡Listo! Enviamos el resumen a tu correo y al equipo de Conect-R. Te contactamos en menos de 24 horas 🙌"
+          : "Done! We sent the summary to your inbox and to the Conect-R team. You'll hear from us within 24 hours 🙌",
+      );
+    } catch {
+      setSendStatus("error");
+      // Fallback to mailto so the user can still send manually
+      window.location.href = buildMailto(lang, appointment);
+    }
   };
 
   return (
@@ -330,6 +374,7 @@ export default function AssistantWidget() {
                   lang={lang}
                   appt={appointment}
                   editing={editing}
+                  status={sendStatus}
                   onEdit={() => setEditing((e) => !e)}
                   onChange={(a) => setAppointment(a)}
                   onSend={sendEmail}
@@ -414,6 +459,7 @@ function SummaryCard({
   lang,
   appt,
   editing,
+  status,
   onEdit,
   onChange,
   onSend,
@@ -421,6 +467,7 @@ function SummaryCard({
   lang: Lang;
   appt: Appointment;
   editing: boolean;
+  status: "idle" | "sending" | "sent" | "error";
   onEdit: () => void;
   onChange: (a: Appointment) => void;
   onSend: () => void;
@@ -494,9 +541,24 @@ function SummaryCard({
 
       <button
         onClick={onSend}
-        className="w-full inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-3 py-2.5 rounded-lg text-sm font-semibold mt-2"
+        disabled={status === "sending" || status === "sent"}
+        className="w-full inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-3 py-2.5 rounded-lg text-sm font-semibold mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
       >
-        <Mail size={14} /> {t.sendBtn}
+        {status === "sent" ? (
+          <>
+            <Check size={14} />
+            {lang === "es" ? "Enviado" : "Sent"}
+          </>
+        ) : status === "sending" ? (
+          <>
+            <Mail size={14} />
+            {lang === "es" ? "Enviando..." : "Sending..."}
+          </>
+        ) : (
+          <>
+            <Mail size={14} /> {t.sendBtn}
+          </>
+        )}
       </button>
     </div>
   );

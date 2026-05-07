@@ -6,6 +6,7 @@ import {
   Globe, Smartphone, Monitor, HeartHandshake,
   Eye, Target, Shield, Lock, FileText, AlertTriangle,
   Zap, Megaphone, Layers, Award, Sparkles, MessageCircle, Mail,
+  TrendingUp, BarChart3, Lightbulb, DollarSign,
 } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import { getT } from "@/lib/translations";
@@ -13,6 +14,19 @@ import conectrLogo from "@/assets/conectr-logo.png";
 
 const PHONE_DIGITS = "19168120873";
 const PHONE_DISPLAY = "+1 916 812 0873";
+
+const DEMO_GREETING = {
+  es: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
+  en: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment.\n\nTo start, what's the name of your business and what type of restaurant is it?",
+} as const;
+
+function openDemoChat(lang: "es" | "en") {
+  window.dispatchEvent(
+    new CustomEvent("conectr:open-chat", {
+      detail: { greeting: DEMO_GREETING[lang], lang },
+    }),
+  );
+}
 
 /* ───────────── Custom Brand Icons (orange) ───────────── */
 
@@ -109,7 +123,7 @@ function Pill({ children }: { children: React.ReactNode }) {
 /* ───────────── Wordmark — "Conect-" + R con ondas wifi en naranja ───────────── */
 
 function Wordmark({ size = "base" }: { size?: "base" | "lg" }) {
-  const h = size === "lg" ? 56 : 44;
+  const h = size === "lg" ? 112 : 88;
   return (
     <img
       src={conectrLogo}
@@ -157,20 +171,14 @@ export default function Landing() {
               <Languages size={13} />
               {T.global.langBtn}
             </button>
-            <Link
-              href="/dashboard"
-              className="hidden md:inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground px-3 py-2 transition-colors"
-            >
-              {L.nav.signIn}
-            </Link>
-            <Link
-              href="/dashboard"
+            <button
+              onClick={() => openDemoChat(lang)}
               className="inline-flex items-center gap-1.5 bg-orange-500 hover:bg-orange-600 text-white px-3.5 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold shadow-lg shadow-orange-500/20 transition-all"
             >
               <span className="hidden sm:inline">{L.nav.scheduleDemo}</span>
               <span className="sm:hidden">Demo</span>
               <ArrowUpRight size={14} />
-            </Link>
+            </button>
           </div>
         </div>
       </header>
@@ -214,13 +222,13 @@ export default function Landing() {
             transition={{ delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-3"
           >
-            <Link
-              href="/dashboard"
+            <button
+              onClick={() => openDemoChat(lang)}
               className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-7 py-3.5 rounded-xl font-semibold text-base shadow-xl shadow-orange-500/25 transition-all"
             >
               {L.hero.ctaPrimary}
               <ArrowRight size={16} />
-            </Link>
+            </button>
             <button
               onClick={() => scrollTo("ecosystem")}
               className="inline-flex items-center gap-2 border border-border text-foreground px-7 py-3.5 rounded-xl font-semibold text-base hover:bg-muted transition-all"
@@ -330,6 +338,75 @@ export default function Landing() {
               {lang === "es" ? "Ver demo interactiva del ecosistema" : "View interactive ecosystem demo"}
               <ArrowRight size={15} />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* BUSINESS CONSULTING — Studies & Profit Optimization */}
+      <section id="consulting" className="border-t border-border bg-muted/20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
+          <div className="text-center mb-14">
+            <div className="flex justify-center mb-6">
+              <Pill>{lang === "es" ? "ASESORÍA DE NEGOCIO" : "BUSINESS CONSULTING"}</Pill>
+            </div>
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] mb-5">
+              {lang === "es" ? "Más utilidad, menos suposiciones." : "More profit, less guessing."}<br />
+              <span className="text-orange-500">
+                {lang === "es" ? "Estudios que se traducen en dinero." : "Studies that turn into real money."}
+              </span>
+            </h2>
+            <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              {T.consulting.description}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-10">
+            {T.consulting.steps.map((step, i) => {
+              const Icon = [BarChart3, Lightbulb, TrendingUp, DollarSign][i] || BarChart3;
+              return (
+                <motion.div
+                  key={step.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.4, delay: i * 0.06 }}
+                  className="rounded-2xl border border-border bg-background p-6"
+                >
+                  <div className="w-11 h-11 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center mb-4 text-orange-500">
+                    <Icon size={19} />
+                  </div>
+                  <div className="text-[11px] font-bold tracking-wider text-orange-500 mb-2">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <h3 className="font-bold text-foreground text-base mb-1.5 leading-tight">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{step.body}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <div className="max-w-5xl mx-auto rounded-3xl border border-orange-500/30 bg-gradient-to-br from-orange-500/10 via-orange-500/5 to-transparent p-7 sm:p-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-7">
+              {T.consulting.metrics.map((m) => (
+                <div key={m.label} className="text-center">
+                  <div className="text-3xl sm:text-4xl font-extrabold text-orange-500 tracking-tight mb-1">
+                    {m.value}
+                  </div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">{m.label}</div>
+                </div>
+              ))}
+            </div>
+            <div className="text-center">
+              <button
+                onClick={() => openDemoChat(lang)}
+                className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-7 py-3.5 rounded-xl font-semibold text-base shadow-xl shadow-orange-500/25 transition-all"
+              >
+                {lang === "es" ? "Quiero un diagnóstico gratis" : "I want a free diagnosis"}
+                <ArrowRight size={16} />
+              </button>
+            </div>
           </div>
         </div>
       </section>
