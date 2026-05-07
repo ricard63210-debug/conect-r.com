@@ -13,7 +13,7 @@ const COPY = {
     placeholder: "Pregunta lo que quieras del menú…",
     send: "Enviar",
     welcome:
-      "¡Hola! Soy Maya, tu asistente del menú 🌮 Pregúntame por platillos picantes, opciones veganas, recomendaciones para tu grupo, maridajes con bebidas, o lo que se te antoje hoy.",
+      "¡Hola! Soy Maya, tu asistente del menú 🌮 Hablo español e inglés, escríbeme en el idioma que prefieras. Pregúntame por platillos picantes, opciones veganas, recomendaciones para tu grupo, maridajes con bebidas, o lo que se te antoje hoy.",
     suggested: ["¿Qué me recomiendas hoy?", "Opciones vegetarianas", "Algo picante", "¿Qué eventos hay?"],
     error: "Algo falló — vuelve a intentarlo en un momento.",
   },
@@ -24,7 +24,7 @@ const COPY = {
     placeholder: "Ask anything about the menu…",
     send: "Send",
     welcome:
-      "Hi! I'm Maya, your menu assistant 🌮 Ask me about spicy dishes, vegan options, group recommendations, drink pairings — or whatever you're craving today.",
+      "Hi! I'm Maya, your menu assistant 🌮 I speak English and Spanish — write to me in whichever you prefer. Ask me about spicy dishes, vegan options, group recommendations, drink pairings — or whatever you're craving today.",
     suggested: ["What do you recommend?", "Vegetarian options", "Something spicy", "What events are coming up?"],
     error: "Something went wrong — try again in a moment.",
   },

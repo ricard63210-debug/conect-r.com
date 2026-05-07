@@ -33,7 +33,7 @@ const STR = {
     name: "Aria",
     role: "Conect-R",
     greet:
-      "¡Hola! 👋 Soy Aria del equipo de Conect-R. ¿En qué te puedo ayudar hoy?",
+      "¡Hola! 👋 Soy Aria del equipo de Conect-R. Hablo español e inglés, escríbeme en el idioma que prefieras. ¿En qué te puedo ayudar hoy?",
     typeHere: "Escribe un mensaje...",
     fallback: `Tuve un problemita de conexión. Mientras, escríbeme a ${CONTACT_EMAIL} o al ${PHONE_DISPLAY}.`,
     summaryTitle: "Resumen para el equipo",
@@ -69,7 +69,7 @@ const STR = {
     fab: "Chat",
     name: "Aria",
     role: "Conect-R",
-    greet: "Hi! 👋 I'm Aria from the Conect-R team. What's on your mind today?",
+    greet: "Hi! 👋 I'm Aria from the Conect-R team. I speak English and Spanish — write to me in whichever you prefer. What's on your mind today?",
     typeHere: "Type a message...",
     fallback: `Hit a connection snag. Meanwhile, drop me a line at ${CONTACT_EMAIL} or call ${PHONE_DISPLAY}.`,
     summaryTitle: "Summary for the team",
