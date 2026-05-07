@@ -3,10 +3,13 @@ import OpenAI from "openai";
 
 const router: IRouter = Router();
 
-const baseURL = process.env.AI_INTEGRATIONS_OPENAI_BASE_URL;
-const apiKey = process.env.AI_INTEGRATIONS_OPENAI_API_KEY;
+const apiKey = process.env.OPENAI_API_KEY ?? process.env.AI_INTEGRATIONS_OPENAI_API_KEY;
+const baseURL = process.env.OPENAI_API_KEY
+  ? undefined
+  : process.env.AI_INTEGRATIONS_OPENAI_BASE_URL;
 
-const client = baseURL && apiKey ? new OpenAI({ baseURL, apiKey }) : null;
+const client = apiKey ? new OpenAI({ apiKey, ...(baseURL ? { baseURL } : {}) }) : null;
+const MODEL = "gpt-4o-mini";
 
 const SYSTEM_PROMPT = `Eres el Asistente Virtual Inteligente de Conect-R, una startup líder en soluciones tecnológicas para la industria restaurantera y de hospitalidad. Tu objetivo principal es informar a los dueños de negocios sobre cómo nuestras soluciones (Menús Digitales NFC, automatización con IA y optimización de servicios) pueden aumentar su rentabilidad y eficiencia.
 
@@ -154,8 +157,9 @@ router.post("/assistant/chat", async (req, res) => {
         : "The user is browsing the English version of the site. Reply in English unless they switch.";
 
     const completion = await client.chat.completions.create({
-      model: "gpt-5.4",
-      max_completion_tokens: 700,
+      model: MODEL,
+      max_tokens: 700,
+      temperature: 0.7,
       messages: [
         { role: "system", content: `${SYSTEM_PROMPT}\n\n${langHint}` },
         ...trimmed,

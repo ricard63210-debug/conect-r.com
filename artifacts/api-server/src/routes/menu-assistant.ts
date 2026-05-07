@@ -3,10 +3,13 @@ import OpenAI from "openai";
 
 const router: IRouter = Router();
 
-const baseURL = process.env.AI_INTEGRATIONS_OPENAI_BASE_URL;
-const apiKey = process.env.AI_INTEGRATIONS_OPENAI_API_KEY;
+const apiKey = process.env.OPENAI_API_KEY ?? process.env.AI_INTEGRATIONS_OPENAI_API_KEY;
+const baseURL = process.env.OPENAI_API_KEY
+  ? undefined
+  : process.env.AI_INTEGRATIONS_OPENAI_BASE_URL;
 
-const client = baseURL && apiKey ? new OpenAI({ baseURL, apiKey }) : null;
+const client = apiKey ? new OpenAI({ apiKey, ...(baseURL ? { baseURL } : {}) }) : null;
+const MODEL = "gpt-4o-mini";
 
 type ChatMsg = { role: "user" | "assistant"; content: string };
 
@@ -88,8 +91,9 @@ router.post("/menu-assistant/chat", async (req, res) => {
     }));
 
     const completion = await client.chat.completions.create({
-      model: "gpt-5.4",
-      max_completion_tokens: 600,
+      model: MODEL,
+      max_tokens: 600,
+      temperature: 0.7,
       messages: [
         { role: "system", content: buildSystemPrompt(menu, lang) },
         ...trimmed,
