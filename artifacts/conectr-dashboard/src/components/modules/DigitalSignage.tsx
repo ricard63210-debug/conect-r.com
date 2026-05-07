@@ -63,9 +63,9 @@ export default function DigitalSignage() {
       <div className="text-center">
         <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">{T.heading}</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          {T.description} <span className="text-orange-500 font-medium">{T.descSales}</span> {T.descMid}{" "}
-          <span className="text-orange-500 font-medium">{T.descClients}</span> {T.descAnd}{" "}
-          <span className="text-orange-500 font-medium">{T.descWork}</span> {T.descEnd}
+          {T.description} {T.descSales} {T.descMid}{" "}
+          {T.descClients} {T.descAnd}{" "}
+          {T.descWork} {T.descEnd}
         </p>
         <ImpactPills />
       </div>

@@ -92,8 +92,8 @@ export default function ModuloCreativo() {
       <div className="text-center">
         <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">{T.heading}</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          {T.description} <span className="text-orange-500 font-medium">{T.descSales}</span> {T.descMid}{" "}
-          <span className="text-orange-500 font-medium">{T.descTicket}</span>{T.descEnd}
+          {T.description} {T.descSales} {T.descMid}{" "}
+          {T.descTicket}{T.descEnd}
         </p>
         <ImpactPills />
       </div>

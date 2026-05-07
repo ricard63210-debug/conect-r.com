@@ -254,7 +254,7 @@ export default function Menu() {
         <div className="container mx-auto px-4 flex justify-between items-center relative">
           <div className={`transition-all duration-500 ease-in-out ${scrolled ? 'opacity-0 scale-95 pointer-events-none absolute' : 'opacity-100 scale-100 relative'} flex flex-col items-center justify-center w-full`}>
             <img src={`${import.meta.env.BASE_URL}maya-logo.jpeg`} alt="Maya Cantina" className="w-24 h-24 object-contain rounded-full shadow-lg border-2 border-[#D35400]/20 mb-3" />
-            <p className="text-xs text-gray-400 mt-1 uppercase tracking-widest text-center font-medium">Cocina Mexicana Autentica • Sacramento, CA</p>
+            <p className="text-xs text-gray-400 mt-1 uppercase tracking-widest text-center font-medium">Cocina Mexicana Autentica • 455 Bercut Dr, Sacramento, CA 95811</p>
           </div>
           
           <div className={`transition-all duration-500 flex items-center gap-3 ${scrolled ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 pointer-events-none absolute'}`}>
@@ -262,13 +262,15 @@ export default function Menu() {
             <div className="text-xl font-serif font-bold text-[#D35400]">MAYA</div>
           </div>
 
-          <a 
-            href="https://tablereserve.conect-r.com/book/roosters-on-the-river" 
-            target="_blank" 
-            rel="noreferrer"
-            className={`bg-[#D35400] hover:bg-[#D35400]/90 text-white text-xs font-bold py-2.5 px-5 rounded-full uppercase tracking-wider transition-all shadow-[0_4px_14px_rgba(211,84,0,0.4)] ${scrolled ? '' : 'absolute right-4 top-4'}`}
+          <a
+            href="#eventos"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("eventos")?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }}
+            className={`bg-[#D35400] hover:bg-[#D35400]/90 text-white text-[11px] font-bold py-2 px-3.5 rounded-full uppercase tracking-wider transition-all shadow-[0_4px_14px_rgba(211,84,0,0.4)] ${scrolled ? '' : 'absolute right-3 top-3'}`}
           >
-            Reservar Mesa
+            Próximos Eventos
           </a>
         </div>
 
@@ -382,6 +384,95 @@ export default function Menu() {
         )}
       </main>
 
+      {/* Eventos */}
+      <section id="eventos" className="container mx-auto px-4 mt-16 scroll-mt-32">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#F0A500] tracking-wide mb-2">Próximos Eventos</h2>
+          <p className="text-gray-400 text-sm">Música en vivo, shows y noches especiales en Maya Cantina</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {[
+            {
+              id: "mariachi",
+              day: "Viernes",
+              time: "8:00 PM",
+              title: "Noche de Mariachi",
+              desc: "Los mejores mariachis de Sacramento llenan la cantina con tradición, sabor y romance. Música en vivo toda la noche.",
+              img: "https://images.unsplash.com/photo-1571266028253-6c1f7c75e1f0?w=800&h=600&fit=crop",
+              fallbackEmoji: "🎺",
+              color: "from-[#D35400] to-[#F0A500]",
+            },
+            {
+              id: "banda",
+              day: "Sábado",
+              time: "9:00 PM",
+              title: "Banda Machos en Vivo",
+              desc: "La legendaria Banda Machos llega a Maya Cantina. Una noche de banda, baile y energía pura. Cupo limitado.",
+              img: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop",
+              fallbackEmoji: "🎷",
+              color: "from-[#7c2d12] to-[#D35400]",
+            },
+            {
+              id: "badbunny",
+              day: "Domingo",
+              time: "8:30 PM",
+              title: "Bad Bunny — Tributo en Vivo",
+              desc: "El mejor imitador de Bad Bunny de la costa oeste. Reggaetón, baile y ambiente de estadio en plena cantina.",
+              img: "https://images.unsplash.com/photo-1504680177321-2e6a879aac86?w=800&h=600&fit=crop",
+              fallbackEmoji: "🐰",
+              color: "from-[#a21caf] to-[#D35400]",
+            },
+            {
+              id: "pajares",
+              day: "Todos los Domingos",
+              time: "1:00 PM",
+              title: "Pajares — Show Familiar",
+              desc: "Los Pajares cada domingo: comedia, música y diversión para toda la familia mientras disfrutas el brunch.",
+              img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&h=600&fit=crop",
+              fallbackEmoji: "🎭",
+              color: "from-[#2E7D32] to-[#F0A500]",
+            },
+          ].map((ev, i) => (
+            <motion.div
+              key={ev.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: i * 0.08, duration: 0.5 }}
+              className="bg-[#1A1A1A] rounded-3xl overflow-hidden shadow-xl border border-white/5 flex flex-col"
+            >
+              <div className={`h-56 w-full relative overflow-hidden bg-gradient-to-br ${ev.color}`}>
+                <img
+                  src={ev.img}
+                  alt={ev.title}
+                  className="w-full h-full object-cover opacity-70"
+                  loading="lazy"
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-[#1A1A1A]/30 to-transparent" />
+                <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-bold text-white uppercase tracking-wider">
+                  {ev.day} · {ev.time}
+                </div>
+                <div className="absolute bottom-4 right-4 text-5xl drop-shadow-lg">{ev.fallbackEmoji}</div>
+              </div>
+              <div className="p-6 flex-1 flex flex-col">
+                <h3 className="font-serif font-bold text-2xl leading-tight text-white mb-2">{ev.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed flex-1 mb-5">{ev.desc}</p>
+                <a
+                  href="https://tablereserve.conect-r.com/book/roosters-on-the-river"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-[#D35400] hover:bg-[#D35400]/90 text-white text-sm font-bold py-3 px-5 rounded-2xl uppercase tracking-wider transition-all shadow-[0_4px_14px_rgba(211,84,0,0.4)] text-center"
+                >
+                  Reservar Mesa para el Evento
+                </a>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* Floating Socials */}
       <div className="fixed bottom-8 right-6 flex flex-col gap-4 z-30">
         <a 
@@ -407,11 +498,10 @@ export default function Menu() {
         <img src={`${import.meta.env.BASE_URL}maya-logo.jpeg`} alt="Maya Cantina" className="w-16 h-16 object-contain rounded-full mx-auto opacity-50 mb-6 grayscale" />
         <div className="font-serif text-2xl font-bold text-[#D35400] mb-4 opacity-80 tracking-widest">MAYA CANTINA</div>
         <div className="flex justify-center items-center gap-2 text-sm text-gray-400 mb-6 font-medium">
-          <MapPin size={16} className="text-[#F0A500]"/> Sacramento, CA
+          <MapPin size={16} className="text-[#F0A500]"/> 455 Bercut Dr, Sacramento, CA 95811
         </div>
         <div className="text-sm text-gray-500 space-y-3 max-w-xs mx-auto bg-white/5 p-4 rounded-2xl">
-          <p className="flex items-center justify-center gap-3"><Clock size={16} className="text-[#2E7D32]"/> Mar-Dom 5pm–10pm</p>
-          <p className="flex items-center justify-center gap-3"><Clock size={16} className="text-[#2E7D32]"/> Dom Brunch 11am–3pm</p>
+          <p className="flex items-center justify-center gap-3"><Clock size={16} className="text-[#2E7D32]"/> Lun-Dom 9am–10pm</p>
         </div>
         <div className="mt-10 pt-8 border-t border-white/5 text-xs text-gray-600 font-medium">
           <a href="https://mayacantina.toast.site" className="hover:text-[#D35400] transition-colors">mayacantina.toast.site</a>
@@ -497,7 +587,7 @@ export default function Menu() {
         )}
       </AnimatePresence>
 
-      <style dangerouslySetContentEditable>{`
+      <style>{`
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
         }

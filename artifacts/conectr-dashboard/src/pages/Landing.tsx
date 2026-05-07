@@ -109,7 +109,7 @@ function Pill({ children }: { children: React.ReactNode }) {
 /* ───────────── Wordmark — "Conect-" + R con ondas wifi en naranja ───────────── */
 
 function Wordmark({ size = "base" }: { size?: "base" | "lg" }) {
-  const h = size === "lg" ? 38 : 26;
+  const h = size === "lg" ? 56 : 44;
   return (
     <img
       src={conectrLogo}

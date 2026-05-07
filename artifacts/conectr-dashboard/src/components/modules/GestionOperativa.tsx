@@ -92,10 +92,10 @@ export default function GestionOperativa() {
       <div className="text-center">
         <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">{T.heading}</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto mb-4">
-          {T.description} <span className="text-orange-500 font-medium">{T.descSales}</span> {T.descAnd}{" "}
-          <span className="text-orange-500 font-medium">{T.descClients}</span> {T.descMid}{" "}
-          <span className="text-orange-500 font-medium">{T.descWork}</span> {T.descAnd2}{" "}
-          <span className="text-orange-500 font-medium">{T.descReviews}</span>.
+          {T.description} {T.descSales} {T.descAnd}{" "}
+          {T.descClients} {T.descMid}{" "}
+          {T.descWork} {T.descAnd2}{" "}
+          {T.descReviews}.
         </p>
         <ImpactPills />
         <div className="inline-block bg-orange-900/20 border border-orange-700/40 rounded-2xl px-6 py-3">
@@ -375,28 +375,28 @@ export default function GestionOperativa() {
       </AnimatePresence>
 
       {/* Chamba */}
-      <div className="maya-card rounded-2xl p-6 border border-blue-800/30" style={{ background: "linear-gradient(135deg, rgba(30,58,138,0.12), rgba(15,23,42,0.8))" }}>
+      <div className="maya-card rounded-2xl p-6 border border-orange-800/30" style={{ background: "linear-gradient(135deg, rgba(249,115,22,0.12), rgba(15,23,42,0.8))" }}>
         <div className="flex items-start gap-4 mb-5">
-          <div className="w-16 h-16 rounded-2xl bg-white/5 border border-blue-700/30 flex items-center justify-center shrink-0 overflow-hidden">
+          <div className="w-16 h-16 rounded-2xl bg-white/5 border border-orange-700/30 flex items-center justify-center shrink-0 overflow-hidden">
             <img src="/chamba-logo.png" alt="Chamba" className="w-14 h-14 object-contain" />
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
-              <h4 className="text-base font-bold text-blue-300">{T.chambaTitle}</h4>
-              <span className="text-xs px-2 py-0.5 bg-blue-500/15 border border-blue-500/30 text-blue-300 rounded-full">{T.chambaBadge}</span>
+              <h4 className="text-base font-bold text-orange-300">{T.chambaTitle}</h4>
+              <span className="text-xs px-2 py-0.5 bg-orange-500/15 border border-orange-500/30 text-orange-300 rounded-full">{T.chambaBadge}</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              {T.chambaDesc} <span className="text-blue-300 font-medium">{T.chambaHighlight}</span> {T.chambaDesc2}
+              {T.chambaDesc} {T.chambaHighlight} {T.chambaDesc2}
             </p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {T.chambaFeatures.map(item => (
-            <div key={item.title} className="flex gap-3 p-3 bg-blue-900/10 border border-blue-800/20 rounded-xl">
+            <div key={item.title} className="flex gap-3 p-3 bg-orange-900/10 border border-orange-800/20 rounded-xl">
               <span className="text-xl shrink-0">{item.emoji}</span>
               <div>
-                <div className="text-xs font-semibold text-blue-200 mb-0.5">{item.title}</div>
+                <div className="text-xs font-semibold text-orange-200 mb-0.5">{item.title}</div>
                 <div className="text-xs text-muted-foreground leading-snug">{item.desc}</div>
               </div>
             </div>

@@ -156,10 +156,10 @@ export default function SmartTable() {
       <div className="text-center">
         <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">{T.heading}</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          {T.description} <span className="text-orange-500 font-medium">{T.descReviews}</span>
-          {T.desc2}<span className="text-orange-500 font-medium">{T.descClients}</span>
-          {T.desc3}<span className="text-orange-500 font-medium">{T.descSales}</span>
-          {T.desc4}<span className="text-orange-500 font-medium">{T.descWork}</span>{T.desc5}
+          {T.description} {T.descReviews}
+          {T.desc2}{T.descClients}
+          {T.desc3}{T.descSales}
+          {T.desc4}{T.descWork}{T.desc5}
         </p>
         <ImpactPills />
       </div>

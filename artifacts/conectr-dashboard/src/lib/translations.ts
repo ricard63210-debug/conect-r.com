@@ -184,7 +184,6 @@ const translations = {
       { id: "presencia", label: "Presencia Digital", sublabel: "Web & AI Chat" },
       { id: "redes", label: "Redes Sociales", sublabel: "Instagram & Facebook" },
       { id: "creativo", label: "Diseño de Menú", sublabel: "Menú Imprimible" },
-      { id: "resultados", label: "Proyección", sublabel: "Con Conect-R" },
     ],
 
     smartTable: {
@@ -711,7 +710,6 @@ const translations = {
       { id: "presencia", label: "Digital Presence", sublabel: "Web & AI Chat" },
       { id: "redes", label: "Social Media", sublabel: "Instagram & Facebook" },
       { id: "creativo", label: "Menu Design", sublabel: "Printable Menu" },
-      { id: "resultados", label: "Projection", sublabel: "With Conect-R" },
     ],
 
     smartTable: {

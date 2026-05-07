@@ -70,9 +70,9 @@ export default function RedesSociales() {
       <div className="text-center">
         <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">{T.heading}</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          {T.description} <span className="text-orange-500 font-medium">{T.descEngagement}</span>{T.descMid}{" "}
-          <span className="text-orange-500 font-medium">{T.descFollowers}</span> {T.descAnd}{" "}
-          <span className="text-orange-500 font-medium">{T.descClients}</span>{T.descEnd}
+          {T.description} {T.descEngagement}{T.descMid}{" "}
+          {T.descFollowers} {T.descAnd}{" "}
+          {T.descClients}{T.descEnd}
         </p>
         <ImpactPills />
       </div>

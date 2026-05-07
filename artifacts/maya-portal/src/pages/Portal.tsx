@@ -231,7 +231,7 @@ export default function Portal() {
             AUTHENTIC MEXICAN CUISINE
           </div>
           <div style={{ marginTop: 6, fontSize: 13, color: "#8b7355" }}>
-            Sacramento, California
+            455 Bercut Dr, Sacramento, CA 95811
           </div>
         </div>
 
@@ -391,8 +391,7 @@ export default function Portal() {
 
         {/* Hours note */}
         <div style={{ textAlign: "center", marginTop: 16, fontSize: 11, color: "#4a3a22", lineHeight: 1.6 }}>
-          Tue–Thu 5–10pm · Fri–Sat 5–11pm<br />
-          Sun Brunch 11am–3pm · Monday closed
+          Open daily · Mon–Sun 9am–10pm
         </div>
       </div>
 
