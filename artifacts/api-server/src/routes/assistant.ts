@@ -5,6 +5,19 @@ import { getUncachableSendGridClient } from "../lib/sendgrid";
 const router: IRouter = Router();
 const TEAM_EMAIL = "contact@conect-r.com";
 
+function detectLang(text: string): "es" | "en" | null {
+  const t = text.toLowerCase().trim();
+  if (!t) return null;
+  if (/[áéíóúñ¿¡]/.test(t)) return "es";
+  const esWords = /\b(hola|gracias|por favor|dime|cuéntame|cuentame|acerca|necesito|quiero|tengo|cómo|como|qué|que|cuál|cual|cuando|cuándo|donde|dónde|para|porque|porqué|también|tambien|más|mas|mejor|sobre|aquí|aqui|nuestro|nuestra|tu|tus|mi|mis|sí|si|negocio|restaurante|menú|menu|mesa|cliente|servicio|precio|costo|cita|demo|ayuda)\b/;
+  const enWords = /\b(hello|hi|thanks|please|tell|about|need|want|have|how|what|which|when|where|why|because|also|more|better|on|here|our|your|my|yes|business|restaurant|menu|table|customer|service|price|cost|appointment|demo|help|the|and|with|for)\b/;
+  const esCount = (t.match(esWords) || []).length;
+  const enCount = (t.match(enWords) || []).length;
+  if (esCount > enCount) return "es";
+  if (enCount > esCount) return "en";
+  return null;
+}
+
 const apiKey = process.env.OPENAI_API_KEY ?? process.env.AI_INTEGRATIONS_OPENAI_API_KEY;
 const baseURL = process.env.OPENAI_API_KEY
   ? undefined
@@ -153,10 +166,12 @@ router.post("/assistant/chat", async (req, res) => {
       content: String(m.content ?? "").slice(0, 2000),
     }));
 
+    const lastUserMsg = [...trimmed].reverse().find((m) => m.role === "user")?.content ?? "";
+    const detected = detectLang(lastUserMsg) ?? lang;
     const langHint =
-      lang === "es"
-        ? "The user is browsing the Spanish version of the site. Reply in Spanish unless they switch."
-        : "The user is browsing the English version of the site. Reply in English unless they switch.";
+      detected === "es"
+        ? "REGLA DE IDIOMA (OBLIGATORIA): el último mensaje del usuario está en ESPAÑOL. Responde EXCLUSIVAMENTE en español, sin mezclar inglés. Si en mensajes futuros el usuario cambia a inglés, cambias a inglés en ese momento."
+        : "LANGUAGE RULE (MANDATORY): the user's last message is in ENGLISH. Reply EXCLUSIVELY in English, no Spanish words. If the user later switches to Spanish, switch with them at that moment.";
 
     const completion = await client.chat.completions.create({
       model: MODEL,

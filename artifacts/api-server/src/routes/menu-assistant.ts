@@ -26,11 +26,24 @@ type MenuCategory = {
   items?: MenuItem[];
 };
 
+function detectLang(text: string): "es" | "en" | null {
+  const t = text.toLowerCase().trim();
+  if (!t) return null;
+  if (/[áéíóúñ¿¡]/.test(t)) return "es";
+  const esWords = /\b(hola|gracias|por favor|dime|cuéntame|cuentame|acerca|necesito|quiero|tengo|cómo|como|qué|que|cuál|cual|cuando|cuándo|donde|dónde|para|porque|porqué|también|tambien|más|mas|mejor|sobre|aquí|aqui|nuestro|nuestra|tu|tus|mi|mis|sí|si|negocio|restaurante|menú|menu|mesa|cliente|servicio|precio|costo|cita|demo|ayuda|comida|platillo|bebida|picante|recomienda|recomiendas)\b/;
+  const enWords = /\b(hello|hi|thanks|please|tell|about|need|want|have|how|what|which|when|where|why|because|also|more|better|on|here|our|your|my|yes|business|restaurant|menu|table|customer|service|price|cost|help|the|and|with|for|food|dish|drink|spicy|recommend)\b/;
+  const esCount = (t.match(esWords) || []).length;
+  const enCount = (t.match(enWords) || []).length;
+  if (esCount > enCount) return "es";
+  if (enCount > esCount) return "en";
+  return null;
+}
+
 function buildSystemPrompt(menu: MenuCategory[], lang: "es" | "en"): string {
   const langInstruction =
     lang === "es"
-      ? "Responde SIEMPRE en español, con tono cálido, cercano y mexicano."
-      : "ALWAYS reply in English, in a warm, friendly tone.";
+      ? "REGLA DE IDIOMA (OBLIGATORIA): el último mensaje del cliente está en ESPAÑOL. Responde EXCLUSIVAMENTE en español, con tono cálido, cercano y mexicano. Si más adelante el cliente cambia a inglés, cambias a inglés en ese momento."
+      : "LANGUAGE RULE (MANDATORY): the customer's last message is in ENGLISH. Reply EXCLUSIVELY in English, warm and friendly tone. If they later switch to Spanish, switch with them at that moment.";
 
   const formattedMenu = menu
     .map((cat) => {
@@ -90,12 +103,15 @@ router.post("/menu-assistant/chat", async (req, res) => {
       content: String(m.content ?? "").slice(0, 1500),
     }));
 
+    const lastUserMsg = [...trimmed].reverse().find((m) => m.role === "user")?.content ?? "";
+    const effectiveLang = detectLang(lastUserMsg) ?? lang;
+
     const completion = await client.chat.completions.create({
       model: MODEL,
       max_tokens: 600,
       temperature: 0.7,
       messages: [
-        { role: "system", content: buildSystemPrompt(menu, lang) },
+        { role: "system", content: buildSystemPrompt(menu, effectiveLang) },
         ...trimmed,
       ],
     });
