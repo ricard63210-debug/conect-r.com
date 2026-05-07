@@ -123,13 +123,15 @@ function Pill({ children }: { children: React.ReactNode }) {
 /* ───────────── Wordmark — "Conect-" + R con ondas wifi en naranja ───────────── */
 
 function Wordmark({ size = "base" }: { size?: "base" | "lg" }) {
-  const h = size === "lg" ? 224 : 176;
+  const cls =
+    size === "lg"
+      ? "h-28 sm:h-40 md:h-56 w-auto object-contain select-none"
+      : "h-20 sm:h-32 md:h-44 w-auto object-contain select-none";
   return (
     <img
       src={conectrLogo}
       alt="Conect-R"
-      style={{ height: h, width: "auto" }}
-      className="object-contain select-none"
+      className={cls}
       draggable={false}
     />
   );

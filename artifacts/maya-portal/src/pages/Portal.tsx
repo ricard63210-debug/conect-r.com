@@ -6,7 +6,7 @@ const BASE = import.meta.env.BASE_URL;
 const LINKS = {
   menu: "/maya-menu/",
   reserve: "https://tablereserve.conect-r.com/book/roosters-on-the-river",
-  review: "https://www.google.com/maps/search/?api=1&query=Carmelita%27s+Kitchen+de+Mexico",
+  review: "https://www.google.com/maps/search/?api=1&query=Carmelita%27s+Kitchen+de+Mexico+Sacramento",
   events: "https://www.instagram.com/mayacantinasac/",
   instagram: "https://www.instagram.com/mayacantinasac/",
   facebook: "https://www.facebook.com/Mayarestaurantsac",
