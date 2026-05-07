@@ -77,7 +77,7 @@ const translations = {
           name: "Asesoria para Negocios",
           tagline: "CONSULTORIA ESTRATEGICA PARA RESTAURANTES",
           body: "Acompanamos a tu restaurante mas alla del software: analisis operativo, estrategia de marketing, recomendaciones de menu, optimizacion de costos y plan de crecimiento. Conect-R como tu socio estrategico — no solo proveedor de tecnologia.",
-          dashHash: "gestion",
+          dashHash: "consulting",
         },
       ],
       flow: {
@@ -640,7 +640,7 @@ const translations = {
           name: "Business Consulting",
           tagline: "STRATEGIC ADVISORY FOR RESTAURANTS",
           body: "We support your restaurant beyond the software: operational analysis, marketing strategy, menu recommendations, cost optimization, and growth planning. Conect-R as your strategic partner — not just a technology vendor.",
-          dashHash: "gestion",
+          dashHash: "consulting",
         },
       ],
       flow: {

@@ -300,6 +300,24 @@ export default function Landing() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             {L.appPortfolio.map((mod, i) => {
               const Icon = MODULE_ICONS[i] || Globe;
+              const isLocalSection = mod.dashHash === "consulting";
+              const cardClasses =
+                "group block h-full text-left w-full rounded-2xl border border-border bg-card p-6 hover:border-orange-500/40 hover:bg-orange-500/[0.03] hover:-translate-y-0.5 transition-all cursor-pointer";
+              const inner = (
+                <>
+                  <div className="w-11 h-11 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center mb-4 text-orange-500 group-hover:bg-orange-500/20 transition-colors">
+                    <Icon size={19} />
+                  </div>
+                  <div className="font-bold text-foreground text-lg mb-1.5 flex items-center gap-1.5">
+                    {mod.name}
+                    <ArrowUpRight size={15} className="text-orange-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                  <div className="text-[11px] font-bold tracking-wider text-orange-500 mb-3">
+                    {mod.tagline}
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{mod.body}</p>
+                </>
+              );
               return (
                 <motion.div
                   key={mod.name}
@@ -308,22 +326,19 @@ export default function Landing() {
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.4, delay: i * 0.04 }}
                 >
-                  <Link
-                    href={`/dashboard#${mod.dashHash}`}
-                    className="group block h-full rounded-2xl border border-border bg-card p-6 hover:border-orange-500/40 hover:bg-orange-500/[0.03] hover:-translate-y-0.5 transition-all cursor-pointer"
-                  >
-                    <div className="w-11 h-11 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center mb-4 text-orange-500 group-hover:bg-orange-500/20 transition-colors">
-                      <Icon size={19} />
-                    </div>
-                    <div className="font-bold text-foreground text-lg mb-1.5 flex items-center gap-1.5">
-                      {mod.name}
-                      <ArrowUpRight size={15} className="text-orange-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                    <div className="text-[11px] font-bold tracking-wider text-orange-500 mb-3">
-                      {mod.tagline}
-                    </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{mod.body}</p>
-                  </Link>
+                  {isLocalSection ? (
+                    <button
+                      type="button"
+                      onClick={() => scrollTo("consulting")}
+                      className={cardClasses}
+                    >
+                      {inner}
+                    </button>
+                  ) : (
+                    <Link href={`/dashboard#${mod.dashHash}`} className={cardClasses}>
+                      {inner}
+                    </Link>
+                  )}
                 </motion.div>
               );
             })}
