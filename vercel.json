@@ -1,0 +1,7 @@
+{
+  "buildCommand": "pnpm --filter @workspace/conectr-dashboard build",
+  "outputDirectory": "artifacts/conectr-dashboard/dist/public",
+  "rewrites": [
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
+}
