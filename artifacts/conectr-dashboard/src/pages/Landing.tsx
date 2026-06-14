@@ -738,21 +738,8 @@ export default function Landing() {
       {/* FOOTER */}
       <footer className="border-t border-border bg-muted/20 mt-auto">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-10">
             <div>
-              <Wordmark size="lg" />
-              <p className="text-sm text-muted-foreground mt-3 leading-relaxed max-w-xs">
-                {L.footer.tagline}
-              </p>
-              <div className="flex items-center gap-1.5 mt-4 text-xs text-muted-foreground">
-                <MapPin size={12} className="text-orange-500" />
-                {L.footer.location}
-              </div>
-            </div>
-            <div>
-              <div className="text-xs font-bold tracking-widest text-foreground/50 mb-4">
-                {L.footer.productLabel.toUpperCase()}
-              </div>
               <ul className="space-y-2.5">
                 {L.footer.productLinks.map(link => (
                   <li key={link.label}>
