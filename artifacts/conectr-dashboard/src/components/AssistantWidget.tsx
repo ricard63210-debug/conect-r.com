@@ -178,7 +178,7 @@ export default function AssistantWidget() {
   // Listen for external "open chat with greeting" events (Book a demo buttons)
   useEffect(() => {
     const handler = (e: Event) => {
-      const ce = e as CustomEvent<{ greeting?: string; lang?: Lang }>;
+      const ce = e as CustomEvent<{ greeting?: string; lang?: Lang; userMessage?: string }>;
       const greet = ce.detail?.greeting?.trim() || t.greet;
       customGreetRef.current = greet;
       setMessages([{ id: uid(), from: "bot", text: greet }]);
@@ -187,6 +187,12 @@ export default function AssistantWidget() {
       setEditing(false);
       setSendStatus("idle");
       setOpen(true);
+      const userMsg = ce.detail?.userMessage;
+      if (userMsg) {
+        setTimeout(() => {
+          sendMessageRef.current?.(userMsg);
+        }, 100);
+      }
     };
     window.addEventListener("conectr:open-chat", handler as EventListener);
     return () =>
@@ -213,6 +219,9 @@ export default function AssistantWidget() {
     setMessages((m) => [...m, { id: uid(), from: "bot", text }]);
   const pushUser = (text: string) =>
     setMessages((m) => [...m, { id: uid(), from: "user", text }]);
+
+  // Keep sendMessageRef in sync with latest sendMessage (declared below)
+  const sendMessageRef = useRef<((raw: string) => void) | null>(null);
 
   const sendMessage = async (raw: string) => {
     const text = raw.trim();
@@ -277,6 +286,7 @@ export default function AssistantWidget() {
       setThinking(false);
     }
   };
+  sendMessageRef.current = sendMessage;
 
   const sendEmail = async () => {
     if (!appointment || sendStatus === "sending") return;
