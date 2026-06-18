@@ -226,8 +226,8 @@ export default function NfcStands() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            {/* Setup */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {/* QR Only Portal */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -235,15 +235,67 @@ export default function NfcStands() {
               transition={{ duration: 0.6 }}
               className="glass-panel rounded-3xl p-8 border border-border"
             >
-              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">Initial Setup</div>
+              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">
+                {lang === "es" ? "Portal QR Directo" : "Direct QR Portal"}
+              </div>
+              <div className="flex items-end gap-2 mb-2">
+                <span className="text-4xl sm:text-5xl font-black text-foreground">
+                  {lang === "es" ? "Desde $100" : "From $100"}
+                </span>
+                <span className="text-muted-foreground font-light mb-1">USD</span>
+              </div>
+              <p className="text-muted-foreground text-xs text-orange-500/80 font-bold mb-3">
+                {lang === "es" ? "Sin stands físicos" : "No physical stands"}
+              </p>
+              <p className="text-muted-foreground text-sm font-light leading-relaxed">
+                {lang === "es"
+                  ? "Configuración única del portal digital y entrega de códigos QR en alta resolución listos para imprimir en tus propios menús."
+                  : "One-time digital portal configuration and high-resolution QR codes delivery, ready to print on your own menus."}
+              </p>
+            </motion.div>
+
+            {/* Setup */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="glass-panel rounded-3xl p-8 border border-border"
+            >
+              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">
+                {lang === "es" ? "Configuración Inicial" : "Initial Setup"}
+              </div>
               <div className="flex items-end gap-2 mb-2">
                 <span className="text-5xl font-black text-foreground">$750</span>
                 <span className="text-muted-foreground font-light mb-1">USD</span>
               </div>
-              <p className="text-muted-foreground text-xs text-orange-500/80 font-bold mb-3">Includes 50 stands</p>
-              <p className="text-muted-foreground text-sm font-light leading-relaxed">
-                One-time hardware fee covering manufacture, custom logo laser engraving/printing, and NFC/QR coding for 50 table stands.
+              <p className="text-muted-foreground text-xs text-orange-500/80 font-bold mb-3">
+                {lang === "es" ? "Incluye 50 stands" : "Includes 50 stands"}
               </p>
+              <p className="text-muted-foreground text-sm font-light leading-relaxed mb-4">
+                {lang === "es"
+                  ? "Costo único de hardware que cubre la fabricación, grabado/impresión láser de logo personalizado y codificación NFC/QR para 50 stands de mesa."
+                  : "One-time hardware fee covering manufacture, custom logo laser engraving/printing, and NFC/QR coding for 50 table stands."}
+              </p>
+              <div className="mt-4 pt-4 border-t border-border/50">
+                <div className="text-[10px] font-black tracking-wider text-orange-500 uppercase mb-2">
+                  {lang === "es" ? "Precios por unidad (stands adicionales):" : "Unit pricing (additional stands):"}
+                </div>
+                <ul className="space-y-1 text-xs font-light text-muted-foreground">
+                  <li className="flex justify-between">
+                    <span>{lang === "es" ? "Por defecto" : "Default"}</span>
+                    <span className="font-semibold text-foreground">$20 USD / {lang === "es" ? "unidad" : "unit"}</span>
+                  </li>
+                  <li className="flex justify-between">
+                    <span>50+ {lang === "es" ? "stands" : "stands"}</span>
+                    <span className="font-semibold text-foreground">$15 USD / {lang === "es" ? "unidad" : "unit"}</span>
+                  </li>
+                  <li className="flex justify-between">
+                    <span>100+ {lang === "es" ? "stands" : "stands"}</span>
+                    <span className="font-semibold text-foreground">$10 USD / {lang === "es" ? "unidad" : "unit"}</span>
+                  </li>
+                </ul>
+              </div>
             </motion.div>
 
             {/* Monthly SaaS */}
@@ -251,7 +303,7 @@ export default function NfcStands() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               className="rounded-3xl p-8 border border-orange-500/30 bg-gradient-to-br from-orange-500/10 to-orange-500/5 relative overflow-hidden"
             >
               <div className="absolute top-4 right-4">
@@ -259,13 +311,19 @@ export default function NfcStands() {
                   Monthly
                 </span>
               </div>
-              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">SaaS Subscription</div>
+              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">
+                {lang === "es" ? "Suscripción SaaS" : "SaaS Subscription"}
+              </div>
               <div className="flex items-end gap-2 mb-2">
-                <span className="text-5xl font-black text-foreground">$100</span>
+                <span className="text-4xl sm:text-5xl font-black text-foreground">
+                  {lang === "es" ? "Desde $100" : "From $100"}
+                </span>
                 <span className="text-muted-foreground font-light mb-1">USD / mo</span>
               </div>
               <p className="text-muted-foreground text-sm font-light leading-relaxed">
-                Access to the web portal builder, menu editor, redirect flow controller, and real-time scan analytics dashboard.
+                {lang === "es"
+                  ? "Acceso al constructor de portal web, editor de menú, controlador de flujo de redirección y panel de análisis de escaneos en tiempo real."
+                  : "Access to the web portal builder, menu editor, redirect flow controller, and real-time scan analytics dashboard."}
               </p>
             </motion.div>
           </div>

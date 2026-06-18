@@ -134,8 +134,8 @@ function Wordmark({ size = "base", isScrolled = false }: { size?: "base" | "lg";
     );
   }
   const cls = isScrolled
-    ? "h-10 sm:h-12 w-auto object-contain select-none transition-all duration-300"
-    : "h-12 sm:h-16 w-auto object-contain select-none transition-all duration-300";
+    ? "h-20 sm:h-24 w-auto object-contain select-none transition-all duration-300"
+    : "h-24 sm:h-32 w-auto object-contain select-none transition-all duration-300";
   return (
     <img
       src={conectrLogo}

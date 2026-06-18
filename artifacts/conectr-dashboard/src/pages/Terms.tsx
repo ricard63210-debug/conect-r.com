@@ -43,7 +43,7 @@ function Wordmark() {
     <img
       src={conectrLogo}
       alt="Conect-R"
-      className="h-20 sm:h-32 md:h-44 w-auto object-contain select-none"
+      className="h-24 sm:h-32 w-auto object-contain select-none"
       draggable={false}
     />
   );
