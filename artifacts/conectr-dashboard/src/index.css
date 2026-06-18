@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -100,7 +100,7 @@
   --chart-5: 270 50% 55%;
 
   --app-font-sans: 'Inter', sans-serif;
-  --app-font-serif: 'Cinzel', serif;
+  --app-font-serif: 'Playfair Display', serif;
   --app-font-mono: Menlo, monospace;
   --radius: .75rem;
   --shadow-2xs: 0px 2px 4px 0px rgba(0,0,0,0.05);
