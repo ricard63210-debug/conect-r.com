@@ -74,7 +74,7 @@ const FEATURES = [
   {
     icon: Package,
     title: "Premium hardware included",
-    body: "50 wood/metal physical stands — ready to install.",
+    body: "50 physical stands — ready to install.",
   },
   {
     icon: Palette,
@@ -274,8 +274,8 @@ export default function NfcStands() {
               </p>
               <p className="text-muted-foreground text-sm font-light leading-relaxed mb-4">
                 {lang === "es"
-                  ? "Costo único de hardware que cubre la fabricación, grabado/impresión láser de logo personalizado y codificación NFC/QR para 50 stands de mesa."
-                  : "One-time hardware fee covering manufacture, custom logo laser engraving/printing, and NFC/QR coding for 50 table stands."}
+                  ? "Costo único de hardware que cubre el logo personalizado y la codificación NFC/QR para 50 stands de mesa."
+                  : "One-time hardware fee covering the custom logo and NFC/QR coding for 50 table stands."}
               </p>
               <div className="mt-4 pt-4 border-t border-border/50">
                 <div className="text-[10px] font-black tracking-wider text-orange-500 uppercase mb-2">
