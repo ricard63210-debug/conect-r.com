@@ -11,36 +11,6 @@ import { getT } from "@/lib/translations";
 import conectrLogo from "@/assets/conectr-logo.png";
 import { useState, useEffect } from "react";
 
-const DEMO_GREETING_EN =
-  "Thanks for your interest in NextUp! I'm Aria from Conect-R. I'll guide you through activating your digital waitlist.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?";
-const DEMO_GREETING_ES =
-  "¡Gracias por tu interés en NextUp! Soy Aria de Conect-R. Te guiaré para activar tu lista de espera digital.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?";
-
-function openChat(lang: "es" | "en") {
-  window.dispatchEvent(
-    new CustomEvent("conectr:open-chat", {
-      detail: {
-        greeting: lang === "es" ? DEMO_GREETING_ES : DEMO_GREETING_EN,
-        lang,
-        userMessage: lang === "es" ? "Me gustaría activar NextUp" : "I would like to activate NextUp",
-      },
-    }),
-  );
-}
-
-const DEMO_GREETING = {
-  es: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
-  en: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
-};
-
-function openDemoChat(lang: "es" | "en", userMessage?: string) {
-  window.dispatchEvent(
-    new CustomEvent("conectr:open-chat", {
-      detail: { greeting: DEMO_GREETING[lang], lang, userMessage },
-    }),
-  );
-}
-
 function useTheme() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     if (typeof window === "undefined") return "dark";
@@ -55,66 +25,46 @@ function useTheme() {
   return { theme, toggle: () => setTheme((t) => (t === "dark" ? "light" : "dark")) };
 }
 
-const FEATURES = [
-  {
-    icon: Smartphone,
-    title: "Check-in from phone",
-    body: "QR at the door. Customer scans, types name and party size. Done.",
-  },
-  {
-    icon: MessageSquare,
-    title: "SMS notifications",
-    body: "Turn updates, ready-to-seat and reminders — no app required.",
-  },
-  {
-    icon: Clock,
-    title: "Estimated wait time",
-    body: "Auto-calculated from your restaurant's real turn rate.",
-  },
-  {
-    icon: RefreshCw,
-    title: "Synced with Table Reserve",
-    body: "Reservations + walk-ins in the same host view.",
-  },
-  {
-    icon: Tv,
-    title: "Public display",
-    body: "Shows the next 10 on a TV — customers see they're moving up.",
-  },
-  {
-    icon: Database,
-    title: "Customer data",
-    body: "Captures email/phone for remarketing and newsletter with consent.",
-  },
-];
-
-const WHY_US = [
-  {
-    icon: TrendingDown,
-    title: "Cuts line abandonment by up to 35%",
-    body: "Guests don't have to stand at the door. They wander around, grab a drink, and return when texted.",
-  },
-  {
-    icon: Smartphone,
-    title: "No app — works over web/SMS",
-    body: "Zero downloads required for customers. Works instantly on any smartphone browser and via SMS.",
-  },
-  {
-    icon: RefreshCw,
-    title: "Integrated with Table Reserve",
-    body: "Combines your active waitlist and booked reservations in a single host view dashboard.",
-  },
-  {
-    icon: Database,
-    title: "Builds a customer database",
-    body: "Grows your loyalty list naturally by capturing phone numbers and emails on check-in.",
-  },
-];
-
 export default function NextUp() {
   const { lang, toggle: toggleLang } = useLang();
   const { theme, toggle: toggleTheme } = useTheme();
   const T = getT(lang);
+
+  const handleOpenDemoChat = () => {
+    window.dispatchEvent(
+      new CustomEvent("conectr:open-chat", {
+        detail: {
+          greeting: T.nextUp.demoGreeting,
+          lang,
+          userMessage: T.nextUp.demoUserMessage,
+        },
+      }),
+    );
+  };
+
+  const handleOpenChat = () => {
+    window.dispatchEvent(
+      new CustomEvent("conectr:open-chat", {
+        detail: {
+          greeting: T.nextUp.chatGreeting,
+          lang,
+          userMessage: T.nextUp.chatUserMessage,
+        },
+      }),
+    );
+  };
+
+  const features = [Smartphone, MessageSquare, Clock, RefreshCw, Tv, Database].map((icon, idx) => ({
+    icon,
+    title: T.nextUp.features.list[idx].title,
+    body: T.nextUp.features.list[idx].body,
+  }));
+
+  const whyUs = [TrendingDown, Smartphone, RefreshCw, Database].map((icon, idx) => ({
+    icon,
+    title: T.nextUp.whyUs.list[idx].title,
+    body: T.nextUp.whyUs.list[idx].body,
+  }));
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
@@ -141,7 +91,7 @@ export default function NextUp() {
               {T.global.langBtn}
             </button>
             <button
-              onClick={() => openDemoChat(lang, lang === "es" ? "Me gustaría agendar una demo" : "I would like to book a demo")}
+              onClick={handleOpenDemoChat}
               className="inline-flex items-center gap-1.5 bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold shadow-lg shadow-orange-500/25 transition-all hover:shadow-orange-500/40 active:scale-95 active:shadow-inner"
             >
               <span className="hidden sm:inline">{T.landing.nav.scheduleDemo}</span>
@@ -167,7 +117,7 @@ export default function NextUp() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
               <RefreshCw size={12} strokeWidth={2.5} />
-              NEXTUP
+              {T.nextUp.hero.pill}
             </div>
           </motion.div>
 
@@ -177,10 +127,10 @@ export default function NextUp() {
             transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-5xl sm:text-7xl lg:text-8xl font-serif italic font-medium tracking-tight leading-[0.9] mb-6"
           >
-            NextUp
+            {T.nextUp.hero.title}
             <br />
             <span className="text-gradient font-sans not-italic font-black block mt-2 sm:mt-4 pb-3 pt-1 leading-normal">
-              Synchronized digital waitlist
+              {T.nextUp.hero.titleHighlight}
             </span>
           </motion.h1>
 
@@ -190,7 +140,7 @@ export default function NextUp() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed font-light tracking-wide"
           >
-            No more pagers and people standing at the door. NextUp lets your customers check in from their phone, walk around the mall and receive an SMS when their table is ready.
+            {T.nextUp.hero.subtitle}
           </motion.p>
 
           <motion.div
@@ -200,10 +150,10 @@ export default function NextUp() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <button
-              onClick={() => openChat(lang)}
+              onClick={handleOpenChat}
               className="group relative inline-flex items-center gap-3 bg-foreground text-background px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl shadow-black/20 transition-all hover:scale-[1.02] active:scale-95"
             >
-              <span className="relative z-10">Activate NextUp</span>
+              <span className="relative z-10">{T.nextUp.hero.cta}</span>
               <ArrowRight size={18} strokeWidth={2.5} className="relative z-10 transition-transform group-hover:translate-x-1" />
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity" />
             </button>
@@ -217,12 +167,12 @@ export default function NextUp() {
           <div className="text-center mb-14">
             <div className="flex justify-center mb-6">
               <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                PRICING
+                {T.nextUp.pricing.pill}
               </div>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-serif italic mb-4">Simple, transparent pricing</h2>
+            <h2 className="text-3xl sm:text-5xl font-serif italic mb-4">{T.nextUp.pricing.title}</h2>
             <p className="text-muted-foreground max-w-xl mx-auto font-light">
-              One-time setup fee, then a low monthly SaaS subscription. No hidden costs, no surprises.
+              {T.nextUp.pricing.subtitle}
             </p>
           </div>
 
@@ -235,13 +185,13 @@ export default function NextUp() {
               transition={{ duration: 0.6 }}
               className="glass-panel rounded-3xl p-8 border border-border"
             >
-              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">Initial Setup</div>
+              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">{T.nextUp.pricing.setup.badge}</div>
               <div className="flex items-end gap-2 mb-2">
-                <span className="text-5xl font-black text-foreground">$150</span>
-                <span className="text-muted-foreground font-light mb-1">USD</span>
+                <span className="text-5xl font-black text-foreground">{T.nextUp.pricing.setup.price}</span>
+                <span className="text-muted-foreground font-light mb-1">{T.nextUp.pricing.setup.currency}</span>
               </div>
               <p className="text-muted-foreground text-sm font-light leading-relaxed">
-                One-time setup fee covering custom QR code creation for the host stand, TV output display sync, and SMS route initialization.
+                {T.nextUp.pricing.setup.description}
               </p>
             </motion.div>
 
@@ -255,16 +205,16 @@ export default function NextUp() {
             >
               <div className="absolute top-4 right-4">
                 <span className="inline-flex items-center px-3 py-1 rounded-full bg-orange-500 text-white text-[10px] font-black tracking-[0.15em] uppercase">
-                  Monthly
+                  {T.nextUp.pricing.monthly.periodLabel}
                 </span>
               </div>
-              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">SaaS Subscription</div>
+              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">{T.nextUp.pricing.monthly.badge}</div>
               <div className="flex items-end gap-2 mb-2">
-                <span className="text-5xl font-black text-foreground">$100</span>
-                <span className="text-muted-foreground font-light mb-1">USD / mo</span>
+                <span className="text-5xl font-black text-foreground">{T.nextUp.pricing.monthly.price}</span>
+                <span className="text-muted-foreground font-light mb-1">{T.nextUp.pricing.monthly.currency}</span>
               </div>
               <p className="text-muted-foreground text-sm font-light leading-relaxed">
-                Unlimited customers check-ins, local and international SMS delivery, TV menu synchronization, and customer analytics.
+                {T.nextUp.pricing.monthly.description}
               </p>
             </motion.div>
           </div>
@@ -277,18 +227,18 @@ export default function NextUp() {
           <div className="text-center mb-14">
             <div className="flex justify-center mb-6">
               <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                WHAT'S INCLUDED
+                {T.nextUp.features.pill}
               </div>
             </div>
             <h2 className="text-3xl sm:text-5xl font-serif italic mb-4">
-              Everything you need,
+              {T.nextUp.features.title}
               <br />
-              <span className="text-gradient font-sans not-italic font-black">nothing you don't.</span>
+              <span className="text-gradient font-sans not-italic font-black">{T.nextUp.features.titleHighlight}</span>
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {FEATURES.map((f, i) => (
+            {features.map((f, i) => (
               <motion.div
                 key={f.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -314,18 +264,18 @@ export default function NextUp() {
           <div className="text-center mb-14">
             <div className="flex justify-center mb-6">
               <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                WHY TEAMS CHOOSE US
+                {T.nextUp.whyUs.pill}
               </div>
             </div>
             <h2 className="text-3xl sm:text-5xl font-serif italic">
-              More than software —
+              {T.nextUp.whyUs.title}
               <br />
-              <span className="text-gradient font-sans not-italic font-black">a growth engine.</span>
+              <span className="text-gradient font-sans not-italic font-black">{T.nextUp.whyUs.titleHighlight}</span>
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {WHY_US.map((item, i) => (
+            {whyUs.map((item, i) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
@@ -359,23 +309,23 @@ export default function NextUp() {
           >
             <div className="flex justify-center mb-8">
               <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                READY TO LAUNCH
+                {T.nextUp.cta.pill}
               </div>
             </div>
             <h2 className="text-4xl sm:text-6xl font-serif italic font-medium tracking-tight mb-6">
-              Ready to launch NextUp?
+              {T.nextUp.cta.title}
             </h2>
             <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-10 leading-relaxed font-light">
-              Talk to Aria — our AI assistant will gather your details and connect you with the Conect-R team to kick things off.
+              {T.nextUp.cta.subtitle}
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button
-                onClick={() => openChat(lang)}
+                onClick={handleOpenChat}
                 className="group relative inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl shadow-orange-500/30 transition-all hover:scale-105 active:scale-95"
               >
                 <Sparkles size={20} strokeWidth={2} className="transition-transform group-hover:rotate-12" />
-                Activate NextUp
+                {T.nextUp.cta.button}
                 <ArrowRight size={18} strokeWidth={2.5} className="transition-transform group-hover:translate-x-1" />
               </button>
 
@@ -384,7 +334,7 @@ export default function NextUp() {
                 className="inline-flex items-center gap-2 px-6 py-4 rounded-2xl border border-border text-muted-foreground hover:text-foreground hover:border-orange-500/30 font-semibold text-sm transition-all"
               >
                 <ArrowLeft size={16} strokeWidth={2.5} />
-                Back to home
+                {T.nextUp.cta.backToHome}
               </Link>
             </div>
           </motion.div>
@@ -397,7 +347,7 @@ export default function NextUp() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mt-16 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground"
           >
-            {["Flexible terms", "Full project live in under 2 weeks", "Bilingual support (EN/ES)", "Sacramento-based team"].map((item) => (
+            {T.nextUp.cta.socialProof.map((item) => (
               <div key={item} className="flex items-center gap-2">
                 <Check size={14} strokeWidth={2.5} className="text-orange-500" />
                 <span>{item}</span>
@@ -414,7 +364,7 @@ export default function NextUp() {
             <img src={conectrLogo} alt="Conect-R" className="h-12 w-auto object-contain select-none" draggable={false} />
           </Link>
           <p className="text-xs text-muted-foreground text-center">
-            © {new Date().getFullYear()} Conect-R. Sacramento, CA. All rights reserved.
+            {T.nextUp.footer.rights.replace("{year}", new Date().getFullYear().toString())}
           </p>
         </div>
       </footer>

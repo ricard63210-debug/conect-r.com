@@ -11,36 +11,6 @@ import { getT } from "@/lib/translations";
 import conectrLogo from "@/assets/conectr-logo.png";
 import { useState, useEffect } from "react";
 
-const DEMO_GREETING_EN =
-  "Thanks for your interest in our Premium Website! I'm Aria from Conect-R. I'll guide you through booking a consultation.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?";
-const DEMO_GREETING_ES =
-  "¡Gracias por tu interés en nuestro sitio Premium! Soy Aria de Conect-R. Te guiaré para agendar tu consulta.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?";
-
-const DEMO_GREETING = {
-  es: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
-  en: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
-};
-
-function openDemoChat(lang: "es" | "en", userMessage?: string) {
-  window.dispatchEvent(
-    new CustomEvent("conectr:open-chat", {
-      detail: { greeting: DEMO_GREETING[lang], lang, userMessage },
-    }),
-  );
-}
-
-function openChat(lang: "es" | "en") {
-  window.dispatchEvent(
-    new CustomEvent("conectr:open-chat", {
-      detail: {
-        greeting: lang === "es" ? DEMO_GREETING_ES : DEMO_GREETING_EN,
-        lang,
-        userMessage: lang === "es" ? "Me gustaría solicitar mi Sitio Web Premium" : "I would like to request my Premium Website",
-      },
-    }),
-  );
-}
-
 function useTheme() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     if (typeof window === "undefined") return "dark";
@@ -55,56 +25,46 @@ function useTheme() {
   return { theme, toggle: () => setTheme((t) => (t === "dark" ? "light" : "dark")) };
 }
 
-const FEATURES = [
-  {
-    icon: Palette,
-    title: "Premium brand design",
-    body: "Custom visual identity built around your restaurant — colors, typography, photography layouts, and micro-animations that create a real wow-factor.",
-  },
-  {
-    icon: CalendarCheck,
-    title: "Online reservations",
-    body: "Integrated reservation flow that lets guests book a table in seconds, directly from your site — no third-party fees, no missed calls.",
-  },
-  {
-    icon: Utensils,
-    title: "Integrated digital menu",
-    body: "Your full menu lives on the site — always up to date, beautifully formatted, and accessible from any device without an app.",
-  },
-  {
-    icon: Search,
-    title: "Local SEO optimized",
-    body: "Technical SEO baked in from day one: semantic HTML, structured data, fast load times, and Google Business integration to rank in local search.",
-  },
-];
-
-const WHY_US = [
-  {
-    icon: TrendingUp,
-    title: "Built to convert, not just look good",
-    body: "Every section — from the hero to the menu — is designed with proven conversion patterns that turn visitors into reservations.",
-  },
-  {
-    icon: Zap,
-    title: "Fast delivery, zero tech headaches",
-    body: "Full project live in under 2 weeks. We handle hosting, updates, and performance monitoring so you focus on running your restaurant.",
-  },
-  {
-    icon: Shield,
-    title: "Your brand, your asset",
-    body: "You own it. The design, the content, the domain. We build it to last and hand you full control with no lock-in.",
-  },
-  {
-    icon: Star,
-    title: "Proven for local restaurants",
-    body: "Tested with Sacramento-area restaurants — Mexican, American, and Latino concepts — that saw measurable increases in walk-ins and online reservations.",
-  },
-];
-
 export default function PremiumWebsite() {
   const { lang, toggle: toggleLang } = useLang();
   const { theme, toggle: toggleTheme } = useTheme();
   const T = getT(lang);
+
+  const handleOpenDemoChat = () => {
+    window.dispatchEvent(
+      new CustomEvent("conectr:open-chat", {
+        detail: {
+          greeting: T.premiumWebsite.demoGreeting,
+          lang,
+          userMessage: T.premiumWebsite.demoUserMessage,
+        },
+      }),
+    );
+  };
+
+  const handleOpenChat = () => {
+    window.dispatchEvent(
+      new CustomEvent("conectr:open-chat", {
+        detail: {
+          greeting: T.premiumWebsite.chatGreeting,
+          lang,
+          userMessage: T.premiumWebsite.chatUserMessage,
+        },
+      }),
+    );
+  };
+
+  const features = [Palette, CalendarCheck, Utensils, Search].map((icon, idx) => ({
+    icon,
+    title: T.premiumWebsite.features.list[idx].title,
+    body: T.premiumWebsite.features.list[idx].body,
+  }));
+
+  const whyUs = [TrendingUp, Zap, Shield, Star].map((icon, idx) => ({
+    icon,
+    title: T.premiumWebsite.whyUs.list[idx].title,
+    body: T.premiumWebsite.whyUs.list[idx].body,
+  }));
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
@@ -131,7 +91,7 @@ export default function PremiumWebsite() {
               {T.global.langBtn}
             </button>
             <button
-              onClick={() => openDemoChat(lang, lang === "es" ? "Me gustaría agendar una demo" : "I would like to book a demo")}
+              onClick={handleOpenDemoChat}
               className="inline-flex items-center gap-1.5 bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold shadow-lg shadow-orange-500/25 transition-all hover:shadow-orange-500/40 active:scale-95 active:shadow-inner"
             >
               <span className="hidden sm:inline">{T.landing.nav.scheduleDemo}</span>
@@ -157,7 +117,7 @@ export default function PremiumWebsite() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
               <Globe size={12} strokeWidth={2.5} />
-              PREMIUM WEBSITE
+              {T.premiumWebsite.hero.pill}
             </div>
           </motion.div>
 
@@ -167,10 +127,10 @@ export default function PremiumWebsite() {
             transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-5xl sm:text-7xl lg:text-8xl font-serif italic font-medium tracking-tight leading-[0.9] mb-6"
           >
-            Your digital home,
+            {T.premiumWebsite.hero.title}
             <br />
             <span className="text-gradient font-sans not-italic font-black block mt-2 sm:mt-4 pb-3 pt-1 leading-normal">
-              built to sell.
+              {T.premiumWebsite.hero.titleHighlight}
             </span>
           </motion.h1>
 
@@ -180,7 +140,7 @@ export default function PremiumWebsite() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed font-light tracking-wide"
           >
-            Not a template. Not a basic site. A premium, interactive web presence built specifically for your restaurant — with reservations, menu, and SEO baked in from day one.
+            {T.premiumWebsite.hero.subtitle}
           </motion.p>
 
           <motion.div
@@ -190,10 +150,10 @@ export default function PremiumWebsite() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <button
-              onClick={() => openChat(lang)}
+              onClick={handleOpenChat}
               className="group relative inline-flex items-center gap-3 bg-foreground text-background px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl shadow-black/20 transition-all hover:scale-[1.02] active:scale-95"
             >
-              <span className="relative z-10">Request my site</span>
+              <span className="relative z-10">{T.premiumWebsite.hero.cta}</span>
               <ArrowRight size={18} strokeWidth={2.5} className="relative z-10 transition-transform group-hover:translate-x-1" />
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity" />
             </button>
@@ -207,12 +167,12 @@ export default function PremiumWebsite() {
           <div className="text-center mb-14">
             <div className="flex justify-center mb-6">
               <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                PRICING
+                {T.premiumWebsite.pricing.pill}
               </div>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-serif italic mb-4">Simple, transparent pricing</h2>
+            <h2 className="text-3xl sm:text-5xl font-serif italic mb-4">{T.premiumWebsite.pricing.title}</h2>
             <p className="text-muted-foreground max-w-xl mx-auto font-light">
-              One-time setup fee, then a low monthly SaaS subscription. No hidden costs, no surprises.
+              {T.premiumWebsite.pricing.subtitle}
             </p>
           </div>
 
@@ -225,13 +185,13 @@ export default function PremiumWebsite() {
               transition={{ duration: 0.6 }}
               className="glass-panel rounded-3xl p-8 border border-border"
             >
-              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">Initial Setup</div>
+              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">{T.premiumWebsite.pricing.setup.badge}</div>
               <div className="flex items-end gap-2 mb-2">
-                <span className="text-5xl font-black text-foreground">$1,000</span>
-                <span className="text-muted-foreground font-light mb-1">USD</span>
+                <span className="text-5xl font-black text-foreground">{T.premiumWebsite.pricing.setup.price}</span>
+                <span className="text-muted-foreground font-light mb-1">{T.premiumWebsite.pricing.setup.currency}</span>
               </div>
               <p className="text-muted-foreground text-sm font-light leading-relaxed">
-                One-time fee covering design, development, content setup, and full launch. Starting price — final quote based on scope.
+                {T.premiumWebsite.pricing.setup.description}
               </p>
             </motion.div>
 
@@ -245,16 +205,16 @@ export default function PremiumWebsite() {
             >
               <div className="absolute top-4 right-4">
                 <span className="inline-flex items-center px-3 py-1 rounded-full bg-orange-500 text-white text-[10px] font-black tracking-[0.15em] uppercase">
-                  Monthly
+                  {T.premiumWebsite.pricing.monthly.periodLabel}
                 </span>
               </div>
-              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">SaaS Subscription</div>
+              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">{T.premiumWebsite.pricing.monthly.badge}</div>
               <div className="flex items-end gap-2 mb-2">
-                <span className="text-5xl font-black text-foreground">$250</span>
-                <span className="text-muted-foreground font-light mb-1">USD / mo</span>
+                <span className="text-5xl font-black text-foreground">{T.premiumWebsite.pricing.monthly.price}</span>
+                <span className="text-muted-foreground font-light mb-1">{T.premiumWebsite.pricing.monthly.currency}</span>
               </div>
               <p className="text-muted-foreground text-sm font-light leading-relaxed">
-                Includes hosting, performance monitoring, content updates, and ongoing support. Cancel anytime.
+                {T.premiumWebsite.pricing.monthly.description}
               </p>
             </motion.div>
           </div>
@@ -267,18 +227,18 @@ export default function PremiumWebsite() {
           <div className="text-center mb-14">
             <div className="flex justify-center mb-6">
               <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                WHAT'S INCLUDED
+                {T.premiumWebsite.features.pill}
               </div>
             </div>
             <h2 className="text-3xl sm:text-5xl font-serif italic mb-4">
-              Everything you need,
+              {T.premiumWebsite.features.title}
               <br />
-              <span className="text-gradient font-sans not-italic font-black">nothing you don't.</span>
+              <span className="text-gradient font-sans not-italic font-black">{T.premiumWebsite.features.titleHighlight}</span>
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {FEATURES.map((f, i) => (
+            {features.map((f, i) => (
               <motion.div
                 key={f.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -304,18 +264,18 @@ export default function PremiumWebsite() {
           <div className="text-center mb-14">
             <div className="flex justify-center mb-6">
               <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                WHY TEAMS CHOOSE US
+                {T.premiumWebsite.whyUs.pill}
               </div>
             </div>
             <h2 className="text-3xl sm:text-5xl font-serif italic">
-              More than a website —
+              {T.premiumWebsite.whyUs.title}
               <br />
-              <span className="text-gradient font-sans not-italic font-black">a growth engine.</span>
+              <span className="text-gradient font-sans not-italic font-black">{T.premiumWebsite.whyUs.titleHighlight}</span>
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {WHY_US.map((item, i) => (
+            {whyUs.map((item, i) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
@@ -349,27 +309,27 @@ export default function PremiumWebsite() {
           >
             <div className="flex justify-center mb-8">
               <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                READY TO LAUNCH
+                {T.premiumWebsite.cta.pill}
               </div>
             </div>
             <h2 className="text-4xl sm:text-6xl font-serif italic font-medium tracking-tight mb-6">
-              Let's build your
+              {T.premiumWebsite.cta.title}
               <br />
               <span className="text-gradient font-sans not-italic font-black pb-2 block leading-normal">
-                restaurant's best page.
+                {T.premiumWebsite.cta.titleHighlight}
               </span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-10 leading-relaxed font-light">
-              Talk to Aria — our AI assistant will gather your details and connect you with the Conect-R team to kick things off.
+              {T.premiumWebsite.cta.subtitle}
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button
-                onClick={() => openChat(lang)}
+                onClick={handleOpenChat}
                 className="group relative inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl shadow-orange-500/30 transition-all hover:scale-105 active:scale-95"
               >
                 <Sparkles size={20} strokeWidth={2} className="transition-transform group-hover:rotate-12" />
-                Request my site
+                {T.premiumWebsite.cta.button}
                 <ArrowRight size={18} strokeWidth={2.5} className="transition-transform group-hover:translate-x-1" />
               </button>
 
@@ -378,7 +338,7 @@ export default function PremiumWebsite() {
                 className="inline-flex items-center gap-2 px-6 py-4 rounded-2xl border border-border text-muted-foreground hover:text-foreground hover:border-orange-500/30 font-semibold text-sm transition-all"
               >
                 <ArrowLeft size={16} strokeWidth={2.5} />
-                Back to home
+                {T.premiumWebsite.cta.backToHome}
               </Link>
             </div>
           </motion.div>
@@ -391,7 +351,7 @@ export default function PremiumWebsite() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mt-16 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground"
           >
-            {["Flexible terms", "Full project live in under 2 weeks", "Bilingual support (EN/ES)", "Sacramento-based team"].map((item) => (
+            {T.premiumWebsite.cta.socialProof.map((item) => (
               <div key={item} className="flex items-center gap-2">
                 <Check size={14} strokeWidth={2.5} className="text-orange-500" />
                 <span>{item}</span>
@@ -408,7 +368,7 @@ export default function PremiumWebsite() {
             <img src={conectrLogo} alt="Conect-R" className="h-12 w-auto object-contain select-none" draggable={false} />
           </Link>
           <p className="text-xs text-muted-foreground text-center">
-            © {new Date().getFullYear()} Conect-R. Sacramento, CA. All rights reserved.
+            {T.premiumWebsite.footer.rights.replace("{year}", new Date().getFullYear().toString())}
           </p>
         </div>
       </footer>

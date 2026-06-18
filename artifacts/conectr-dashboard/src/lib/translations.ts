@@ -562,6 +562,580 @@ const translations = {
       revenueLabel: "ingresos mensuales adicionales",
       followersLabel: "nuevos seguidores en 6 meses",
     },
+    premiumWebsite: {
+      hero: {
+        pill: "SITIO WEB PREMIUM",
+        title: "Tu hogar digital,",
+        titleHighlight: "diseñado para vender.",
+        subtitle: "No es una plantilla. No es un sitio básico. Una presencia web premium e interactiva creada específicamente para tu restaurante — con reservas, menú y SEO integrados desde el primer día.",
+        cta: "Solicitar mi sitio",
+      },
+      pricing: {
+        pill: "PRECIOS",
+        title: "Precios sencillos y transparentes",
+        subtitle: "Costo único de configuración, luego una suscripción SaaS mensual baja. Sin costos ocultos, sin sorpresas.",
+        setup: {
+          badge: "Configuración Inicial",
+          price: "$1,000",
+          currency: "USD",
+          description: "Costo único que cubre diseño, desarrollo, configuración de contenido y lanzamiento completo. Precio inicial — cotización final según el alcance.",
+        },
+        monthly: {
+          badge: "Suscripción SaaS",
+          periodLabel: "Mensual",
+          price: "$250",
+          currency: "USD / mes",
+          description: "Incluye hosting, monitoreo de rendimiento, actualizaciones de contenido y soporte continuo. Cancela en cualquier momento.",
+        },
+      },
+      features: {
+        pill: "QUÉ ESTÁ INCLUIDO",
+        title: "Todo lo que necesitas,",
+        titleHighlight: "nada de lo que no.",
+        list: [
+          {
+            title: "Diseño de marca premium",
+            body: "Identidad visual personalizada construida alrededor de tu restaurante: colores, tipografía, diseños fotográficos y microanimaciones que garantizan un wow-factor real.",
+          },
+          {
+            title: "Reservaciones en línea",
+            body: "Flujo de reservas integrado que permite a los clientes reservar mesa en segundos, directamente desde tu sitio — sin comisiones a terceros, sin llamadas perdidas.",
+          },
+          {
+            title: "Menú digital integrado",
+            body: "Tu menú completo vive en el sitio: siempre actualizado, hermosamente diseñado y accesible desde cualquier dispositivo sin necesidad de descargar apps.",
+          },
+          {
+            title: "Optimizado para SEO local",
+            body: "SEO técnico integrado desde el primer día: HTML semántico, datos estructurados, carga rápida e integración con Google Business para destacar en búsquedas locales.",
+          },
+        ],
+      },
+      whyUs: {
+        pill: "POR QUÉ NOS ELIGEN",
+        title: "Más que un sitio web —",
+        titleHighlight: "un motor de crecimiento.",
+        list: [
+          {
+            title: "Diseñado para convertir, no solo para verse bien",
+            body: "Cada sección — desde el hero hasta el menú — está diseñada con patrones de conversión probados que transforman visitantes en reservaciones.",
+          },
+          {
+            title: "Entrega rápida, sin dolores de cabeza técnicos",
+            body: "Proyecto completo al aire en menos de 2 semanas. Nos encargamos del hosting, actualizaciones y monitoreo de rendimiento para que te enfoques en operar tu restaurante.",
+          },
+          {
+            title: "Tu marca, tu activo",
+            body: "Es tuyo. El diseño, el contenido, el dominio. Lo construimos para durar y te entregamos el control completo sin ataduras.",
+          },
+          {
+            title: "Probado para restaurantes locales",
+            body: "Validado con restaurantes del área de Sacramento — conceptos mexicanos, americanos y latinos — que vieron incrementos medibles en clientes y reservaciones en línea.",
+          },
+        ],
+      },
+      cta: {
+        pill: "LISTO PARA LANZAR",
+        title: "Construyamos la",
+        titleHighlight: "mejor página de tu restaurante.",
+        subtitle: "Habla con Aria — nuestra asistente virtual recopilará tus detalles y te conectará con el equipo de Conect-R para comenzar.",
+        button: "Solicitar mi sitio",
+        backToHome: "Volver al inicio",
+        socialProof: [
+          "Términos flexibles",
+          "Proyecto completo al aire en menos de 2 semanas",
+          "Soporte bilingüe (EN/ES)",
+          "Equipo basado en Sacramento",
+        ],
+      },
+      footer: {
+        rights: "© {year} Conect-R. Sacramento, CA. Todos los derechos reservados.",
+      },
+      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
+      chatGreeting: "¡Gracias por tu interés en nuestro sitio Premium! Soy Aria de Conect-R. Te guiaré para agendar tu consulta.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?",
+      chatUserMessage: "Me gustaría solicitar mi Sitio Web Premium",
+      demoUserMessage: "Me gustaría agendar una demo",
+    },
+    chamba: {
+      hero: {
+        pill: "CHAMBA",
+        title: "Chamba",
+        titleHighlight: "Software Todo en Uno para la Gestión de Restaurantes",
+        subtitle: "Chamba es un software de gestión para restaurantes que centraliza toda tu operación en un solo programa. Se conecta a los principales sistemas POS y muestra tus ventas en tiempo real, optimiza tu personal con IA, procesa nóminas, controla inventarios y costos de alimentos, y te permite realizar pedidos directamente desde la aplicación a proveedores como US Foods, Sysco y más — sin tener que malabarear con cinco sistemas diferentes.",
+        cta: "Activar Chamba",
+      },
+      pricing: {
+        pill: "PRECIOS",
+        title: "Precios sencillos y transparentes",
+        subtitle: "Costo único de configuración, luego una suscripción SaaS mensual baja. Sin costos ocultos, sin sorpresas.",
+        setup: {
+          badge: "Configuración Inicial",
+          price: "$300",
+          currency: "USD",
+          description: "Costo único que cubre la integración completa del POS, configuración del enlace con proveedores y capacitación del personal.",
+        },
+        monthly: {
+          badge: "Suscripción SaaS",
+          periodLabel: "Mensual",
+          price: "$200",
+          currency: "USD / mes",
+          description: "Acceso completo a todas las funciones de Chamba, copias de seguridad automáticas y perfiles de empleados ilimitados.",
+        },
+      },
+      features: {
+        pill: "QUÉ ESTÁ INCLUIDO",
+        title: "Todo lo que necesitas,",
+        titleHighlight: "nada de lo que no.",
+        list: [
+          {
+            title: "Conexión POS y ventas en vivo",
+            body: "Conéctate directamente con los principales sistemas POS. Monitorea tus ventas y volumen de tickets en tiempo real desde cualquier lugar.",
+          },
+          {
+            title: "Personal impulsado por IA",
+            body: "Aprovecha modelos predictivos inteligentes para alinear los horarios del personal con las ventas esperadas, minimizando el desperdicio en costos laborales.",
+          },
+          {
+            title: "Nómina automatizada",
+            body: "Simplifica las auditorías de turnos, calcula salarios y procesa la nómina en un solo panel sin necesidad de hojas de cálculo externas.",
+          },
+          {
+            title: "Control de inventario y costo de alimentos",
+            body: "Mantén conteos de stock en vivo, monitorea los costos de productos y gestiona las porciones de recetas para proteger tu margen.",
+          },
+          {
+            title: "Pedidos directos a proveedores",
+            body: "Envía órdenes de compra directamente a distribuidores como US Foods, Sysco y proveedores locales desde la aplicación.",
+          },
+          {
+            title: "Horarios, turnos y propinas",
+            body: "Programa turnos con facilidad, registra las entradas y salidas de los trabajadores y distribuye las propinas de manera justa según las horas reales.",
+          },
+        ],
+      },
+      whyUs: {
+        pill: "POR QUÉ NOS ELIGEN",
+        title: "Más que software —",
+        titleHighlight: "un motor de crecimiento.",
+        list: [
+          {
+            title: "Todo en un solo programa",
+            body: "Despídete de malabarear con cinco plataformas diferentes. POS, personal, nómina, inventario y compras unificados.",
+          },
+          {
+            title: "Ventas en vivo desde tu teléfono",
+            body: "Revisa el rendimiento de tu negocio en cualquier momento y lugar. Acceso instantáneo a números de ventas en tiempo real.",
+          },
+          {
+            title: "IA que reduce horas desperdiciadas",
+            body: "Optimiza la programación del personal. La IA analiza el historial y pronostica los horarios, ahorrando cientos de dólares al mes.",
+          },
+          {
+            title: "Pedidos directos a los mejores proveedores",
+            body: "Realiza pedidos a US Foods, Sysco y otros. Agiliza el reabastecimiento y minimiza los errores de entrada de datos.",
+          },
+        ],
+      },
+      cta: {
+        pill: "LISTO PARA LANZAR",
+        title: "¿Listo para lanzar Chamba?",
+        subtitle: "Habla con Aria — nuestra asistente virtual recopilará tus detalles y te conectará con el equipo de Conect-R para comenzar.",
+        button: "Activar Chamba",
+        backToHome: "Volver al inicio",
+        socialProof: [
+          "Términos flexibles",
+          "Proyecto completo al aire en menos de 2 semanas",
+          "Soporte bilingüe (EN/ES)",
+          "Equipo basado en Sacramento",
+        ],
+      },
+      footer: {
+        rights: "© {year} Conect-R. Sacramento, CA. Todos los derechos reservados.",
+      },
+      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
+      chatGreeting: "¡Gracias por tu interés en Chamba! Soy Aria de Conect-R. Te guiaré para activar Chamba.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?",
+      chatUserMessage: "Me gustaría activar Chamba",
+      demoUserMessage: "Me gustaría agendar una demo",
+    },
+    tableReserve: {
+      hero: {
+        pill: "TABLE RESERVE",
+        title: "Table Reserve",
+        titleHighlight: "Reservas automatizadas que llenan mesas",
+        subtitle: "Table Reserve reemplaza el cuaderno de papel y las llamadas telefónicas. Tus clientes reservan 24/7 desde tu sitio web o redes sociales, recibes confirmaciones automáticas y tu recepcionista ve la ocupación del salón en tiempo real desde una tableta.",
+        cta: "Probar Table Reserve",
+      },
+      pricing: {
+        pill: "PRECIOS",
+        title: "Precios sencillos y transparentes",
+        subtitle: "Costo único de configuración, luego una suscripción SaaS mensual baja. Sin costos ocultos, sin sorpresas.",
+        setup: {
+          badge: "Configuración Inicial",
+          price: "$150",
+          currency: "USD",
+          description: "Costo único que cubre el diseño del plano del salón, la integración del widget en el sitio/redes y la configuración de sincronización con la tableta.",
+        },
+        monthly: {
+          badge: "Suscripción SaaS",
+          periodLabel: "Mensual",
+          price: "$200",
+          currency: "USD / mes",
+          description: "Reservaciones ilimitadas, recordatorios SMS automáticos gratuitos, integración con Google y acceso de administración en tiempo real en la tableta.",
+        },
+      },
+      features: {
+        pill: "QUÉ ESTÁ INCLUIDO",
+        title: "Todo lo que necesitas,",
+        titleHighlight: "nada de lo que no.",
+        list: [
+          {
+            title: "Reservas 24/7",
+            body: "Los clientes reservan desde la web, Instagram, Google y WhatsApp — nadie tiene que contestar el teléfono.",
+          },
+          {
+            title: "Panel de administración en vivo",
+            body: "Tu recepcionista gestiona el salón desde una tableta: mesas, tiempos, ocupado/libre, sin usar papel.",
+          },
+          {
+            title: "Confirmaciones automáticas",
+            body: "Confirmación y recordatorio por SMS + correo electrónico — reduce los no-shows hasta en un 60%.",
+          },
+          {
+            title: "Control de capacidad",
+            body: "Define mesas por tamaño, franjas horarias por hora y bloquea espacios para eventos privados.",
+          },
+          {
+            title: "Lista de espera integrada",
+            body: "Sincronizada con NextUp para comensales sin reserva cuando el salón esté lleno.",
+          },
+          {
+            title: "Reportes de ocupación",
+            body: "Cuántas reservas, cuántas confirmadas, cuántos no-shows. Datos reales para tomar decisiones.",
+          },
+        ],
+      },
+      whyUs: {
+        pill: "POR QUÉ NOS ELIGEN",
+        title: "Más que software —",
+        titleHighlight: "un motor de crecimiento.",
+        list: [
+          {
+            title: "Hasta 60% menos no-shows",
+            body: "Los recordatorios automáticos por SMS y correo electrónico animan a los clientes a confirmar o cancelar con antelación, manteniendo las mesas llenas.",
+          },
+          {
+            title: "Integrado en tu sitio y Google",
+            body: "Permite realizar reservas desde los resultados de búsqueda, mapas sociales y tu propio sitio web con widgets fluidos integrados.",
+          },
+          {
+            title: "Sin comisión por reserva",
+            body: "Cuota SaaS fija en lugar de altos cobros por comensal. Conserva el 100% de tus márgenes a diferencia de OpenTable.",
+          },
+          {
+            title: "Soporte bilingüe en menos de 2 horas",
+            body: "Equipo de soporte local que responde tanto en inglés como en español cuando necesitas ayuda en el salón.",
+          },
+        ],
+      },
+      cta: {
+        pill: "LISTO PARA LANZAR",
+        title: "¿Listo para lanzar Table Reserve?",
+        subtitle: "Habla con Aria — nuestra asistente virtual recopilará tus detalles y te conectará con el equipo de Conect-R para comenzar.",
+        button: "Probar Table Reserve",
+        backToHome: "Volver al inicio",
+        socialProof: [
+          "Términos flexibles",
+          "Proyecto completo al aire en menos de 2 semanas",
+          "Soporte bilingüe (EN/ES)",
+          "Equipo basado en Sacramento",
+        ],
+      },
+      footer: {
+        rights: "© {year} Conect-R. Sacramento, CA. Todos los derechos reservados.",
+      },
+      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
+      chatGreeting: "¡Gracias por tu interés en Table Reserve! Soy Aria de Conect-R. Te guiaré para configurar tu prueba.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?",
+      chatUserMessage: "Me gustaría probar Table Reserve",
+      demoUserMessage: "Me gustaría agendar una demo",
+    },
+    nextUp: {
+      hero: {
+        pill: "NEXTUP",
+        title: "NextUp",
+        titleHighlight: "Lista de espera digital sincronizada",
+        subtitle: "Se acabaron los localizadores físicos y la gente esperando en la puerta. NextUp permite a tus clientes registrarse desde su teléfono, pasear por los alrededores y recibir un SMS cuando su mesa esté lista.",
+        cta: "Activar NextUp",
+      },
+      pricing: {
+        pill: "PRECIOS",
+        title: "Precios sencillos y transparentes",
+        subtitle: "Costo único de configuración, luego una suscripción SaaS mensual baja. Sin costos ocultos, sin sorpresas.",
+        setup: {
+          badge: "Configuración Inicial",
+          price: "$150",
+          currency: "USD",
+          description: "Costo único de configuración que cubre la creación del código QR personalizado para el mostrador, la sincronización de la pantalla de TV y la inicialización de las rutas de SMS.",
+        },
+        monthly: {
+          badge: "Suscripción SaaS",
+          periodLabel: "Mensual",
+          price: "$100",
+          currency: "USD / mes",
+          description: "Registros de clientes ilimitados, entrega de SMS locales e internacionales, sincronización con pantallas de TV y analíticas de clientes.",
+        },
+      },
+      features: {
+        pill: "QUÉ ESTÁ INCLUIDO",
+        title: "Todo lo que necesitas,",
+        titleHighlight: "nada de lo que no.",
+        list: [
+          {
+            title: "Registro desde el teléfono",
+            body: "QR en la puerta. El cliente lo escanea, escribe su nombre y el tamaño del grupo. Listo.",
+          },
+          {
+            title: "Notificaciones SMS",
+            body: "Avisos de turno, mesa lista y recordatorios — sin necesidad de descargar apps.",
+          },
+          {
+            title: "Tiempo de espera estimado",
+            body: "Calculado automáticamente en función del ritmo de rotación real de tu restaurante.",
+          },
+          {
+            title: "Sincronizado con Table Reserve",
+            body: "Reservas y clientes sin cita previa en la misma vista de administración.",
+          },
+          {
+            title: "Pantalla pública",
+            body: "Muestra los siguientes 10 grupos en una TV — los clientes ven que su turno se acerca.",
+          },
+          {
+            title: "Base de datos de clientes",
+            body: "Captura correos electrónicos/teléfonos para remarketing y boletines informativos con su consentimiento.",
+          },
+        ],
+      },
+      whyUs: {
+        pill: "POR QUÉ NOS ELIGEN",
+        title: "Más que software —",
+        titleHighlight: "un motor de crecimiento.",
+        list: [
+          {
+            title: "Reduce el abandono de la fila hasta un 35%",
+            body: "Los comensales no tienen que esperar parados en la puerta. Pueden pasear, tomar algo y volver cuando reciban el mensaje de texto.",
+          },
+          {
+            title: "Sin apps — funciona vía web/SMS",
+            body: "Cero descargas requeridas para los clientes. Funciona instantáneamente en cualquier navegador móvil y a través de SMS.",
+          },
+          {
+            title: "Integrado con Table Reserve",
+            body: "Combina tu lista de espera activa y las reservaciones programadas en un solo panel de control para el recepcionista.",
+          },
+          {
+            title: "Crea una base de datos de clientes",
+            body: "Haz crecer tu lista de lealtad de forma natural capturando números de teléfono y correos electrónicos al registrarse.",
+          },
+        ],
+      },
+      cta: {
+        pill: "LISTO PARA LANZAR",
+        title: "¿Listo para lanzar NextUp?",
+        subtitle: "Habla con Aria — nuestra asistente virtual recopilará tus detalles y te conectará con el equipo de Conect-R para comenzar.",
+        button: "Activar NextUp",
+        backToHome: "Volver al inicio",
+        socialProof: [
+          "Términos flexibles",
+          "Proyecto completo al aire en menos de 2 semanas",
+          "Soporte bilingüe (EN/ES)",
+          "Equipo basado en Sacramento",
+        ],
+      },
+      footer: {
+        rights: "© {year} Conect-R. Sacramento, CA. Todos los derechos reservados.",
+      },
+      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
+      chatGreeting: "¡Gracias por tu interés en NextUp! Soy Aria de Conect-R. Te guiaré para activar tu lista de espera digital.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?",
+      chatUserMessage: "Me gustaría activar NextUp",
+      demoUserMessage: "Me gustaría agendar una demo",
+    },
+    tvMenuBoards: {
+      hero: {
+        pill: "TV MENU BOARDS",
+        title: "TV Menu Boards",
+        titleHighlight: "Pantallas digitales que gestionamos por ti",
+        subtitle: "Olvídate de imprimir menús nuevos cada temporada. Nuestras pantallas rotan eventos, menús con fotos y precios, y promociones animadas — todo gestionado por Conect-R. Envías un mensaje, nosotros actualizamos.",
+        cta: "Activar Pantallas TV",
+      },
+      pricing: {
+        pill: "PRECIOS",
+        title: "Precios sencillos y transparentes",
+        subtitle: "Costo único de configuración, luego una suscripción SaaS mensual baja. Sin costos ocultos, sin sorpresas.",
+        setup: {
+          badge: "Configuración Inicial",
+          price: "$100",
+          currency: "USD",
+          description: "Costo único de configuración que cubre la instalación del hardware, personalización de plantillas con tu marca y carga del diseño inicial.",
+        },
+        monthly: {
+          badge: "Suscripción SaaS",
+          periodLabel: "Mensual",
+          price: "$150",
+          currency: "USD / mes",
+          description: "Incluye hosting, administración remota, ediciones solicitadas por WhatsApp, acceso a plantillas y soporte técnico continuo.",
+        },
+      },
+      features: {
+        pill: "QUÉ ESTÁ INCLUIDO",
+        title: "Todo lo que necesitas,",
+        titleHighlight: "nada de lo que no.",
+        list: [
+          {
+            title: "Rotación automática",
+            body: "Eventos, menús con fotos y precios, promos animadas — todo cicla automáticamente cada pocos segundos.",
+          },
+          {
+            title: "Actualizaciones por WhatsApp",
+            body: "Nos envías un mensaje y cambiamos el contenido de todas tus pantallas en cuestión de minutos.",
+          },
+          {
+            title: "Plantillas premium",
+            body: "Diseño profesional listo para usar — Taco Tuesday, Happy Hour, Brunch, eventos especiales.",
+          },
+          {
+            title: "Contenido animado",
+            body: "Promociones con movimiento que captan mucha más atención que los letreros impresos estáticos.",
+          },
+          {
+            title: "Sin técnicos en sitio",
+            body: "Todo se actualiza desde la nube. Nadie tiene que manipular físicamente los televisores.",
+          },
+          {
+            title: "Multi-pantalla",
+            body: "Contenido diferente para cada área: barra, terraza, salón — todo controlado desde una sola consola.",
+          },
+        ],
+      },
+      whyUs: {
+        pill: "POR QUÉ NOS ELIGEN",
+        title: "Más que software —",
+        titleHighlight: "un motor de crecimiento.",
+        list: [
+          {
+            title: "Instalación en una sola visita",
+            body: "Nuestro técnico instala y prueba todo en una sola visita, para que estés listo y operando inmediatamente.",
+          },
+          {
+            title: "Contenido actualizado en minutos",
+            body: "Envía un mensaje por WhatsApp y nuestros diseñadores desplegarán las actualizaciones en todas tus pantallas al instante.",
+          },
+          {
+            title: "Sin software que aprender",
+            body: "Cero curva de aprendizaje para ti o tu personal. Nosotros nos encargamos de todo el diseño y la gestión tecnológica.",
+          },
+          {
+            title: "Reemplaza menús y letreros impresos",
+            body: "Elimina los costos repetitivos de impresión y mantén tus precios y platillos dinámicos y actualizados.",
+          },
+        ],
+      },
+      cta: {
+        pill: "LISTO PARA LANZAR",
+        title: "¿Listo para lanzar TV Menu Boards?",
+        subtitle: "Habla con Aria — nuestra asistente virtual recopilará tus detalles y te conectará con el equipo de Conect-R para activar tus pantallas de menú de TV.",
+        button: "Activar Pantallas TV",
+        backToHome: "Volver al inicio",
+        socialProof: [
+          "Términos flexibles",
+          "Proyecto completo al aire en menos de 2 semanas",
+          "Soporte bilingüe (EN/ES)",
+          "Equipo basado en Sacramento",
+        ],
+      },
+      footer: {
+        rights: "© {year} Conect-R. Sacramento, CA. Todos los derechos reservados.",
+      },
+      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
+      chatGreeting: "¡Gracias por tu interés en TV Menu Boards! Soy Aria de Conect-R. Te guiaré para configurar tus pantallas digitales.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?",
+      chatUserMessage: "Me gustaría activar las Pantallas de Menú TV",
+      demoUserMessage: "Me gustaría agendar una demo",
+    },
+    businessConsulting: {
+      hero: {
+        pill: "ASESORÍA DE NEGOCIOS",
+        title: "Asesoría de Negocios",
+        titleHighlight: "Más utilidad, menos conjeturas.",
+        subtitle: "Analizamos tu restaurante a fondo y aplicamos optimizaciones medibles para que cada mesa, cada platillo y cada turno generen más utilidad.",
+        cta: "Quiero un diagnóstico gratuito",
+      },
+      stats: {
+        pill: "RESULTADOS PROBADOS",
+        title: "Estudios que se convierten en dinero real",
+        subtitle: "Entregamos mejoras financieras concretas a través de rediseños operativos basados en datos.",
+        metrics: [
+          {
+            value: "+28%",
+            label: "Aumento promedio de utilidad neta",
+          },
+          {
+            value: "-18%",
+            label: "Costo de alimentos tras ingeniería de menú",
+          },
+          {
+            value: "+34%",
+            label: "Ticket promedio en horarios optimizados",
+          },
+        ],
+      },
+      features: {
+        pill: "NUESTRO MÉTODO",
+        title: "Una hoja de ruta estructurada para",
+        titleHighlight: "maximizar la eficiencia.",
+        list: [
+          {
+            number: "01",
+            title: "Diagnóstico Operativo",
+            body: "Estudio profundo de ventas, costos, tiempos de servicio, desperdicio, rotación de mesas y datos del POS — identificando exactamente dónde se escapa el dinero.",
+          },
+          {
+            number: "02",
+            title: "Plan Estratégico",
+            body: "Recomendaciones concretas: reingeniería de menús, estrategia de precios, rediseño de turnos, política de propinas, marketing local y activación digital.",
+          },
+          {
+            number: "03",
+            title: "Implementación Guiada",
+            body: "Activamos los módulos de Conect-R que necesitas, capacitamos al equipo y dejamos procesos documentados para que el negocio ya no dependa de una sola persona.",
+          },
+          {
+            number: "04",
+            title: "Medición de Beneficios",
+            body: "Panel mensual de KPIs: ticket promedio, % de costo de comida, % de labor, ocupación y utilidad neta — comparación clara del antes vs. después.",
+          },
+        ],
+      },
+      cta: {
+        pill: "LISTO PARA OPTIMIZAR",
+        title: "¿Listo para optimizar tu restaurante?",
+        subtitle: "Habla con Aria — nuestra asistente virtual recopilará tus detalles y te conectará con nuestro equipo de consultoría para comenzar.",
+        button: "Quiero un diagnóstico gratuito",
+        backToHome: "Volver al inicio",
+        socialProof: [
+          "Términos flexibles",
+          "Proyecto completo al aire en menos de 2 semanas",
+          "Soporte bilingüe (EN/ES)",
+          "Equipo basado en Sacramento",
+        ],
+      },
+      footer: {
+        rights: "© {year} Conect-R. Sacramento, CA. Todos los derechos reservados.",
+      },
+      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
+      chatGreeting: "¡Gracias por tu interés en nuestra Asesoría de Negocios! Soy Aria de Conect-R. Te guiaré para programar tu diagnóstico gratuito.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?",
+      chatUserMessage: "Quiero un diagnóstico gratuito",
+      demoUserMessage: "Me gustaría agendar una demo",
+    },
+
   },
 
   en: {
@@ -1124,6 +1698,579 @@ const translations = {
       projectionNote: "$40 USD average ticket · 6 operating days/week · Estimated capacity 80 people",
       revenueLabel: "additional monthly revenue",
       followersLabel: "new followers in 6 months",
+    },
+    premiumWebsite: {
+      hero: {
+        pill: "PREMIUM WEBSITE",
+        title: "Your digital home,",
+        titleHighlight: "built to sell.",
+        subtitle: "Not a template. Not a basic site. A premium, interactive web presence built specifically for your restaurant — with reservations, menu, and SEO baked in from day one.",
+        cta: "Request my site",
+      },
+      pricing: {
+        pill: "PRICING",
+        title: "Simple, transparent pricing",
+        subtitle: "One-time setup fee, then a low monthly SaaS subscription. No hidden costs, no surprises.",
+        setup: {
+          badge: "Initial Setup",
+          price: "$1,000",
+          currency: "USD",
+          description: "One-time fee covering design, development, content setup, and full launch. Starting price — final quote based on scope.",
+        },
+        monthly: {
+          badge: "SaaS Subscription",
+          periodLabel: "Monthly",
+          price: "$250",
+          currency: "USD / mo",
+          description: "Includes hosting, performance monitoring, content updates, and ongoing support. Cancel anytime.",
+        },
+      },
+      features: {
+        pill: "WHAT'S INCLUDED",
+        title: "Everything you need,",
+        titleHighlight: "nothing you don't.",
+        list: [
+          {
+            title: "Premium brand design",
+            body: "Custom visual identity built around your restaurant — colors, typography, photography layouts, and micro-animations that create a real wow-factor.",
+          },
+          {
+            title: "Online reservations",
+            body: "Integrated reservation flow that lets guests book a table in seconds, directly from your site — no third-party fees, no missed calls.",
+          },
+          {
+            title: "Integrated digital menu",
+            body: "Your full menu lives on the site — always up to date, beautifully formatted, and accessible from any device without an app.",
+          },
+          {
+            title: "Local SEO optimized",
+            body: "Technical SEO baked in from day one: semantic HTML, structured data, fast load times, and Google Business integration to rank in local search.",
+          },
+        ],
+      },
+      whyUs: {
+        pill: "WHY TEAMS CHOOSE US",
+        title: "More than a website —",
+        titleHighlight: "a growth engine.",
+        list: [
+          {
+            title: "Built to convert, not just look good",
+            body: "Every section — from the hero to the menu — is designed with proven conversion patterns that turn visitors into reservations.",
+          },
+          {
+            title: "Fast delivery, zero tech headaches",
+            body: "Full project live in under 2 weeks. We handle hosting, updates, and performance monitoring so you focus on running your restaurant.",
+          },
+          {
+            title: "Your brand, your asset",
+            body: "You own it. The design, the content, the domain. We build it to last and hand you full control with no lock-in.",
+          },
+          {
+            title: "Proven for local restaurants",
+            body: "Tested with Sacramento-area restaurants — Mexican, American, and Latino concepts — that saw measurable increases in walk-ins and online reservations.",
+          },
+        ],
+      },
+      cta: {
+        pill: "READY TO LAUNCH",
+        title: "Let's build your",
+        titleHighlight: "restaurant's best page.",
+        subtitle: "Talk to Aria — our AI assistant will gather your details and connect you with the Conect-R team to kick things off.",
+        button: "Request my site",
+        backToHome: "Back to home",
+        socialProof: [
+          "Flexible terms",
+          "Full project live in under 2 weeks",
+          "Bilingual support (EN/ES)",
+          "Sacramento-based team",
+        ],
+      },
+      footer: {
+        rights: "© {year} Conect-R. Sacramento, CA. All rights reserved.",
+      },
+      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
+      chatGreeting: "Thanks for your interest in our Premium Website! I'm Aria from Conect-R. I'll guide you through booking a consultation.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?",
+      chatUserMessage: "I would like to request my Premium Website",
+      demoUserMessage: "I would like to book a demo",
+    },
+    chamba: {
+      hero: {
+        pill: "CHAMBA",
+        title: "Chamba",
+        titleHighlight: "All-in-one Restaurant Management Software",
+        subtitle: "Chamba is a Restaurant Management Software that centralizes your entire operation in a single program. It connects to the major POS systems and shows your sales in real time, optimizes your labor with AI, processes payroll, runs inventory and food cost control, and lets you order directly from the app to vendors like US Foods, Sysco and more — no more juggling five different systems.",
+        cta: "Activate Chamba",
+      },
+      pricing: {
+        pill: "PRICING",
+        title: "Simple, transparent pricing",
+        subtitle: "One-time setup fee, then a low monthly SaaS subscription. No hidden costs, no surprises.",
+        setup: {
+          badge: "Initial Setup",
+          price: "$300",
+          currency: "USD",
+          description: "One-time setup fee covering full POS integration, vendor link setup, and staff onboarding.",
+        },
+        monthly: {
+          badge: "SaaS Subscription",
+          periodLabel: "Monthly",
+          price: "$200",
+          currency: "USD / mo",
+          description: "Full access to all Chamba features, automatic backup, and unlimited employee profiles.",
+        },
+      },
+      features: {
+        pill: "WHAT'S INCLUDED",
+        title: "Everything you need,",
+        titleHighlight: "nothing you don't.",
+        list: [
+          {
+            title: "POS connection & live sales",
+            body: "Connect directly with major POS systems. Monitor your sales and ticket volume in real time from anywhere.",
+          },
+          {
+            title: "AI-powered labor",
+            body: "Leverage intelligent predictive modeling to match staff schedules with expected sales, minimizing labor cost waste.",
+          },
+          {
+            title: "Automated payroll",
+            body: "Streamline shift audits, calculate wages, and run payroll in a single dashboard without external sheets.",
+          },
+          {
+            title: "Inventory & Food Cost Control",
+            body: "Keep live stock counts, monitor product costs, and manage recipe portions to protect your margin.",
+          },
+          {
+            title: "Direct vendor ordering",
+            body: "Send purchase orders directly to distributors like US Foods, Sysco, and local vendors directly from the app.",
+          },
+          {
+            title: "Schedules shifts & tips",
+            body: "Schedule shifts with ease, track worker clock-ins, and distribute tips fairly based on actual hours.",
+          },
+        ],
+      },
+      whyUs: {
+        pill: "WHY TEAMS CHOOSE US",
+        title: "More than software —",
+        titleHighlight: "a growth engine.",
+        list: [
+          {
+            title: "Everything in one program",
+            body: "Say goodbye to juggling five different platforms. POS, labor, payroll, inventory, and purchasing unified.",
+          },
+          {
+            title: "Live sales from your phone",
+            body: "Check in on your business performance anytime, anywhere. Instant access to real-time sales numbers.",
+          },
+          {
+            title: "AI that cuts wasted hours",
+            body: "Optimize labor scheduling. AI analyzes history and forecasts schedules, saving hundreds of dollars a month.",
+          },
+          {
+            title: "Direct ordering to top vendors",
+            body: "Order from US Foods, Sysco, and others. Speed up replenishment and minimize data entry errors.",
+          },
+        ],
+      },
+      cta: {
+        pill: "READY TO LAUNCH",
+        title: "Ready to launch Chamba?",
+        subtitle: "Talk to Aria — our AI assistant will gather your details and connect you with the Conect-R team to kick things off.",
+        button: "Activate Chamba",
+        backToHome: "Back to home",
+        socialProof: [
+          "Flexible terms",
+          "Full project live in under 2 weeks",
+          "Bilingual support (EN/ES)",
+          "Sacramento-based team",
+        ],
+      },
+      footer: {
+        rights: "© {year} Conect-R. Sacramento, CA. All rights reserved.",
+      },
+      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
+      chatGreeting: "Thanks for your interest in Chamba! I'm Aria from Conect-R. I'll guide you through activating Chamba.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?",
+      chatUserMessage: "I would like to activate Chamba",
+      demoUserMessage: "I would like to book a demo",
+    },
+    tableReserve: {
+      hero: {
+        pill: "TABLE RESERVE",
+        title: "Table Reserve",
+        titleHighlight: "Automated bookings that fill seats",
+        subtitle: "Table Reserve replaces the paper notebook and the phone calls. Your customers book 24/7 from your site or socials, you receive automatic confirmations and your host sees floor occupancy in real time from a tablet.",
+        cta: "Try Table Reserve",
+      },
+      pricing: {
+        pill: "PRICING",
+        title: "Simple, transparent pricing",
+        subtitle: "One-time setup fee, then a low monthly SaaS subscription. No hidden costs, no surprises.",
+        setup: {
+          badge: "Initial Setup",
+          price: "$150",
+          currency: "USD",
+          description: "One-time setup fee covering floor plan layout, widget embed on site/socials, and tablet sync configuration.",
+        },
+        monthly: {
+          badge: "SaaS Subscription",
+          periodLabel: "Monthly",
+          price: "$200",
+          currency: "USD / mo",
+          description: "Unlimited covers, free automatic SMS reminders, Google integration, and real-time tablet admin access.",
+        },
+      },
+      features: {
+        pill: "WHAT'S INCLUDED",
+        title: "Everything you need,",
+        titleHighlight: "nothing you don't.",
+        list: [
+          {
+            title: "24/7 bookings",
+            body: "Customers book from web, Instagram, Google and WhatsApp — nobody has to pick up the phone.",
+          },
+          {
+            title: "Live admin panel",
+            body: "Your host runs the floor from a tablet: tables, timing, seated/open, no paper.",
+          },
+          {
+            title: "Automatic confirmations",
+            body: "SMS + email confirmation and reminder — cuts no-shows by up to 60%.",
+          },
+          {
+            title: "Capacity control",
+            body: "Define tables by size, time slots per hour and blocks for private events.",
+          },
+          {
+            title: "Built-in waitlist",
+            body: "Synced with NextUp for walk-ins when you're full.",
+          },
+          {
+            title: "Occupancy reports",
+            body: "How many reservations, how many confirmed, how many no-shows. Real data to decide.",
+          },
+        ],
+      },
+      whyUs: {
+        pill: "WHY TEAMS CHOOSE US",
+        title: "More than software —",
+        titleHighlight: "a growth engine.",
+        list: [
+          {
+            title: "Up to 60% fewer no-shows",
+            body: "Automatic SMS and email reminders prompt guests to confirm or cancel early, keeping tables full.",
+          },
+          {
+            title: "Embedded on your site and Google",
+            body: "Allow bookings from search results, social maps, and your site using smooth inline widgets.",
+          },
+          {
+            title: "No commission per reservation",
+            body: "Flat SaaS fee instead of high per-cover charges. Keep 100% of the margins unlike OpenTable.",
+          },
+          {
+            title: "Bilingual support in under 2 hours",
+            body: "Local support team responding in both English and Spanish when you need assistance on the floor.",
+          },
+        ],
+      },
+      cta: {
+        pill: "READY TO LAUNCH",
+        title: "Ready to launch Table Reserve?",
+        subtitle: "Talk to Aria — our AI assistant will gather your details and connect you with the Conect-R team to kick things off.",
+        button: "Try Table Reserve",
+        backToHome: "Back to home",
+        socialProof: [
+          "Flexible terms",
+          "Full project live in under 2 weeks",
+          "Bilingual support (EN/ES)",
+          "Sacramento-based team",
+        ],
+      },
+      footer: {
+        rights: "© {year} Conect-R. Sacramento, CA. All rights reserved.",
+      },
+      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
+      chatGreeting: "Thanks for your interest in Table Reserve! I'm Aria from Conect-R. I'll guide you through setting up your trial.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?",
+      chatUserMessage: "I would like to try Table Reserve",
+      demoUserMessage: "I would like to book a demo",
+    },
+    nextUp: {
+      hero: {
+        pill: "NEXTUP",
+        title: "NextUp",
+        titleHighlight: "Synchronized digital waitlist",
+        subtitle: "No more pagers and people standing at the door. NextUp lets your customers check in from their phone, walk around the mall and receive an SMS when their table is ready.",
+        cta: "Activate NextUp",
+      },
+      pricing: {
+        pill: "PRICING",
+        title: "Simple, transparent pricing",
+        subtitle: "One-time setup fee, then a low monthly SaaS subscription. No hidden costs, no surprises.",
+        setup: {
+          badge: "Initial Setup",
+          price: "$150",
+          currency: "USD",
+          description: "One-time setup fee covering custom QR code creation for the host stand, TV output display sync, and SMS route initialization.",
+        },
+        monthly: {
+          badge: "SaaS Subscription",
+          periodLabel: "Monthly",
+          price: "$100",
+          currency: "USD / mo",
+          description: "Unlimited customers check-ins, local and international SMS delivery, TV menu synchronization, and customer analytics.",
+        },
+      },
+      features: {
+        pill: "WHAT'S INCLUDED",
+        title: "Everything you need,",
+        titleHighlight: "nothing you don't.",
+        list: [
+          {
+            title: "Check-in from phone",
+            body: "QR at the door. Customer scans, types name and party size. Done.",
+          },
+          {
+            title: "SMS notifications",
+            body: "Turn updates, ready-to-seat and reminders — no app required.",
+          },
+          {
+            title: "Estimated wait time",
+            body: "Auto-calculated from your restaurant's real turn rate.",
+          },
+          {
+            title: "Synced with Table Reserve",
+            body: "Reservations + walk-ins in the same host view.",
+          },
+          {
+            title: "Public display",
+            body: "Shows the next 10 on a TV — customers see they're moving up.",
+          },
+          {
+            title: "Customer data",
+            body: "Captures email/phone for remarketing and newsletter with consent.",
+          },
+        ],
+      },
+      whyUs: {
+        pill: "WHY TEAMS CHOOSE US",
+        title: "More than software —",
+        titleHighlight: "a growth engine.",
+        list: [
+          {
+            title: "Cuts line abandonment by up to 35%",
+            body: "Guests don't have to stand at the door. They wander around, grab a drink, and return when texted.",
+          },
+          {
+            title: "No app — works over web/SMS",
+            body: "Zero downloads required for customers. Works instantly on any smartphone browser and via SMS.",
+          },
+          {
+            title: "Integrated with Table Reserve",
+            body: "Combines your active waitlist and booked reservations in a single host view dashboard.",
+          },
+          {
+            title: "Builds a customer database",
+            body: "Grows your loyalty list naturally by capturing phone numbers and emails on check-in.",
+          },
+        ],
+      },
+      cta: {
+        pill: "READY TO LAUNCH",
+        title: "Ready to launch NextUp?",
+        subtitle: "Talk to Aria — our AI assistant will gather your details and connect you with the Conect-R team to kick things off.",
+        button: "Activate NextUp",
+        backToHome: "Back to home",
+        socialProof: [
+          "Flexible terms",
+          "Full project live in under 2 weeks",
+          "Bilingual support (EN/ES)",
+          "Sacramento-based team",
+        ],
+      },
+      footer: {
+        rights: "© {year} Conect-R. Sacramento, CA. All rights reserved.",
+      },
+      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
+      chatGreeting: "Thanks for your interest in NextUp! I'm Aria from Conect-R. I'll guide you through activating your digital waitlist.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?",
+      chatUserMessage: "I would like to activate NextUp",
+      demoUserMessage: "I would like to book a demo",
+    },
+    tvMenuBoards: {
+      hero: {
+        pill: "TV MENU BOARDS",
+        title: "TV Menu Boards",
+        titleHighlight: "Digital screens we manage for you",
+        subtitle: "Forget printing new menus every season. Our screens rotate events, menus with prices and animated promos — all managed by Conect-R. You send a message, we update.",
+        cta: "Activate TV Boards",
+      },
+      pricing: {
+        pill: "PRICING",
+        title: "Simple, transparent pricing",
+        subtitle: "One-time setup fee, then a low monthly SaaS subscription. No hidden costs, no surprises.",
+        setup: {
+          badge: "Initial Setup",
+          price: "$100",
+          currency: "USD",
+          description: "One-time setup fee covering hardware configuration, template branding, and initial design loading.",
+        },
+        monthly: {
+          badge: "SaaS Subscription",
+          periodLabel: "Monthly",
+          price: "$150",
+          currency: "USD / mo",
+          description: "Includes hosting, remote management, WhatsApp-requested edits, template access, and support.",
+        },
+      },
+      features: {
+        pill: "WHAT'S INCLUDED",
+        title: "Everything you need,",
+        titleHighlight: "nothing you don't.",
+        list: [
+          {
+            title: "Auto rotation",
+            body: "Events, menu with prices and photos, animated promos — they cycle on their own every few seconds.",
+          },
+          {
+            title: "WhatsApp updates",
+            body: "You message us and we change content on all your screens in minutes.",
+          },
+          {
+            title: "Premium templates",
+            body: "Pro design ready to use — Taco Tuesday, Happy Hour, Brunch, events.",
+          },
+          {
+            title: "Animated content",
+            body: "Promos with motion that grab way more attention than static printouts.",
+          },
+          {
+            title: "No on-site techs",
+            body: "Everything updates from the cloud. Nobody touches the TVs.",
+          },
+          {
+            title: "Multi-screen",
+            body: "Different content per location: bar, terrace, dining — all from one console.",
+          },
+        ],
+      },
+      whyUs: {
+        pill: "WHY TEAMS CHOOSE US",
+        title: "More than software —",
+        titleHighlight: "a growth engine.",
+        list: [
+          {
+            title: "Setup in a single visit",
+            body: "Our technician installs and tests everything in a single visit, so you are up and running immediately.",
+          },
+          {
+            title: "Content updated in minutes",
+            body: "Send a text over WhatsApp and our designers deploy updates to all of your screens instantly.",
+          },
+          {
+            title: "No software to learn",
+            body: "Zero learning curve for you or your staff. We handle all design and technology management.",
+          },
+          {
+            title: "Replaces printed menus and signage",
+            body: "Eliminate repetitive printing costs and keep your pricing and items dynamic and fresh.",
+          },
+        ],
+      },
+      cta: {
+        pill: "READY TO LAUNCH",
+        title: "Ready to launch TV Menu Boards?",
+        subtitle: "Talk to Aria — our AI assistant will gather your details and connect you with the Conect-R team to activate your TV menu boards.",
+        button: "Activate TV Boards",
+        backToHome: "Back to home",
+        socialProof: [
+          "Flexible terms",
+          "Full project live in under 2 weeks",
+          "Bilingual support (EN/ES)",
+          "Sacramento-based team",
+        ],
+      },
+      footer: {
+        rights: "© {year} Conect-R. Sacramento, CA. All rights reserved.",
+      },
+      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
+      chatGreeting: "Thanks for your interest in TV Menu Boards! I'm Aria from Conect-R. I'll guide you through setting up your digital boards.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?",
+      chatUserMessage: "I would like to activate TV Menu Boards",
+      demoUserMessage: "I would like to book a demo",
+    },
+    businessConsulting: {
+      hero: {
+        pill: "BUSINESS CONSULTING",
+        title: "Business Consulting",
+        titleHighlight: "More profit, less guessing.",
+        subtitle: "We analyze your restaurant in depth and roll out measurable optimizations so every table, every dish and every shift drives more profit.",
+        cta: "I want a free diagnosis",
+      },
+      stats: {
+        pill: "PROVEN RESULTS",
+        title: "Studies that turn into real money",
+        subtitle: "We deliver concrete financial improvements through data-driven operational redesigns.",
+        metrics: [
+          {
+            value: "+28%",
+            label: "Average net profit lift",
+          },
+          {
+            value: "-18%",
+            label: "Food cost after menu engineering",
+          },
+          {
+            value: "+34%",
+            label: "Average ticket in optimized hours",
+          },
+        ],
+      },
+      features: {
+        pill: "OUR METHOD",
+        title: "A structured roadmap to",
+        titleHighlight: "maximizing efficiency.",
+        list: [
+          {
+            number: "01",
+            title: "Operational Diagnosis",
+            body: "Deep study of sales, costs, service times, waste, table turnover and POS data — pinpointing exactly where money is leaking.",
+          },
+          {
+            number: "02",
+            title: "Strategic Plan",
+            body: "Concrete recommendations: menu re-engineering, price strategy, shift redesign, tip policy, local marketing and digital activation.",
+          },
+          {
+            number: "03",
+            title: "Guided Implementation",
+            body: "We activate the Conect-R modules you need, train the team and leave processes documented so the business no longer depends on one person.",
+          },
+          {
+            number: "04",
+            title: "Profit Measurement",
+            body: "Monthly KPI dashboard: average check, food cost %, labor %, occupancy and net profit — clear before vs. after comparison.",
+          },
+        ],
+      },
+      cta: {
+        pill: "READY TO OPTIMIZE",
+        title: "Ready to optimize your restaurant?",
+        subtitle: "Talk to Aria — our AI assistant will gather your details and connect you with our consulting team to get started.",
+        button: "I want a free diagnosis",
+        backToHome: "Back to home",
+        socialProof: [
+          "Flexible terms",
+          "Full project live in under 2 weeks",
+          "Bilingual support (EN/ES)",
+          "Sacramento-based team",
+        ],
+      },
+      footer: {
+        rights: "© {year} Conect-R. Sacramento, CA. All rights reserved.",
+      },
+      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
+      chatGreeting: "Thanks for your interest in our Business Consulting services! I'm Aria from Conect-R. I'll guide you through scheduling your free diagnosis.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?",
+      chatUserMessage: "I want a free diagnosis",
+      demoUserMessage: "I would like to book a demo",
     },
   },
 } as const;

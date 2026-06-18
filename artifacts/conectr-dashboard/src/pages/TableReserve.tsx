@@ -11,36 +11,6 @@ import { getT } from "@/lib/translations";
 import conectrLogo from "@/assets/conectr-logo.png";
 import { useState, useEffect } from "react";
 
-const DEMO_GREETING_EN =
-  "Thanks for your interest in Table Reserve! I'm Aria from Conect-R. I'll guide you through setting up your trial.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?";
-const DEMO_GREETING_ES =
-  "¡Gracias por tu interés en Table Reserve! Soy Aria de Conect-R. Te guiaré para configurar tu prueba.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?";
-
-function openChat(lang: "es" | "en") {
-  window.dispatchEvent(
-    new CustomEvent("conectr:open-chat", {
-      detail: {
-        greeting: lang === "es" ? DEMO_GREETING_ES : DEMO_GREETING_EN,
-        lang,
-        userMessage: lang === "es" ? "Me gustaría probar Table Reserve" : "I would like to try Table Reserve",
-      },
-    }),
-  );
-}
-
-const DEMO_GREETING = {
-  es: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
-  en: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
-};
-
-function openDemoChat(lang: "es" | "en", userMessage?: string) {
-  window.dispatchEvent(
-    new CustomEvent("conectr:open-chat", {
-      detail: { greeting: DEMO_GREETING[lang], lang, userMessage },
-    }),
-  );
-}
-
 function useTheme() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     if (typeof window === "undefined") return "dark";
@@ -55,66 +25,46 @@ function useTheme() {
   return { theme, toggle: () => setTheme((t) => (t === "dark" ? "light" : "dark")) };
 }
 
-const FEATURES = [
-  {
-    icon: CalendarCheck,
-    title: "24/7 bookings",
-    body: "Customers book from web, Instagram, Google and WhatsApp — nobody has to pick up the phone.",
-  },
-  {
-    icon: Tablet,
-    title: "Live admin panel",
-    body: "Your host runs the floor from a tablet: tables, timing, seated/open, no paper.",
-  },
-  {
-    icon: MessageSquare,
-    title: "Automatic confirmations",
-    body: "SMS + email confirmation and reminder — cuts no-shows by up to 60%.",
-  },
-  {
-    icon: Users,
-    title: "Capacity control",
-    body: "Define tables by size, time slots per hour and blocks for private events.",
-  },
-  {
-    icon: ListOrdered,
-    title: "Built-in waitlist",
-    body: "Synced with NextUp for walk-ins when you're full.",
-  },
-  {
-    icon: BarChart3,
-    title: "Occupancy reports",
-    body: "How many reservations, how many confirmed, how many no-shows. Real data to decide.",
-  },
-];
-
-const WHY_US = [
-  {
-    icon: AlertCircle,
-    title: "Up to 60% fewer no-shows",
-    body: "Automatic SMS and email reminders prompt guests to confirm or cancel early, keeping tables full.",
-  },
-  {
-    icon: Globe,
-    title: "Embedded on your site and Google",
-    body: "Allow bookings from search results, social maps, and your site using smooth inline widgets.",
-  },
-  {
-    icon: Shield,
-    title: "No commission per reservation",
-    body: "Flat SaaS fee instead of high per-cover charges. Keep 100% of the margins unlike OpenTable.",
-  },
-  {
-    icon: Star,
-    title: "Bilingual support in under 2 hours",
-    body: "Local support team responding in both English and Spanish when you need assistance on the floor.",
-  },
-];
-
 export default function TableReserve() {
   const { lang, toggle: toggleLang } = useLang();
   const { theme, toggle: toggleTheme } = useTheme();
   const T = getT(lang);
+
+  const handleOpenDemoChat = () => {
+    window.dispatchEvent(
+      new CustomEvent("conectr:open-chat", {
+        detail: {
+          greeting: T.tableReserve.demoGreeting,
+          lang,
+          userMessage: T.tableReserve.demoUserMessage,
+        },
+      }),
+    );
+  };
+
+  const handleOpenChat = () => {
+    window.dispatchEvent(
+      new CustomEvent("conectr:open-chat", {
+        detail: {
+          greeting: T.tableReserve.chatGreeting,
+          lang,
+          userMessage: T.tableReserve.chatUserMessage,
+        },
+      }),
+    );
+  };
+
+  const features = [CalendarCheck, Tablet, MessageSquare, Users, ListOrdered, BarChart3].map((icon, idx) => ({
+    icon,
+    title: T.tableReserve.features.list[idx].title,
+    body: T.tableReserve.features.list[idx].body,
+  }));
+
+  const whyUs = [AlertCircle, Globe, Shield, Star].map((icon, idx) => ({
+    icon,
+    title: T.tableReserve.whyUs.list[idx].title,
+    body: T.tableReserve.whyUs.list[idx].body,
+  }));
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
@@ -141,7 +91,7 @@ export default function TableReserve() {
               {T.global.langBtn}
             </button>
             <button
-              onClick={() => openDemoChat(lang, lang === "es" ? "Me gustaría agendar una demo" : "I would like to book a demo")}
+              onClick={handleOpenDemoChat}
               className="inline-flex items-center gap-1.5 bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold shadow-lg shadow-orange-500/25 transition-all hover:shadow-orange-500/40 active:scale-95 active:shadow-inner"
             >
               <span className="hidden sm:inline">{T.landing.nav.scheduleDemo}</span>
@@ -167,7 +117,7 @@ export default function TableReserve() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
               <CalendarCheck size={12} strokeWidth={2.5} />
-              TABLE RESERVE
+              {T.tableReserve.hero.pill}
             </div>
           </motion.div>
 
@@ -177,10 +127,10 @@ export default function TableReserve() {
             transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-5xl sm:text-7xl lg:text-8xl font-serif italic font-medium tracking-tight leading-[0.9] mb-6"
           >
-            Table Reserve
+            {T.tableReserve.hero.title}
             <br />
             <span className="text-gradient font-sans not-italic font-black block mt-2 sm:mt-4 pb-3 pt-1 leading-normal">
-              Automated bookings that fill seats
+              {T.tableReserve.hero.titleHighlight}
             </span>
           </motion.h1>
 
@@ -190,7 +140,7 @@ export default function TableReserve() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed font-light tracking-wide"
           >
-            Table Reserve replaces the paper notebook and the phone calls. Your customers book 24/7 from your site or socials, you receive automatic confirmations and your host sees floor occupancy in real time from a tablet.
+            {T.tableReserve.hero.subtitle}
           </motion.p>
 
           <motion.div
@@ -200,10 +150,10 @@ export default function TableReserve() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <button
-              onClick={() => openChat(lang)}
+              onClick={handleOpenChat}
               className="group relative inline-flex items-center gap-3 bg-foreground text-background px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl shadow-black/20 transition-all hover:scale-[1.02] active:scale-95"
             >
-              <span className="relative z-10">Try Table Reserve</span>
+              <span className="relative z-10">{T.tableReserve.hero.cta}</span>
               <ArrowRight size={18} strokeWidth={2.5} className="relative z-10 transition-transform group-hover:translate-x-1" />
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity" />
             </button>
@@ -217,12 +167,12 @@ export default function TableReserve() {
           <div className="text-center mb-14">
             <div className="flex justify-center mb-6">
               <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                PRICING
+                {T.tableReserve.pricing.pill}
               </div>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-serif italic mb-4">Simple, transparent pricing</h2>
+            <h2 className="text-3xl sm:text-5xl font-serif italic mb-4">{T.tableReserve.pricing.title}</h2>
             <p className="text-muted-foreground max-w-xl mx-auto font-light">
-              One-time setup fee, then a low monthly SaaS subscription. No hidden costs, no surprises.
+              {T.tableReserve.pricing.subtitle}
             </p>
           </div>
 
@@ -235,13 +185,13 @@ export default function TableReserve() {
               transition={{ duration: 0.6 }}
               className="glass-panel rounded-3xl p-8 border border-border"
             >
-              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">Initial Setup</div>
+              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">{T.tableReserve.pricing.setup.badge}</div>
               <div className="flex items-end gap-2 mb-2">
-                <span className="text-5xl font-black text-foreground">$150</span>
-                <span className="text-muted-foreground font-light mb-1">USD</span>
+                <span className="text-5xl font-black text-foreground">{T.tableReserve.pricing.setup.price}</span>
+                <span className="text-muted-foreground font-light mb-1">{T.tableReserve.pricing.setup.currency}</span>
               </div>
               <p className="text-muted-foreground text-sm font-light leading-relaxed">
-                One-time setup fee covering floor plan layout, widget embed on site/socials, and tablet sync configuration.
+                {T.tableReserve.pricing.setup.description}
               </p>
             </motion.div>
 
@@ -255,16 +205,16 @@ export default function TableReserve() {
             >
               <div className="absolute top-4 right-4">
                 <span className="inline-flex items-center px-3 py-1 rounded-full bg-orange-500 text-white text-[10px] font-black tracking-[0.15em] uppercase">
-                  Monthly
+                  {T.tableReserve.pricing.monthly.periodLabel}
                 </span>
               </div>
-              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">SaaS Subscription</div>
+              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">{T.tableReserve.pricing.monthly.badge}</div>
               <div className="flex items-end gap-2 mb-2">
-                <span className="text-5xl font-black text-foreground">$200</span>
-                <span className="text-muted-foreground font-light mb-1">USD / mo</span>
+                <span className="text-5xl font-black text-foreground">{T.tableReserve.pricing.monthly.price}</span>
+                <span className="text-muted-foreground font-light mb-1">{T.tableReserve.pricing.monthly.currency}</span>
               </div>
               <p className="text-muted-foreground text-sm font-light leading-relaxed">
-                Unlimited covers, free automatic SMS reminders, Google integration, and real-time tablet admin access.
+                {T.tableReserve.pricing.monthly.description}
               </p>
             </motion.div>
           </div>
@@ -277,18 +227,18 @@ export default function TableReserve() {
           <div className="text-center mb-14">
             <div className="flex justify-center mb-6">
               <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                WHAT'S INCLUDED
+                {T.tableReserve.features.pill}
               </div>
             </div>
             <h2 className="text-3xl sm:text-5xl font-serif italic mb-4">
-              Everything you need,
+              {T.tableReserve.features.title}
               <br />
-              <span className="text-gradient font-sans not-italic font-black">nothing you don't.</span>
+              <span className="text-gradient font-sans not-italic font-black">{T.tableReserve.features.titleHighlight}</span>
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {FEATURES.map((f, i) => (
+            {features.map((f, i) => (
               <motion.div
                 key={f.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -314,18 +264,18 @@ export default function TableReserve() {
           <div className="text-center mb-14">
             <div className="flex justify-center mb-6">
               <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                WHY TEAMS CHOOSE US
+                {T.tableReserve.whyUs.pill}
               </div>
             </div>
             <h2 className="text-3xl sm:text-5xl font-serif italic">
-              More than software —
+              {T.tableReserve.whyUs.title}
               <br />
-              <span className="text-gradient font-sans not-italic font-black">a growth engine.</span>
+              <span className="text-gradient font-sans not-italic font-black">{T.tableReserve.whyUs.titleHighlight}</span>
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {WHY_US.map((item, i) => (
+            {whyUs.map((item, i) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
@@ -359,23 +309,23 @@ export default function TableReserve() {
           >
             <div className="flex justify-center mb-8">
               <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                READY TO LAUNCH
+                {T.tableReserve.cta.pill}
               </div>
             </div>
             <h2 className="text-4xl sm:text-6xl font-serif italic font-medium tracking-tight mb-6">
-              Ready to launch Table Reserve?
+              {T.tableReserve.cta.title}
             </h2>
             <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-10 leading-relaxed font-light">
-              Talk to Aria — our AI assistant will gather your details and connect you with the Conect-R team to kick things off.
+              {T.tableReserve.cta.subtitle}
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button
-                onClick={() => openChat(lang)}
+                onClick={handleOpenChat}
                 className="group relative inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl shadow-orange-500/30 transition-all hover:scale-105 active:scale-95"
               >
                 <Sparkles size={20} strokeWidth={2} className="transition-transform group-hover:rotate-12" />
-                Try Table Reserve
+                {T.tableReserve.cta.button}
                 <ArrowRight size={18} strokeWidth={2.5} className="transition-transform group-hover:translate-x-1" />
               </button>
 
@@ -384,7 +334,7 @@ export default function TableReserve() {
                 className="inline-flex items-center gap-2 px-6 py-4 rounded-2xl border border-border text-muted-foreground hover:text-foreground hover:border-orange-500/30 font-semibold text-sm transition-all"
               >
                 <ArrowLeft size={16} strokeWidth={2.5} />
-                Back to home
+                {T.tableReserve.cta.backToHome}
               </Link>
             </div>
           </motion.div>
@@ -397,7 +347,7 @@ export default function TableReserve() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mt-16 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground"
           >
-            {["Flexible terms", "Full project live in under 2 weeks", "Bilingual support (EN/ES)", "Sacramento-based team"].map((item) => (
+            {T.tableReserve.cta.socialProof.map((item) => (
               <div key={item} className="flex items-center gap-2">
                 <Check size={14} strokeWidth={2.5} className="text-orange-500" />
                 <span>{item}</span>
@@ -414,7 +364,7 @@ export default function TableReserve() {
             <img src={conectrLogo} alt="Conect-R" className="h-12 w-auto object-contain select-none" draggable={false} />
           </Link>
           <p className="text-xs text-muted-foreground text-center">
-            © {new Date().getFullYear()} Conect-R. Sacramento, CA. All rights reserved.
+            {T.tableReserve.footer.rights.replace("{year}", new Date().getFullYear().toString())}
           </p>
         </div>
       </footer>
