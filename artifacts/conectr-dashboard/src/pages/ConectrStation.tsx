@@ -56,66 +56,27 @@ function useTheme() {
   return { theme, toggle: () => setTheme((t) => (t === "dark" ? "light" : "dark")) };
 }
 
-const FEATURES = [
-  {
-    icon: Smartphone,
-    title: "Dual NFC or QR tech",
-    body: "Works with any modern phone — nothing to download. Customers simply tap or scan.",
-  },
-  {
-    icon: CreditCard,
-    title: "Secure Table Ordering & Payment",
-    body: "Orders are routed to the kitchen dashboard only after digital payment is completed, preventing unpaid walkouts.",
-  },
-  {
-    icon: Globe,
-    title: "Custom Advertising Portal",
-    body: "Your brand, your links: menu, bookings, socials, reviews, chatbot, and private feedback.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Menu Engineering AI",
-    body: "Automatically moves popular items to the top to increase sales, and tags low-performing items for recipe reviews.",
-  },
-  {
-    icon: Bot,
-    title: "Integrated AI Chatbot",
-    body: "An on-portal digital assistant to answer guest questions and gather valuable contact details.",
-  },
-  {
-    icon: BarChart3,
-    title: "Detailed Click Analytics",
-    body: "Track clicks on every link of the customer portal, scans per table, and peak hours in real time.",
-  },
-];
-
-const WHY_US = [
-  {
-    icon: DollarSign,
-    title: "$15 USD per stand (wholesale)",
-    body: "Unbeatable wholesale price for premium dual-technology stands that combine durability and high-end design.",
-  },
-  {
-    icon: Layers,
-    title: "Hardware + software in the bundle",
-    body: "Get both physical stands and the cloud portal manager in one simple, unified package.",
-  },
-  {
-    icon: Star,
-    title: "Lifts positive Google reviews",
-    body: "Direct happy customers straight to your review links while filtering complaints privately to managers.",
-  },
-  {
-    icon: Shield,
-    title: "Captures emails for your database",
-    body: "Turn casual diners into repeat customers by offering email opt-ins during portal navigation.",
-  },
-];
-
 export default function ConectrStation() {
   const { lang, toggle: toggleLang } = useLang();
   const { theme, toggle: toggleTheme } = useTheme();
   const T = getT(lang);
+  const S = T.conectrStation;
+
+  const FEATURES = [
+    { icon: Smartphone, title: S.features.list[0].title, body: S.features.list[0].body },
+    { icon: CreditCard, title: S.features.list[1].title, body: S.features.list[1].body },
+    { icon: Globe, title: S.features.list[2].title, body: S.features.list[2].body },
+    { icon: TrendingUp, title: S.features.list[3].title, body: S.features.list[3].body },
+    { icon: Bot, title: S.features.list[4].title, body: S.features.list[4].body },
+    { icon: BarChart3, title: S.features.list[5].title, body: S.features.list[5].body },
+  ];
+
+  const WHY_US = [
+    { icon: DollarSign, title: S.whyUs.list[0].title, body: S.whyUs.list[0].body },
+    { icon: Layers, title: S.whyUs.list[1].title, body: S.whyUs.list[1].body },
+    { icon: Star, title: S.whyUs.list[2].title, body: S.whyUs.list[2].body },
+    { icon: Shield, title: S.whyUs.list[3].title, body: S.whyUs.list[3].body },
+  ];
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
@@ -124,7 +85,7 @@ export default function ConectrStation() {
       <header className="w-full px-4 sm:px-6 py-4">
         <div className="bg-transparent max-w-5xl mx-auto flex items-center justify-between gap-3">
           <Link href="/" className="flex items-center shrink-0">
-            <img src={conectrLogo} alt="Conect-R" className="h-80 sm:h-[512px] md:h-[704px] w-auto object-contain select-none" draggable={false} />
+            <img src={conectrLogo} alt="Conect-R" className="h-20 sm:h-32 md:h-44 w-auto object-contain select-none" draggable={false} />
           </Link>
           <div className="flex items-center gap-2">
             <button
@@ -168,7 +129,7 @@ export default function ConectrStation() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
               <Smartphone size={12} strokeWidth={2.5} />
-              CONECT-R STATION
+              {S.hero.pill}
             </div>
           </motion.div>
 
@@ -178,10 +139,10 @@ export default function ConectrStation() {
             transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-5xl sm:text-7xl lg:text-8xl font-serif italic font-medium tracking-tight leading-[0.9] mb-6"
           >
-            Conect-r Station
+            {S.hero.title}
             <br />
             <span className="text-gradient font-sans not-italic font-black block mt-2 sm:mt-4 pb-3 pt-1 leading-normal">
-              Your table, connected with a tap
+              {S.hero.titleHighlight}
             </span>
           </motion.h1>
 
@@ -191,7 +152,7 @@ export default function ConectrStation() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed font-light tracking-wide"
           >
-            Elegant custom physical displays combined with a powerful digital menu, secure ordering and payment flow, private feedback manager, Google reviews integration, AI chatbot, click analytics, and Menu Engineering Algorithm.
+            {S.hero.subtitle}
           </motion.p>
 
           <motion.div
@@ -204,7 +165,7 @@ export default function ConectrStation() {
               onClick={() => openChat(lang)}
               className="group relative inline-flex items-center gap-3 bg-foreground text-background px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl shadow-black/20 transition-all hover:scale-[1.02] active:scale-95"
             >
-              <span className="relative z-10">Order Conect-r Station</span>
+              <span className="relative z-10">{S.hero.cta}</span>
               <ArrowRight size={18} strokeWidth={2.5} className="relative z-10 transition-transform group-hover:translate-x-1" />
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity" />
             </button>
@@ -218,12 +179,12 @@ export default function ConectrStation() {
           <div className="text-center mb-14">
             <div className="flex justify-center mb-6">
               <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                PRICING
+                {S.pricing.pill}
               </div>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-serif italic mb-4">Simple, transparent pricing</h2>
+            <h2 className="text-3xl sm:text-5xl font-serif italic mb-4">{S.pricing.title}</h2>
             <p className="text-muted-foreground max-w-xl mx-auto font-light">
-              One-time setup fee, then a low monthly SaaS subscription. No hidden costs, no surprises.
+              {S.pricing.subtitle}
             </p>
           </div>
 
@@ -237,14 +198,14 @@ export default function ConectrStation() {
               className="glass-panel rounded-3xl p-8 border border-border flex flex-col justify-between"
             >
               <div>
-                <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">Initial Setup</div>
+                <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">{S.pricing.setup.badge}</div>
                 <div className="flex items-end gap-2 mb-2">
-                  <span className="text-5xl font-black text-foreground">$750</span>
-                  <span className="text-muted-foreground font-light mb-1">USD</span>
+                  <span className="text-5xl font-black text-foreground">{S.pricing.setup.price}</span>
+                  <span className="text-muted-foreground font-light mb-1">{S.pricing.setup.currency}</span>
                 </div>
-                <p className="text-muted-foreground text-xs text-orange-500/80 font-bold mb-3">Includes 50 stands</p>
+                <p className="text-muted-foreground text-xs text-orange-500/80 font-bold mb-3">{lang === "es" ? "Incluye 50 stands" : "Includes 50 stands"}</p>
                 <p className="text-muted-foreground text-sm font-light leading-relaxed">
-                  One-time hardware fee covering manufacture, custom logo laser engraving/printing, and NFC/QR coding for 50 table stands.
+                  {S.pricing.setup.description}
                 </p>
               </div>
             </motion.div>
@@ -258,14 +219,14 @@ export default function ConectrStation() {
               className="glass-panel rounded-3xl p-8 border border-border flex flex-col justify-between relative overflow-hidden"
             >
               <div>
-                <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">Menu & Kitchen</div>
+                <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">{S.pricing.menuTier.badge}</div>
                 <div className="flex items-end gap-2 mb-2">
-                  <span className="text-5xl font-black text-foreground">$50</span>
-                  <span className="text-muted-foreground font-light mb-1">USD / mo</span>
+                  <span className="text-5xl font-black text-foreground">{S.pricing.menuTier.price}</span>
+                  <span className="text-muted-foreground font-light mb-1">{S.pricing.menuTier.currency}</span>
                 </div>
-                <p className="text-muted-foreground text-xs text-orange-500/80 font-bold mb-3">Essential Dining</p>
+                <p className="text-muted-foreground text-xs text-orange-500/80 font-bold mb-3">{lang === "es" ? "Comedor Esencial" : "Essential Dining"}</p>
                 <p className="text-muted-foreground text-sm font-light leading-relaxed">
-                  Digital food menu on table scan + real-time kitchen order dispatch dashboard. Payment verification required before order transmission.
+                  {S.pricing.menuTier.description}
                 </p>
               </div>
             </motion.div>
@@ -280,18 +241,18 @@ export default function ConectrStation() {
             >
               <div className="absolute top-4 right-4">
                 <span className="inline-flex items-center px-3 py-1 rounded-full bg-orange-500 text-white text-[10px] font-black tracking-[0.15em] uppercase">
-                  Best Value
+                  {S.pricing.premiumTier.bestValue}
                 </span>
               </div>
               <div>
-                <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">Premium Growth</div>
+                <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">{S.pricing.premiumTier.badge}</div>
                 <div className="flex items-end gap-2 mb-2">
-                  <span className="text-5xl font-black text-foreground">$100</span>
-                  <span className="text-muted-foreground font-light mb-1">USD / mo</span>
+                  <span className="text-5xl font-black text-foreground">{S.pricing.premiumTier.price}</span>
+                  <span className="text-muted-foreground font-light mb-1">{S.pricing.premiumTier.currency}</span>
                 </div>
-                <p className="text-muted-foreground text-xs text-orange-500/80 font-bold mb-3">Full Station Suite</p>
+                <p className="text-muted-foreground text-xs text-orange-500/80 font-bold mb-3">{lang === "es" ? "Suite Estación Completa" : "Full Station Suite"}</p>
                 <p className="text-muted-foreground text-sm font-light leading-relaxed">
-                  Everything in Menu & Kitchen plus custom digital advertising portal, AI chatbot support, social media integrations, custom webpage, Google reviews booster, clicks analytics, and the Menu Engineering Algorithm.
+                  {S.pricing.premiumTier.description}
                 </p>
               </div>
             </motion.div>
@@ -305,13 +266,13 @@ export default function ConectrStation() {
           <div className="text-center mb-14">
             <div className="flex justify-center mb-6">
               <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                WHAT'S INCLUDED
+                {S.features.pill}
               </div>
             </div>
             <h2 className="text-3xl sm:text-5xl font-serif italic mb-4">
-              Everything you need,
+              {S.features.title}
               <br />
-              <span className="text-gradient font-sans not-italic font-black">nothing you don't.</span>
+              <span className="text-gradient font-sans not-italic font-black">{S.features.titleHighlight}</span>
             </h2>
           </div>
 
@@ -342,13 +303,13 @@ export default function ConectrStation() {
           <div className="text-center mb-14">
             <div className="flex justify-center mb-6">
               <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                WHY TEAMS CHOOSE US
+                {S.whyUs.pill}
               </div>
             </div>
             <h2 className="text-3xl sm:text-5xl font-serif italic">
-              More than software —
+              {S.whyUs.title}
               <br />
-              <span className="text-gradient font-sans not-italic font-black">a growth engine.</span>
+              <span className="text-gradient font-sans not-italic font-black">{S.whyUs.titleHighlight}</span>
             </h2>
           </div>
 
@@ -387,14 +348,14 @@ export default function ConectrStation() {
           >
             <div className="flex justify-center mb-8">
               <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                READY TO LAUNCH
+                {S.cta.pill}
               </div>
             </div>
             <h2 className="text-4xl sm:text-6xl font-serif italic font-medium tracking-tight mb-6">
-              Ready to launch Conect-r Station?
+              {S.cta.title}
             </h2>
             <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-10 leading-relaxed font-light">
-              Talk to Aria — our AI assistant will gather your details and connect you with the Conect-R team to order your table station.
+              {S.cta.subtitle}
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -403,7 +364,7 @@ export default function ConectrStation() {
                 className="group relative inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl shadow-orange-500/30 transition-all hover:scale-105 active:scale-95"
               >
                 <Sparkles size={20} strokeWidth={2} className="transition-transform group-hover:rotate-12" />
-                Order Conect-r Station
+                {S.cta.button}
                 <ArrowRight size={18} strokeWidth={2.5} className="transition-transform group-hover:translate-x-1" />
               </button>
 
@@ -412,7 +373,7 @@ export default function ConectrStation() {
                 className="inline-flex items-center gap-2 px-6 py-4 rounded-2xl border border-border text-muted-foreground hover:text-foreground hover:border-orange-500/30 font-semibold text-sm transition-all"
               >
                 <ArrowLeft size={16} strokeWidth={2.5} />
-                Back to home
+                {S.cta.backToHome}
               </Link>
             </div>
           </motion.div>
@@ -425,7 +386,7 @@ export default function ConectrStation() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mt-16 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground"
           >
-            {["Flexible terms", "Full project live in under 2 weeks", "Bilingual support (EN/ES)", "Sacramento-based team"].map((item) => (
+            {S.cta.socialProof.map((item) => (
               <div key={item} className="flex items-center gap-2">
                 <Check size={14} strokeWidth={2.5} className="text-orange-500" />
                 <span>{item}</span>
@@ -439,10 +400,10 @@ export default function ConectrStation() {
       <footer className="border-t border-border bg-muted/20 mt-auto">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <Link href="/" className="flex items-center">
-            <img src={conectrLogo} alt="Conect-R" className="h-48 w-auto object-contain select-none" draggable={false} />
+            <img src={conectrLogo} alt="Conect-R" className="h-12 w-auto object-contain select-none" draggable={false} />
           </Link>
           <p className="text-xs text-muted-foreground text-center">
-            © {new Date().getFullYear()} Conect-R. Sacramento, CA. All rights reserved.
+            {S.footer.rights.replace("{year}", new Date().getFullYear().toString())}
           </p>
         </div>
       </footer>

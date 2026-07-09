@@ -1135,7 +1135,113 @@ const translations = {
       chatUserMessage: "Quiero un diagnóstico gratuito",
       demoUserMessage: "Me gustaría agendar una demo",
     },
-
+    conectrStation: {
+      hero: {
+        pill: "CONECT-R STATION",
+        title: "Conect-r Station",
+        titleHighlight: "Tu mesa, conectada con un toque",
+        subtitle: "Elegantes stands físicos personalizados combinados con un potente menú digital, flujo de pedido y pago seguro, gestor de comentarios privado, integración con Google Reviews, chatbot con IA, analítica de clics y Algoritmo de Ingeniería de Menú.",
+        cta: "Ordenar Conect-r Station",
+      },
+      pricing: {
+        pill: "PRECIOS",
+        title: "Precios sencillos y transparentes",
+        subtitle: "Costo único de configuración, luego una suscripción SaaS mensual baja. Sin costos ocultos, sin sorpresas.",
+        setup: {
+          badge: "Configuración Inicial",
+          price: "$750",
+          currency: "USD",
+          description: "Incluye 50 stands. Costo único que cubre la fabricación, el grabado/impresión láser de tu logotipo personalizado y la codificación NFC/QR para 50 stands de mesa.",
+        },
+        menuTier: {
+          badge: "Menú y Cocina",
+          price: "$50",
+          currency: "USD / mes",
+          description: "Menú de comida digital al escanear la mesa + dashboard de despacho de pedidos a cocina en tiempo real. Se requiere validación de pago antes de la transmisión del pedido.",
+        },
+        premiumTier: {
+          badge: "Crecimiento Premium",
+          price: "$100",
+          currency: "USD / mes",
+          description: "Todo lo de Menú y Cocina más portal publicitario digital personalizado, soporte de chatbot con IA, integración de redes sociales, página web personalizada, booster de Google Reviews, analítica de clics y Algoritmo de Ingeniería de Menú.",
+          bestValue: "Mejor Opción",
+        },
+      },
+      features: {
+        pill: "QUÉ ESTÁ INCLUIDO",
+        title: "Todo lo que necesitas,",
+        titleHighlight: "nada de lo que no.",
+        list: [
+          {
+            title: "Tecnología Dual NFC o QR",
+            body: "Funciona con cualquier teléfono moderno — sin descargar nada. Los clientes simplemente tocan o escanean.",
+          },
+          {
+            title: "Pedidos y Pagos Seguros en Mesa",
+            body: "Los pedidos se envían al dashboard de la cocina solo después de completar el pago digital, previniendo que se vayan sin pagar.",
+          },
+          {
+            title: "Portal Publicitario Personalizado",
+            body: "Tu marca, tus enlaces: menú, reservas, redes sociales, reseñas, chatbot y feedback privado.",
+          },
+          {
+            title: "Algoritmo de Ingeniería de Menú con IA",
+            body: "Mueve automáticamente los platos populares al inicio para aumentar ventas, y etiqueta los platos de bajo rendimiento para revisión.",
+          },
+          {
+            title: "Chatbot de IA Integrado",
+            body: "Un asistente digital en el portal para responder preguntas de los clientes y recopilar datos valiosos de contacto.",
+          },
+          {
+            title: "Analítica Detallada de Clics",
+            body: "Monitorea clics en cada enlace del portal de clientes, escaneos por mesa y horas pico en tiempo real.",
+          },
+        ],
+      },
+      whyUs: {
+        pill: "POR QUÉ NOS ELIGEN",
+        title: "Más que software —",
+        titleHighlight: "un motor de crecimiento.",
+        list: [
+          {
+            title: "$15 USD por stand (al por mayor)",
+            body: "Precio mayorista insuperable para stands premium de tecnología dual que combinan durabilidad y diseño elegante.",
+          },
+          {
+            title: "Hardware + software en el paquete",
+            body: "Obtén tanto los stands físicos como el gestor del portal en la nube en un solo paquete simple y unificado.",
+          },
+          {
+            title: "Aumenta reseñas positivas en Google",
+            body: "Dirige a los clientes satisfechos directo a tus enlaces de reseñas mientras filtras quejas de forma privada a los gerentes.",
+          },
+          {
+            title: "Captura correos para tu base de datos",
+            body: "Convierte comensales casuales en clientes recurrentes ofreciendo suscripciones de correo durante la navegación del portal.",
+          },
+        ],
+      },
+      cta: {
+        pill: "LISTO PARA LANZAR",
+        title: "¿Listo para lanzar Conect-r Station?",
+        subtitle: "Habla con Aria — nuestra asistente de IA recopilará tus detalles y te conectará con el equipo de Conect-R para ordenar tu estación de mesa.",
+        button: "Ordenar Conect-r Station",
+        backToHome: "Volver al inicio",
+        socialProof: [
+          "Términos flexibles",
+          "Proyecto completo al aire en menos de 2 semanas",
+          "Soporte bilingüe (EN/ES)",
+          "Equipo basado en Sacramento",
+        ],
+      },
+      footer: {
+        rights: "© {year} Conect-R. Sacramento, CA. Todos los derechos reservados.",
+      },
+      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
+      chatGreeting: "¡Gracias por tu interés en Conect-r Station! Soy Aria de Conect-R. Te guiaré para ordenar tu estación.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?",
+      chatUserMessage: "Me gustaría ordenar mi Conect-r Station",
+      demoUserMessage: "Me gustaría agendar una demo",
+    },
   },
 
   en: {
@@ -2270,6 +2376,113 @@ const translations = {
       demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
       chatGreeting: "Thanks for your interest in our Business Consulting services! I'm Aria from Conect-R. I'll guide you through scheduling your free diagnosis.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?",
       chatUserMessage: "I want a free diagnosis",
+      demoUserMessage: "I would like to book a demo",
+    },
+    conectrStation: {
+      hero: {
+        pill: "CONECT-R STATION",
+        title: "Conect-r Station",
+        titleHighlight: "Your table, connected with a tap",
+        subtitle: "Elegant custom physical displays combined with a powerful digital menu, secure ordering and payment flow, private feedback manager, Google reviews integration, AI chatbot, click analytics, and Menu Engineering Algorithm.",
+        cta: "Order Conect-r Station",
+      },
+      pricing: {
+        pill: "PRICING",
+        title: "Simple, transparent pricing",
+        subtitle: "One-time setup fee, then a low monthly SaaS subscription. No hidden costs, no surprises.",
+        setup: {
+          badge: "Initial Setup",
+          price: "$750",
+          currency: "USD",
+          description: "Includes 50 stands. One-time hardware fee covering manufacture, custom logo laser engraving/printing, and NFC/QR coding for 50 table stands.",
+        },
+        menuTier: {
+          badge: "Menu & Kitchen",
+          price: "$50",
+          currency: "USD / mo",
+          description: "Digital food menu on table scan + real-time kitchen order dispatch dashboard. Payment verification required before order transmission.",
+        },
+        premiumTier: {
+          badge: "Premium Growth",
+          price: "$100",
+          currency: "USD / mo",
+          description: "Everything in Menu & Kitchen plus custom digital advertising portal, AI chatbot support, social media integrations, custom webpage, Google reviews booster, clicks analytics, and the Menu Engineering Algorithm.",
+          bestValue: "Best Value",
+        },
+      },
+      features: {
+        pill: "WHAT'S INCLUDED",
+        title: "Everything you need,",
+        titleHighlight: "nothing you don't.",
+        list: [
+          {
+            title: "Dual NFC or QR tech",
+            body: "Works with any modern phone — nothing to download. Customers simply tap or scan.",
+          },
+          {
+            title: "Secure Table Ordering & Payment",
+            body: "Orders are routed to the kitchen dashboard only after digital payment is completed, preventing unpaid walkouts.",
+          },
+          {
+            title: "Custom Advertising Portal",
+            body: "Your brand, your links: menu, bookings, socials, reviews, chatbot, and private feedback.",
+          },
+          {
+            title: "Menu Engineering AI",
+            body: "Automatically moves popular items to the top to increase sales, and tags low-performing items for recipe reviews.",
+          },
+          {
+            title: "Integrated AI Chatbot",
+            body: "An on-portal digital assistant to answer guest questions and gather valuable contact details.",
+          },
+          {
+            title: "Detailed Click Analytics",
+            body: "Track clicks on every link of the customer portal, scans per table, and peak hours in real time.",
+          },
+        ],
+      },
+      whyUs: {
+        pill: "WHY TEAMS CHOOSE US",
+        title: "More than software —",
+        titleHighlight: "a growth engine.",
+        list: [
+          {
+            title: "$15 USD per stand (wholesale)",
+            body: "Unbeatable wholesale price for premium dual-technology stands that combine durability and high-end design.",
+          },
+          {
+            title: "Hardware + software in the bundle",
+            body: "Get both physical stands and the cloud portal manager in one simple, unified package.",
+          },
+          {
+            title: "Lifts positive Google reviews",
+            body: "Direct happy customers straight to your review links while filtering complaints privately to managers.",
+          },
+          {
+            title: "Captures emails for your database",
+            body: "Turn casual diners into repeat customers by offering email opt-ins during portal navigation.",
+          },
+        ],
+      },
+      cta: {
+        pill: "READY TO LAUNCH",
+        title: "Ready to launch Conect-r Station?",
+        subtitle: "Talk to Aria — our AI assistant will gather your details and connect you with the Conect-R team to order your table station.",
+        button: "Order Conect-r Station",
+        backToHome: "Back to home",
+        socialProof: [
+          "Flexible terms",
+          "Full project live in under 2 weeks",
+          "Bilingual support (EN/ES)",
+          "Sacramento-based team",
+        ],
+      },
+      footer: {
+        rights: "© {year} Conect-R. Sacramento, CA. All rights reserved.",
+      },
+      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
+      chatGreeting: "Thanks for your interest in Conect-r Station! I'm Aria from Conect-R. I'll guide you through ordering your station.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?",
+      chatUserMessage: "I would like to order my Conect-r Station",
       demoUserMessage: "I would like to book a demo",
     },
   },

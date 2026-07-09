@@ -69,7 +69,7 @@ export default function Dashboard() {
         <div className="flex items-center justify-between px-4 py-3">
           {/* Logo */}
           <a href={import.meta.env.BASE_URL} className="flex items-center gap-3 shrink-0">
-            <img src={`${import.meta.env.BASE_URL}conectr-logo.png`} alt="Conect-R" className="h-[448px] lg:h-[512px] object-contain" />
+            <img src={`${import.meta.env.BASE_URL}conectr-logo.png`} alt="Conect-R" className="h-28 lg:h-32 object-contain" />
             <div className="hidden xl:block text-xs text-muted-foreground leading-none">{T.global.ecosistema}</div>
           </a>
 
