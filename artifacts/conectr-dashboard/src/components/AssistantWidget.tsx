@@ -484,6 +484,7 @@ function SummaryCard({
 }) {
   const t = STR[lang];
   const L = t.labels;
+  const [smsConsent, setSmsConsent] = useState(false);
 
   const fields: { key: keyof Appointment; label: string }[] = [
     { key: "businessName", label: L.businessName },
@@ -518,18 +519,34 @@ function SummaryCard({
       {editing ? (
         <div className="space-y-1.5 pt-1">
           {fields.map((f) => (
-            <label key={f.key} className="block">
-              <span className="text-[10px] uppercase tracking-wide text-muted-foreground">
-                {f.label}
-              </span>
-              <input
-                value={appt[f.key]}
-                onChange={(e) =>
-                  onChange({ ...appt, [f.key]: e.target.value })
-                }
-                className="w-full mt-0.5 px-2.5 py-1.5 rounded-md border border-border bg-background text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-orange-500/40"
-              />
-            </label>
+            <div key={f.key} className="space-y-1">
+              <label className="block">
+                <span className="text-[10px] uppercase tracking-wide text-muted-foreground">
+                  {f.label}
+                </span>
+                <input
+                  value={appt[f.key]}
+                  onChange={(e) =>
+                    onChange({ ...appt, [f.key]: e.target.value })
+                  }
+                  className="w-full mt-0.5 px-2.5 py-1.5 rounded-md border border-border bg-background text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-orange-500/40"
+                />
+              </label>
+              {f.key === "phone" && (
+                <div className="mt-1.5 mb-1.5 flex items-start gap-2 bg-background/30 p-2 rounded-lg border border-border/40">
+                  <input
+                    type="checkbox"
+                    id="sms-consent-edit"
+                    checked={smsConsent}
+                    onChange={(e) => setSmsConsent(e.target.checked)}
+                    className="mt-0.5 h-3.5 w-3.5 shrink-0 rounded accent-orange-500 focus:ring-orange-500"
+                  />
+                  <label htmlFor="sms-consent-edit" className="text-[9px] leading-tight text-muted-foreground select-none">
+                    By providing your phone number, you agree to receive automated SMS notifications from CONECT-R and its services (Nextup, TableReserve). Msg & data rates may apply. Reply STOP to opt out. Privacy Policy: <a href="https://nextup.conect-r.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">https://nextup.conect-r.com/privacy</a> | Terms: <a href="https://nextup.conect-r.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">https://nextup.conect-r.com/terms</a>
+                  </label>
+                </div>
+              )}
+            </div>
           ))}
         </div>
       ) : (
@@ -537,13 +554,29 @@ function SummaryCard({
           {fields
             .filter((f) => appt[f.key])
             .map((f) => (
-              <div key={f.key} className="text-[11px] flex gap-2">
-                <span className="text-muted-foreground shrink-0 w-24">
-                  {f.label}
-                </span>
-                <span className="text-foreground break-words">
-                  {appt[f.key]}
-                </span>
+              <div key={f.key} className="space-y-1">
+                <div className="text-[11px] flex gap-2">
+                  <span className="text-muted-foreground shrink-0 w-24">
+                    {f.label}
+                  </span>
+                  <span className="text-foreground break-words">
+                    {appt[f.key]}
+                  </span>
+                </div>
+                {f.key === "phone" && (
+                  <div className="mt-1.5 mb-1.5 flex items-start gap-2 bg-background/30 p-2 rounded-lg border border-border/40">
+                    <input
+                      type="checkbox"
+                      id="sms-consent-view"
+                      checked={smsConsent}
+                      onChange={(e) => setSmsConsent(e.target.checked)}
+                      className="mt-0.5 h-3.5 w-3.5 shrink-0 rounded accent-orange-500 focus:ring-orange-500"
+                    />
+                    <label htmlFor="sms-consent-view" className="text-[9px] leading-tight text-muted-foreground select-none">
+                      By providing your phone number, you agree to receive automated SMS notifications from CONECT-R and its services (Nextup, TableReserve). Msg & data rates may apply. Reply STOP to opt out. Privacy Policy: <a href="https://nextup.conect-r.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">https://nextup.conect-r.com/privacy</a> | Terms: <a href="https://nextup.conect-r.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">https://nextup.conect-r.com/terms</a>
+                    </label>
+                  </div>
+                )}
               </div>
             ))}
         </div>
@@ -551,8 +584,8 @@ function SummaryCard({
 
       <button
         onClick={onSend}
-        disabled={status === "sending" || status === "sent"}
-        className="w-full inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-3 py-2.5 rounded-lg text-sm font-semibold mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
+        disabled={status === "sending" || status === "sent" || (!!appt.phone && !smsConsent)}
+        className="w-full inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-3 py-2.5 rounded-lg text-sm font-semibold mt-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
       >
         {status === "sent" ? (
           <>
