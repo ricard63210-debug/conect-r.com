@@ -12,6 +12,7 @@ import NextUp from "@/pages/NextUp";
 import ConectrStation from "@/pages/ConectrStation";
 import TvMenuBoards from "@/pages/TvMenuBoards";
 import BusinessConsulting from "@/pages/BusinessConsulting";
+import SmsConsent from "@/pages/SmsConsent";
 import NotFound from "@/pages/not-found";
 import AssistantWidget from "@/components/AssistantWidget";
 
@@ -30,6 +31,7 @@ function Router() {
       <Route path="/conectr-station" component={ConectrStation} />
       <Route path="/tv-menu-boards" component={TvMenuBoards} />
       <Route path="/business-consulting" component={BusinessConsulting} />
+      <Route path="/sms-consent" component={SmsConsent} />
       <Route component={NotFound} />
     </Switch>
   );
