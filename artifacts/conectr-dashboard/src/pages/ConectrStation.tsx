@@ -397,13 +397,25 @@ export default function ConectrStation() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-muted/20 mt-auto">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <Link href="/" className="flex items-center">
-            <img src={conectrLogo} alt="Conect-R" className="h-12 w-auto object-contain select-none" draggable={false} />
-          </Link>
+      <footer className="border-t border-border bg-muted/20 mt-auto py-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col items-center gap-4">
+          <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-sm">
+            <a href="https://nextup.conect-r.com/privacy" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-orange-500 transition-colors font-medium">
+              {lang === "es" ? "Política de Privacidad" : "Privacy Policy"}
+            </a>
+            <span className="text-muted-foreground/30 hidden sm:inline">|</span>
+            <a href="https://nextup.conect-r.com/terms" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-orange-500 transition-colors font-medium">
+              {lang === "es" ? "Términos y Condiciones" : "Terms & Conditions"}
+            </a>
+            <span className="text-muted-foreground/30 hidden sm:inline">|</span>
+            <Link href="/sms-consent" className="text-muted-foreground hover:text-orange-500 transition-colors font-medium">
+              {lang === "es" ? "Consentimiento SMS" : "SMS Consent"}
+            </Link>
+          </div>
           <p className="text-xs text-muted-foreground text-center">
-            {S.footer.rights.replace("{year}", new Date().getFullYear().toString())}
+            {lang === "es" 
+              ? `© ${new Date().getFullYear()} Conect-R. Sacramento, CA. Todos los derechos reservados.`
+              : `© ${new Date().getFullYear()} Conect-R. Sacramento, CA. All rights reserved.`}
           </p>
         </div>
       </footer>

@@ -170,55 +170,26 @@ export default function Terms() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-muted/20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-10">
-            <div>
-              <ul className="space-y-2.5">
-                {L.footer.productLinks.map(link => (
-                  <li key={link.label}>
-                    {link.href.startsWith("/") ? (
-                      <Link href={link.href} className="text-sm text-muted-foreground hover:text-orange-500 transition-colors">
-                        {link.label}
-                      </Link>
-                    ) : (
-                      <a href={link.href} className="text-sm text-muted-foreground hover:text-orange-500 transition-colors">
-                        {link.label}
-                      </a>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <div className="text-xs font-bold tracking-widest text-foreground/50 mb-4">
-                {lang === "es" ? "CONTACTO" : "CONTACT"}
-              </div>
-              <a
-                href="mailto:contact@conect-r.com"
-                className="text-sm text-muted-foreground hover:text-orange-500 transition-colors block mb-2"
-              >
-                contact@conect-r.com
-              </a>
-              <a
-                href={`sms:+${PHONE_DIGITS}`}
-                className="text-sm text-muted-foreground hover:text-orange-500 transition-colors block mb-2"
-              >
-                {lang === "es" ? "Enviar texto" : "Text"} · {PHONE_DISPLAY}
-              </a>
-              <a
-                href={`https://wa.me/${PHONE_DIGITS}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-muted-foreground hover:text-orange-500 transition-colors block"
-              >
-                WhatsApp · {PHONE_DISPLAY}
-              </a>
-            </div>
+      <footer className="border-t border-border bg-muted/20 mt-auto py-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col items-center gap-4">
+          <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-sm">
+            <a href="https://nextup.conect-r.com/privacy" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-orange-500 transition-colors font-medium">
+              {lang === "es" ? "Política de Privacidad" : "Privacy Policy"}
+            </a>
+            <span className="text-muted-foreground/30 hidden sm:inline">|</span>
+            <a href="https://nextup.conect-r.com/terms" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-orange-500 transition-colors font-medium">
+              {lang === "es" ? "Términos y Condiciones" : "Terms & Conditions"}
+            </a>
+            <span className="text-muted-foreground/30 hidden sm:inline">|</span>
+            <Link href="/sms-consent" className="text-muted-foreground hover:text-orange-500 transition-colors font-medium">
+              {lang === "es" ? "Consentimiento SMS" : "SMS Consent"}
+            </Link>
           </div>
-          <div className="border-t border-border pt-6 text-xs text-muted-foreground">
-            {L.footer.copy}
-          </div>
+          <p className="text-xs text-muted-foreground text-center">
+            {lang === "es" 
+              ? `© ${new Date().getFullYear()} Conect-R. Sacramento, CA. Todos los derechos reservados.`
+              : `© ${new Date().getFullYear()} Conect-R. Sacramento, CA. All rights reserved.`}
+          </p>
         </div>
       </footer>
     </div>
