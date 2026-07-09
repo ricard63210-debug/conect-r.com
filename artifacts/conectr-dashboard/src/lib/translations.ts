@@ -62,7 +62,7 @@ const translations = {
           dashHash: "gestion",
         },
         {
-          name: "NFC Stands",
+          name: "Conect-r Station",
           tagline: "EL MENU AL TOQUE DEL SMARTPHONE",
           body: "Stands fisicos elegantes instalados en cada mesa. El cliente accede al menu digital completo solo con acercar su telefono. Agiliza la toma de pedidos, elimina costos de reimpresion y permite cambios de precio en tiempo real.",
           dashHash: "smart-table",
@@ -82,11 +82,11 @@ const translations = {
       ],
       flow: {
         pill: "ASI FUNCIONA",
-        title1: "Del stand NFC",
+        title1: "De Conect-r Station",
         title2: "a la reseña de 5 estrellas",
         body: "Todo en un flujo continuo y automatico.",
         steps: [
-          { num: "01", title: "El cliente toca el stand NFC", body: "Sin app, sin descargar nada. Solo acerca el celular al stand de la mesa." },
+          { num: "01", title: "El cliente toca la Conect-r Station", body: "Sin app, sin descargar nada. Solo acerca el celular al stand de la mesa." },
           { num: "02", title: "Se abre el portal del restaurante", body: "Menu, reservas, redes sociales y reseñas — todo en una sola pantalla." },
           { num: "03", title: "Deja una reseña de 5 estrellas en Google", body: "El sistema lo guia con un solo tap. Mas reviews = mas clientes nuevos." },
           { num: "04", title: "Tu restaurante crece sin esfuerzo", body: "Mas rankings en Google, mas reservas, mas mesas llenas. Todo automatico." },
@@ -103,7 +103,7 @@ const translations = {
         pill: "ESCALA NACIONAL",
         title1: "Expansion agresiva",
         title2: "en Estados Unidos",
-        body: "Nuestro objetivo a mediano y largo plazo es la expansion agresiva y la venta online en todo Estados Unidos. El modelo SaaS y el envio de hardware preconfigurado (como los NFC Stands) nos permite operar de forma remota, eliminando las barreras geograficas que tradicionalmente limitan a las agencias locales.",
+        body: "Nuestro objetivo a mediano y largo plazo es la expansion agresiva y la venta online en todo Estados Unidos. El modelo SaaS y el envio de hardware preconfigurado (como Conect-r Station) nos permite operar de forma remota, eliminando las barreras geograficas que tradicionalmente limitan a las agencias locales.",
         items: [
           { title: "Estandarizacion *Plug & Play*", body: "Sin POS propietario ni hardware on-premise. Los modulos (Website, Chamba, Table Reserve, NextUp) se activan remotamente para cualquier restaurante en USA en cuestion de horas." },
           { title: "Marketing de Impacto Visual", body: "Campañas digitales con disenos premium y dinamicos que garantizan un wow-factor. Las landing pages convierten sin necesidad de visitas presenciales." },
@@ -124,7 +124,7 @@ const translations = {
             { service: "Table Reserve", note: "Sistema automatizado de reservas", setup: "$150", monthly: "$200", hash: "gestion" },
             { service: "NextUp", note: "Lista de espera digital sincronizada", setup: "$150", monthly: "$100", hash: "gestion" },
             { service: "Chamba", note: "Plataforma de gestion de personal", setup: "$300", monthly: "$200", hash: "gestion" },
-            { service: "NFC Stands (50 uds.)", note: "Hardware con precio mayorista — $15 USD/unidad", setup: "$750", monthly: "$100", hash: "smart-table" },
+            { service: "Conect-r Station (50 uds.)", note: "Hardware con precio mayorista — Desde $50 USD/mes", setup: "$750", monthly: "$50 - $100", hash: "smart-table" },
             { service: "TV Menu Boards (x3)", note: "Pantallas digitales en sitio", setup: "$300", monthly: "$150", hash: "signage" },
           ],
           totalLabel: "Total comprado por separado",
@@ -1199,7 +1199,7 @@ const translations = {
           dashHash: "gestion",
         },
         {
-          name: "NFC Stands",
+          name: "Conect-r Station",
           tagline: "THE MENU AT THE TOUCH OF A SMARTPHONE",
           body: "Stylish physical displays installed on each table. Customers instantly access the full digital menu by tapping their smartphone. Streamlines order taking, eliminates reprint costs, and enables real-time price updates.",
           dashHash: "smart-table",
@@ -1219,11 +1219,11 @@ const translations = {
       ],
       flow: {
         pill: "HOW IT WORKS",
-        title1: "From the NFC stand",
+        title1: "From Conect-r Station",
         title2: "to a 5-star review",
         body: "All in one continuous, automatic flow.",
         steps: [
-          { num: "01", title: "Customer taps the NFC stand", body: "No app, no downloads. Just tap the phone on the table stand." },
+          { num: "01", title: "Customer taps Conect-r Station", body: "No app, no downloads. Just tap the phone on the table stand." },
           { num: "02", title: "The restaurant portal opens", body: "Menu, reservations, social media and reviews — all on one screen." },
           { num: "03", title: "Leaves a 5-star Google review", body: "The system guides them with one tap. More reviews = more new customers." },
           { num: "04", title: "Your restaurant grows effortlessly", body: "Higher Google rankings, more reservations, more full tables. All automatic." },
@@ -1240,7 +1240,7 @@ const translations = {
         pill: "NATIONAL SCALE",
         title1: "Aggressive expansion",
         title2: "across the United States",
-        body: "Our medium- and long-term goal is aggressive expansion and online sales across the United States. The SaaS model and shipment of pre-configured hardware (such as NFC Stands) lets us operate remotely, eliminating the geographical barriers that traditionally limit local agencies.",
+        body: "Our medium- and long-term goal is aggressive expansion and online sales across the United States. The SaaS model and shipment of pre-configured hardware (such as Conect-r Station) lets us operate remotely, eliminating the geographical barriers that traditionally limit local agencies.",
         items: [
           { title: "*Plug & Play* Standardization", body: "No proprietary POS or on-premise hardware required. Modules (Website, Chamba, Table Reserve, NextUp) activate remotely for any restaurant in the USA in a matter of hours." },
           { title: "Visual Impact Marketing", body: "Premium and dynamic digital campaigns that guarantee a wow-factor. Landing pages convert without the need for in-person sales visits." },
@@ -1261,7 +1261,7 @@ const translations = {
             { service: "Table Reserve", note: "Automated reservation system", setup: "$150", monthly: "$200", hash: "gestion" },
             { service: "NextUp", note: "Synchronized digital waitlist", setup: "$150", monthly: "$100", hash: "gestion" },
             { service: "Chamba", note: "Staff & team management platform", setup: "$300", monthly: "$200", hash: "gestion" },
-            { service: "NFC Stands (50 units)", note: "Hardware at wholesale price — $15 USD/unit", setup: "$750", monthly: "$100", hash: "smart-table" },
+            { service: "Conect-r Station (50 units)", note: "Hardware at wholesale price — From $50 USD/mo", setup: "$750", monthly: "$50 - $100", hash: "smart-table" },
             { service: "TV Menu Boards (x3)", note: "On-site digital screens", setup: "$300", monthly: "$150", hash: "signage" },
           ],
           totalLabel: "Total if purchased separately",

@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Wifi, Star, Calendar, Instagram, Facebook, Smartphone, QrCode,
   ChevronRight, Check, Users, TrendingUp, ExternalLink, MessageCircleWarning,
-  ThumbsDown, Send, ArrowLeft, Flame, Leaf, Heart, Gamepad2
+  ThumbsDown, Send, ArrowLeft, Flame, Leaf, Heart, Gamepad2,
+  ShoppingCart, CreditCard, Activity, CheckCircle2, AlertCircle, BarChart3
 } from "lucide-react";
 import ImpactPills from "@/components/ImpactPills";
 import { useLang } from "@/lib/i18n";
@@ -70,6 +71,11 @@ export default function SmartTable() {
   const { lang } = useLang();
   const T = getT(lang).smartTable;
 
+  const [activeTab, setActiveTab] = useState<"simulator" | "analytics">("simulator");
+  const [orderStatus, setOrderStatus] = useState<"idle" | "placed_unpaid" | "paying" | "paid">("idle");
+  const [orderedItem, setOrderedItem] = useState<MenuItem | null>(null);
+  const [menuOptimized, setMenuOptimized] = useState(true);
+
   const [activeButton, setActiveButton] = useState<string | null>(null);
   const [showAnimation, setShowAnimation] = useState(false);
   const [portalOpen, setPortalOpen] = useState(false);
@@ -115,7 +121,7 @@ export default function SmartTable() {
     : "Cooked with fresh ingredients and authentic traditional Mexican recipes.";
 
   const portalButtons = [
-    { id: "menu", label: T.portalButtons.menu, icon: QrCode, color: "from-orange-600 to-orange-500", desc: lang === "es" ? "Carta completa con descripcion y fotos de cada platillo" : "Full menu with photos and descriptions of every dish", url: "https://restaurante-maya-dash.replit.app/maya-menu/", isMenu: false },
+    { id: "menu", label: T.portalButtons.menu, icon: QrCode, color: "from-orange-600 to-orange-500", desc: lang === "es" ? "Carta completa con descripcion y fotos de cada platillo" : "Full menu with photos and descriptions of every dish", url: "#menu", isMenu: true },
     { id: "reviews", label: T.portalButtons.reviews, icon: Heart, color: "from-yellow-600 to-yellow-400", desc: T.reviewsDesc, url: "https://www.google.com/maps/search/?api=1&query=Carmelita%27s+Kitchen+de+Mexico+Sacramento" },
     { id: "events", label: T.portalButtons.events, icon: Calendar, color: "from-orange-700 to-orange-500", desc: T.eventDesc, url: "https://carmelitasgroup.com/private-events" },
     { id: "instagram", label: T.portalButtons.instagram, icon: Instagram, color: "from-pink-700 to-pink-500", desc: T.instagramDesc, url: "https://www.instagram.com/carmelitasgroup?igsh=NTc4MTIwNjQ2YQ==" },
@@ -137,24 +143,63 @@ export default function SmartTable() {
     setActiveButton(null);
     setShowMenu(false);
     setSelectedDish(null);
+    setOrderStatus("idle");
+    setOrderedItem(null);
     setFeedback({ rating: 0, name: "", tableNum: "", datetime: "", email: "", phone: "", reason: "", submitted: false });
   };
 
   const handlePortalButton = (btn: typeof portalButtons[0]) => {
     setActiveButton(btn.id);
-    if (btn.url) {
+    if (btn.id === "menu") {
+      setShowMenu(true);
+    } else if (btn.url && !btn.url.startsWith("#")) {
       window.open(btn.url, "_blank", "noopener,noreferrer");
     }
+  };
+
+  const handlePlaceOrder = (dish: MenuItem) => {
+    setOrderedItem(dish);
+    setOrderStatus("placed_unpaid");
+  };
+
+  const handleProcessPayment = () => {
+    setOrderStatus("paying");
+    setTimeout(() => {
+      setOrderStatus("paid");
+    }, 2000);
   };
 
   const submitFeedback = () => {
     setFeedback(prev => ({ ...prev, submitted: true }));
   };
 
+  // Menu Engineering sorting algorithm
+  const displayedMenuItems = (() => {
+    const items = [...MENU_ITEMS[menuKey]];
+    if (!menuOptimized) return items;
+
+    // Sort items: Stars first, Dogs last
+    const stars = ["Al Pastor", "Margarita Clasica", "Tres Leches", "Guacamole Artesanal"];
+    const dogs = ["Sopa de Lima", "Hongos", "Agua de Jamaica"];
+
+    return items.sort((a, b) => {
+      const aIsStar = stars.includes(a.name);
+      const bIsStar = stars.includes(b.name);
+      const aIsDog = dogs.includes(a.name);
+      const bIsDog = dogs.includes(b.name);
+
+      if (aIsStar && !bIsStar) return -1;
+      if (!aIsStar && bIsStar) return 1;
+      if (aIsDog && !bIsDog) return 1;
+      if (!aIsDog && bIsDog) return -1;
+      return 0;
+    });
+  })();
+
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">{T.heading}</h2>
+        <h2 className="text-3xl font-serif font-bold gold-gradient mb-2">Conect-r Station — Smart Table & Order Management</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
           {T.description} {T.descReviews}
           {T.desc2}{T.descClients}
@@ -164,7 +209,34 @@ export default function SmartTable() {
         <ImpactPills />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {/* View Toggle tabs */}
+      <div className="flex justify-center">
+        <div className="bg-muted p-1 rounded-xl flex border border-border/40">
+          <button
+            onClick={() => setActiveTab("simulator")}
+            className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
+              activeTab === "simulator"
+                ? "bg-orange-500 text-white shadow"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            {lang === "es" ? "Simulador de Portal & Cocina" : "Portal & Kitchen Simulator"}
+          </button>
+          <button
+            onClick={() => setActiveTab("analytics")}
+            className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
+              activeTab === "analytics"
+                ? "bg-orange-500 text-white shadow"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            {lang === "es" ? "Analítica e Ingeniería de Menú" : "Analytics & Menu Engineering"}
+          </button>
+        </div>
+      </div>
+
+      {activeTab === "simulator" && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* NFC Stand Visualizer */}
         <div className="space-y-4">
           <h3 className="text-lg font-semibold text-primary flex items-center gap-2">
@@ -248,6 +320,97 @@ export default function SmartTable() {
               </motion.div>
             )}
           </AnimatePresence>
+
+          {/* Kitchen Dashboard Tracker */}
+          <div className="maya-card rounded-2xl p-5 border border-border space-y-4">
+            <div className="flex items-center justify-between border-b border-border/40 pb-3">
+              <h4 className="text-sm font-bold text-foreground flex items-center gap-2">
+                <Activity size={16} className="text-orange-500" />
+                {lang === "es" ? "Dashboard de la Cocina (Simulador)" : "Kitchen Dashboard (Simulator)"}
+              </h4>
+              <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${
+                orderStatus === "paid" 
+                  ? "bg-green-500/10 text-green-400 border border-green-500/20 animate-pulse"
+                  : orderStatus === "placed_unpaid"
+                  ? "bg-red-500/10 text-red-400 border border-red-500/20"
+                  : "bg-gray-500/10 text-gray-400 border border-gray-500/20"
+              }`}>
+                {orderStatus === "paid" 
+                  ? (lang === "es" ? "Orden Recibida" : "Order Received")
+                  : orderStatus === "placed_unpaid"
+                  ? (lang === "es" ? "Bloqueado" : "Blocked")
+                  : (lang === "es" ? "Inactivo" : "Idle")}
+              </span>
+            </div>
+
+            {orderStatus === "idle" && (
+              <p className="text-xs text-muted-foreground text-center py-4">
+                {lang === "es" 
+                  ? "Esperando que el cliente realice un pedido desde el portal..." 
+                  : "Waiting for the client to place an order from the portal..."}
+              </p>
+            )}
+
+            {orderStatus === "placed_unpaid" && (
+              <div className="space-y-3">
+                <div className="bg-red-500/5 border border-red-500/20 p-3 rounded-xl flex items-center gap-3">
+                  <div className="w-8 h-8 rounded bg-red-900/20 flex items-center justify-center shrink-0">
+                    <AlertCircle size={16} className="text-red-400 animate-pulse" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-semibold text-red-400">
+                      {lang === "es" ? "PEDIDO DETENIDO — SIN PAGAR" : "ORDER BLOCKED — UNPAID"}
+                    </p>
+                    <p className="text-[10px] text-muted-foreground truncate">
+                      {orderedItem?.name} • {T.nfcTable}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-[11px] text-muted-foreground leading-relaxed italic">
+                  * {lang === "es"
+                    ? "Esta orden NO es visible para la cocina aún. Se liberará automáticamente al completarse el pago digital en la mesa. ¡Evita fugas de cuentas!"
+                    : "This order is NOT visible to the kitchen yet. It will release automatically once digital payment is processed at the table. Prevent walkouts!"}
+                </p>
+              </div>
+            )}
+
+            {orderStatus === "paying" && (
+              <div className="flex justify-center py-4 items-center gap-2">
+                <div className="w-4 h-4 border-2 border-orange-500 border-t-transparent rounded-full animate-spin" />
+                <p className="text-xs text-muted-foreground">
+                  {lang === "es" ? "Validando pago seguro..." : "Validating payment..."}
+                </p>
+              </div>
+            )}
+
+            {orderStatus === "paid" && (
+              <div className="space-y-3">
+                <div className="bg-green-500/5 border border-green-500/20 p-3 rounded-xl flex items-center gap-3">
+                  <div className="w-8 h-8 rounded bg-green-900/20 flex items-center justify-center shrink-0">
+                    <CheckCircle2 size={16} className="text-green-400" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-semibold text-green-400">
+                      {lang === "es" ? "ORDEN ENVIADA A COCINA" : "ORDER SENT TO KITCHEN"}
+                    </p>
+                    <p className="text-[10px] text-muted-foreground">
+                      {orderedItem?.name} • {T.nfcTable}
+                    </p>
+                  </div>
+                </div>
+                <div className="text-[10px] bg-muted/30 p-2.5 rounded-lg border border-border space-y-1">
+                  <div className="flex justify-between text-muted-foreground">
+                    <span>{lang === "es" ? "Estado de Pago" : "Payment Status"}</span>
+                    <span className="text-green-400 font-semibold">{lang === "es" ? "Autorizado (100% Seguro)" : "Authorized (100% Secure)"}</span>
+                  </div>
+                  <div className="flex justify-between text-muted-foreground">
+                    <span>{lang === "es" ? "Destino" : "Destination"}</span>
+                    <span>Consola de Cocina #1</span>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Portal Cliente — Phone mockup */}
@@ -310,6 +473,13 @@ export default function SmartTable() {
                     <div className="p-3 bg-orange-900/20 border border-orange-800/30 rounded-xl">
                       <p className="text-xs text-orange-400/80 italic">"{authenticNoteText}"</p>
                     </div>
+                    <button
+                      onClick={() => handlePlaceOrder(selectedDish)}
+                      className="w-full flex items-center justify-center gap-2 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-xs font-bold shadow-lg shadow-orange-500/20 active:scale-95 transition-all"
+                    >
+                      <ShoppingCart size={14} />
+                      {lang === "es" ? "Ordenar ahora ($15.00)" : "Order now ($15.00)"}
+                    </button>
                   </div>
                 </motion.div>
               )}
@@ -363,7 +533,7 @@ export default function SmartTable() {
                         transition={{ duration: 0.15 }}
                         className="divide-y divide-gray-800"
                       >
-                        {MENU_ITEMS[menuKey].map((item) => (
+                        {displayedMenuItems.map((item) => (
                           <motion.button
                             key={item.name}
                             onClick={() => setSelectedDish(item)}
@@ -396,6 +566,121 @@ export default function SmartTable() {
                       <Leaf size={10} className="text-green-500" /> {vegLabel}
                     </div>
                   </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* ===== CHECKOUT VIEW ===== */}
+            <AnimatePresence>
+              {orderStatus !== "idle" && (
+                <motion.div
+                  key="checkout-view"
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "100%" }}
+                  className="absolute inset-0 top-8 bg-gray-950 z-30 flex flex-col p-4 space-y-4"
+                >
+                  <div className="flex items-center justify-between border-b border-gray-800 pb-3">
+                    <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                      <CreditCard size={16} className="text-orange-500" />
+                      {lang === "es" ? "Pago Seguro en Mesa" : "Secure Table Payment"}
+                    </h3>
+                    <button
+                      onClick={() => {
+                        if (orderStatus !== "paying") {
+                          setOrderStatus("idle");
+                          setOrderedItem(null);
+                        }
+                      }}
+                      className="text-xs text-muted-foreground hover:text-white"
+                      disabled={orderStatus === "paying"}
+                    >
+                      {lang === "es" ? "Cancelar" : "Cancel"}
+                    </button>
+                  </div>
+
+                  {orderedItem && (
+                    <div className="bg-gray-900 p-3 rounded-xl border border-gray-800 flex items-center gap-3">
+                      <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${orderedItem.gradient} flex items-center justify-center`}>
+                        <span className="text-2xl">{orderedItem.emoji}</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs font-semibold text-white truncate">{orderedItem.name}</div>
+                        <div className="text-[10px] text-gray-400">{T.nfcTable}</div>
+                      </div>
+                      <div className="text-sm font-black text-orange-400">$15.00</div>
+                    </div>
+                  )}
+
+                  <div className="bg-gray-900 p-3 rounded-xl border border-gray-800 space-y-1.5 text-xs text-gray-300">
+                    <div className="flex justify-between">
+                      <span>Subtotal</span>
+                      <span>$15.00</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>{lang === "es" ? "Impuestos" : "Tax"}</span>
+                      <span>$1.25</span>
+                    </div>
+                    <div className="flex justify-between font-bold text-white border-t border-gray-800 pt-1.5">
+                      <span>Total</span>
+                      <span>$16.25</span>
+                    </div>
+                  </div>
+
+                  {orderStatus === "placed_unpaid" && (
+                    <div className="space-y-3">
+                      <div className="p-3 bg-red-900/10 border border-red-900/30 rounded-xl text-center">
+                        <p className="text-[10px] text-red-400 font-medium">
+                          ⚠️ {lang === "es" 
+                            ? "El pedido no se enviará a la cocina hasta completar el pago." 
+                            : "Order will not be sent to the kitchen until payment is complete."}
+                        </p>
+                      </div>
+                      <button
+                        onClick={handleProcessPayment}
+                        className="w-full py-3 bg-green-600 hover:bg-green-500 text-white rounded-xl text-sm font-bold shadow-lg shadow-green-600/20 active:scale-95 transition-all"
+                      >
+                        {lang === "es" ? "Pagar con Tarjeta / Apple Pay" : "Pay with Card / Apple Pay"}
+                      </button>
+                    </div>
+                  )}
+
+                  {orderStatus === "paying" && (
+                    <div className="flex flex-col items-center justify-center py-6 space-y-3">
+                      <div className="w-8 h-8 border-2 border-orange-500 border-t-transparent rounded-full animate-spin" />
+                      <p className="text-xs text-gray-400 animate-pulse">
+                        {lang === "es" ? "Procesando pago seguro..." : "Processing secure payment..."}
+                      </p>
+                    </div>
+                  )}
+
+                  {orderStatus === "paid" && (
+                    <div className="flex flex-col items-center justify-center py-6 space-y-3 text-center">
+                      <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center">
+                        <Check size={24} className="text-green-400" />
+                      </div>
+                      <h4 className="text-sm font-bold text-green-400">
+                        {lang === "es" ? "¡Pago Exitoso!" : "Payment Successful!"}
+                      </h4>
+                      <p className="text-[11px] text-gray-400 px-4">
+                        {lang === "es" 
+                          ? "Tu pedido ha sido transmitido al dashboard de la cocina." 
+                          : "Your order has been transmitted to the kitchen dashboard."}
+                      </p>
+                      <button
+                        onClick={() => {
+                          setOrderStatus("idle");
+                          setOrderedItem(null);
+                          setShowMenu(false);
+                          setSelectedDish(null);
+                          setActiveButton(null);
+                        }}
+                        className="px-4 py-2 bg-gray-800 text-white rounded-lg text-xs font-semibold hover:bg-gray-700"
+                      >
+                        {lang === "es" ? "Aceptar" : "OK"}
+                      </button>
+                    </div>
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>
@@ -655,6 +940,130 @@ export default function SmartTable() {
           </div>
         </div>
       </div>
+    )}
+
+      {activeTab === "analytics" && (
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="space-y-6"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Click Analytics Card */}
+            <div className="maya-card rounded-2xl p-6 border border-border space-y-4">
+              <h4 className="text-base font-bold text-foreground flex items-center gap-2 border-b border-border/40 pb-3">
+                <BarChart3 size={18} className="text-orange-500" />
+                {lang === "es" ? "Analítica de Clics en el Portal" : "Portal Link Click Analytics"}
+              </h4>
+              <p className="text-xs text-muted-foreground">
+                {lang === "es" 
+                  ? "Monitorea en tiempo real en qué enlaces del portal hacen clic tus clientes." 
+                  : "Track in real time which links in the portal your customers are clicking."}
+              </p>
+              
+              <div className="space-y-3.5">
+                {[
+                  { label: lang === "es" ? "Menú Digital" : "Digital Menu", clicks: 489, pct: 100, color: "bg-orange-505" },
+                  { label: lang === "es" ? "Google Reviews (5 Estrellas)" : "Google Reviews (5 Stars)", clicks: 242, pct: 50, color: "bg-amber-500" },
+                  { label: lang === "es" ? "Reservar Mesa" : "Book Table", clicks: 123, pct: 25, color: "bg-yellow-500" },
+                  { label: "Instagram", clicks: 98, pct: 20, color: "bg-pink-500" },
+                  { label: "AI Chatbot", clicks: 87, pct: 18, color: "bg-blue-550" },
+                ].map((item) => (
+                  <div key={item.label} className="space-y-1.5">
+                    <div className="flex justify-between text-xs font-medium">
+                      <span className="text-foreground">{item.label}</span>
+                      <span className="text-muted-foreground font-semibold">{item.clicks} clics</span>
+                    </div>
+                    <div className="w-full bg-muted rounded-full h-2">
+                      <div className="h-2 rounded-full bg-orange-500" style={{ width: `${item.pct}%` }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Menu Engineering Card */}
+            <div className="maya-card rounded-2xl p-6 border border-border space-y-4">
+              <div className="flex items-center justify-between border-b border-border/40 pb-3">
+                <h4 className="text-base font-bold text-foreground flex items-center gap-2">
+                  <TrendingUp size={18} className="text-orange-500" />
+                  {lang === "es" ? "Algoritmo de Ingeniería de Menú" : "Menu Engineering Algorithm"}
+                </h4>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground">AI Auto-Sort</span>
+                  <button
+                    onClick={() => setMenuOptimized(!menuOptimized)}
+                    className={`w-9 h-5 rounded-full p-0.5 transition-colors relative ${
+                      menuOptimized ? "bg-orange-500" : "bg-muted"
+                    }`}
+                  >
+                    <div className={`w-4 h-4 bg-white rounded-full transition-transform shadow ${
+                      menuOptimized ? "translate-x-4" : "translate-x-0"
+                    }`} />
+                  </button>
+                </div>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                {lang === "es"
+                  ? "Ordena automáticamente tu menú según popularidad y margen. Promueve los platos estrella al principio y detecta platos con bajas ventas."
+                  : "Automatically re-orders your menu by popularity & profit. Promotes high-margin stars to the top, and detects low-sellers."}
+              </p>
+
+              <div className="space-y-3 max-h-[280px] overflow-y-auto pr-1">
+                {[
+                  { name: "Tacos Al Pastor", sales: 420, rank: "#1", type: "star", label: lang === "es" ? "Estrella (Top)" : "Star (Top)", alert: false },
+                  { name: "Margarita Clásica", sales: 389, rank: "#2", type: "star", label: lang === "es" ? "Estrella (Top)" : "Star (Top)", alert: false },
+                  { name: "Tres Leches", sales: 210, rank: "#4", type: "puzzle", label: lang === "es" ? "Rentable (Promedio)" : "High Margin (Average)", alert: false },
+                  { name: "Queso Fundido", sales: 145, rank: "#8", type: "average", label: lang === "es" ? "Estable" : "Stable", alert: false },
+                  { name: "Sopa de Lima", sales: 18, rank: "#14", type: "dog", label: lang === "es" ? "Alerta (Baja Popularidad)" : "Alert (Low Popularity)", alert: true },
+                ].map((dish) => (
+                  <div key={dish.name} className={`p-2.5 rounded-xl border flex items-center justify-between text-xs transition-all ${
+                    dish.alert 
+                      ? "bg-red-500/5 border-red-500/20" 
+                      : dish.type === "star" && menuOptimized
+                      ? "bg-green-500/5 border-green-500/20"
+                      : "bg-muted/40 border-border/40"
+                  }`}>
+                    <div>
+                      <div className="font-bold text-foreground flex items-center gap-1.5">
+                        {dish.name}
+                        <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-black uppercase ${
+                          dish.type === "star" 
+                            ? "bg-green-500/10 text-green-400"
+                            : dish.type === "dog"
+                            ? "bg-red-500/10 text-red-400"
+                            : "bg-gray-500/10 text-gray-400"
+                        }`}>
+                          {dish.label}
+                        </span>
+                      </div>
+                      <div className="text-[10px] text-muted-foreground mt-0.5">
+                        {lang === "es" ? "Rango:" : "Rank:"} <span className="font-semibold text-foreground">{dish.rank}</span> • {lang === "es" ? "Ventas:" : "Sales:"} <span className="font-semibold text-foreground">{dish.sales}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="text-right">
+                      {dish.alert ? (
+                        <span className="text-[10px] text-red-400 font-bold underline cursor-pointer hover:text-red-300">
+                          {lang === "es" ? "Revisar receta / Quitar" : "Review recipe / Delete"}
+                        </span>
+                      ) : dish.type === "star" && menuOptimized ? (
+                        <span className="text-[10px] text-green-400 font-bold">
+                          {lang === "es" ? "▲ Auto-Subido al Inicio" : "▲ Auto-Promoted"}
+                        </span>
+                      ) : (
+                        <span className="text-[10px] text-muted-foreground">
+                          {lang === "es" ? "Sin Cambios" : "No Action"}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      )}
 
       {/* Portal steps */}
       <div className="maya-card rounded-2xl p-6">

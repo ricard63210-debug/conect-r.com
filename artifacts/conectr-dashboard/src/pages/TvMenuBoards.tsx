@@ -73,7 +73,7 @@ export default function TvMenuBoards() {
       <header className="w-full px-4 sm:px-6 py-4">
         <div className="bg-transparent max-w-5xl mx-auto flex items-center justify-between gap-3">
           <Link href="/" className="flex items-center shrink-0">
-            <img src={conectrLogo} alt="Conect-R" className="h-20 sm:h-32 md:h-44 w-auto object-contain select-none" draggable={false} />
+            <img src={conectrLogo} alt="Conect-R" className="h-80 sm:h-[512px] md:h-[704px] w-auto object-contain select-none" draggable={false} />
           </Link>
           <div className="flex items-center gap-2">
             <button
@@ -361,7 +361,7 @@ export default function TvMenuBoards() {
       <footer className="border-t border-border bg-muted/20 mt-auto">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <Link href="/" className="flex items-center">
-            <img src={conectrLogo} alt="Conect-R" className="h-12 w-auto object-contain select-none" draggable={false} />
+            <img src={conectrLogo} alt="Conect-R" className="h-48 w-auto object-contain select-none" draggable={false} />
           </Link>
           <p className="text-xs text-muted-foreground text-center">
             {T.tvMenuBoards.footer.rights.replace("{year}", new Date().getFullYear().toString())}

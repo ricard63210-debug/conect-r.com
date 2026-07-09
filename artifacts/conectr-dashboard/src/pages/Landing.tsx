@@ -128,14 +128,14 @@ function Wordmark({ size = "base", isScrolled = false }: { size?: "base" | "lg";
       <img
         src={conectrLogo}
         alt="Conect-R"
-        className="h-28 sm:h-40 md:h-56 w-auto object-contain select-none"
+        className="h-[448px] sm:h-[640px] md:h-[896px] w-auto object-contain select-none"
         draggable={false}
       />
     );
   }
   const cls = isScrolled
-    ? "h-20 sm:h-24 w-auto object-contain select-none transition-all duration-300"
-    : "h-24 sm:h-32 w-auto object-contain select-none transition-all duration-300";
+    ? "h-40 sm:h-48 w-auto object-contain select-none transition-all duration-300"
+    : "h-48 sm:h-64 w-auto object-contain select-none transition-all duration-300";
   return (
     <img
       src={conectrLogo}
@@ -351,7 +351,7 @@ export default function Landing() {
                 "/chamba",
                 "/table-reserve",
                 "/nextup",
-                "/nfc-stands",
+                "/conectr-station",
                 "/tv-menu-boards",
                 "/business-consulting"
               ];

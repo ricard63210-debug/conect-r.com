@@ -4,7 +4,8 @@ import {
   ArrowLeft, Check, Sparkles, ArrowRight,
   Smartphone, Globe, AlertTriangle, Package, Palette, BarChart3,
   DollarSign, Layers, Star, Shield,
-  Sun, Moon, Languages, ArrowUpRight
+  Sun, Moon, Languages, ArrowUpRight,
+  CreditCard, Bot, TrendingUp
 } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import { getT } from "@/lib/translations";
@@ -12,9 +13,9 @@ import conectrLogo from "@/assets/conectr-logo.png";
 import { useState, useEffect } from "react";
 
 const DEMO_GREETING_EN =
-  "Thanks for your interest in NFC Stands! I'm Aria from Conect-R. I'll guide you through ordering your stands.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?";
+  "Thanks for your interest in Conect-r Station! I'm Aria from Conect-R. I'll guide you through ordering your station.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?";
 const DEMO_GREETING_ES =
-  "¡Gracias por tu interés en NFC Stands! Soy Aria de Conect-R. Te guiaré para ordenar tus stands.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?";
+  "¡Gracias por tu interés en Conect-r Station! Soy Aria de Conect-R. Te guiaré para ordenar tu estación.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?";
 
 function openChat(lang: "es" | "en") {
   window.dispatchEvent(
@@ -22,7 +23,7 @@ function openChat(lang: "es" | "en") {
       detail: {
         greeting: lang === "es" ? DEMO_GREETING_ES : DEMO_GREETING_EN,
         lang,
-        userMessage: lang === "es" ? "Me gustaría ordenar mis Stands NFC" : "I would like to order my NFC Stands",
+        userMessage: lang === "es" ? "Me gustaría ordenar mi Conect-r Station" : "I would like to order my Conect-r Station",
       },
     }),
   );
@@ -62,29 +63,29 @@ const FEATURES = [
     body: "Works with any modern phone — nothing to download. Customers simply tap or scan.",
   },
   {
+    icon: CreditCard,
+    title: "Secure Table Ordering & Payment",
+    body: "Orders are routed to the kitchen dashboard only after digital payment is completed, preventing unpaid walkouts.",
+  },
+  {
     icon: Globe,
-    title: "Custom client portal",
-    body: "Your brand, your links: menu, bookings, socials, reviews, and feedback.",
+    title: "Custom Advertising Portal",
+    body: "Your brand, your links: menu, bookings, socials, reviews, chatbot, and private feedback.",
   },
   {
-    icon: AlertTriangle,
-    title: "Private feedback to manager",
-    body: "Complaints reach you before Yelp does. Solve it before it escalates.",
+    icon: TrendingUp,
+    title: "Menu Engineering AI",
+    body: "Automatically moves popular items to the top to increase sales, and tags low-performing items for recipe reviews.",
   },
   {
-    icon: Package,
-    title: "Premium hardware included",
-    body: "50 physical stands — ready to install.",
-  },
-  {
-    icon: Palette,
-    title: "100% your branding",
-    body: "Logo, color and design coherent with your restaurant.",
+    icon: Bot,
+    title: "Integrated AI Chatbot",
+    body: "An on-portal digital assistant to answer guest questions and gather valuable contact details.",
   },
   {
     icon: BarChart3,
-    title: "Usage analytics",
-    body: "Scans per table, most-used button, and peak hours tracking.",
+    title: "Detailed Click Analytics",
+    body: "Track clicks on every link of the customer portal, scans per table, and peak hours in real time.",
   },
 ];
 
@@ -111,7 +112,7 @@ const WHY_US = [
   },
 ];
 
-export default function NfcStands() {
+export default function ConectrStation() {
   const { lang, toggle: toggleLang } = useLang();
   const { theme, toggle: toggleTheme } = useTheme();
   const T = getT(lang);
@@ -123,7 +124,7 @@ export default function NfcStands() {
       <header className="w-full px-4 sm:px-6 py-4">
         <div className="bg-transparent max-w-5xl mx-auto flex items-center justify-between gap-3">
           <Link href="/" className="flex items-center shrink-0">
-            <img src={conectrLogo} alt="Conect-R" className="h-20 sm:h-32 md:h-44 w-auto object-contain select-none" draggable={false} />
+            <img src={conectrLogo} alt="Conect-R" className="h-80 sm:h-[512px] md:h-[704px] w-auto object-contain select-none" draggable={false} />
           </Link>
           <div className="flex items-center gap-2">
             <button
@@ -167,7 +168,7 @@ export default function NfcStands() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
               <Smartphone size={12} strokeWidth={2.5} />
-              NFC STANDS
+              CONECT-R STATION
             </div>
           </motion.div>
 
@@ -177,7 +178,7 @@ export default function NfcStands() {
             transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-5xl sm:text-7xl lg:text-8xl font-serif italic font-medium tracking-tight leading-[0.9] mb-6"
           >
-            NFC Stands
+            Conect-r Station
             <br />
             <span className="text-gradient font-sans not-italic font-black block mt-2 sm:mt-4 pb-3 pt-1 leading-normal">
               Your table, connected with a tap
@@ -190,7 +191,7 @@ export default function NfcStands() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed font-light tracking-wide"
           >
-            Elegant design, custom branding and a client portal with every access you need: menu, reserve to come back, leave a review, follow your socials and send private feedback to the manager.
+            Elegant custom physical displays combined with a powerful digital menu, secure ordering and payment flow, private feedback manager, Google reviews integration, AI chatbot, click analytics, and Menu Engineering Algorithm.
           </motion.p>
 
           <motion.div
@@ -203,7 +204,7 @@ export default function NfcStands() {
               onClick={() => openChat(lang)}
               className="group relative inline-flex items-center gap-3 bg-foreground text-background px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl shadow-black/20 transition-all hover:scale-[1.02] active:scale-95"
             >
-              <span className="relative z-10">Order my stands</span>
+              <span className="relative z-10">Order Conect-r Station</span>
               <ArrowRight size={18} strokeWidth={2.5} className="relative z-10 transition-transform group-hover:translate-x-1" />
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity" />
             </button>
@@ -227,104 +228,72 @@ export default function NfcStands() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {/* QR Only Portal */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="glass-panel rounded-3xl p-8 border border-border"
-            >
-              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">
-                {lang === "es" ? "Portal QR Directo" : "Direct QR Portal"}
-              </div>
-              <div className="flex items-end gap-2 mb-2">
-                <span className="text-4xl sm:text-5xl font-black text-foreground">
-                  {lang === "es" ? "Desde $100" : "From $100"}
-                </span>
-                <span className="text-muted-foreground font-light mb-1">USD</span>
-              </div>
-              <p className="text-muted-foreground text-xs text-orange-500/80 font-bold mb-3">
-                {lang === "es" ? "Sin stands físicos" : "No physical stands"}
-              </p>
-              <p className="text-muted-foreground text-sm font-light leading-relaxed">
-                {lang === "es"
-                  ? "Configuración única del portal digital y entrega de códigos QR en alta resolución listos para imprimir en tus propios menús."
-                  : "One-time digital portal configuration and high-resolution QR codes delivery, ready to print on your own menus."}
-              </p>
-            </motion.div>
-
             {/* Setup */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="glass-panel rounded-3xl p-8 border border-border"
+              transition={{ duration: 0.6 }}
+              className="glass-panel rounded-3xl p-8 border border-border flex flex-col justify-between"
             >
-              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">
-                {lang === "es" ? "Configuración Inicial" : "Initial Setup"}
-              </div>
-              <div className="flex items-end gap-2 mb-2">
-                <span className="text-5xl font-black text-foreground">$750</span>
-                <span className="text-muted-foreground font-light mb-1">USD</span>
-              </div>
-              <p className="text-muted-foreground text-xs text-orange-500/80 font-bold mb-3">
-                {lang === "es" ? "Incluye 50 stands" : "Includes 50 stands"}
-              </p>
-              <p className="text-muted-foreground text-sm font-light leading-relaxed mb-4">
-                {lang === "es"
-                  ? "Costo único de hardware que cubre el logo personalizado y la codificación NFC/QR para 50 stands de mesa."
-                  : "One-time hardware fee covering the custom logo and NFC/QR coding for 50 table stands."}
-              </p>
-              <div className="mt-4 pt-4 border-t border-border/50">
-                <div className="text-[10px] font-black tracking-wider text-orange-500 uppercase mb-2">
-                  {lang === "es" ? "Precios por unidad (stands adicionales):" : "Unit pricing (additional stands):"}
+              <div>
+                <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">Initial Setup</div>
+                <div className="flex items-end gap-2 mb-2">
+                  <span className="text-5xl font-black text-foreground">$750</span>
+                  <span className="text-muted-foreground font-light mb-1">USD</span>
                 </div>
-                <ul className="space-y-1 text-xs font-light text-muted-foreground">
-                  <li className="flex justify-between">
-                    <span>{lang === "es" ? "Por defecto" : "Default"}</span>
-                    <span className="font-semibold text-foreground">$20 USD / {lang === "es" ? "unidad" : "unit"}</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span>50+ {lang === "es" ? "stands" : "stands"}</span>
-                    <span className="font-semibold text-foreground">$15 USD / {lang === "es" ? "unidad" : "unit"}</span>
-                  </li>
-                  <li className="flex justify-between">
-                    <span>100+ {lang === "es" ? "stands" : "stands"}</span>
-                    <span className="font-semibold text-foreground">$10 USD / {lang === "es" ? "unidad" : "unit"}</span>
-                  </li>
-                </ul>
+                <p className="text-muted-foreground text-xs text-orange-500/80 font-bold mb-3">Includes 50 stands</p>
+                <p className="text-muted-foreground text-sm font-light leading-relaxed">
+                  One-time hardware fee covering manufacture, custom logo laser engraving/printing, and NFC/QR coding for 50 table stands.
+                </p>
               </div>
             </motion.div>
 
-            {/* Monthly SaaS */}
+            {/* Menu & Kitchen Tier */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="glass-panel rounded-3xl p-8 border border-border flex flex-col justify-between relative overflow-hidden"
+            >
+              <div>
+                <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">Menu & Kitchen</div>
+                <div className="flex items-end gap-2 mb-2">
+                  <span className="text-5xl font-black text-foreground">$50</span>
+                  <span className="text-muted-foreground font-light mb-1">USD / mo</span>
+                </div>
+                <p className="text-muted-foreground text-xs text-orange-500/80 font-bold mb-3">Essential Dining</p>
+                <p className="text-muted-foreground text-sm font-light leading-relaxed">
+                  Digital food menu on table scan + real-time kitchen order dispatch dashboard. Payment verification required before order transmission.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Premium Growth Tier */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="rounded-3xl p-8 border border-orange-500/30 bg-gradient-to-br from-orange-500/10 to-orange-500/5 relative overflow-hidden"
+              className="rounded-3xl p-8 border border-orange-500/30 bg-gradient-to-br from-orange-500/10 to-orange-500/5 relative overflow-hidden flex flex-col justify-between"
             >
               <div className="absolute top-4 right-4">
                 <span className="inline-flex items-center px-3 py-1 rounded-full bg-orange-500 text-white text-[10px] font-black tracking-[0.15em] uppercase">
-                  Monthly
+                  Best Value
                 </span>
               </div>
-              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">
-                {lang === "es" ? "Suscripción SaaS" : "SaaS Subscription"}
+              <div>
+                <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">Premium Growth</div>
+                <div className="flex items-end gap-2 mb-2">
+                  <span className="text-5xl font-black text-foreground">$100</span>
+                  <span className="text-muted-foreground font-light mb-1">USD / mo</span>
+                </div>
+                <p className="text-muted-foreground text-xs text-orange-500/80 font-bold mb-3">Full Station Suite</p>
+                <p className="text-muted-foreground text-sm font-light leading-relaxed">
+                  Everything in Menu & Kitchen plus custom digital advertising portal, AI chatbot support, social media integrations, custom webpage, Google reviews booster, clicks analytics, and the Menu Engineering Algorithm.
+                </p>
               </div>
-              <div className="flex items-end gap-2 mb-2">
-                <span className="text-4xl sm:text-5xl font-black text-foreground">
-                  {lang === "es" ? "Desde $100" : "From $100"}
-                </span>
-                <span className="text-muted-foreground font-light mb-1">USD / mo</span>
-              </div>
-              <p className="text-muted-foreground text-sm font-light leading-relaxed">
-                {lang === "es"
-                  ? "Acceso al constructor de portal web, editor de menú, controlador de flujo de redirección y panel de análisis de escaneos en tiempo real."
-                  : "Access to the web portal builder, menu editor, redirect flow controller, and real-time scan analytics dashboard."}
-              </p>
             </motion.div>
           </div>
         </div>
@@ -422,10 +391,10 @@ export default function NfcStands() {
               </div>
             </div>
             <h2 className="text-4xl sm:text-6xl font-serif italic font-medium tracking-tight mb-6">
-              Ready to launch NFC Stands?
+              Ready to launch Conect-r Station?
             </h2>
             <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-10 leading-relaxed font-light">
-              Talk to Aria — our AI assistant will gather your details and connect you with the Conect-R team to order your table stands.
+              Talk to Aria — our AI assistant will gather your details and connect you with the Conect-R team to order your table station.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -434,7 +403,7 @@ export default function NfcStands() {
                 className="group relative inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl shadow-orange-500/30 transition-all hover:scale-105 active:scale-95"
               >
                 <Sparkles size={20} strokeWidth={2} className="transition-transform group-hover:rotate-12" />
-                Order my stands
+                Order Conect-r Station
                 <ArrowRight size={18} strokeWidth={2.5} className="transition-transform group-hover:translate-x-1" />
               </button>
 
@@ -470,7 +439,7 @@ export default function NfcStands() {
       <footer className="border-t border-border bg-muted/20 mt-auto">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <Link href="/" className="flex items-center">
-            <img src={conectrLogo} alt="Conect-R" className="h-12 w-auto object-contain select-none" draggable={false} />
+            <img src={conectrLogo} alt="Conect-R" className="h-48 w-auto object-contain select-none" draggable={false} />
           </Link>
           <p className="text-xs text-muted-foreground text-center">
             © {new Date().getFullYear()} Conect-R. Sacramento, CA. All rights reserved.
