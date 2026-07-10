@@ -759,32 +759,27 @@ export default function Landing() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <a
-              href={`https://wa.me/${PHONE_DIGITS}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl shadow-orange-500/30 transition-all hover:scale-105 active:scale-95"
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                window.dispatchEvent(new CustomEvent("conectr:open-consent", { detail: { type: "whatsapp" } }));
+              }}
+              className="group inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl shadow-orange-500/30 transition-all hover:scale-105 active:scale-95 cursor-pointer"
             >
               <MessageCircle size={22} strokeWidth={2.5} />
               {L.finalCta.whatsapp}
               <ArrowRight size={22} strokeWidth={2.5} className="transition-transform group-hover:translate-x-1" />
             </a>
             <a
-              href="mailto:contact@conect-r.com"
-              className="inline-flex items-center gap-3 glass-panel text-foreground px-10 py-5 rounded-2xl font-bold text-xl shadow-xl transition-all hover:bg-muted/50 active:scale-95"
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                window.dispatchEvent(new CustomEvent("conectr:open-consent", { detail: { type: "email" } }));
+              }}
+              className="inline-flex items-center gap-3 glass-panel text-foreground px-10 py-5 rounded-2xl font-bold text-xl shadow-xl transition-all hover:bg-muted/50 active:scale-95 cursor-pointer"
             >
               <Mail size={22} strokeWidth={2.5} />
               {L.finalCta.email}
-            </a>
-          </div>
-          <div className="mt-12">
-            <a
-              href={`sms:+${PHONE_DIGITS}`}
-              className="inline-flex items-center gap-3 px-6 py-3 rounded-xl glass-panel border-white/5 text-sm font-bold text-foreground hover:text-orange-500 transition-all shadow-lg"
-            >
-              <MessageCircle size={16} strokeWidth={2.5} />
-              {lang === "es" ? "Enviar texto" : "Text"}
-              <span className="opacity-20">·</span>
-              <span className="opacity-60 font-medium tracking-wider">{PHONE_DISPLAY}</span>
             </a>
           </div>
         </div>

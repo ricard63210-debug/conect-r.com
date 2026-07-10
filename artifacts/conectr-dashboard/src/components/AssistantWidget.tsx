@@ -157,6 +157,7 @@ export default function AssistantWidget() {
   const [sendStatus, setSendStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [consentModalOpen, setConsentModalOpen] = useState(false);
   const [consentChecked, setConsentChecked] = useState(false);
+  const [consentType, setConsentType] = useState<"sms" | "whatsapp" | "email">("sms");
   const customGreetRef = useRef<string | null>(null);
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -177,15 +178,26 @@ export default function AssistantWidget() {
     setSendStatus("idle");
   }, [lang, t.greet]);
 
-  // Listen for external "open chat with greeting" events (Book a demo buttons)
+  // Listen for external "open chat with greeting" and consent overlay triggers
   useEffect(() => {
-    const handler = () => {
-      setConsentModalOpen(true);
+    const handleOpenChat = () => {
+      setConsentType("sms");
       setConsentChecked(false);
+      setConsentModalOpen(true);
     };
-    window.addEventListener("conectr:open-chat", handler as EventListener);
-    return () =>
-      window.removeEventListener("conectr:open-chat", handler as EventListener);
+    const handleOpenConsent = (e: Event) => {
+      const ce = e as CustomEvent<{ type: "sms" | "whatsapp" | "email" }>;
+      setConsentType(ce.detail?.type || "sms");
+      setConsentChecked(false);
+      setConsentModalOpen(true);
+    };
+
+    window.addEventListener("conectr:open-chat", handleOpenChat);
+    window.addEventListener("conectr:open-consent", handleOpenConsent as EventListener);
+    return () => {
+      window.removeEventListener("conectr:open-chat", handleOpenChat);
+      window.removeEventListener("conectr:open-consent", handleOpenConsent as EventListener);
+    };
   }, []);
 
   // Auto-scroll
@@ -303,13 +315,30 @@ export default function AssistantWidget() {
   const handleConsentSubmit = () => {
     if (!consentChecked) return;
     setConsentModalOpen(false);
-    const bodyText = "estoy interesado en una en una demostración gratis";
-    const encodedBody = encodeURIComponent(bodyText);
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.userAgent.includes("Mac") && "ontouchend" in document);
-    const smsUrl = isIOS 
-      ? `sms:+19168120873&body=${encodedBody}` 
-      : `sms:+19168120873?body=${encodedBody}`;
-    window.location.href = smsUrl;
+
+    if (consentType === "sms") {
+      const bodyText = lang === "es" 
+        ? "estoy interesado en una en una demostración gratis" 
+        : "I am interested in a free demo";
+      const encodedBody = encodeURIComponent(bodyText);
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.userAgent.includes("Mac") && "ontouchend" in document);
+      const smsUrl = isIOS 
+        ? `sms:+19168120873&body=${encodedBody}` 
+        : `sms:+19168120873?body=${encodedBody}`;
+      window.location.href = smsUrl;
+    } else if (consentType === "whatsapp") {
+      const bodyText = lang === "es"
+        ? "Hola, estoy interesado en una demostración gratis"
+        : "Hello, I am interested in a free demo";
+      const encodedBody = encodeURIComponent(bodyText);
+      window.open(`https://wa.me/19168120873?text=${encodedBody}`, "_blank", "noopener,noreferrer");
+    } else if (consentType === "email") {
+      const subject = lang === "es" ? "Solicitud de Demostración - Conect-R" : "Demo Request - Conect-R";
+      const bodyText = lang === "es"
+        ? "Hola, estoy interesado en una demostración gratis"
+        : "Hello, I am interested in a free demo";
+      window.location.href = `mailto:contact@conect-r.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+    }
   };
 
   return (
@@ -443,12 +472,26 @@ export default function AssistantWidget() {
               </button>
 
               <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">
-                {lang === "es" ? "Consentimiento de SMS" : "SMS Consent"}
+                {consentType === "sms" && (lang === "es" ? "Consentimiento de SMS" : "SMS Consent")}
+                {consentType === "whatsapp" && (lang === "es" ? "Consentimiento de WhatsApp" : "WhatsApp Consent")}
+                {consentType === "email" && (lang === "es" ? "Consentimiento de Correo" : "Email Consent")}
               </h2>
               <p className="text-xs text-muted-foreground mt-1 mb-6">
-                {lang === "es" 
-                  ? "CONECT-R se comunica contigo a través de SMS para coordinar tu demostración."
-                  : "CONECT-R communicates with you via SMS to coordinate your demo."}
+                {consentType === "sms" && (
+                  lang === "es" 
+                    ? "CONECT-R se comunica contigo a través de SMS para coordinar tu demostración."
+                    : "CONECT-R communicates with you via SMS to coordinate your demo."
+                )}
+                {consentType === "whatsapp" && (
+                  lang === "es" 
+                    ? "CONECT-R se comunica contigo a través de WhatsApp para coordinar tu demostración."
+                    : "CONECT-R communicates with you via WhatsApp to coordinate your demo."
+                )}
+                {consentType === "email" && (
+                  lang === "es" 
+                    ? "CONECT-R se comunica contigo a través de correo electrónico para coordinar tu demostración."
+                    : "CONECT-R communicates with you via email to coordinate your demo."
+                )}
               </p>
 
               <div className="flex items-start gap-3 bg-muted/40 p-4 rounded-2xl border border-border/60 mb-6">
@@ -476,7 +519,9 @@ export default function AssistantWidget() {
                   disabled={!consentChecked}
                   className="w-full inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed text-white px-5 py-3 rounded-xl text-sm font-bold shadow-lg shadow-orange-500/20 active:scale-[0.98] transition-all"
                 >
-                  {lang === "es" ? "Enviar y Agendar vía SMS" : "Submit & Book via SMS"}
+                  {consentType === "sms" && (lang === "es" ? "Enviar y Agendar vía SMS" : "Submit & Book via SMS")}
+                  {consentType === "whatsapp" && (lang === "es" ? "Enviar y Agendar vía WhatsApp" : "Submit & Book via WhatsApp")}
+                  {consentType === "email" && (lang === "es" ? "Enviar y Agendar vía Correo" : "Submit & Book via Email")}
                 </button>
                 <button
                   onClick={() => setConsentModalOpen(false)}
