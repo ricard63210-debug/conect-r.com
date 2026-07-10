@@ -13,6 +13,8 @@ import ConectrStation from "@/pages/ConectrStation";
 import TvMenuBoards from "@/pages/TvMenuBoards";
 import BusinessConsulting from "@/pages/BusinessConsulting";
 import SmsConsent from "@/pages/SmsConsent";
+import Terms from "@/pages/Terms";
+import Privacy from "@/pages/Privacy";
 import NotFound from "@/pages/not-found";
 import AssistantWidget from "@/components/AssistantWidget";
 
@@ -32,6 +34,8 @@ function Router() {
       <Route path="/tv-menu-boards" component={TvMenuBoards} />
       <Route path="/business-consulting" component={BusinessConsulting} />
       <Route path="/sms-consent" component={SmsConsent} />
+      <Route path="/terms" component={Terms} />
+      <Route path="/privacy" component={Privacy} />
       <Route component={NotFound} />
     </Switch>
   );
