@@ -108,54 +108,134 @@ export default function Privacy() {
           className="rounded-3xl border border-border bg-card p-6 sm:p-12 shadow-xl"
         >
           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-2">
-            Privacy Policy for Nextup
+            {lang === "es" ? "Política de Privacidad" : "Privacy Policy"}
           </h1>
           <p className="text-sm text-muted-foreground mb-8">
-            {lang === "es" ? "Última actualización: 11 de mayo de 2026" : "Last Updated: May 11, 2026"}
+            {lang === "es" ? "Última actualización: Julio de 2026" : "Last Updated: July 2026"}
           </p>
 
           <div className="prose prose-orange max-w-none text-muted-foreground space-y-6 text-sm sm:text-base leading-relaxed">
-            <p>
-              Nextup, operated by Conect-R, respects your privacy. This Privacy Policy explains how we collect, use, and protect your personal information when you use our digital waitlist and reservation services.
-            </p>
+            {lang === "es" ? (
+              <>
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  1. Descripción General (Overview)
+                </h2>
+                <p>
+                  CONECT-R LLC, ubicada en 1518 D Street, Sacramento CA 95814, respeta tu privacidad. Esta Política de Privacidad detalla cómo recopilamos, usamos y protegemos tus datos personales al usar nuestros servicios tecnológicos para restaurantes, incluyendo Nextup (lista de espera digital), TableReserve (reservaciones) y CONECT-R Station (sistema de punto de venta/POS).
+                </p>
 
-            <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
-              Information We Collect
-            </h2>
-            <p>
-              When you join a waitlist or make a reservation through Nextup, we collect the personal information you voluntarily provide, which typically includes your name and mobile phone number.
-            </p>
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  2. Información que Recopilamos (Information We Collect)
+                </h2>
+                <p>
+                  Recopilamos datos personales básicos como tu nombre, número de teléfono celular e información de pago cuando interactúas y haces uso de nuestros servicios.
+                </p>
 
-            <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
-              How We Use Your Information
-            </h2>
-            <p>
-              We use your information exclusively to provide the requested service. This includes sending you transactional SMS notifications regarding your waitlist status, table availability, and reservation confirmations.
-            </p>
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  3. Cómo Utilizamos tu Información (How We Use Your Information)
+                </h2>
+                <p>
+                  Utilizamos la información recopilada de manera exclusiva para proveer los servicios que has solicitado. Esto incluye el envío de notificaciones automáticas y transaccionales vía SMS relacionadas con el estado de tu turno en la lista de espera, disponibilidad de tu mesa, confirmaciones de tus reservas y avisos de actualización sobre tus pedidos en restaurantes.
+                </p>
 
-            <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
-              Information Sharing and SMS Compliance
-            </h2>
-            <p>
-              We are committed to protecting your mobile data. No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. All other categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.
-            </p>
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  4. Comunicaciones SMS (SMS Communications)
+                </h2>
+                <p>
+                  Los clientes otorgan su consentimiento explícito para recibir alertas de mensajería SMS mediante una casilla de verificación obligatoria en conect-r.com. No vendemos, alquilamos ni compartimos tus números telefónicos con terceros o afiliados con fines promocionales o de marketing. Pueden aplicarse cargos por mensajes y datos. Responde <strong>STOP</strong> para darte de baja en cualquier momento.
+                </p>
 
-            <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
-              Data Security
-            </h2>
-            <p>
-              We implement standard security measures to protect your personal information from unauthorized access, alteration, or disclosure.
-            </p>
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  5. Seguridad de Datos (Data Security)
+                </h2>
+                <p>
+                  Utilizamos medidas de seguridad físicas, técnicas y administrativas estándar en la industria para proteger tu información personal contra pérdidas, robo, accesos no autorizados, modificaciones o divulgación indebida.
+                </p>
 
-            <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
-              Contact Us
-            </h2>
-            <p>
-              If you have any questions about this Privacy Policy, please contact us at{" "}
-              <a href="mailto:contact@conect-r.com" className="text-orange-500 hover:underline">
-                contact@conect-r.com
-              </a>.
-            </p>
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  6. Servicios de Terceros (Third Party Services)
+                </h2>
+                <p>
+                  Para garantizar la calidad de la entrega de nuestros servicios, nos apoyamos en plataformas líderes de la industria:
+                </p>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li><strong>Twilio:</strong> Utilizado como nuestro canal seguro para la distribución y entrega técnica de alertas por SMS.</li>
+                  <li><strong>Stripe:</strong> Utilizado para procesar de forma segura todas las transacciones de pago, garantizando el cumplimiento de las normativas de seguridad financiera.</li>
+                </ul>
+
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  7. Contáctanos (Contact Us)
+                </h2>
+                <p>
+                  Si tienes alguna consulta o requieres asistencia adicional sobre esta Política de Privacidad, por favor ponte en contacto con nosotros:
+                </p>
+                <p className="font-semibold text-foreground">
+                  CONECT-R LLC<br />
+                  Correo electrónico: <a href="mailto:contact@conect-r.com" className="text-orange-500 hover:underline">contact@conect-r.com</a><br />
+                  Dirección postal: 1518 D Street, Sacramento CA 95814
+                </p>
+              </>
+            ) : (
+              <>
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  1. Overview
+                </h2>
+                <p>
+                  CONECT-R LLC, located at 1518 D Street, Sacramento CA 95814, respects your privacy. This Privacy Policy outlines how we collect, use, and protect your personal data when using our restaurant technology services, including Nextup (digital waitlist), TableReserve (reservations), and CONECT-R Station (POS system).
+                </p>
+
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  2. Information We Collect
+                </h2>
+                <p>
+                  We collect your name, phone number, and payment information when you request or use our services.
+                </p>
+
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  3. How We Use Your Information
+                </h2>
+                <p>
+                  We use the information we collect exclusively to provide the requested services. This includes sending you transactional SMS notifications regarding waitlist status, table availability, reservation confirmations, and order updates.
+                </p>
+
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  4. SMS Communications
+                </h2>
+                <p>
+                  Customers opt in to receive text messages via a mandatory checkbox on conect-r.com. We do not sell or share your phone number with third parties or affiliates for marketing or promotional purposes. Message and data rates may apply. Reply <strong>STOP</strong> to opt out at any time.
+                </p>
+
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  5. Data Security
+                </h2>
+                <p>
+                  We employ industry-standard administrative, physical, and technical security measures to safeguard your personal data against unauthorized access, loss, alteration, or disclosure.
+                </p>
+
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  6. Third Party Services
+                </h2>
+                <p>
+                  To deliver our services reliably, we integrate with industry-leading third-party platforms:
+                </p>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li><strong>Twilio:</strong> Used as our communication gateway for secure SMS notifications.</li>
+                  <li><strong>Stripe:</strong> Used for secure credit card processing in compliance with payment industry standards.</li>
+                </ul>
+
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  7. Contact Us
+                </h2>
+                <p>
+                  If you have any questions or feedback regarding this Privacy Policy, please contact us at:
+                </p>
+                <p className="font-semibold text-foreground">
+                  CONECT-R LLC<br />
+                  Email: <a href="mailto:contact@conect-r.com" className="text-orange-500 hover:underline">contact@conect-r.com</a><br />
+                  Mail: 1518 D Street, Sacramento CA 95814
+                </p>
+              </>
+            )}
           </div>
         </motion.div>
       </main>
