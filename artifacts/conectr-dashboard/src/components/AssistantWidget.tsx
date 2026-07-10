@@ -155,6 +155,8 @@ export default function AssistantWidget() {
   const [editing, setEditing] = useState(false);
   const [unread, setUnread] = useState(false);
   const [sendStatus, setSendStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [consentModalOpen, setConsentModalOpen] = useState(false);
+  const [consentChecked, setConsentChecked] = useState(false);
   const customGreetRef = useRef<string | null>(null);
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -177,27 +179,14 @@ export default function AssistantWidget() {
 
   // Listen for external "open chat with greeting" events (Book a demo buttons)
   useEffect(() => {
-    const handler = (e: Event) => {
-      const ce = e as CustomEvent<{ greeting?: string; lang?: Lang; userMessage?: string }>;
-      const greet = ce.detail?.greeting?.trim() || t.greet;
-      customGreetRef.current = greet;
-      setMessages([{ id: uid(), from: "bot", text: greet }]);
-      aiHistoryRef.current = [{ role: "assistant", content: greet }];
-      setAppointment(null);
-      setEditing(false);
-      setSendStatus("idle");
-      setOpen(true);
-      const userMsg = ce.detail?.userMessage;
-      if (userMsg) {
-        setTimeout(() => {
-          sendMessageRef.current?.(userMsg);
-        }, 100);
-      }
+    const handler = () => {
+      setConsentModalOpen(true);
+      setConsentChecked(false);
     };
     window.addEventListener("conectr:open-chat", handler as EventListener);
     return () =>
       window.removeEventListener("conectr:open-chat", handler as EventListener);
-  }, [t.greet]);
+  }, []);
 
   // Auto-scroll
   useEffect(() => {
@@ -311,6 +300,18 @@ export default function AssistantWidget() {
     }
   };
 
+  const handleConsentSubmit = () => {
+    if (!consentChecked) return;
+    setConsentModalOpen(false);
+    const bodyText = "estoy interesado en una en una demostración gratis";
+    const encodedBody = encodeURIComponent(bodyText);
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.userAgent.includes("Mac") && "ontouchend" in document);
+    const smsUrl = isIOS 
+      ? `sms:+19168120873&body=${encodedBody}` 
+      : `sms:+19168120873?body=${encodedBody}`;
+    window.location.href = smsUrl;
+  };
+
   return (
     <>
       {/* FAB */}
@@ -420,6 +421,72 @@ export default function AssistantWidget() {
               </div>
             </div>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Global SMS Consent Modal for Demo Bookings */}
+      <AnimatePresence>
+        {consentModalOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-background border border-border w-full max-w-md rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden"
+            >
+              <button
+                onClick={() => setConsentModalOpen(false)}
+                className="absolute top-4 right-4 w-8 h-8 inline-flex items-center justify-center rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                aria-label="Close"
+              >
+                <X size={16} />
+              </button>
+
+              <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">
+                {lang === "es" ? "Consentimiento de SMS" : "SMS Consent"}
+              </h2>
+              <p className="text-xs text-muted-foreground mt-1 mb-6">
+                {lang === "es" 
+                  ? "CONECT-R se comunica contigo a través de SMS para coordinar tu demostración."
+                  : "CONECT-R communicates with you via SMS to coordinate your demo."}
+              </p>
+
+              <div className="flex items-start gap-3 bg-muted/40 p-4 rounded-2xl border border-border/60 mb-6">
+                <input
+                  type="checkbox"
+                  id="global-sms-consent"
+                  checked={consentChecked}
+                  onChange={(e) => setConsentChecked(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 rounded accent-orange-500 focus:ring-orange-500 cursor-pointer"
+                />
+                <label htmlFor="global-sms-consent" className="text-xs leading-normal text-muted-foreground select-none cursor-pointer">
+                  By providing your phone number and checking this box, I agree to receive automated SMS notifications from CONECT-R and its services (Nextup, TableReserve, CONECT-R Station). Msg & data rates may apply. Reply STOP to opt out at any time.
+                </label>
+              </div>
+
+              <div className="text-xs text-muted-foreground flex justify-center gap-1.5 mb-6">
+                <a href="https://nextup.conect-r.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">Privacy Policy</a>
+                <span>|</span>
+                <a href="https://nextup.conect-r.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">Terms & Conditions</a>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={handleConsentSubmit}
+                  disabled={!consentChecked}
+                  className="w-full inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed text-white px-5 py-3 rounded-xl text-sm font-bold shadow-lg shadow-orange-500/20 active:scale-[0.98] transition-all"
+                >
+                  {lang === "es" ? "Enviar y Agendar vía SMS" : "Submit & Book via SMS"}
+                </button>
+                <button
+                  onClick={() => setConsentModalOpen(false)}
+                  className="w-full inline-flex items-center justify-center border border-border hover:bg-muted text-muted-foreground px-5 py-3 rounded-xl text-sm font-semibold transition-all"
+                >
+                  {lang === "es" ? "Cancelar" : "Cancel"}
+                </button>
+              </div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </>
