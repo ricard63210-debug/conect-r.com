@@ -108,63 +108,120 @@ export default function Terms() {
           className="rounded-3xl border border-border bg-card p-6 sm:p-12 shadow-xl"
         >
           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-2">
-            Terms and Conditions for Nextup
+            {lang === "es" ? "Términos y Condiciones" : "Terms and Conditions"}
           </h1>
           <p className="text-sm text-muted-foreground mb-8">
-            {lang === "es" ? "Última actualización: 11 de mayo de 2026" : "Last Updated: May 11, 2026"}
+            {lang === "es" ? "Última actualización: Julio de 2026" : "Last Updated: July 2026"}
           </p>
 
           <div className="prose prose-orange max-w-none text-muted-foreground space-y-6 text-sm sm:text-base leading-relaxed">
-            <p>
-              By using the Nextup digital waitlist application (operated by Conect-R), you agree to the following terms and conditions.
-            </p>
+            {lang === "es" ? (
+              <>
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  1. Descripción General (Overview)
+                </h2>
+                <p>
+                  CONECT-R LLC, ubicada en Sacramento, CA, proporciona servicios de tecnología para restaurantes. Estos servicios incluyen Nextup (lista de espera digital), TableReserve (reservaciones) y CONECT-R Station (sistema de punto de venta).
+                </p>
 
-            <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
-              Use of Service
-            </h2>
-            <p>
-              Nextup provides a digital queue and notification system for restaurant guests. By providing your phone number to the host or entering it via our digital forms, you are opting in to use this service and receive communications related to your table status.
-            </p>
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  2. Uso del Servicio (Use of Service)
+                </h2>
+                <p>
+                  Al utilizar cualquiera de nuestros productos y servicios (Nextup, TableReserve y CONECT-R Station), aceptas cumplir con estos Términos y Condiciones. Te comprometes a usar los servicios únicamente para fines autorizados y de acuerdo con todas las leyes federales, estatales y locales aplicables.
+                </p>
 
-            <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
-              SMS Communications and Opt-In
-            </h2>
-            <p>
-              By opting into the Nextup waitlist, you consent to receive automated transactional text messages regarding your waitlist status. Consent is not a condition of purchase.
-            </p>
-            <p className="font-semibold text-foreground">
-              Message and data rates may apply.
-            </p>
-            <p>
-              Message frequency varies based on your waitlist status and interaction with the host stand.
-            </p>
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  3. Comunicaciones SMS y Registro (SMS Communications and Opt-In)
+                </h2>
+                <p>
+                  CONECT-R LLC se comunica contigo a través de mensajes de texto (SMS) para mejorar tu experiencia. Los clientes otorgan su consentimiento para recibir notificaciones automáticas por SMS de CONECT-R y sus servicios (Nextup, TableReserve, CONECT-R Station) mediante una casilla de verificación obligatoria en conect-r.com antes de realizar cualquier acción de contacto.
+                </p>
+                <p>
+                  El consentimiento para recibir mensajes SMS no es una condición obligatoria de compra para adquirir bienes o servicios. Pueden aplicarse tarifas de mensajes y datos. Responde <strong>STOP</strong> para optar por no recibir más mensajes, o <strong>HELP</strong> para obtener ayuda.
+                </p>
 
-            <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
-              Opting Out and Getting Help
-            </h2>
-            <p>
-              You can cancel the SMS service at any time. Just text "STOP" to the shortcode or phone number that sent you the message. After you send the SMS message "STOP" to us, we will send you an SMS message to confirm that you have been unsubscribed. After this, you will no longer receive SMS messages from us for that specific waitlist session.
-            </p>
-            <p>
-              If you are experiencing issues with the messaging program you can reply with the keyword "HELP" for more assistance, or you can get help directly at{" "}
-              <a href="mailto:contact@conect-r.com" className="text-orange-500 hover:underline">
-                contact@conect-r.com
-              </a>.
-            </p>
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  4. Privacidad (Privacy)
+                </h2>
+                <p>
+                  Valoramos la seguridad y protección de tus datos personales. Consulta los detalles de cómo recopilamos, usamos y resguardamos tu información en nuestra Política de Privacidad disponible en:{" "}
+                  <a href="https://conect-r.com/privacy" className="text-orange-500 hover:underline">
+                    conect-r.com/privacy
+                  </a>.
+                </p>
 
-            <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
-              Carriers
-            </h2>
-            <p>
-              Carriers are not liable for delayed or undelivered messages.
-            </p>
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  5. Cancelación de Suscripción (Opting Out)
+                </h2>
+                <p>
+                  Puedes darte de baja de las notificaciones SMS en cualquier momento enviando la palabra <strong>STOP</strong> al número que te envió el mensaje. Tras enviar <strong>STOP</strong>, recibirás un mensaje de confirmación de tu exclusión. Si en el futuro deseas reactivar las alertas, puedes enviar la palabra <strong>START</strong> al mismo número.
+                </p>
 
-            <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
-              Limitation of Liability
-            </h2>
-            <p>
-              Nextup and Conect-R are not responsible for any indirect, incidental, or consequential damages arising from the use of our waitlist service or SMS notifications.
-            </p>
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  6. Contacto (Contact)
+                </h2>
+                <p>
+                  Si tienes alguna pregunta o inquietud respecto a estos Términos y Condiciones, por favor contáctanos en:{" "}
+                  <a href="mailto:contact@conect-r.com" className="text-orange-500 hover:underline">
+                    contact@conect-r.com
+                  </a>.
+                </p>
+              </>
+            ) : (
+              <>
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  1. Overview
+                </h2>
+                <p>
+                  CONECT-R LLC, located in Sacramento, CA, provides restaurant technology services. These services include Nextup (digital waitlist), TableReserve (reservations), and CONECT-R Station (POS system).
+                </p>
+
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  2. Use of Service
+                </h2>
+                <p>
+                  By utilizing any of our products and services (Nextup, TableReserve, and CONECT-R Station), you agree to be bound by these Terms and Conditions. You agree to use the services solely for authorized purposes and in compliance with all applicable federal, state, and local laws.
+                </p>
+
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  3. SMS Communications and Opt-In
+                </h2>
+                <p>
+                  CONECT-R LLC communicates with you via text messaging (SMS) to enhance your experience. Customers consent to receive automated SMS notifications from CONECT-R and its services (Nextup, TableReserve, CONECT-R Station) via a mandatory checkbox on conect-r.com before any contact action.
+                </p>
+                <p>
+                  Consent is not a condition of purchase. Message & data rates may apply. Reply <strong>STOP</strong> to opt out of future messages, or <strong>HELP</strong> for help.
+                </p>
+
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  4. Privacy
+                </h2>
+                <p>
+                  We prioritize your data privacy. Please review our Privacy Policy to understand how we collect, use, and safeguard your personal information at:{" "}
+                  <a href="https://conect-r.com/privacy" className="text-orange-500 hover:underline">
+                    conect-r.com/privacy
+                  </a>.
+                </p>
+
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  5. Opting Out
+                </h2>
+                <p>
+                  You can opt out of SMS notifications at any time by replying <strong>STOP</strong> to the shortcode or sending number. After texting <strong>STOP</strong>, you will receive a single confirmation message of your unsubscription. To resubscribe, you can text <strong>START</strong> to the same number.
+                </p>
+
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
+                  6. Contact
+                </h2>
+                <p>
+                  If you have any questions or feedback regarding these Terms and Conditions, please reach out to us at:{" "}
+                  <a href="mailto:contact@conect-r.com" className="text-orange-500 hover:underline">
+                    contact@conect-r.com
+                  </a>.
+                </p>
+              </>
+            )}
           </div>
         </motion.div>
       </main>
