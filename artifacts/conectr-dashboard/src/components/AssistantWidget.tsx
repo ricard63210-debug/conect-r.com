@@ -473,7 +473,7 @@ export default function AssistantWidget() {
 
               <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-foreground">
                 {consentType === "sms" && (lang === "es" ? "Consentimiento de SMS" : "SMS Consent")}
-                {consentType === "whatsapp" && (lang === "es" ? "Consentimiento de WhatsApp" : "WhatsApp Consent")}
+                {consentType === "whatsapp" && (lang === "es" ? "Consentimiento de Comunicación" : "Communication Consent")}
                 {consentType === "email" && (lang === "es" ? "Consentimiento de Correo" : "Email Consent")}
               </h2>
               <p className="text-xs text-muted-foreground mt-1 mb-6">
