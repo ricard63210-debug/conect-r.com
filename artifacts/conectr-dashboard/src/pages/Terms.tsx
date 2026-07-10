@@ -230,13 +230,13 @@ export default function Terms() {
       <footer className="border-t border-border bg-muted/20 mt-auto py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col items-center gap-4">
           <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 text-sm">
-            <a href="https://nextup.conect-r.com/privacy" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-orange-500 transition-colors font-medium">
+            <Link href="/privacy" className="text-muted-foreground hover:text-orange-500 transition-colors font-medium">
               {lang === "es" ? "Política de Privacidad" : "Privacy Policy"}
-            </a>
+            </Link>
             <span className="text-muted-foreground/30 hidden sm:inline">|</span>
-            <a href="https://nextup.conect-r.com/terms" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-orange-500 transition-colors font-medium">
+            <Link href="/terms" className="text-muted-foreground hover:text-orange-500 transition-colors font-medium">
               {lang === "es" ? "Términos y Condiciones" : "Terms & Conditions"}
-            </a>
+            </Link>
             <span className="text-muted-foreground/30 hidden sm:inline">|</span>
             <Link href="/sms-consent" className="text-muted-foreground hover:text-orange-500 transition-colors font-medium">
               {lang === "es" ? "Consentimiento SMS" : "SMS Consent"}

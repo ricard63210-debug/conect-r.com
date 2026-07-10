@@ -508,9 +508,9 @@ export default function AssistantWidget() {
               </div>
 
               <div className="text-xs text-muted-foreground flex justify-center gap-1.5 mb-6">
-                <a href="https://nextup.conect-r.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">Privacy Policy</a>
+                <a href="https://conect-r.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">Privacy Policy</a>
                 <span>|</span>
-                <a href="https://nextup.conect-r.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">Terms & Conditions</a>
+                <a href="https://conect-r.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">Terms & Conditions</a>
               </div>
 
               <div className="flex flex-col gap-2">
@@ -654,7 +654,7 @@ function SummaryCard({
                     className="mt-0.5 h-3.5 w-3.5 shrink-0 rounded accent-orange-500 focus:ring-orange-500"
                   />
                   <label htmlFor="sms-consent-edit" className="text-[9px] leading-tight text-muted-foreground select-none">
-                    By providing your phone number, you agree to receive automated SMS notifications from CONECT-R and its services (Nextup, TableReserve). Msg & data rates may apply. Reply STOP to opt out. Privacy Policy: <a href="https://nextup.conect-r.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">https://nextup.conect-r.com/privacy</a> | Terms: <a href="https://nextup.conect-r.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">https://nextup.conect-r.com/terms</a>
+                    By providing your phone number, you agree to receive automated SMS notifications from CONECT-R and its services (Nextup, TableReserve). Msg & data rates may apply. Reply STOP to opt out. Privacy Policy: <a href="https://conect-r.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">https://conect-r.com/privacy</a> | Terms: <a href="https://conect-r.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">https://conect-r.com/terms</a>
                   </label>
                 </div>
               )}
@@ -685,7 +685,7 @@ function SummaryCard({
                       className="mt-0.5 h-3.5 w-3.5 shrink-0 rounded accent-orange-500 focus:ring-orange-500"
                     />
                     <label htmlFor="sms-consent-view" className="text-[9px] leading-tight text-muted-foreground select-none">
-                      By providing your phone number, you agree to receive automated SMS notifications from CONECT-R and its services (Nextup, TableReserve). Msg & data rates may apply. Reply STOP to opt out. Privacy Policy: <a href="https://nextup.conect-r.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">https://nextup.conect-r.com/privacy</a> | Terms: <a href="https://nextup.conect-r.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">https://nextup.conect-r.com/terms</a>
+                      By providing your phone number, you agree to receive automated SMS notifications from CONECT-R and its services (Nextup, TableReserve). Msg & data rates may apply. Reply STOP to opt out. Privacy Policy: <a href="https://conect-r.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">https://conect-r.com/privacy</a> | Terms: <a href="https://conect-r.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">https://conect-r.com/terms</a>
                     </label>
                   </div>
                 )}
