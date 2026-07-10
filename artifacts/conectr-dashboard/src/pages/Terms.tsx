@@ -121,21 +121,21 @@ export default function Terms() {
                   1. Descripción General (Overview)
                 </h2>
                 <p>
-                  CONECT-R LLC, ubicada en Sacramento, CA, proporciona servicios de tecnología para restaurantes. Estos servicios incluyen Nextup (lista de espera digital), TableReserve (reservaciones) y CONECT-R Station (sistema de punto de venta).
+                  CONECT-R LLC, ubicada en Sacramento, CA, proporciona servicios de tecnología para restaurantes. Estos servicios incluyen Nextup (lista de espera digital), TableReserve (reservaciones), CONECT-R Station (sistema de pedidos digitales) y CONECT-R POS (sistema de punto de venta).
                 </p>
 
                 <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
                   2. Uso del Servicio (Use of Service)
                 </h2>
                 <p>
-                  Al utilizar cualquiera de nuestros productos y servicios (Nextup, TableReserve y CONECT-R Station), aceptas cumplir con estos Términos y Condiciones. Te comprometes a usar los servicios únicamente para fines autorizados y de acuerdo con todas las leyes federales, estatales y locales aplicables.
+                  Al utilizar cualquiera de nuestros productos y servicios (Nextup, TableReserve, CONECT-R Station y CONECT-R POS), aceptas cumplir con estos Términos y Condiciones. Te comprometes a usar los servicios únicamente para fines autorizados y de acuerdo con todas las leyes federales, estatales y locales aplicables.
                 </p>
 
                 <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
                   3. Comunicaciones SMS y Registro (SMS Communications and Opt-In)
                 </h2>
                 <p>
-                  CONECT-R LLC se comunica contigo a través de mensajes de texto (SMS) para mejorar tu experiencia. Los clientes otorgan su consentimiento para recibir notificaciones automáticas por SMS de CONECT-R y sus servicios (Nextup, TableReserve, CONECT-R Station) mediante una casilla de verificación obligatoria en conect-r.com antes de realizar cualquier acción de contacto.
+                  CONECT-R LLC se comunica contigo a través de mensajes de texto (SMS) para mejorar tu experiencia. Los clientes otorgan su consentimiento para recibir notificaciones automáticas por SMS de CONECT-R y sus servicios (Nextup, TableReserve, CONECT-R Station, CONECT-R POS) mediante una casilla de verificación obligatoria en conect-r.com antes de realizar cualquier acción de contacto.
                 </p>
                 <p>
                   El consentimiento para recibir mensajes SMS no es una condición obligatoria de compra para adquirir bienes o servicios. Pueden aplicarse tarifas de mensajes y datos. Responde <strong>STOP</strong> para optar por no recibir más mensajes, o <strong>HELP</strong> para obtener ayuda.
@@ -174,21 +174,21 @@ export default function Terms() {
                   1. Overview
                 </h2>
                 <p>
-                  CONECT-R LLC, located in Sacramento, CA, provides restaurant technology services. These services include Nextup (digital waitlist), TableReserve (reservations), and CONECT-R Station (POS system).
+                  CONECT-R LLC, located in Sacramento, CA, provides restaurant technology services. These services include Nextup (digital waitlist), TableReserve (reservations), CONECT-R Station (digital ordering system), and CONECT-R POS (point-of-sale system).
                 </p>
 
                 <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
                   2. Use of Service
                 </h2>
                 <p>
-                  By utilizing any of our products and services (Nextup, TableReserve, and CONECT-R Station), you agree to be bound by these Terms and Conditions. You agree to use the services solely for authorized purposes and in compliance with all applicable federal, state, and local laws.
+                  By utilizing any of our products and services (Nextup, TableReserve, CONECT-R Station, and CONECT-R POS), you agree to be bound by these Terms and Conditions. You agree to use the services solely for authorized purposes and in compliance with all applicable federal, state, and local laws.
                 </p>
 
                 <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
                   3. SMS Communications and Opt-In
                 </h2>
                 <p>
-                  CONECT-R LLC communicates with you via text messaging (SMS) to enhance your experience. Customers consent to receive automated SMS notifications from CONECT-R and its services (Nextup, TableReserve, CONECT-R Station) via a mandatory checkbox on conect-r.com before any contact action.
+                  CONECT-R LLC communicates with you via text messaging (SMS) to enhance your experience. Customers consent to receive automated SMS notifications from CONECT-R and its services (Nextup, TableReserve, CONECT-R Station, CONECT-R POS) via a mandatory checkbox on conect-r.com before any contact action.
                 </p>
                 <p>
                   Consent is not a condition of purchase. Message & data rates may apply. Reply <strong>STOP</strong> to opt out of future messages, or <strong>HELP</strong> for help.

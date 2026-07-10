@@ -121,7 +121,7 @@ export default function Privacy() {
                   1. Descripción General (Overview)
                 </h2>
                 <p>
-                  CONECT-R LLC, ubicada en 1518 D Street, Sacramento CA 95814, respeta tu privacidad. Esta Política de Privacidad detalla cómo recopilamos, usamos y protegemos tus datos personales al usar nuestros servicios tecnológicos para restaurantes, incluyendo Nextup (lista de espera digital), TableReserve (reservaciones) y CONECT-R Station (sistema de punto de venta/POS).
+                  CONECT-R LLC, ubicada en 1518 D Street, Sacramento CA 95814, respeta tu privacidad. Esta Política de Privacidad detalla cómo recopilamos, usamos y protegemos tus datos personales al usar nuestros servicios tecnológicos para restaurantes, incluyendo Nextup (lista de espera digital), TableReserve (reservaciones), CONECT-R Station (sistema de pedidos digitales) y CONECT-R POS (sistema de punto de venta).
                 </p>
 
                 <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
@@ -181,7 +181,7 @@ export default function Privacy() {
                   1. Overview
                 </h2>
                 <p>
-                  CONECT-R LLC, located at 1518 D Street, Sacramento CA 95814, respects your privacy. This Privacy Policy outlines how we collect, use, and protect your personal data when using our restaurant technology services, including Nextup (digital waitlist), TableReserve (reservations), and CONECT-R Station (POS system).
+                  CONECT-R LLC, located at 1518 D Street, Sacramento CA 95814, respects your privacy. This Privacy Policy outlines how we collect, use, and protect your personal data when using our restaurant technology services, including Nextup (digital waitlist), TableReserve (reservations), CONECT-R Station (digital ordering system), and CONECT-R POS (point-of-sale system).
                 </p>
 
                 <h2 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4">
