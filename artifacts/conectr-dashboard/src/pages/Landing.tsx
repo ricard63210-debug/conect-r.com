@@ -301,9 +301,6 @@ export default function Landing() {
               transition={{ duration: 0.6 }}
               className="maya-card glass-panel rounded-3xl p-8 group"
             >
-              <div className="w-14 h-14 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-6 text-orange-500 group-hover:bg-orange-500/20 transition-colors">
-                <Eye size={24} strokeWidth={1.5} />
-              </div>
               <div className="text-xs font-black tracking-[0.2em] text-orange-500/60 mb-3 uppercase">{L.about.vision.label}</div>
               <p className="text-lg text-foreground/90 leading-relaxed font-medium">{L.about.vision.body}</p>
             </motion.div>
@@ -315,9 +312,6 @@ export default function Landing() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="maya-card glass-panel rounded-3xl p-8 group"
             >
-              <div className="w-14 h-14 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-6 text-orange-500 group-hover:bg-orange-500/20 transition-colors">
-                <Target size={24} strokeWidth={1.5} />
-              </div>
               <div className="text-xs font-black tracking-[0.2em] text-orange-500/60 mb-3 uppercase">{L.about.mission.label}</div>
               <p className="text-lg text-foreground/90 leading-relaxed font-medium">{L.about.mission.body}</p>
             </motion.div>
@@ -345,7 +339,6 @@ export default function Landing() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {L.appPortfolio.map((mod, i) => {
-              const Icon = MODULE_ICONS[i] || Globe;
               const cardPaths = [
                 "/premium-website",
                 "/chamba",
@@ -368,9 +361,6 @@ export default function Landing() {
                 >
                   <Link href={path} className={cardClasses}>
                     <div className="relative z-10">
-                      <div className="w-14 h-14 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-8 text-orange-500 group-hover:bg-orange-500/20 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
-                        <Icon size={24} strokeWidth={1.5} />
-                      </div>
                       <div className="font-bold text-foreground text-2xl mb-2 flex items-center gap-2">
                         {mod.name}
                         <ArrowUpRight size={18} strokeWidth={2.5} className="text-orange-500 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300" />
@@ -385,17 +375,6 @@ export default function Landing() {
                 </motion.div>
               );
             })}
-          </div>
-
-          <div className="text-center mt-20">
-            <Link
-              href="/dashboard"
-              className="inline-flex items-center gap-3 glass-panel px-8 py-4 rounded-2xl text-foreground hover:text-orange-500 font-bold transition-all hover:scale-105 active:scale-95 shadow-xl"
-            >
-              <Sparkles size={18} strokeWidth={2.5} className="text-orange-500" />
-              {lang === "es" ? "Ver demo interactiva" : "Interactive demo"}
-              <ArrowRight size={18} strokeWidth={2.5} />
-            </Link>
           </div>
         </div>
       </section>
@@ -422,7 +401,6 @@ export default function Landing() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
             {T.consulting.steps.map((step, i) => {
-              const Icon = [BarChart3, Lightbulb, TrendingUp, DollarSign][i] || BarChart3;
               return (
                 <motion.div
                   key={step.title}
@@ -432,9 +410,6 @@ export default function Landing() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="maya-card glass-panel rounded-3xl p-8"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-6 text-orange-500">
-                    <Icon size={24} strokeWidth={1.5} />
-                  </div>
                   <div className="text-[10px] font-black tracking-[0.25em] text-orange-500/60 mb-3 uppercase">
                     {String(i + 1).padStart(2, "0")}
                   </div>
@@ -528,7 +503,6 @@ export default function Landing() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {L.expansion.items.map((item, i) => {
-              const Icon = EXPANSION_ICONS[i] || Zap;
               return (
                 <motion.div
                   key={item.title}
@@ -538,171 +512,14 @@ export default function Landing() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="maya-card glass-panel rounded-3xl p-8 group"
                 >
-                  <div className="flex items-start gap-6">
-                    <div className="w-14 h-14 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center shrink-0 text-orange-500 group-hover:bg-orange-500/20 transition-colors">
-                      <Icon size={24} strokeWidth={1.5} />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-bold text-foreground text-xl mb-3 leading-tight font-sans">
-                        {item.title.replace(/\*/g, "")}
-                      </h3>
-                      <p className="text-muted-foreground leading-relaxed font-light tracking-wide">{item.body}</p>
-                    </div>
-                  </div>
+                  <h3 className="font-bold text-foreground text-xl mb-3 leading-tight font-sans">
+                    {item.title.replace(/\*/g, "")}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed font-light tracking-wide">{item.body}</p>
                 </motion.div>
               );
             })}
           </div>
-        </div>
-      </section>
-
-      {/* PRICING — Table + Bundle */}
-      <section id="pricing" className="relative border-t border-border overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-28 sm:py-40">
-          <div className="text-center mb-20">
-            <div className="flex justify-center mb-8">
-              <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                {L.pricing.pill}
-              </div>
-            </div>
-            <h2 className="text-4xl sm:text-7xl font-serif italic mb-8">
-              {L.pricing.title1}<br />
-              <span className="text-gradient font-sans not-italic font-black block mt-2">{L.pricing.title2}</span>
-            </h2>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-light tracking-wide">{L.pricing.body}</p>
-          </div>
-
-          {/* Pricing Table */}
-          <div className="max-w-5xl mx-auto glass-panel rounded-[2rem] overflow-hidden mb-20 shadow-2xl">
-            <div className="hidden sm:grid sm:grid-cols-[2fr_1fr_1fr] gap-4 px-8 py-6 border-b border-border/50 bg-muted/20">
-              <div className="text-[10px] font-black tracking-[0.25em] text-foreground/40">
-                {L.pricing.table.header.service.toUpperCase()}
-              </div>
-              <div className="text-[10px] font-black tracking-[0.25em] text-foreground/40 text-right">
-                {L.pricing.table.header.setup.toUpperCase()}
-              </div>
-              <div className="text-[10px] font-black tracking-[0.25em] text-foreground/40 text-right">
-                {L.pricing.table.header.monthly.toUpperCase()}
-              </div>
-            </div>
-
-            <div className="divide-y divide-border/50">
-              {L.pricing.table.rows.map((row) => (
-                <Link
-                  key={row.service}
-                  href={`/dashboard#${row.hash}`}
-                  className="group block px-8 py-6 hover:bg-orange-500/[0.03] transition-colors"
-                >
-                  <div className="grid grid-cols-2 sm:grid-cols-[2fr_1fr_1fr] gap-3 sm:gap-4 items-center">
-                    <div className="col-span-2 sm:col-span-1">
-                      <div className="font-bold text-foreground text-lg flex items-center gap-2">
-                        {row.service}
-                        <ArrowUpRight size={15} className="text-orange-500 opacity-0 group-hover:opacity-100 transition-all" />
-                      </div>
-                      <div className="text-sm text-muted-foreground font-light tracking-wide mt-1">{row.note}</div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-[10px] sm:hidden font-black tracking-widest text-foreground/40 mb-1">SETUP</div>
-                      <div className="font-bold text-foreground text-lg">{row.setup}</div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-[10px] sm:hidden font-black tracking-widest text-foreground/40 mb-1">SAAS</div>
-                      <div className="font-bold text-foreground text-lg">
-                        {row.monthly}<span className="text-xs text-muted-foreground font-light ml-1">{L.pricing.period}</span>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-[2fr_1fr_1fr] gap-3 sm:gap-4 items-center px-8 py-7 border-t border-border bg-orange-500/[0.02]">
-              <div className="col-span-2 sm:col-span-1 text-sm font-black tracking-widest text-orange-500 uppercase">
-                {L.pricing.table.totalLabel}
-              </div>
-              <div className="text-right text-xl font-black text-foreground">
-                {L.pricing.table.totalSetup}
-              </div>
-              <div className="text-right text-xl font-black text-foreground">
-                {L.pricing.table.totalMonthly}<span className="text-xs text-muted-foreground font-light ml-1">{L.pricing.period}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Bundle Highlight */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-5xl mx-auto rounded-[3rem] border border-orange-500/20 mesh-gradient p-8 sm:p-16 relative overflow-hidden shadow-2xl shadow-orange-500/10"
-          >
-            <div className="relative z-10">
-              <div className="flex flex-wrap items-center gap-3 mb-8">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-500 text-white text-[11px] font-black tracking-[0.2em] uppercase shadow-lg shadow-orange-500/40">
-                  <Sparkles size={12} fill="currentColor" />
-                  {L.pricing.bundle.badge}
-                </span>
-              </div>
-
-              <h3 className="text-3xl sm:text-6xl font-serif italic mb-6">
-                {L.pricing.bundle.title}
-              </h3>
-              <p className="text-lg sm:text-xl text-muted-foreground/80 max-w-2xl mb-12 leading-relaxed font-light tracking-wide">
-                {L.pricing.bundle.body}
-              </p>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                <div className="glass-panel rounded-[2rem] p-8 border border-white/5 bg-white/[0.02]">
-                  <div className="text-[10px] font-black tracking-[0.25em] text-foreground/40 mb-4 uppercase">
-                    {L.pricing.bundle.setupLabel}
-                  </div>
-                  <div className="flex items-baseline gap-4 mb-2">
-                    <span className="text-5xl sm:text-6xl font-black text-orange-500 tracking-tighter">
-                      {L.pricing.bundle.setupNow}
-                    </span>
-                    <span className="text-xl text-muted-foreground line-through font-light">
-                      {L.pricing.bundle.setupOriginal}
-                    </span>
-                  </div>
-                  <div className="text-sm font-bold text-orange-500/80 tracking-wide uppercase">
-                    {L.pricing.bundle.setupSavings}
-                  </div>
-                </div>
-
-                <div className="glass-panel rounded-[2rem] p-8 border border-white/5 bg-white/[0.02]">
-                  <div className="text-[10px] font-black tracking-[0.25em] text-foreground/40 mb-4 uppercase">
-                    {L.pricing.bundle.monthlyLabel}
-                  </div>
-                  <div className="flex items-baseline gap-4 mb-2 flex-wrap">
-                    <span className="text-5xl sm:text-6xl font-black text-orange-500 tracking-tighter">
-                      {L.pricing.bundle.monthlyNow}
-                    </span>
-                    <span className="text-base text-muted-foreground font-light">{L.pricing.period}</span>
-                    <span className="text-xl text-muted-foreground line-through font-light">
-                      {L.pricing.bundle.monthlyOriginal}
-                    </span>
-                  </div>
-                  <div className="text-sm font-bold text-orange-500/80 tracking-wide uppercase">
-                    {L.pricing.bundle.monthlySavings}
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row sm:items-center gap-6">
-                <a
-                  href="mailto:contact@conect-r.com"
-                  className="inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl shadow-orange-500/30 transition-all hover:scale-105 active:scale-95"
-                >
-                  {L.pricing.bundle.cta}
-                  <ArrowRight size={20} strokeWidth={2.5} />
-                </a>
-                <p className="text-sm text-muted-foreground/60 italic max-w-sm leading-relaxed font-light">
-                  {L.pricing.bundle.note}
-                </p>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
 
@@ -719,7 +536,6 @@ export default function Landing() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {L.legal.items.map((item, i) => {
-              const Icon = LEGAL_ICONS[i] || Shield;
               return (
                 <motion.div
                   key={item.title}
@@ -729,15 +545,8 @@ export default function Landing() {
                   transition={{ duration: 0.4, delay: i * 0.05 }}
                   className="rounded-2xl border border-border bg-background p-5"
                 >
-                  <div className="flex items-start gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center shrink-0">
-                      <Icon size={16} className="text-orange-500" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-bold text-foreground text-sm mb-1">{item.title}</h3>
-                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{item.body}</p>
-                    </div>
-                  </div>
+                  <h3 className="font-bold text-foreground text-sm mb-1">{item.title}</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{item.body}</p>
                 </motion.div>
               );
             })}

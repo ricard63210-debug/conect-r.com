@@ -213,10 +213,7 @@ export default function BusinessConsulting() {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="glass-panel rounded-3xl p-8 border border-border group relative"
               >
-                <div className="flex justify-between items-start mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-500">
-                    <s.icon size={22} strokeWidth={1.5} />
-                  </div>
+                <div className="flex justify-end items-start mb-6">
                   <span className="text-2xl font-black text-orange-500/30 tracking-tight font-sans">
                     {s.number}
                   </span>

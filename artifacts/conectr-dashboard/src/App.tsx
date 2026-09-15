@@ -4,7 +4,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/lib/i18n";
 import Landing from "@/pages/Landing";
-import Dashboard from "@/pages/Dashboard";
 import PremiumWebsite from "@/pages/PremiumWebsite";
 import Chamba from "@/pages/Chamba";
 import TableReserve from "@/pages/TableReserve";
@@ -24,8 +23,6 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Landing} />
-      <Route path="/dashboard" component={Dashboard} />
-      <Route path="/demo" component={Dashboard} />
       <Route path="/premium-website" component={PremiumWebsite} />
       <Route path="/chamba" component={Chamba} />
       <Route path="/table-reserve" component={TableReserve} />

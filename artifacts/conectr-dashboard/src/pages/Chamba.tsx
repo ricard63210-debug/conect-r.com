@@ -161,62 +161,26 @@ export default function Chamba() {
         </div>
       </section>
 
-      {/* PRICING */}
+      {/* QUOTE CTA */}
       <section className="relative border-t border-border bg-muted/30">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
-          <div className="text-center mb-14">
+          <div className="text-center">
             <div className="flex justify-center mb-6">
               <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                {T.chamba.pricing.pill}
+                {T.chamba.quote.pill}
               </div>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-serif italic mb-4">{T.chamba.pricing.title}</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto font-light">
-              {T.chamba.pricing.subtitle}
+            <h2 className="text-3xl sm:text-5xl font-serif italic mb-4">{T.chamba.quote.title}</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto font-light mb-10">
+              {T.chamba.quote.body}
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            {/* Setup */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="glass-panel rounded-3xl p-8 border border-border"
+            <button
+              onClick={handleOpenDemoChat}
+              className="group inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-2xl font-bold shadow-xl shadow-orange-500/25 transition-all hover:scale-105 active:scale-95"
             >
-              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">{T.chamba.pricing.setup.badge}</div>
-              <div className="flex items-end gap-2 mb-2">
-                <span className="text-5xl font-black text-foreground">{T.chamba.pricing.setup.price}</span>
-                <span className="text-muted-foreground font-light mb-1">{T.chamba.pricing.setup.currency}</span>
-              </div>
-              <p className="text-muted-foreground text-sm font-light leading-relaxed">
-                {T.chamba.pricing.setup.description}
-              </p>
-            </motion.div>
-
-            {/* Monthly SaaS */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="rounded-3xl p-8 border border-orange-500/30 bg-gradient-to-br from-orange-500/10 to-orange-500/5 relative overflow-hidden"
-            >
-              <div className="absolute top-4 right-4">
-                <span className="inline-flex items-center px-3 py-1 rounded-full bg-orange-500 text-white text-[10px] font-black tracking-[0.15em] uppercase">
-                  {T.chamba.pricing.monthly.periodLabel}
-                </span>
-              </div>
-              <div className="text-xs font-black tracking-[0.2em] text-orange-500 uppercase mb-4">{T.chamba.pricing.monthly.badge}</div>
-              <div className="flex items-end gap-2 mb-2">
-                <span className="text-5xl font-black text-foreground">{T.chamba.pricing.monthly.price}</span>
-                <span className="text-muted-foreground font-light mb-1">{T.chamba.pricing.monthly.currency}</span>
-              </div>
-              <p className="text-muted-foreground text-sm font-light leading-relaxed">
-                {T.chamba.pricing.monthly.description}
-              </p>
-            </motion.div>
+              {T.chamba.quote.cta}
+              <ArrowRight size={18} strokeWidth={2.5} className="transition-transform group-hover:translate-x-1" />
+            </button>
           </div>
         </div>
       </section>
@@ -247,9 +211,6 @@ export default function Chamba() {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="glass-panel rounded-3xl p-8 border border-border group"
               >
-                <div className="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-6 text-orange-500">
-                  <f.icon size={22} strokeWidth={1.5} />
-                </div>
                 <h3 className="font-bold text-foreground text-xl mb-3 font-sans">{f.title}</h3>
                 <p className="text-muted-foreground leading-relaxed font-light">{f.body}</p>
               </motion.div>
@@ -282,11 +243,8 @@ export default function Chamba() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="flex gap-5 p-6 rounded-2xl border border-border bg-card/40"
+                className="p-6 rounded-2xl border border-border bg-card/40"
               >
-                <div className="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center shrink-0 text-orange-500 mt-0.5">
-                  <item.icon size={18} strokeWidth={1.5} />
-                </div>
                 <div>
                   <div className="font-bold text-foreground mb-1 text-base font-sans">{item.title}</div>
                   <p className="text-muted-foreground text-sm leading-relaxed font-light">{item.body}</p>
