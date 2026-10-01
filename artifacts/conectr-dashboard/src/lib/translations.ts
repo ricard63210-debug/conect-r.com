@@ -75,6 +75,12 @@ const translations = {
           body: "Acompanamos a tu restaurante mas alla del software: analisis operativo, estrategia de marketing, recomendaciones de menu, optimizacion de costos y plan de crecimiento. Conect-R como tu socio estrategico — no solo proveedor de tecnologia.",
           dashHash: "consulting",
         },
+        {
+          name: "Chop Chop",
+          tagline: "PARA BARBERÍAS Y SALONES",
+          body: "Plataforma de reservas para barberías y salones. Tus clientes eligen su estilista, solicitan su horario y tú apruebas la cita desde tu celular — sin llamadas, sin mensajes perdidos, sin confusión.",
+          dashHash: "chop-chop",
+        },
       ],
       flow: {
         pill: "ASI FUNCIONA",
@@ -507,6 +513,69 @@ const translations = {
       chatUserMessage: "Me gustaría activar NextUp",
       demoUserMessage: "Me gustaría agendar una demo",
     },
+    chopChop: {
+      hero: {
+        pill: "CHOP CHOP",
+        title: "Chop Chop",
+        titleHighlight: "Gana más. Trabaja menos.",
+        subtitle: "Chop Chop es la plataforma de reservas de Conect-R diseñada para barberías y salones. Tus clientes eligen su estilista, solicitan su horario y tú apruebas la cita desde tu celular — sin llamadas, sin mensajes perdidos, sin confusión.",
+      },
+      features: {
+        pill: "QUÉ HACE",
+        title: "Tu agenda,",
+        titleHighlight: "en piloto automático.",
+        list: [
+          {
+            title: "Reservas en 3 pasos",
+            body: "El cliente elige su estilista, pide un horario y tú apruebas. Así de simple.",
+          },
+          {
+            title: "Perfil profesional",
+            body: "Cada estilista tiene su propio perfil con foto, especialidad y ubicación para que los clientes lo encuentren fácil.",
+          },
+          {
+            title: "Agenda desde tu celular",
+            body: "Administra tus citas donde estés, sin necesidad de estar pegado al teléfono.",
+          },
+          {
+            title: "Soporte bilingüe",
+            body: "Atiende a más clientes en español e inglés, sin barreras.",
+          },
+        ],
+      },
+      whyUs: {
+        pill: "POR QUÉ TE CONVIENE",
+        title: "Menos llamadas,",
+        titleHighlight: "más citas.",
+        list: [
+          {
+            title: "Ahorra tiempo",
+            body: "Deja de contestar llamadas y mensajes solo para agendar citas. El sistema lo hace por ti, todo el día.",
+          },
+          {
+            title: "Más citas, más ingresos",
+            body: "Un proceso de reserva fácil significa menos clientes perdidos y más citas confirmadas cada semana.",
+          },
+          {
+            title: "Haz crecer tu cartera de clientes",
+            body: "Que te encuentren y reserven contigo directamente, a cualquier hora, incluso cuando tienes las manos ocupadas.",
+          },
+          {
+            title: "Menos citas fantasma",
+            body: "El sistema de aprobación reduce las cancelaciones de último momento y los espacios vacíos en tu agenda.",
+          },
+        ],
+      },
+      cta: {
+        pill: "LISTO PARA EMPEZAR",
+        title: "¿Listo para generar más y trabajar menos?",
+        subtitle: "Únete a Chop Chop y deja que la plataforma se encargue de tus reservas mientras tú te enfocas en tu trabajo.",
+        button: "Consigue Chop Chop",
+        backToHome: "Volver al inicio",
+      },
+      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu barbería o salón?",
+      demoUserMessage: "Me gustaría agendar una demo",
+    },
     tvMenuBoards: {
       hero: {
         pill: "TV MENU BOARDS",
@@ -835,6 +904,12 @@ const translations = {
           tagline: "STRATEGIC ADVISORY FOR RESTAURANTS",
           body: "We support your restaurant beyond the software: operational analysis, marketing strategy, menu recommendations, cost optimization, and growth planning. Conect-R as your strategic partner — not just a technology vendor.",
           dashHash: "consulting",
+        },
+        {
+          name: "Chop Chop",
+          tagline: "FOR BARBERSHOPS & SALONS",
+          body: "Booking platform for barbershops and salons. Clients pick their stylist, request a time, and you approve the appointment right from your phone — no calls, no missed messages, no back-and-forth.",
+          dashHash: "chop-chop",
         },
       ],
       flow: {
@@ -1266,6 +1341,69 @@ const translations = {
       demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
       chatGreeting: "Thanks for your interest in NextUp! I'm Aria from Conect-R. I'll guide you through activating your digital waitlist.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?",
       chatUserMessage: "I would like to activate NextUp",
+      demoUserMessage: "I would like to book a demo",
+    },
+    chopChop: {
+      hero: {
+        pill: "CHOP CHOP",
+        title: "Chop Chop",
+        titleHighlight: "Earn more. Work less.",
+        subtitle: "Chop Chop is Conect-R's booking platform built for barbershops and salons. Clients pick their stylist, request a time, and you approve the appointment right from your phone — no calls, no missed messages, no back-and-forth.",
+      },
+      features: {
+        pill: "WHAT IT DOES",
+        title: "Your schedule,",
+        titleHighlight: "on autopilot.",
+        list: [
+          {
+            title: "3-step booking",
+            body: "Clients pick their stylist, request a time, and you approve. That simple.",
+          },
+          {
+            title: "Professional profile",
+            body: "Every stylist gets their own profile with a photo, specialty, and location so clients can find them easily.",
+          },
+          {
+            title: "Manage from your phone",
+            body: "Handle your schedule wherever you are, without being glued to the phone.",
+          },
+          {
+            title: "Bilingual support",
+            body: "Serve more clients in English and Spanish, no barriers.",
+          },
+        ],
+      },
+      whyUs: {
+        pill: "WHY IT'S WORTH IT",
+        title: "Fewer calls,",
+        titleHighlight: "more bookings.",
+        list: [
+          {
+            title: "Save time",
+            body: "Stop answering calls and texts just to book appointments — the system does it for you, all day long.",
+          },
+          {
+            title: "More bookings, more income",
+            body: "An easier booking process means fewer lost clients and more confirmed appointments every week.",
+          },
+          {
+            title: "Grow your client base",
+            body: "Get found and booked directly, any time of day — even when your hands are full.",
+          },
+          {
+            title: "Fewer no-shows",
+            body: "The approval system cuts down on last-minute cancellations and empty slots in your schedule.",
+          },
+        ],
+      },
+      cta: {
+        pill: "READY TO START",
+        title: "Ready to earn more and work less?",
+        subtitle: "Join Chop Chop and let the platform handle your bookings while you focus on the work.",
+        button: "Get Chop Chop",
+        backToHome: "Back to home",
+      },
+      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your barbershop or salon?",
       demoUserMessage: "I would like to book a demo",
     },
     tvMenuBoards: {

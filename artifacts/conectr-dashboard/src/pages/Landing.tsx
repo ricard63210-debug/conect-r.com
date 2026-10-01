@@ -346,7 +346,8 @@ export default function Landing() {
                 "/nextup",
                 "/conectr-station",
                 "/tv-menu-boards",
-                "/business-consulting"
+                "/business-consulting",
+                "/chop-chop"
               ];
               const path = cardPaths[i] || "/";
               const cardClasses = "maya-card group block h-full text-left w-full rounded-[2.5rem] border border-border bg-card/40 backdrop-blur-sm p-8 hover:border-orange-500/30 hover:bg-orange-500/[0.02] transition-all cursor-pointer relative overflow-hidden";

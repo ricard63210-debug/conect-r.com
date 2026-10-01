@@ -8,6 +8,7 @@ import PremiumWebsite from "@/pages/PremiumWebsite";
 import Chamba from "@/pages/Chamba";
 import TableReserve from "@/pages/TableReserve";
 import NextUp from "@/pages/NextUp";
+import ChopChop from "@/pages/ChopChop";
 import ConectrStation from "@/pages/ConectrStation";
 import TvMenuBoards from "@/pages/TvMenuBoards";
 import BusinessConsulting from "@/pages/BusinessConsulting";
@@ -27,6 +28,7 @@ function Router() {
       <Route path="/chamba" component={Chamba} />
       <Route path="/table-reserve" component={TableReserve} />
       <Route path="/nextup" component={NextUp} />
+      <Route path="/chop-chop" component={ChopChop} />
       <Route path="/conectr-station" component={ConectrStation} />
       <Route path="/tv-menu-boards" component={TvMenuBoards} />
       <Route path="/business-consulting" component={BusinessConsulting} />
