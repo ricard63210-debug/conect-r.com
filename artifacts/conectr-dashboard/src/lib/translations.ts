@@ -59,8 +59,8 @@ const translations = {
         },
         {
           name: "Conect-r Station",
-          tagline: "EL MENU AL TOQUE DEL SMARTPHONE",
-          body: "Stands fisicos elegantes instalados en cada mesa. El cliente accede al menu digital completo solo con acercar su telefono. Agiliza la toma de pedidos, elimina costos de reimpresion y permite cambios de precio en tiempo real.",
+          tagline: "VENDE MÁS, PAGA MENOS COMISIÓN",
+          body: "El panel completo para tu negocio de comida: pedidos y pagos directo desde la mesa —con stands NFC elegantes o códigos QR—, reservas de eventos 24/7, y un solo link con tu menú, tus redes sociales y tus apps de delivery, para que dejes de regalarle comisión a terceros.",
           dashHash: "smart-table",
         },
         {
@@ -744,15 +744,16 @@ const translations = {
       hero: {
         pill: "CONECT-R STATION",
         title: "Conect-r Station",
-        titleHighlight: "Tu mesa, conectada con un toque",
-        subtitle: "Elegantes stands físicos personalizados combinados con un potente menú digital, flujo de pedido y pago seguro, gestor de comentarios privado, integración con Google Reviews, chatbot con IA, analítica de clics y Algoritmo de Ingeniería de Menú.",
-        cta: "Ordenar Conect-r Station",
+        titleHighlight: "Vende más. Paga menos comisión.",
+        subtitle: "El panel completo para restaurantes, food trucks y negocios de catering: pedidos y pagos desde la mesa, reservas de eventos las 24 horas, y un solo link con tu menú, tus redes sociales y tus apps de delivery — accesible con un stand NFC elegante o un código QR, como tú prefieras.",
+        cta: "Crea tu cuenta gratis",
       },
-      quote: {
-        pill: "COTIZACIÓN",
-        title: "Cotización personalizada",
-        body: "Cada negocio opera distinto. Cuéntanos qué necesitas y preparamos una propuesta a tu medida, sin compromiso.",
-        cta: "Contáctanos para una cotización personalizada",
+      support: {
+        pill: "SOPORTE TÉCNICO",
+        title: "Soporte técnico, las 24 horas",
+        body: "¿Tienes dudas sobre cómo usar Station, o necesitas ayuda para resolver un problema? Escríbenos por mensaje de texto — te respondemos en español o inglés, cualquier día, a cualquier hora.",
+        button: "Envíanos un mensaje",
+        smsBody: "Necesito ayuda con Station",
       },
       features: {
         pill: "QUÉ ESTÁ INCLUIDO",
@@ -760,28 +761,20 @@ const translations = {
         titleHighlight: "nada de lo que no.",
         list: [
           {
-            title: "Tecnología Dual NFC o QR",
-            body: "Funciona con cualquier teléfono moderno — sin descargar nada. Los clientes simplemente tocan o escanean.",
+            title: "Elige cómo acceden tus clientes",
+            body: "Stands NFC elegantes para un toque moderno, o códigos QR: Station te genera un flyer editable con tu código, más QR chicos con el número de cada mesa, listos para imprimir.",
           },
           {
-            title: "Pedidos y Pagos Seguros en Mesa",
-            body: "Los pedidos se envían al dashboard de la cocina solo después de completar el pago digital, previniendo que se vayan sin pagar.",
+            title: "Pedidos y pagos desde la mesa",
+            body: "El cliente ordena y paga desde su celular; la orden llega directo a la cocina, sin errores.",
           },
           {
-            title: "Portal Publicitario Personalizado",
-            body: "Tu marca, tus enlaces: menú, reservas, redes sociales, reseñas, chatbot y feedback privado.",
+            title: "Reservas de eventos 24/7",
+            body: "Recibe solicitudes de catering con depósito cobrado, aunque tu negocio esté cerrado.",
           },
           {
-            title: "Algoritmo de Ingeniería de Menú con IA",
-            body: "Mueve automáticamente los platos populares al inicio para aumentar ventas, y etiqueta los platos de bajo rendimiento para revisión.",
-          },
-          {
-            title: "Chatbot de IA Integrado",
-            body: "Un asistente digital en el portal para responder preguntas de los clientes y recopilar datos valiosos de contacto.",
-          },
-          {
-            title: "Analítica Detallada de Clics",
-            body: "Monitorea clics en cada enlace del portal de clientes, escaneos por mesa y horas pico en tiempo real.",
+            title: "Ubicación en tiempo real",
+            body: "Ideal para food trucks y puestos: tus clientes siempre saben dónde encontrarte hoy.",
           },
         ],
       },
@@ -791,41 +784,36 @@ const translations = {
         titleHighlight: "un motor de crecimiento.",
         list: [
           {
-            title: "Precio mayorista por stand",
-            body: "Precio mayorista insuperable para stands premium de tecnología dual que combinan durabilidad y diseño elegante.",
+            title: "Deja de regalar comisión",
+            body: "Cada pedido que te llega por tu link o QR es dinero que no le das a DoorDash o Uber Eats.",
           },
           {
-            title: "Hardware + software en el paquete",
-            body: "Obtén tanto los stands físicos como el gestor del portal en la nube en un solo paquete simple y unificado.",
+            title: "Tus meseros atienden, no toman notas",
+            body: "En hora pico, la orden llega sola a la cocina. Menos errores, menos presión.",
           },
           {
-            title: "Aumenta reseñas positivas en Google",
-            body: "Dirige a los clientes satisfechos directo a tus enlaces de reseñas mientras filtras quejas de forma privada a los gerentes.",
+            title: "No pierdas ni un evento",
+            body: "Te llegan las reservas con el depósito ya pagado, aunque no hayas contestado el teléfono.",
           },
           {
-            title: "Captura correos para tu base de datos",
-            body: "Convierte comensales casuales en clientes recurrentes ofreciendo suscripciones de correo durante la navegación del portal.",
+            title: "Cambia tu menú en segundos",
+            body: "Sube un precio o agrega un platillo nuevo desde tu celular. Sin reimprimir nada.",
           },
         ],
       },
       cta: {
         pill: "LISTO PARA LANZAR",
-        title: "¿Listo para lanzar Conect-r Station?",
-        subtitle: "Habla con Aria — nuestra asistente de IA recopilará tus detalles y te conectará con el equipo de Conect-R para ordenar tu estación de mesa.",
-        button: "Ordenar Conect-r Station",
+        title: "¿Listo para vender más y pagar menos comisión?",
+        subtitle: "Prueba Conect-r Station y deja que la plataforma se encargue de tus pedidos, tus pagos y tu presencia en línea, mientras tú te enfocas en cocinar.",
+        button: "Crea tu cuenta gratis",
         backToHome: "Volver al inicio",
-        socialProof: [
-          "Términos flexibles",
-          "Proyecto completo al aire en menos de 2 semanas",
-          "Soporte bilingüe (EN/ES)",
-          "Equipo basado en Sacramento",
-        ],
       },
       footer: {
         rights: "© {year} Conect-R. Sacramento, CA. Todos los derechos reservados.",
       },
       demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
       chatGreeting: "¡Gracias por tu interés en Conect-r Station! Soy Aria de Conect-R. Te guiaré para ordenar tu estación.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?",
+      signupNote: "Primer mes gratis. Después, $100/mes si quieres aceptar Venmo, Cash App y tarjeta — o gratis si tus clientes pagan directo por Station.",
       chatUserMessage: "Me gustaría ordenar mi Conect-r Station",
       demoUserMessage: "Me gustaría agendar una demo",
     },
@@ -889,8 +877,8 @@ const translations = {
         },
         {
           name: "Conect-r Station",
-          tagline: "THE MENU AT THE TOUCH OF A SMARTPHONE",
-          body: "Stylish physical displays installed on each table. Customers instantly access the full digital menu by tapping their smartphone. Streamlines order taking, eliminates reprint costs, and enables real-time price updates.",
+          tagline: "SELL MORE, PAY LESS COMMISSION",
+          body: "The complete dashboard for your food business: ordering and payment straight from the table —with sleek NFC stands or QR codes—, 24/7 event bookings, and one link with your menu, social media, and delivery apps, so you stop giving away commission to third parties.",
           dashHash: "smart-table",
         },
         {
@@ -1574,15 +1562,16 @@ const translations = {
       hero: {
         pill: "CONECT-R STATION",
         title: "Conect-r Station",
-        titleHighlight: "Your table, connected with a tap",
-        subtitle: "Elegant custom physical displays combined with a powerful digital menu, secure ordering and payment flow, private feedback manager, Google reviews integration, AI chatbot, click analytics, and Menu Engineering Algorithm.",
-        cta: "Order Conect-r Station",
+        titleHighlight: "Sell more. Pay less commission.",
+        subtitle: "The complete dashboard for restaurants, food trucks, and catering businesses: ordering and payment from the table, 24/7 event bookings, and one link with your menu, social media, and delivery apps — accessible with a sleek NFC stand or a QR code, whichever you prefer.",
+        cta: "Create your free account",
       },
-      quote: {
-        pill: "GET A QUOTE",
-        title: "Personalized quote",
-        body: "Every business runs differently. Tell us what you need and we'll put together a proposal tailored to you — no strings attached.",
-        cta: "Contact us for a personalized quote",
+      support: {
+        pill: "TECHNICAL SUPPORT",
+        title: "Technical support, 24/7",
+        body: "Have questions about using Station, or need help solving an issue? Text us — we respond in English or Spanish, any day, any time.",
+        button: "Send us a message",
+        smsBody: "I need help with Station",
       },
       features: {
         pill: "WHAT'S INCLUDED",
@@ -1590,28 +1579,20 @@ const translations = {
         titleHighlight: "nothing you don't.",
         list: [
           {
-            title: "Dual NFC or QR tech",
-            body: "Works with any modern phone — nothing to download. Customers simply tap or scan.",
+            title: "Choose how customers reach you",
+            body: "Sleek NFC stands for a modern touch, or QR codes: Station generates an editable flyer with your code, plus small QR codes for each table number, ready to print.",
           },
           {
-            title: "Secure Table Ordering & Payment",
-            body: "Orders are routed to the kitchen dashboard only after digital payment is completed, preventing unpaid walkouts.",
+            title: "Ordering and payment from the table",
+            body: "Customers order and pay from their phone; the order goes straight to the kitchen, no errors.",
           },
           {
-            title: "Custom Advertising Portal",
-            body: "Your brand, your links: menu, bookings, socials, reviews, chatbot, and private feedback.",
+            title: "24/7 event bookings",
+            body: "Receive catering requests with the deposit already collected, even while you're closed.",
           },
           {
-            title: "Menu Engineering AI",
-            body: "Automatically moves popular items to the top to increase sales, and tags low-performing items for recipe reviews.",
-          },
-          {
-            title: "Integrated AI Chatbot",
-            body: "An on-portal digital assistant to answer guest questions and gather valuable contact details.",
-          },
-          {
-            title: "Detailed Click Analytics",
-            body: "Track clicks on every link of the customer portal, scans per table, and peak hours in real time.",
+            title: "Real-time location",
+            body: "Perfect for food trucks and stands: your customers always know where to find you today.",
           },
         ],
       },
@@ -1621,41 +1602,36 @@ const translations = {
         titleHighlight: "a growth engine.",
         list: [
           {
-            title: "Wholesale pricing per stand",
-            body: "Unbeatable wholesale price for premium dual-technology stands that combine durability and high-end design.",
+            title: "Stop giving away commission",
+            body: "Every order that comes through your link or QR is money you're not handing to DoorDash or Uber Eats.",
           },
           {
-            title: "Hardware + software in the bundle",
-            body: "Get both physical stands and the cloud portal manager in one simple, unified package.",
+            title: "Your servers wait tables, not notepads",
+            body: "During the rush, the order goes straight to the kitchen. Fewer mistakes, less pressure.",
           },
           {
-            title: "Lifts positive Google reviews",
-            body: "Direct happy customers straight to your review links while filtering complaints privately to managers.",
+            title: "Never miss an event",
+            body: "Booking requests arrive with the deposit already collected, even if you never answered the phone.",
           },
           {
-            title: "Captures emails for your database",
-            body: "Turn casual diners into repeat customers by offering email opt-ins during portal navigation.",
+            title: "Update your menu in seconds",
+            body: "Raise a price or add a new dish from your phone. No reprinting.",
           },
         ],
       },
       cta: {
         pill: "READY TO LAUNCH",
-        title: "Ready to launch Conect-r Station?",
-        subtitle: "Talk to Aria — our AI assistant will gather your details and connect you with the Conect-R team to order your table station.",
-        button: "Order Conect-r Station",
+        title: "Ready to sell more and pay less commission?",
+        subtitle: "Try Conect-r Station and let the platform handle your orders, payments, and online presence while you focus on cooking.",
+        button: "Create your free account",
         backToHome: "Back to home",
-        socialProof: [
-          "Flexible terms",
-          "Full project live in under 2 weeks",
-          "Bilingual support (EN/ES)",
-          "Sacramento-based team",
-        ],
       },
       footer: {
         rights: "© {year} Conect-R. Sacramento, CA. All rights reserved.",
       },
       demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
       chatGreeting: "Thanks for your interest in Conect-r Station! I'm Aria from Conect-R. I'll guide you through ordering your station.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?",
+      signupNote: "First month free. After that, $100/month if you want to accept Venmo, Cash App, and card — or free if your customers pay directly through Station.",
       chatUserMessage: "I would like to order my Conect-r Station",
       demoUserMessage: "I would like to book a demo",
     },

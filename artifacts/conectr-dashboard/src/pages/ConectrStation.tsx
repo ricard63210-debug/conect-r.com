@@ -1,33 +1,19 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import {
-  ArrowLeft, Check, Sparkles, ArrowRight,
-  Smartphone, Globe, AlertTriangle, Package, Palette, BarChart3,
+  ArrowRight,
+  Smartphone, Globe, AlertTriangle, Package, Palette,
   DollarSign, Layers, Star, Shield,
   Sun, Moon, Languages, ArrowUpRight,
-  CreditCard, Bot, TrendingUp
+  CreditCard, TrendingUp
 } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import { getT } from "@/lib/translations";
 import conectrLogo from "@/assets/conectr-logo.png";
 import { useState, useEffect } from "react";
 
-const DEMO_GREETING_EN =
-  "Thanks for your interest in Conect-r Station! I'm Aria from Conect-R. I'll guide you through ordering your station.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?";
-const DEMO_GREETING_ES =
-  "¡Gracias por tu interés en Conect-r Station! Soy Aria de Conect-R. Te guiaré para ordenar tu estación.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?";
-
-function openChat(lang: "es" | "en") {
-  window.dispatchEvent(
-    new CustomEvent("conectr:open-chat", {
-      detail: {
-        greeting: lang === "es" ? DEMO_GREETING_ES : DEMO_GREETING_EN,
-        lang,
-        userMessage: lang === "es" ? "Me gustaría ordenar mi Conect-r Station" : "I would like to order my Conect-r Station",
-      },
-    }),
-  );
-}
+const SIGNUP_URL = "https://station.conect-r.com/signup";
+const SUPPORT_PHONE = "+19168120873";
 
 const DEMO_GREETING = {
   es: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
@@ -67,8 +53,6 @@ export default function ConectrStation() {
     { icon: CreditCard, title: S.features.list[1].title, body: S.features.list[1].body },
     { icon: Globe, title: S.features.list[2].title, body: S.features.list[2].body },
     { icon: TrendingUp, title: S.features.list[3].title, body: S.features.list[3].body },
-    { icon: Bot, title: S.features.list[4].title, body: S.features.list[4].body },
-    { icon: BarChart3, title: S.features.list[5].title, body: S.features.list[5].body },
   ];
 
   const WHY_US = [
@@ -161,39 +145,20 @@ export default function ConectrStation() {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <button
-              onClick={() => openChat(lang)}
+            <a
+              href={SIGNUP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group relative inline-flex items-center gap-3 bg-foreground text-background px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl shadow-black/20 transition-all hover:scale-[1.02] active:scale-95"
             >
               <span className="relative z-10">{S.hero.cta}</span>
               <ArrowRight size={18} strokeWidth={2.5} className="relative z-10 transition-transform group-hover:translate-x-1" />
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </button>
+            </a>
           </motion.div>
-        </div>
-      </section>
-
-      {/* QUOTE CTA */}
-      <section className="relative border-t border-border bg-muted/30">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
-          <div className="text-center">
-            <div className="flex justify-center mb-6">
-              <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                {S.quote.pill}
-              </div>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-serif italic mb-4">{S.quote.title}</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto font-light mb-10">
-              {S.quote.body}
-            </p>
-            <button
-              onClick={() => openDemoChat(lang)}
-              className="group inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-2xl font-bold shadow-xl shadow-orange-500/25 transition-all hover:scale-105 active:scale-95"
-            >
-              {S.quote.cta}
-              <ArrowRight size={18} strokeWidth={2.5} className="transition-transform group-hover:translate-x-1" />
-            </button>
-          </div>
+          <p className="mt-4 text-xs sm:text-sm text-muted-foreground max-w-md mx-auto leading-relaxed font-light">
+            {S.signupNote}
+          </p>
         </div>
       </section>
 
@@ -213,7 +178,7 @@ export default function ConectrStation() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {FEATURES.map((f, i) => (
               <motion.div
                 key={f.title}
@@ -289,41 +254,43 @@ export default function ConectrStation() {
               {S.cta.subtitle}
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button
-                onClick={() => openChat(lang)}
-                className="group relative inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl shadow-orange-500/30 transition-all hover:scale-105 active:scale-95"
+            <div className="flex justify-center">
+              <a
+                href={SIGNUP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-orange-500 hover:bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl shadow-orange-500/30 transition-all hover:scale-105 active:scale-95"
               >
-                <Sparkles size={20} strokeWidth={2} className="transition-transform group-hover:rotate-12" />
                 {S.cta.button}
-                <ArrowRight size={18} strokeWidth={2.5} className="transition-transform group-hover:translate-x-1" />
-              </button>
-
-              <Link
-                href="/"
-                className="inline-flex items-center gap-2 px-6 py-4 rounded-2xl border border-border text-muted-foreground hover:text-foreground hover:border-orange-500/30 font-semibold text-sm transition-all"
-              >
-                <ArrowLeft size={16} strokeWidth={2.5} />
-                {S.cta.backToHome}
-              </Link>
+              </a>
             </div>
+            <p className="mt-4 text-xs sm:text-sm text-muted-foreground max-w-md mx-auto leading-relaxed font-light">
+              {S.signupNote}
+            </p>
           </motion.div>
+        </div>
+      </section>
 
-          {/* Social proof */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-16 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground"
-          >
-            {S.cta.socialProof.map((item) => (
-              <div key={item} className="flex items-center gap-2">
-                <Check size={14} strokeWidth={2.5} className="text-orange-500" />
-                <span>{item}</span>
+      {/* TECHNICAL SUPPORT */}
+      <section className="relative border-t border-border bg-muted/30">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
+          <div className="text-center">
+            <div className="flex justify-center mb-6">
+              <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
+                {S.support.pill}
               </div>
-            ))}
-          </motion.div>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-serif italic mb-4">{S.support.title}</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto font-light mb-10">
+              {S.support.body}
+            </p>
+            <a
+              href={`sms:${SUPPORT_PHONE}?&body=${encodeURIComponent(S.support.smsBody)}`}
+              className="inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-2xl font-bold shadow-xl shadow-orange-500/25 transition-all hover:scale-105 active:scale-95"
+            >
+              {S.support.button}
+            </a>
+          </div>
         </div>
       </section>
 
