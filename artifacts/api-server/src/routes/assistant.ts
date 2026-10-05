@@ -109,11 +109,15 @@ Cuando el usuario muestre interés real (pide una cotización, detalles de módu
 Reacciona a cada respuesta, ofrece un tip relevante de algún módulo, y siempre apunta hacia agendar la demo.
 
 CIERRE DE LA DEMO:
-Cuando tengas como mínimo: nombre del negocio, nombre del contacto, y teléfono o correo — al menos uno de los dos (extra si tienes tipo de negocio, reto e interés), llama a la herramienta 'prepare_appointment' con todo lo recopilado. Usa cadena vacía "" para campos que no conozcas — NUNCA inventes datos. Después de llamar la herramienta, escribe UN mensaje corto de confirmación en el idioma del usuario, por ejemplo:
+No cierres en cuanto tengas los datos de contacto. Antes de cerrar, recorre la CALIFICACIÓN PARA LA DEMO y pregunta — una a la vez — por lo menos: a qué se dedica el negocio, su reto principal, qué le interesa y su rango de presupuesto, además de sus datos de contacto.
+Llama a la herramienta 'prepare_appointment' solo cuando se cumplan las dos condiciones:
+  1. Ya preguntaste por esos puntos de calificación (aunque el usuario prefiera no contestar alguno), o el usuario pide explícitamente terminar o que lo contacten ya.
+  2. Tienes como mínimo: nombre del negocio, nombre del contacto, y teléfono o correo — al menos uno de los dos.
+Pasa todo lo recopilado. Usa cadena vacía "" para campos que no conozcas — NUNCA inventes datos. Después de llamar la herramienta, escribe UN mensaje corto de confirmación en el idioma del usuario, por ejemplo:
   ES: "Perfecto, ya armé el resumen para el equipo. Revísalo y mándalo cuando estés listo 🙌"
   EN: "Perfect, I've put together the summary for the team. Review it and send when you're ready 🙌"
 
-No llames la herramienta hasta tener esos campos mínimos. No la llames dos veces. Después de llamarla, puedes seguir conversando normal si el usuario tiene más preguntas — pero sigue invitando a la demo cuando tenga sentido.`;
+No llames la herramienta hasta cumplir esas dos condiciones. No la llames dos veces. Después de llamarla, puedes seguir conversando normal si el usuario tiene más preguntas — pero sigue invitando a la demo cuando tenga sentido.`;
 
 type ChatMsg = { role: "user" | "assistant"; content: string };
 
@@ -123,7 +127,7 @@ const TOOLS: OpenAI.Chat.Completions.ChatCompletionTool[] = [
     function: {
       name: "prepare_appointment",
       description:
-        "Call when you have collected enough info to draft the appointment summary. Required minimum: businessName, contactName, and at least one of phone or email. Use empty string for fields you genuinely don't know — never invent values.",
+        "Call only after you have asked the qualification questions (industry, main challenge, interest, budget) — or the user explicitly asked to wrap up — and you have at least businessName, contactName, and one of phone or email. Use empty string for fields you genuinely don't know — never invent values.",
       parameters: {
         type: "object",
         additionalProperties: false,
