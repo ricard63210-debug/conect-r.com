@@ -2,31 +2,19 @@ import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import {
-  ArrowUpRight, ArrowRight, Check, Sun, Moon, Languages,
+  ArrowUpRight, Check, Sun, Moon, Languages,
   Globe, Smartphone, Monitor,
   Eye, Target,
-  Sparkles, MessageCircle, Mail,
+  Sparkles, Mail,
   TrendingUp, BarChart3, Lightbulb, DollarSign,
 } from "lucide-react";
 import { useLang } from "@/lib/i18n";
+import ContactButton from "@/components/ContactButton";
 import { getT } from "@/lib/translations";
 import conectrLogo from "@/assets/conectr-logo.png";
 
 const PHONE_DIGITS = "19168120873";
 const PHONE_DISPLAY = "+1 916 812 0873";
-
-const DEMO_GREETING = {
-  es: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
-  en: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
-} as const;
-
-function openDemoChat(lang: "es" | "en", userMessage?: string) {
-  window.dispatchEvent(
-    new CustomEvent("conectr:open-chat", {
-      detail: { greeting: DEMO_GREETING[lang], lang, userMessage },
-    }),
-  );
-}
 
 /* ───────────── Custom Brand Icons (orange) ───────────── */
 
@@ -152,11 +140,6 @@ export default function Landing() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       {/* Header */}
@@ -183,14 +166,6 @@ export default function Landing() {
             >
               <Languages size={13} strokeWidth={2.5} />
               {T.global.langBtn}
-            </button>
-            <button
-              onClick={() => openDemoChat(lang, lang === "es" ? "Me gustaría agendar una demo" : "I would like to book a demo")}
-              className="inline-flex items-center gap-1.5 bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold shadow-lg shadow-orange-500/25 transition-all hover:shadow-orange-500/40 active:scale-95 active:shadow-inner"
-            >
-              <span className="hidden sm:inline">{L.nav.scheduleDemo}</span>
-              <span className="sm:hidden">Demo</span>
-              <ArrowUpRight size={14} strokeWidth={2.5} />
             </button>
           </div>
         </div>
@@ -237,29 +212,6 @@ export default function Landing() {
           >
             {L.hero.body}
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <button
-              onClick={() => openDemoChat(lang, lang === "es" ? "Me gustaría agendar una demo" : "I would like to book a demo")}
-              className="group relative inline-flex items-center gap-3 bg-foreground text-background px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl shadow-black/20 transition-all hover:scale-[1.02] active:scale-95"
-            >
-              <span className="relative z-10">{L.hero.ctaPrimary}</span>
-              <ArrowRight size={18} strokeWidth={2.5} className="relative z-10 transition-transform group-hover:translate-x-1" />
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </button>
-            <button
-              onClick={() => scrollTo("ecosystem")}
-              className="inline-flex items-center gap-3 glass-panel text-foreground px-8 py-4 rounded-2xl font-bold text-lg shadow-xl transition-all hover:bg-muted/50 active:scale-95"
-            >
-              {L.hero.ctaSecondary}
-              <ArrowRight size={18} strokeWidth={2.5} className="rotate-90 opacity-40" />
-            </button>
-          </motion.div>
         </div>
       </section>
 
@@ -380,18 +332,7 @@ export default function Landing() {
             {L.finalCta.body}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                window.dispatchEvent(new CustomEvent("conectr:open-consent", { detail: { type: "whatsapp" } }));
-              }}
-              className="group inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl shadow-orange-500/30 transition-all hover:scale-105 active:scale-95 cursor-pointer"
-            >
-              <MessageCircle size={22} strokeWidth={2.5} />
-              {L.finalCta.whatsapp}
-              <ArrowRight size={22} strokeWidth={2.5} className="transition-transform group-hover:translate-x-1" />
-            </a>
+            <ContactButton className="inline-flex items-center bg-orange-500 hover:bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl shadow-orange-500/30 transition-all hover:scale-105 active:scale-95" />
             <a
               href="#"
               onClick={(e) => {

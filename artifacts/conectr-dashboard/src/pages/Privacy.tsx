@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import {
-  Sun, Moon, Languages, ArrowUpRight, ArrowLeft, MapPin
+  Sun, Moon, Languages, ArrowLeft, MapPin
 } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import { getT } from "@/lib/translations";
@@ -10,19 +10,6 @@ import conectrLogo from "@/assets/conectr-logo.png";
 
 const PHONE_DIGITS = "19168120873";
 const PHONE_DISPLAY = "+1 916 812 0873";
-
-const DEMO_GREETING = {
-  es: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
-  en: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
-} as const;
-
-function openDemoChat(lang: "es" | "en") {
-  window.dispatchEvent(
-    new CustomEvent("conectr:open-chat", {
-      detail: { greeting: DEMO_GREETING[lang], lang },
-    }),
-  );
-}
 
 function useTheme() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -77,14 +64,6 @@ export default function Privacy() {
             >
               <Languages size={13} />
               {T.global.langBtn}
-            </button>
-            <button
-              onClick={() => openDemoChat(lang)}
-              className="inline-flex items-center gap-1.5 bg-orange-500 hover:bg-orange-600 text-white px-3.5 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold shadow-lg shadow-orange-500/20 transition-all"
-            >
-              <span className="hidden sm:inline">{L.nav.scheduleDemo}</span>
-              <span className="sm:hidden">Demo</span>
-              <ArrowUpRight size={14} />
             </button>
           </div>
         </div>

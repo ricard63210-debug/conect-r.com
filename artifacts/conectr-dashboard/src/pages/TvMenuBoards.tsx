@@ -4,9 +4,10 @@ import {
   ArrowLeft, Check, Sparkles, ArrowRight,
   RefreshCw, MessageCircle, Layout, Tv, Cloud, Monitor,
   Zap, Clock, BookOpen, Star, Shield,
-  Sun, Moon, Languages, ArrowUpRight
+  Sun, Moon, Languages
 } from "lucide-react";
 import { useLang } from "@/lib/i18n";
+import ContactButton from "@/components/ContactButton";
 import { getT } from "@/lib/translations";
 import conectrLogo from "@/assets/conectr-logo.png";
 import { useState, useEffect } from "react";
@@ -29,18 +30,6 @@ export default function TvMenuBoards() {
   const { lang, toggle: toggleLang } = useLang();
   const { theme, toggle: toggleTheme } = useTheme();
   const T = getT(lang);
-
-  const handleOpenDemoChat = () => {
-    window.dispatchEvent(
-      new CustomEvent("conectr:open-chat", {
-        detail: {
-          greeting: T.tvMenuBoards.demoGreeting,
-          lang,
-          userMessage: T.tvMenuBoards.demoUserMessage,
-        },
-      }),
-    );
-  };
 
   const handleOpenChat = () => {
     window.dispatchEvent(
@@ -89,14 +78,6 @@ export default function TvMenuBoards() {
             >
               <Languages size={13} strokeWidth={2.5} />
               {T.global.langBtn}
-            </button>
-            <button
-              onClick={handleOpenDemoChat}
-              className="inline-flex items-center gap-1.5 bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold shadow-lg shadow-orange-500/25 transition-all hover:shadow-orange-500/40 active:scale-95 active:shadow-inner"
-            >
-              <span className="hidden sm:inline">{T.landing.nav.scheduleDemo}</span>
-              <span className="sm:hidden">Demo</span>
-              <ArrowUpRight size={14} strokeWidth={2.5} />
             </button>
           </div>
         </div>
@@ -174,13 +155,7 @@ export default function TvMenuBoards() {
             <p className="text-muted-foreground max-w-xl mx-auto font-light mb-10">
               {T.tvMenuBoards.quote.body}
             </p>
-            <button
-              onClick={handleOpenDemoChat}
-              className="group inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-2xl font-bold shadow-xl shadow-orange-500/25 transition-all hover:scale-105 active:scale-95"
-            >
-              {T.tvMenuBoards.quote.cta}
-              <ArrowRight size={18} strokeWidth={2.5} className="transition-transform group-hover:translate-x-1" />
-            </button>
+            <ContactButton className="inline-flex items-center bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-2xl font-bold shadow-xl shadow-orange-500/25 transition-all hover:scale-105 active:scale-95" />
           </div>
         </div>
       </section>

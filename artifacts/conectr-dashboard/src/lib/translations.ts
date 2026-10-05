@@ -6,17 +6,17 @@ const translations = {
       ecosistema: "Ecosistema",
       langBtn: "English",
       backHome: "Inicio",
+      contactBtn: "Contáctanos",
+      contactSms: "Hola, me gustaría recibir más información sobre sus servicios.",
     },
 
     landing: {
-      nav: { signIn: "Iniciar sesion", scheduleDemo: "Agendar demo" },
+      nav: { signIn: "Iniciar sesion" },
       hero: {
         pill: "ECOSISTEMA DIGITAL PARA NEGOCIOS",
         title1: "Tu negocio merece",
         title2: "mas que una pagina",
         body: "Conect-R es la infraestructura operativa que atrae, atiende y retiene a tus clientes — todo en un solo ecosistema diseñado para negocios.",
-        ctaPrimary: "Agenda tu demo gratis",
-        ctaSecondary: "Ver funciones",
       },
       about: {
         pill: "RESUMEN EJECUTIVO",
@@ -91,7 +91,6 @@ const translations = {
       finalCta: {
         title: "¿Listo para hacer crecer tu negocio?",
         body: "Agenda una demo de 30 minutos. Sin compromisos. Te mostramos el ecosistema en accion para tu negocio.",
-        whatsapp: "Reservar por WhatsApp",
         email: "Enviar email",
       },
       footer: {
@@ -125,7 +124,6 @@ const translations = {
         pill: "COTIZACIÓN",
         title: "Cotización personalizada",
         body: "Cada negocio opera distinto. Cuéntanos qué necesitas y preparamos una propuesta a tu medida, sin compromiso.",
-        cta: "Contáctanos para una cotización personalizada",
       },
       features: {
         pill: "QUÉ ESTÁ INCLUIDO",
@@ -190,10 +188,8 @@ const translations = {
       footer: {
         rights: "© {year} Conect-R. Sacramento, CA. Todos los derechos reservados.",
       },
-      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y a qué se dedica?",
       chatGreeting: "¡Gracias por tu interés en nuestro sitio Premium! Soy Aria de Conect-R. Te guiaré para agendar tu consulta.\n\nPara empezar, ¿cuál es el nombre de tu negocio y a qué se dedica?",
       chatUserMessage: "Me gustaría solicitar mi Sitio Web Premium",
-      demoUserMessage: "Me gustaría agendar una demo",
     },
     chamba: {
       hero: {
@@ -207,7 +203,6 @@ const translations = {
         pill: "COTIZACIÓN",
         title: "Cotización personalizada",
         body: "Cada negocio opera distinto. Cuéntanos qué necesitas y preparamos una propuesta a tu medida, sin compromiso.",
-        cta: "Contáctanos para una cotización personalizada",
       },
       features: {
         pill: "QUÉ ESTÁ INCLUIDO",
@@ -279,10 +274,8 @@ const translations = {
       footer: {
         rights: "© {year} Conect-R. Sacramento, CA. Todos los derechos reservados.",
       },
-      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
       chatGreeting: "¡Gracias por tu interés en Chamba! Soy Aria de Conect-R. Te guiaré para activar Chamba.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?",
       chatUserMessage: "Me gustaría activar Chamba",
-      demoUserMessage: "Me gustaría agendar una demo",
     },
     tableReserve: {
       hero: {
@@ -296,7 +289,6 @@ const translations = {
         pill: "COTIZACIÓN",
         title: "Cotización personalizada",
         body: "Cada negocio opera distinto. Cuéntanos qué necesitas y preparamos una propuesta a tu medida, sin compromiso.",
-        cta: "Contáctanos para una cotización personalizada",
       },
       features: {
         pill: "QUÉ ESTÁ INCLUIDO",
@@ -368,10 +360,8 @@ const translations = {
       footer: {
         rights: "© {year} Conect-R. Sacramento, CA. Todos los derechos reservados.",
       },
-      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
       chatGreeting: "¡Gracias por tu interés en Table Reserve! Soy Aria de Conect-R. Te guiaré para configurar tu prueba.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?",
       chatUserMessage: "Me gustaría probar Table Reserve",
-      demoUserMessage: "Me gustaría agendar una demo",
     },
     nextUp: {
       hero: {
@@ -385,7 +375,6 @@ const translations = {
         pill: "COTIZACIÓN",
         title: "Cotización personalizada",
         body: "Cada negocio opera distinto. Cuéntanos qué necesitas y preparamos una propuesta a tu medida, sin compromiso.",
-        cta: "Contáctanos para una cotización personalizada",
       },
       features: {
         pill: "QUÉ ESTÁ INCLUIDO",
@@ -457,10 +446,8 @@ const translations = {
       footer: {
         rights: "© {year} Conect-R. Sacramento, CA. Todos los derechos reservados.",
       },
-      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
       chatGreeting: "¡Gracias por tu interés en NextUp! Soy Aria de Conect-R. Te guiaré para activar tu lista de espera digital.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?",
       chatUserMessage: "Me gustaría activar NextUp",
-      demoUserMessage: "Me gustaría agendar una demo",
     },
     chopChop: {
       hero: {
@@ -522,8 +509,6 @@ const translations = {
         button: "Consigue Chop Chop",
         backToHome: "Volver al inicio",
       },
-      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu barbería o salón?",
-      demoUserMessage: "Me gustaría agendar una demo",
     },
     tvMenuBoards: {
       hero: {
@@ -537,7 +522,6 @@ const translations = {
         pill: "COTIZACIÓN",
         title: "Cotización personalizada",
         body: "Cada negocio opera distinto. Cuéntanos qué necesitas y preparamos una propuesta a tu medida, sin compromiso.",
-        cta: "Contáctanos para una cotización personalizada",
       },
       features: {
         pill: "QUÉ ESTÁ INCLUIDO",
@@ -609,10 +593,8 @@ const translations = {
       footer: {
         rights: "© {year} Conect-R. Sacramento, CA. Todos los derechos reservados.",
       },
-      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y a qué se dedica?",
       chatGreeting: "¡Gracias por tu interés en TV Menu Boards! Soy Aria de Conect-R. Te guiaré para configurar tus pantallas digitales.\n\nPara empezar, ¿cuál es el nombre de tu negocio y a qué se dedica?",
       chatUserMessage: "Me gustaría activar las Pantallas de Menú TV",
-      demoUserMessage: "Me gustaría agendar una demo",
     },
     conectrStation: {
       hero: {
@@ -698,17 +680,17 @@ const translations = {
       ecosistema: "Ecosystem",
       langBtn: "Español",
       backHome: "Home",
+      contactBtn: "Contact us",
+      contactSms: "Hi, I'd like to get more information about your services.",
     },
 
     landing: {
-      nav: { signIn: "Sign in", scheduleDemo: "Book a demo" },
+      nav: { signIn: "Sign in" },
       hero: {
         pill: "DIGITAL ECOSYSTEM FOR BUSINESSES",
         title1: "Your business deserves",
         title2: "more than a webpage",
         body: "Conect-R is the operational infrastructure that attracts, serves, and retains your customers — all in one ecosystem built for businesses.",
-        ctaPrimary: "Book your free demo",
-        ctaSecondary: "See features",
       },
       about: {
         pill: "EXECUTIVE SUMMARY",
@@ -783,7 +765,6 @@ const translations = {
       finalCta: {
         title: "Ready to grow your business?",
         body: "Book a 30-minute demo. No commitments. We'll show you the ecosystem in action for your business.",
-        whatsapp: "Book by WhatsApp",
         email: "Send email",
       },
       footer: {
@@ -817,7 +798,6 @@ const translations = {
         pill: "GET A QUOTE",
         title: "Personalized quote",
         body: "Every business runs differently. Tell us what you need and we'll put together a proposal tailored to you — no strings attached.",
-        cta: "Contact us for a personalized quote",
       },
       features: {
         pill: "WHAT'S INCLUDED",
@@ -882,10 +862,8 @@ const translations = {
       footer: {
         rights: "© {year} Conect-R. Sacramento, CA. All rights reserved.",
       },
-      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what does it do?",
       chatGreeting: "Thanks for your interest in our Premium Website! I'm Aria from Conect-R. I'll guide you through booking a consultation.\n\nTo start, what's the name of your business and what does it do?",
       chatUserMessage: "I would like to request my Premium Website",
-      demoUserMessage: "I would like to book a demo",
     },
     chamba: {
       hero: {
@@ -899,7 +877,6 @@ const translations = {
         pill: "GET A QUOTE",
         title: "Personalized quote",
         body: "Every business runs differently. Tell us what you need and we'll put together a proposal tailored to you — no strings attached.",
-        cta: "Contact us for a personalized quote",
       },
       features: {
         pill: "WHAT'S INCLUDED",
@@ -971,10 +948,8 @@ const translations = {
       footer: {
         rights: "© {year} Conect-R. Sacramento, CA. All rights reserved.",
       },
-      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
       chatGreeting: "Thanks for your interest in Chamba! I'm Aria from Conect-R. I'll guide you through activating Chamba.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?",
       chatUserMessage: "I would like to activate Chamba",
-      demoUserMessage: "I would like to book a demo",
     },
     tableReserve: {
       hero: {
@@ -988,7 +963,6 @@ const translations = {
         pill: "GET A QUOTE",
         title: "Personalized quote",
         body: "Every business runs differently. Tell us what you need and we'll put together a proposal tailored to you — no strings attached.",
-        cta: "Contact us for a personalized quote",
       },
       features: {
         pill: "WHAT'S INCLUDED",
@@ -1060,10 +1034,8 @@ const translations = {
       footer: {
         rights: "© {year} Conect-R. Sacramento, CA. All rights reserved.",
       },
-      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
       chatGreeting: "Thanks for your interest in Table Reserve! I'm Aria from Conect-R. I'll guide you through setting up your trial.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?",
       chatUserMessage: "I would like to try Table Reserve",
-      demoUserMessage: "I would like to book a demo",
     },
     nextUp: {
       hero: {
@@ -1077,7 +1049,6 @@ const translations = {
         pill: "GET A QUOTE",
         title: "Personalized quote",
         body: "Every business runs differently. Tell us what you need and we'll put together a proposal tailored to you — no strings attached.",
-        cta: "Contact us for a personalized quote",
       },
       features: {
         pill: "WHAT'S INCLUDED",
@@ -1149,10 +1120,8 @@ const translations = {
       footer: {
         rights: "© {year} Conect-R. Sacramento, CA. All rights reserved.",
       },
-      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
       chatGreeting: "Thanks for your interest in NextUp! I'm Aria from Conect-R. I'll guide you through activating your digital waitlist.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?",
       chatUserMessage: "I would like to activate NextUp",
-      demoUserMessage: "I would like to book a demo",
     },
     chopChop: {
       hero: {
@@ -1214,8 +1183,6 @@ const translations = {
         button: "Get Chop Chop",
         backToHome: "Back to home",
       },
-      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your barbershop or salon?",
-      demoUserMessage: "I would like to book a demo",
     },
     tvMenuBoards: {
       hero: {
@@ -1229,7 +1196,6 @@ const translations = {
         pill: "GET A QUOTE",
         title: "Personalized quote",
         body: "Every business runs differently. Tell us what you need and we'll put together a proposal tailored to you — no strings attached.",
-        cta: "Contact us for a personalized quote",
       },
       features: {
         pill: "WHAT'S INCLUDED",
@@ -1301,10 +1267,8 @@ const translations = {
       footer: {
         rights: "© {year} Conect-R. Sacramento, CA. All rights reserved.",
       },
-      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what does it do?",
       chatGreeting: "Thanks for your interest in TV Menu Boards! I'm Aria from Conect-R. I'll guide you through setting up your digital boards.\n\nTo start, what's the name of your business and what does it do?",
       chatUserMessage: "I would like to activate TV Menu Boards",
-      demoUserMessage: "I would like to book a demo",
     },
     conectrStation: {
       hero: {
