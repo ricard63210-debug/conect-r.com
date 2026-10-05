@@ -180,10 +180,27 @@ export default function AssistantWidget() {
 
   // Listen for external "open chat with greeting" and consent overlay triggers
   useEffect(() => {
-    const handleOpenChat = () => {
-      setConsentType("sms");
-      setConsentChecked(false);
-      setConsentModalOpen(true);
+    const handleOpenChat = (e: Event) => {
+      const ce = e as CustomEvent<{ greeting?: string; userMessage?: string }>;
+      const greeting = ce.detail?.greeting;
+      const userMessage = ce.detail?.userMessage;
+
+      if (greeting) {
+        // Flag the language effect so it doesn't immediately overwrite this greeting
+        customGreetRef.current = greeting;
+        setMessages([{ id: uid(), from: "bot", text: greeting }]);
+        aiHistoryRef.current = [{ role: "assistant", content: greeting }];
+        setAppointment(null);
+        setEditing(false);
+        setSendStatus("idle");
+      }
+
+      setOpen(true);
+
+      // Defer so the seeded greeting is committed before the user turn is appended
+      if (userMessage) {
+        setTimeout(() => sendMessageRef.current?.(userMessage), 0);
+      }
     };
     const handleOpenConsent = (e: Event) => {
       const ce = e as CustomEvent<{ type: "sms" | "whatsapp" | "email" }>;
@@ -192,10 +209,10 @@ export default function AssistantWidget() {
       setConsentModalOpen(true);
     };
 
-    window.addEventListener("conectr:open-chat", handleOpenChat);
+    window.addEventListener("conectr:open-chat", handleOpenChat as EventListener);
     window.addEventListener("conectr:open-consent", handleOpenConsent as EventListener);
     return () => {
-      window.removeEventListener("conectr:open-chat", handleOpenChat);
+      window.removeEventListener("conectr:open-chat", handleOpenChat as EventListener);
       window.removeEventListener("conectr:open-consent", handleOpenConsent as EventListener);
     };
   }, []);
@@ -503,7 +520,9 @@ export default function AssistantWidget() {
                   className="mt-0.5 h-4 w-4 shrink-0 rounded accent-orange-500 focus:ring-orange-500 cursor-pointer"
                 />
                 <label htmlFor="global-sms-consent" className="text-xs leading-normal text-muted-foreground select-none cursor-pointer">
-                  By providing your phone number and checking this box, I agree to receive automated SMS notifications from CONECT-R and its services (Nextup, TableReserve, CONECT-R Station). Msg & data rates may apply. Reply STOP to opt out at any time.
+                  {lang === "es"
+                    ? "Al proporcionar mi número de teléfono y marcar esta casilla, acepto recibir notificaciones automáticas por SMS de CONECT-R y sus servicios. Pueden aplicar tarifas de mensajes y datos. Responde STOP para darte de baja en cualquier momento."
+                    : "By providing your phone number and checking this box, I agree to receive automated SMS notifications from CONECT-R and its services. Msg & data rates may apply. Reply STOP to opt out at any time."}
                 </label>
               </div>
 
@@ -577,6 +596,44 @@ function TypingDots() {
   );
 }
 
+// A2P/10DLC consent, shown next to the phone field. Rendered on every page of the
+// site, so it names CONECT-R generically rather than listing individual products.
+function SmsConsentNotice({
+  id,
+  lang,
+  checked,
+  onCheckedChange,
+}: {
+  id: string;
+  lang: Lang;
+  checked: boolean;
+  onCheckedChange: (v: boolean) => void;
+}) {
+  const linkCls = "underline hover:text-foreground";
+  return (
+    <div className="mt-1.5 mb-1.5 flex items-start gap-2 bg-background/30 p-2 rounded-lg border border-border/40">
+      <input
+        type="checkbox"
+        id={id}
+        checked={checked}
+        onChange={(e) => onCheckedChange(e.target.checked)}
+        className="mt-0.5 h-3.5 w-3.5 shrink-0 rounded accent-orange-500 focus:ring-orange-500"
+      />
+      <label htmlFor={id} className="text-[9px] leading-tight text-muted-foreground select-none">
+        {lang === "es" ? (
+          <>
+            Al proporcionar tu número de teléfono, aceptas recibir notificaciones automáticas por SMS de CONECT-R y sus servicios. Pueden aplicar tarifas de mensajes y datos. Responde STOP para darte de baja. Política de Privacidad: <a href="https://conect-r.com/privacy" target="_blank" rel="noopener noreferrer" className={linkCls}>https://conect-r.com/privacy</a> | Términos: <a href="https://conect-r.com/terms" target="_blank" rel="noopener noreferrer" className={linkCls}>https://conect-r.com/terms</a>
+          </>
+        ) : (
+          <>
+            By providing your phone number, you agree to receive automated SMS notifications from CONECT-R and its services. Msg &amp; data rates may apply. Reply STOP to opt out. Privacy Policy: <a href="https://conect-r.com/privacy" target="_blank" rel="noopener noreferrer" className={linkCls}>https://conect-r.com/privacy</a> | Terms: <a href="https://conect-r.com/terms" target="_blank" rel="noopener noreferrer" className={linkCls}>https://conect-r.com/terms</a>
+          </>
+        )}
+      </label>
+    </div>
+  );
+}
+
 function SummaryCard({
   lang,
   appt,
@@ -645,18 +702,12 @@ function SummaryCard({
                 />
               </label>
               {f.key === "phone" && (
-                <div className="mt-1.5 mb-1.5 flex items-start gap-2 bg-background/30 p-2 rounded-lg border border-border/40">
-                  <input
-                    type="checkbox"
-                    id="sms-consent-edit"
-                    checked={smsConsent}
-                    onChange={(e) => setSmsConsent(e.target.checked)}
-                    className="mt-0.5 h-3.5 w-3.5 shrink-0 rounded accent-orange-500 focus:ring-orange-500"
-                  />
-                  <label htmlFor="sms-consent-edit" className="text-[9px] leading-tight text-muted-foreground select-none">
-                    By providing your phone number, you agree to receive automated SMS notifications from CONECT-R and its services (Nextup, TableReserve). Msg & data rates may apply. Reply STOP to opt out. Privacy Policy: <a href="https://conect-r.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">https://conect-r.com/privacy</a> | Terms: <a href="https://conect-r.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">https://conect-r.com/terms</a>
-                  </label>
-                </div>
+                <SmsConsentNotice
+                  id="sms-consent-edit"
+                  lang={lang}
+                  checked={smsConsent}
+                  onCheckedChange={setSmsConsent}
+                />
               )}
             </div>
           ))}
@@ -676,18 +727,12 @@ function SummaryCard({
                   </span>
                 </div>
                 {f.key === "phone" && (
-                  <div className="mt-1.5 mb-1.5 flex items-start gap-2 bg-background/30 p-2 rounded-lg border border-border/40">
-                    <input
-                      type="checkbox"
-                      id="sms-consent-view"
-                      checked={smsConsent}
-                      onChange={(e) => setSmsConsent(e.target.checked)}
-                      className="mt-0.5 h-3.5 w-3.5 shrink-0 rounded accent-orange-500 focus:ring-orange-500"
-                    />
-                    <label htmlFor="sms-consent-view" className="text-[9px] leading-tight text-muted-foreground select-none">
-                      By providing your phone number, you agree to receive automated SMS notifications from CONECT-R and its services (Nextup, TableReserve). Msg & data rates may apply. Reply STOP to opt out. Privacy Policy: <a href="https://conect-r.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">https://conect-r.com/privacy</a> | Terms: <a href="https://conect-r.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">https://conect-r.com/terms</a>
-                    </label>
-                  </div>
+                  <SmsConsentNotice
+                    id="sms-consent-view"
+                    lang={lang}
+                    checked={smsConsent}
+                    onCheckedChange={setSmsConsent}
+                  />
                 )}
               </div>
             ))}
