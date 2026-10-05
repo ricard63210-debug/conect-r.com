@@ -70,12 +70,6 @@ const translations = {
           dashHash: "signage",
         },
         {
-          name: "Asesoria para Negocios",
-          tagline: "CONSULTORIA ESTRATEGICA DE RENTABILIDAD",
-          body: "Acompanamos a tu negocio mas alla del software: analisis operativo, estrategia de marketing, revision de oferta y precios, optimizacion de costos y plan de crecimiento. Conect-R como tu socio estrategico — no solo proveedor de tecnologia.",
-          dashHash: "consulting",
-        },
-        {
           name: "Chop Chop",
           tagline: "PARA BARBERÍAS Y SALONES",
           body: "Plataforma de reservas para barberías y salones. Tus clientes eligen su estilista, solicitan su horario y tú apruebas la cita desde tu celular — sin llamadas, sin mensajes perdidos, sin confusión.",
@@ -92,36 +86,6 @@ const translations = {
           { num: "02", title: "Se abre el portal del restaurante", body: "Menu, reservas, redes sociales y reseñas — todo en una sola pantalla." },
           { num: "03", title: "Deja una reseña de 5 estrellas en Google", body: "El sistema lo guia con un solo tap. Mas reviews = mas clientes nuevos." },
           { num: "04", title: "Tu restaurante crece sin esfuerzo", body: "Mas rankings en Google, mas reservas, mas mesas llenas. Todo automatico." },
-        ],
-      },
-      local: {
-        pill: "HECHO EN CALIFORNIA",
-        title1: "Compañia local de Sacramento",
-        title2: "para negocios locales",
-        body: "Conect-R es una compañia local de California, basada en Sacramento. Servimos principalmente a negocios de Sacramento y sus alrededores — Elk Grove, Roseville, Folsom, Davis, Rocklin y toda la region. Conocemos el mercado local, hablamos tu idioma y entendemos las necesidades de los negocios familiares mexicanos, latinos y americanos.",
-        cities: ["Sacramento", "Elk Grove", "Roseville", "Folsom", "Davis", "Rocklin"],
-      },
-      expansion: {
-        pill: "ESCALA NACIONAL",
-        title1: "Expansion agresiva",
-        title2: "en Estados Unidos",
-        body: "Nuestro objetivo a mediano y largo plazo es la expansion agresiva y la venta online en todo Estados Unidos. El modelo SaaS y el envio de hardware preconfigurado (como Conect-r Station) nos permite operar de forma remota, eliminando las barreras geograficas que tradicionalmente limitan a las agencias locales.",
-        items: [
-          { title: "Estandarizacion *Plug & Play*", body: "Sin POS propietario ni hardware on-premise. Los modulos (Website, Chamba, Table Reserve, NextUp) se activan remotamente para cualquier negocio en USA en cuestion de horas." },
-          { title: "Marketing de Impacto Visual", body: "Campañas digitales con disenos premium y dinamicos que garantizan un wow-factor. Las landing pages convierten sin necesidad de visitas presenciales." },
-          { title: "Escalabilidad por Bundle", body: "Promover el Ecosistema Completo aumenta el ticket promedio (LTV) mientras el negocio hace su transformacion digital con una inversion accesible." },
-          { title: "Portafolio Publico Autorizado", body: "Por contrato, Conect-R puede usar logos y casos de exito de clientes como material publicitario (Social Proof) — construyendo credibilidad estado por estado." },
-        ],
-      },
-      legal: {
-        pill: "MARCO LEGAL",
-        title: "Diseno legal que protege a ambos lados",
-        body: "Master Terms, Specifications & Services Agreement estructurado cuidadosamente para proteger los activos de la empresa y dar tranquilidad al cliente.",
-        items: [
-          { title: "Propiedad Intelectual y Codigo", body: "Conect-R retiene exclusiva y permanentemente todos los derechos sobre la infraestructura online, codigo fuente, bases de datos y algoritmos." },
-          { title: "Licencia Restringida", body: "El cliente paga una licencia limitada, no exclusiva y no transferible. La propiedad del hardware fisico (stands) no transfiere derechos sobre el software." },
-          { title: "Confidencialidad Estricta", body: "Compromiso firme de proteger los datos operativos del negocio y la base de datos de clientes. Conect-R no vende ni distribuye estos datos a terceros." },
-          { title: "Disclaimer", body: "El ecosistema se provee 'as is', protegiendo a Conect-R de reclamos por perdida de utilidades o interrupciones imprevisibles del servicio (downtime)." },
         ],
       },
       finalCta: {
@@ -142,21 +106,6 @@ const translations = {
     },
 
 
-    consulting: {
-      description:
-        "Analizamos tu negocio a fondo y aplicamos optimizaciones medibles para que cada servicio, cada producto y cada turno generen más utilidad.",
-      steps: [
-        { title: "Diagnóstico Operativo", body: "Estudio de ventas, costos, tiempos de servicio, desperdicio, capacidad utilizada y datos de tu punto de venta para detectar dónde se va el dinero." },
-        { title: "Plan Estratégico", body: "Recomendaciones concretas: ajuste de tu catálogo de productos y servicios, ingeniería de precios, reorganización de turnos, marketing local y digitalización." },
-        { title: "Implementación Guiada", body: "Activamos los módulos Conect-R necesarios, capacitamos al equipo y dejamos procesos documentados para que la operación no dependa de una sola persona." },
-        { title: "Medición de Utilidad", body: "Tablero mensual con KPIs: ticket promedio, costo de insumos %, costo de nómina %, capacidad utilizada y utilidad neta — comparativo antes vs. después." },
-      ],
-      metrics: [
-        { value: "+28%", label: "Utilidad neta promedio" },
-        { value: "-18%", label: "Costo de insumos tras optimizar el catálogo" },
-        { value: "+34%", label: "Ticket promedio en horarios optimizados" },
-      ],
-    },
 
 
 
@@ -665,81 +614,6 @@ const translations = {
       chatUserMessage: "Me gustaría activar las Pantallas de Menú TV",
       demoUserMessage: "Me gustaría agendar una demo",
     },
-    businessConsulting: {
-      hero: {
-        pill: "ASESORÍA DE NEGOCIOS",
-        title: "Asesoría de Negocios",
-        titleHighlight: "Más utilidad, menos conjeturas.",
-        subtitle: "Analizamos tu negocio a fondo y aplicamos optimizaciones medibles para que cada servicio, cada producto y cada turno generen más utilidad.",
-        cta: "Quiero un diagnóstico gratuito",
-      },
-      stats: {
-        pill: "RESULTADOS PROBADOS",
-        title: "Estudios que se convierten en dinero real",
-        subtitle: "Entregamos mejoras financieras concretas a través de rediseños operativos basados en datos.",
-        metrics: [
-          {
-            value: "+28%",
-            label: "Aumento promedio de utilidad neta",
-          },
-          {
-            value: "-18%",
-            label: "Costo de insumos tras optimizar el catálogo",
-          },
-          {
-            value: "+34%",
-            label: "Ticket promedio en horarios optimizados",
-          },
-        ],
-      },
-      features: {
-        pill: "NUESTRO MÉTODO",
-        title: "Una hoja de ruta estructurada para",
-        titleHighlight: "maximizar la eficiencia.",
-        list: [
-          {
-            number: "01",
-            title: "Diagnóstico Operativo",
-            body: "Estudio profundo de ventas, costos, tiempos de servicio, desperdicio, capacidad utilizada y datos de tu punto de venta — identificando exactamente dónde se escapa el dinero.",
-          },
-          {
-            number: "02",
-            title: "Plan Estratégico",
-            body: "Recomendaciones concretas: reingeniería de tu catálogo de productos y servicios, estrategia de precios, rediseño de turnos, marketing local y activación digital.",
-          },
-          {
-            number: "03",
-            title: "Implementación Guiada",
-            body: "Activamos los módulos de Conect-R que necesitas, capacitamos al equipo y dejamos procesos documentados para que el negocio ya no dependa de una sola persona.",
-          },
-          {
-            number: "04",
-            title: "Medición de Beneficios",
-            body: "Panel mensual de KPIs: ticket promedio, % de costo de insumos, % de nómina, capacidad utilizada y utilidad neta — comparación clara del antes vs. después.",
-          },
-        ],
-      },
-      cta: {
-        pill: "LISTO PARA OPTIMIZAR",
-        title: "¿Listo para optimizar tu negocio?",
-        subtitle: "Habla con Aria — nuestra asistente virtual recopilará tus detalles y te conectará con nuestro equipo de consultoría para comenzar.",
-        button: "Quiero un diagnóstico gratuito",
-        backToHome: "Volver al inicio",
-        socialProof: [
-          "Términos flexibles",
-          "Proyecto completo al aire en menos de 2 semanas",
-          "Soporte bilingüe (EN/ES)",
-          "Equipo basado en Sacramento",
-        ],
-      },
-      footer: {
-        rights: "© {year} Conect-R. Sacramento, CA. Todos los derechos reservados.",
-      },
-      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y a qué se dedica?",
-      chatGreeting: "¡Gracias por tu interés en nuestra Asesoría de Negocios! Soy Aria de Conect-R. Te guiaré para programar tu diagnóstico gratuito.\n\nPara empezar, ¿cuál es el nombre de tu negocio y a qué se dedica?",
-      chatUserMessage: "Quiero un diagnóstico gratuito",
-      demoUserMessage: "Me gustaría agendar una demo",
-    },
     conectrStation: {
       hero: {
         pill: "CONECT-R STATION",
@@ -888,12 +762,6 @@ const translations = {
           dashHash: "signage",
         },
         {
-          name: "Business Consulting",
-          tagline: "STRATEGIC PROFITABILITY ADVISORY",
-          body: "We support your business beyond the software: operational analysis, marketing strategy, offering and pricing review, cost optimization, and growth planning. Conect-R as your strategic partner — not just a technology vendor.",
-          dashHash: "consulting",
-        },
-        {
           name: "Chop Chop",
           tagline: "FOR BARBERSHOPS & SALONS",
           body: "Booking platform for barbershops and salons. Clients pick their stylist, request a time, and you approve the appointment right from your phone — no calls, no missed messages, no back-and-forth.",
@@ -910,36 +778,6 @@ const translations = {
           { num: "02", title: "The restaurant portal opens", body: "Menu, reservations, social media and reviews — all on one screen." },
           { num: "03", title: "Leaves a 5-star Google review", body: "The system guides them with one tap. More reviews = more new customers." },
           { num: "04", title: "Your restaurant grows effortlessly", body: "Higher Google rankings, more reservations, more full tables. All automatic." },
-        ],
-      },
-      local: {
-        pill: "MADE IN CALIFORNIA",
-        title1: "A local Sacramento company",
-        title2: "for local businesses",
-        body: "Conect-R is a local California company based in Sacramento. We primarily serve businesses in Sacramento and surrounding areas — Elk Grove, Roseville, Folsom, Davis, Rocklin and the entire region. We know the local market, we speak your language, and we understand the needs of family-owned Mexican, Latin, and American businesses.",
-        cities: ["Sacramento", "Elk Grove", "Roseville", "Folsom", "Davis", "Rocklin"],
-      },
-      expansion: {
-        pill: "NATIONAL SCALE",
-        title1: "Aggressive expansion",
-        title2: "across the United States",
-        body: "Our medium- and long-term goal is aggressive expansion and online sales across the United States. The SaaS model and shipment of pre-configured hardware (such as Conect-r Station) lets us operate remotely, eliminating the geographical barriers that traditionally limit local agencies.",
-        items: [
-          { title: "*Plug & Play* Standardization", body: "No proprietary POS or on-premise hardware required. Modules (Website, Chamba, Table Reserve, NextUp) activate remotely for any business in the USA in a matter of hours." },
-          { title: "Visual Impact Marketing", body: "Premium and dynamic digital campaigns that guarantee a wow-factor. Landing pages convert without the need for in-person sales visits." },
-          { title: "Bundle Scalability", body: "Promoting the Complete Ecosystem raises the average ticket (LTV) while the business goes through a full digital transformation with an accessible investment." },
-          { title: "Authorized Public Portfolio", body: "By contract, Conect-R can use customer logos and success stories as marketing material (Social Proof) — building credibility state by state." },
-        ],
-      },
-      legal: {
-        pill: "LEGAL FRAMEWORK",
-        title: "Legal design that protects both sides",
-        body: "Master Terms, Specifications & Services Agreement carefully structured to protect company assets and ensure customer peace of mind.",
-        items: [
-          { title: "Intellectual Property and Code", body: "Conect-R exclusively and permanently retains all rights to the online infrastructure, source code, databases, and algorithms." },
-          { title: "Restricted Licensing", body: "The customer pays for a limited, non-exclusive, non-transferable license. Ownership of the physical hardware (stands) does not transfer software IP rights." },
-          { title: "Strict Confidentiality", body: "Strong commitment to protecting the business's operational data and customer database. Conect-R does not sell or distribute this data to third parties." },
-          { title: "Disclaimer", body: "The ecosystem is provided 'as is', protecting Conect-R from claims of lost profits or unforeseeable service interruptions (downtime)." },
         ],
       },
       finalCta: {
@@ -960,21 +798,6 @@ const translations = {
     },
 
 
-    consulting: {
-      description:
-        "We analyze your business in depth and roll out measurable optimizations so every service, every product and every shift drives more profit.",
-      steps: [
-        { title: "Operational Diagnosis", body: "Deep study of sales, costs, service times, waste, capacity utilization and point-of-sale data — pinpointing exactly where money is leaking." },
-        { title: "Strategic Plan", body: "Concrete recommendations: product and service mix re-engineering, price strategy, shift redesign, local marketing and digital activation." },
-        { title: "Guided Implementation", body: "We activate the Conect-R modules you need, train the team and leave processes documented so the business no longer depends on one person." },
-        { title: "Profit Measurement", body: "Monthly KPI dashboard: average ticket, cost of goods %, labor %, capacity utilization and net profit — clear before vs. after comparison." },
-      ],
-      metrics: [
-        { value: "+28%", label: "Average net profit lift" },
-        { value: "-18%", label: "Cost of goods after catalog optimization" },
-        { value: "+34%", label: "Average ticket in optimized hours" },
-      ],
-    },
 
 
 
@@ -1481,81 +1304,6 @@ const translations = {
       demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what does it do?",
       chatGreeting: "Thanks for your interest in TV Menu Boards! I'm Aria from Conect-R. I'll guide you through setting up your digital boards.\n\nTo start, what's the name of your business and what does it do?",
       chatUserMessage: "I would like to activate TV Menu Boards",
-      demoUserMessage: "I would like to book a demo",
-    },
-    businessConsulting: {
-      hero: {
-        pill: "BUSINESS CONSULTING",
-        title: "Business Consulting",
-        titleHighlight: "More profit, less guessing.",
-        subtitle: "We analyze your business in depth and roll out measurable optimizations so every service, every product and every shift drives more profit.",
-        cta: "I want a free diagnosis",
-      },
-      stats: {
-        pill: "PROVEN RESULTS",
-        title: "Studies that turn into real money",
-        subtitle: "We deliver concrete financial improvements through data-driven operational redesigns.",
-        metrics: [
-          {
-            value: "+28%",
-            label: "Average net profit lift",
-          },
-          {
-            value: "-18%",
-            label: "Cost of goods after catalog optimization",
-          },
-          {
-            value: "+34%",
-            label: "Average ticket in optimized hours",
-          },
-        ],
-      },
-      features: {
-        pill: "OUR METHOD",
-        title: "A structured roadmap to",
-        titleHighlight: "maximizing efficiency.",
-        list: [
-          {
-            number: "01",
-            title: "Operational Diagnosis",
-            body: "Deep study of sales, costs, service times, waste, capacity utilization and point-of-sale data — pinpointing exactly where money is leaking.",
-          },
-          {
-            number: "02",
-            title: "Strategic Plan",
-            body: "Concrete recommendations: product and service mix re-engineering, price strategy, shift redesign, local marketing and digital activation.",
-          },
-          {
-            number: "03",
-            title: "Guided Implementation",
-            body: "We activate the Conect-R modules you need, train the team and leave processes documented so the business no longer depends on one person.",
-          },
-          {
-            number: "04",
-            title: "Profit Measurement",
-            body: "Monthly KPI dashboard: average ticket, cost of goods %, labor %, capacity utilization and net profit — clear before vs. after comparison.",
-          },
-        ],
-      },
-      cta: {
-        pill: "READY TO OPTIMIZE",
-        title: "Ready to optimize your business?",
-        subtitle: "Talk to Aria — our AI assistant will gather your details and connect you with our consulting team to get started.",
-        button: "I want a free diagnosis",
-        backToHome: "Back to home",
-        socialProof: [
-          "Flexible terms",
-          "Full project live in under 2 weeks",
-          "Bilingual support (EN/ES)",
-          "Sacramento-based team",
-        ],
-      },
-      footer: {
-        rights: "© {year} Conect-R. Sacramento, CA. All rights reserved.",
-      },
-      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what does it do?",
-      chatGreeting: "Thanks for your interest in our Business Consulting services! I'm Aria from Conect-R. I'll guide you through scheduling your free diagnosis.\n\nTo start, what's the name of your business and what does it do?",
-      chatUserMessage: "I want a free diagnosis",
       demoUserMessage: "I would like to book a demo",
     },
     conectrStation: {

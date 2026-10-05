@@ -11,7 +11,6 @@ import NextUp from "@/pages/NextUp";
 import ChopChop from "@/pages/ChopChop";
 import ConectrStation from "@/pages/ConectrStation";
 import TvMenuBoards from "@/pages/TvMenuBoards";
-import BusinessConsulting from "@/pages/BusinessConsulting";
 import SmsConsent from "@/pages/SmsConsent";
 import Terms from "@/pages/Terms";
 import Privacy from "@/pages/Privacy";
@@ -31,7 +30,6 @@ function Router() {
       <Route path="/chop-chop" component={ChopChop} />
       <Route path="/conectr-station" component={ConectrStation} />
       <Route path="/tv-menu-boards" component={TvMenuBoards} />
-      <Route path="/business-consulting" component={BusinessConsulting} />
       <Route path="/sms-consent" component={SmsConsent} />
       <Route path="/terms" component={Terms} />
       <Route path="/privacy" component={Privacy} />

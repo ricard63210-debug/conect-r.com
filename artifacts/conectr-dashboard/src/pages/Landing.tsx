@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import {
-  ArrowUpRight, ArrowRight, Check, MapPin, Sun, Moon, Languages,
-  Globe, Smartphone, Monitor, HeartHandshake,
-  Eye, Target, Shield, Lock, FileText, AlertTriangle,
-  Zap, Megaphone, Layers, Award, Sparkles, MessageCircle, Mail,
+  ArrowUpRight, ArrowRight, Check, Sun, Moon, Languages,
+  Globe, Smartphone, Monitor,
+  Eye, Target,
+  Sparkles, MessageCircle, Mail,
   TrendingUp, BarChart3, Lightbulb, DollarSign,
 } from "lucide-react";
 import { useLang } from "@/lib/i18n";
@@ -90,10 +90,7 @@ const MODULE_ICONS: Array<React.ComponentType<{ size?: number; strokeWidth?: num
   NextUpIcon,      // NextUp
   Smartphone,      // NFC Stands
   Monitor,         // TV Menu Boards
-  HeartHandshake,  // Asesoria para Negocios
 ];
-const EXPANSION_ICONS = [Zap, Megaphone, Layers, Award];
-const LEGAL_ICONS = [FileText, Lock, Shield, AlertTriangle];
 
 /* ───────────── Theme ───────────── */
 
@@ -109,15 +106,6 @@ function useTheme() {
     try { localStorage.setItem("conectr-theme", theme); } catch {}
   }, [theme]);
   return { theme, toggle: () => setTheme(t => t === "dark" ? "light" : "dark") };
-}
-
-function Pill({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-orange-500/40 bg-orange-500/10 text-orange-500 text-[11px] sm:text-xs font-bold tracking-[0.12em]">
-      <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
-      {children}
-    </div>
-  );
 }
 
 /* ───────────── Wordmark — "Conect-" + R con ondas wifi en naranja ───────────── */
@@ -346,7 +334,6 @@ export default function Landing() {
                 "/nextup",
                 "/conectr-station",
                 "/tv-menu-boards",
-                "/business-consulting",
                 "/chop-chop"
               ];
               const path = cardPaths[i] || "/";
@@ -373,181 +360,6 @@ export default function Landing() {
                     </div>
                     <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   </Link>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* BUSINESS CONSULTING — Studies & Profit Optimization */}
-      <section id="consulting" className="relative border-t border-border bg-muted/30 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-28 sm:py-40">
-          <div className="text-center mb-20">
-            <div className="flex justify-center mb-8">
-              <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                {lang === "es" ? "ASESORÍA DE NEGOCIO" : "BUSINESS CONSULTING"}
-              </div>
-            </div>
-            <h2 className="text-4xl sm:text-7xl font-serif italic mb-8">
-              {lang === "es" ? "Más utilidad," : "More profit,"}<br />
-              <span className="text-gradient font-sans not-italic font-black block mt-2">
-                {lang === "es" ? "menos suposiciones." : "less guessing."}
-              </span>
-            </h2>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light tracking-wide">
-              {T.consulting.description}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-            {T.consulting.steps.map((step, i) => {
-              return (
-                <motion.div
-                  key={step.title}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="maya-card glass-panel rounded-3xl p-8"
-                >
-                  <div className="text-[10px] font-black tracking-[0.25em] text-orange-500/60 mb-3 uppercase">
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <h3 className="font-bold text-foreground text-xl mb-3 leading-tight font-sans">
-                    {step.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed font-light tracking-wide">{step.body}</p>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          <div className="max-w-4xl mx-auto mesh-gradient rounded-[2.5rem] border border-orange-500/20 p-8 sm:p-14 text-center shadow-2xl">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
-              {T.consulting.metrics.map((m) => (
-                <div key={m.label} className="relative">
-                  <div className="text-4xl sm:text-5xl font-black text-orange-500 tracking-tighter mb-2">
-                    {m.value}
-                  </div>
-                  <div className="text-xs font-black tracking-[0.2em] text-foreground/40 uppercase">{m.label}</div>
-                </div>
-              ))}
-            </div>
-            <button
-              onClick={() => openDemoChat(lang, lang === "es" ? "Quiero un diagnóstico gratuito" : "I want a free diagnosis")}
-              className="inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl shadow-orange-500/30 transition-all hover:scale-105 active:scale-95"
-            >
-              {lang === "es" ? "Diagnóstico gratis" : "Free diagnosis"}
-              <ArrowRight size={20} strokeWidth={2.5} />
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* LOCAL CALIFORNIA */}
-      <section id="local" className="relative border-t border-border bg-muted/20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-24 sm:py-32">
-          <div className="glass-panel rounded-[3rem] p-8 sm:p-16 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/5 blur-3xl rounded-full translate-x-1/3 -translate-y-1/3" />
-            <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-12">
-              <div className="w-20 h-20 rounded-3xl bg-orange-500 flex items-center justify-center shrink-0 shadow-2xl shadow-orange-500/40">
-                <MapPin size={32} strokeWidth={2} className="text-white" />
-              </div>
-              <div className="flex-1 text-center md:text-left">
-                <div className="mb-6">
-                  <div className="inline-flex px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] font-black tracking-[0.2em] uppercase">
-                    {L.local.pill}
-                  </div>
-                </div>
-                <h2 className="text-3xl sm:text-5xl font-serif italic mb-6 leading-tight">
-                  {L.local.title1}<br />
-                  <span className="text-gradient font-sans not-italic font-black block mt-2">{L.local.title2}</span>
-                </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed font-light tracking-wide mb-8">
-                  {L.local.body}
-                </p>
-                <div className="flex flex-wrap justify-center md:justify-start gap-3">
-                  {L.local.cities.map(city => (
-                    <span
-                      key={city}
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border-white/5 text-xs font-bold text-foreground/80 tracking-wide"
-                    >
-                      <div className="w-1.5 h-1.5 rounded-full bg-orange-500" />
-                      {city}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* USA EXPANSION */}
-      <section id="expansion" className="relative border-t border-border">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-28 sm:py-40">
-          <div className="text-center mb-20">
-            <div className="flex justify-center mb-8">
-              <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                {L.expansion.pill}
-              </div>
-            </div>
-            <h2 className="text-4xl sm:text-7xl font-serif italic mb-8">
-              {L.expansion.title1}<br />
-              <span className="text-gradient font-sans not-italic font-black block mt-2">{L.expansion.title2}</span>
-            </h2>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light tracking-wide">
-              {L.expansion.body}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {L.expansion.items.map((item, i) => {
-              return (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="maya-card glass-panel rounded-3xl p-8 group"
-                >
-                  <h3 className="font-bold text-foreground text-xl mb-3 leading-tight font-sans">
-                    {item.title.replace(/\*/g, "")}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed font-light tracking-wide">{item.body}</p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* LEGAL */}
-      <section id="legal" className="border-t border-border">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
-          <div className="text-center mb-10">
-            <div className="flex justify-center mb-5"><Pill>{L.legal.pill}</Pill></div>
-            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-4">
-              {L.legal.title}
-            </h2>
-            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">{L.legal.body}</p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-            {L.legal.items.map((item, i) => {
-              return (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.4, delay: i * 0.05 }}
-                  className="rounded-2xl border border-border bg-background p-5"
-                >
-                  <h3 className="font-bold text-foreground text-sm mb-1">{item.title}</h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{item.body}</p>
                 </motion.div>
               );
             })}
