@@ -1,6 +1,7 @@
 import { Router, type IRouter } from "express";
 import OpenAI from "openai";
-import { getUncachableSendGridClient } from "../lib/sendgrid";
+import { sendEmail } from "../lib/resend";
+import { sendLeadSms } from "../lib/twilio";
 
 const router: IRouter = Router();
 const TEAM_EMAIL = "contact@conect-r.com";
@@ -108,7 +109,7 @@ Cuando el usuario muestre interés real (pide una cotización, detalles de módu
 Reacciona a cada respuesta, ofrece un tip relevante de algún módulo, y siempre apunta hacia agendar la demo.
 
 CIERRE DE LA DEMO:
-Cuando tengas como mínimo: nombre del negocio, nombre del contacto, teléfono y correo (extra si tienes tipo de negocio, reto e interés), llama a la herramienta 'prepare_appointment' con todo lo recopilado. Usa cadena vacía "" para campos que no conozcas — NUNCA inventes datos. Después de llamar la herramienta, escribe UN mensaje corto de confirmación en el idioma del usuario, por ejemplo:
+Cuando tengas como mínimo: nombre del negocio, nombre del contacto, y teléfono o correo — al menos uno de los dos (extra si tienes tipo de negocio, reto e interés), llama a la herramienta 'prepare_appointment' con todo lo recopilado. Usa cadena vacía "" para campos que no conozcas — NUNCA inventes datos. Después de llamar la herramienta, escribe UN mensaje corto de confirmación en el idioma del usuario, por ejemplo:
   ES: "Perfecto, ya armé el resumen para el equipo. Revísalo y mándalo cuando estés listo 🙌"
   EN: "Perfect, I've put together the summary for the team. Review it and send when you're ready 🙌"
 
@@ -122,7 +123,7 @@ const TOOLS: OpenAI.Chat.Completions.ChatCompletionTool[] = [
     function: {
       name: "prepare_appointment",
       description:
-        "Call when you have collected enough info to draft the appointment email. Required minimum: businessName, contactName, phone, email. Use empty string for fields you genuinely don't know — never invent values.",
+        "Call when you have collected enough info to draft the appointment summary. Required minimum: businessName, contactName, and at least one of phone or email. Use empty string for fields you genuinely don't know — never invent values.",
       parameters: {
         type: "object",
         additionalProperties: false,
@@ -206,6 +207,11 @@ router.post("/assistant/chat", async (req, res) => {
       } catch (e) {
         req.log.warn({ e }, "failed to parse tool args");
       }
+    }
+
+    // Alert the team by SMS as soon as Aria has the summary, without waiting for the client's button.
+    if (appointment && hasMinimumContact(appointment)) {
+      await sendLeadSms(buildSms(detected, appointment));
     }
 
     res.json({ reply, appointment });
@@ -335,17 +341,33 @@ function buildText(lang: "es" | "en", a: Appointment) {
   return lines.join("\n");
 }
 
+function hasMinimumContact(a: Appointment) {
+  return Boolean(a.businessName?.trim() && a.contactName?.trim() && (a.phone?.trim() || a.email?.trim()));
+}
+
+function buildSms(lang: "es" | "en", a: Appointment) {
+  const lines = [
+    "Nuevo lead de Aria (conect-r.com)",
+    `Negocio: ${a.businessName || "—"}${a.businessType ? ` (${a.businessType})` : ""}`,
+    `Contacto: ${a.contactName || "—"}${a.contactRole ? ` (${a.contactRole})` : ""}`,
+    `Tel: ${a.phone || "—"}`,
+    `Correo: ${a.email || "—"}`,
+    a.interest ? `Interés: ${a.interest}` : "",
+    a.challenge ? `Reto: ${a.challenge}` : "",
+    `Idioma: ${lang.toUpperCase()}`,
+  ];
+  return lines.filter(Boolean).join("\n").slice(0, 1500);
+}
+
 router.post("/assistant/send-appointment", async (req, res) => {
   try {
     const body = req.body as { appointment?: Appointment; lang?: "es" | "en" };
     const a = body.appointment;
     const lang = body.lang === "es" ? "es" : "en";
-    if (!a || !a.email || !a.contactName || !a.businessName) {
+    if (!a || !hasMinimumContact(a)) {
       res.status(400).json({ error: "missing_required_fields" });
       return;
     }
-
-    const { client, fromEmail } = await getUncachableSendGridClient();
 
     const subjectClient =
       lang === "es"
@@ -357,22 +379,10 @@ router.post("/assistant/send-appointment", async (req, res) => {
     const text = buildText(lang, a);
 
     const sends = await Promise.allSettled([
-      client.send({
-        to: a.email,
-        from: fromEmail,
-        subject: subjectClient,
-        text,
-        html,
-        replyTo: TEAM_EMAIL,
-      }),
-      client.send({
-        to: TEAM_EMAIL,
-        from: fromEmail,
-        subject: subjectTeam,
-        text,
-        html,
-        replyTo: a.email,
-      }),
+      sendEmail({ to: TEAM_EMAIL, subject: subjectTeam, html, text, replyTo: a.email || undefined }),
+      ...(a.email
+        ? [sendEmail({ to: a.email, subject: subjectClient, html, text, replyTo: TEAM_EMAIL })]
+        : []),
     ]);
 
     const errors = sends
@@ -381,7 +391,7 @@ router.post("/assistant/send-appointment", async (req, res) => {
     if (errors.length) {
       req.log.warn({ errors }, "send-appointment partial failure");
     }
-    if (errors.length === 2) {
+    if (errors.length === sends.length) {
       res.status(502).json({ error: "send_failed" });
       return;
     }
