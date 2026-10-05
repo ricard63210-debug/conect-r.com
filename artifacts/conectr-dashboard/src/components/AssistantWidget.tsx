@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Mail, Check } from "lucide-react";
+import { MessageCircle, X, Send, Mail, Check, Loader2, RotateCcw } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 
 const CONTACT_EMAIL = "contact@conect-r.com";
@@ -61,9 +61,6 @@ const STR = {
       phone: "Teléfono",
       email: "Correo",
     },
-    emailSubject: "Solicitud de demo — Conect-R",
-    emailIntro:
-      "Hola equipo Conect-R, me interesa agendar una demo. Estos son mis datos:",
   },
   en: {
     fab: "Chat",
@@ -97,50 +94,11 @@ const STR = {
       phone: "Phone",
       email: "Email",
     },
-    emailSubject: "Demo request — Conect-R",
-    emailIntro:
-      "Hi Conect-R team, I'd like to book a demo. Here are my details:",
   },
 } as const;
 
 function uid() {
   return Math.random().toString(36).slice(2, 9);
-}
-
-function buildEmailBody(lang: Lang, b: Appointment) {
-  const t = STR[lang];
-  const L = t.labels;
-  return [
-    t.emailIntro,
-    "",
-    `1. ${L.profile}`,
-    `• ${L.businessName}: ${b.businessName || "—"}`,
-    `• ${L.businessType}: ${b.businessType || "—"}`,
-    `• ${L.locations}: ${b.locations || "—"}`,
-    `• ${L.website}: ${b.website || "—"}`,
-    "",
-    `2. ${L.diagnosis}`,
-    `• ${L.challenge}: ${b.challenge || "—"}`,
-    `• ${L.currentTech}: ${b.currentTech || "—"}`,
-    "",
-    `3. ${L.interest}`,
-    `• ${L.interestField}: ${b.interest || "—"}`,
-    `• ${L.touchpoints}: ${b.touchpoints || "—"}`,
-    "",
-    `4. ${L.budgetSection}`,
-    `• ${L.budget}: ${b.budget || "—"}`,
-    `• ${L.attendees}: ${b.attendees || "—"}`,
-    "",
-    `5. ${L.contact}`,
-    `• ${L.contactName}: ${b.contactName || "—"}${b.contactRole ? ` (${b.contactRole})` : ""}`,
-    `• ${L.phone}: ${b.phone || "—"}`,
-    `• ${L.email}: ${b.email || "—"}`,
-  ].join("\n");
-}
-
-function buildMailto(lang: Lang, b: Appointment) {
-  const t = STR[lang];
-  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(t.emailSubject)}&body=${encodeURIComponent(buildEmailBody(lang, b))}`;
 }
 
 export default function AssistantWidget() {
@@ -324,8 +282,11 @@ export default function AssistantWidget() {
       );
     } catch {
       setSendStatus("error");
-      // Fallback to mailto so the user can still send manually
-      window.location.href = buildMailto(lang, appointment);
+      pushBot(
+        lang === "es"
+          ? `No pude enviar el resumen 😕 Intenta de nuevo con el botón de abajo, o escríbenos a ${CONTACT_EMAIL} o al ${PHONE_DISPLAY}.`
+          : `I couldn't send the summary 😕 Please try again with the button below, or reach us at ${CONTACT_EMAIL} or ${PHONE_DISPLAY}.`,
+      );
     }
   };
 
@@ -742,7 +703,14 @@ function SummaryCard({
       <button
         onClick={onSend}
         disabled={status === "sending" || status === "sent" || (!!appt.phone && !smsConsent)}
-        className="w-full inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-3 py-2.5 rounded-lg text-sm font-semibold mt-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+        aria-busy={status === "sending"}
+        className={`w-full inline-flex items-center justify-center gap-2 text-white px-3 py-2.5 rounded-lg text-sm font-semibold mt-2 disabled:cursor-not-allowed transition-all ${
+          status === "sending"
+            ? "bg-orange-500 cursor-wait"
+            : status === "error"
+              ? "bg-red-600 hover:bg-red-700"
+              : "bg-orange-500 hover:bg-orange-600 disabled:opacity-50"
+        }`}
       >
         {status === "sent" ? (
           <>
@@ -751,8 +719,13 @@ function SummaryCard({
           </>
         ) : status === "sending" ? (
           <>
-            <Mail size={14} />
+            <Loader2 size={14} className="animate-spin" />
             {lang === "es" ? "Enviando..." : "Sending..."}
+          </>
+        ) : status === "error" ? (
+          <>
+            <RotateCcw size={14} />
+            {lang === "es" ? "Reintentar" : "Try again"}
           </>
         ) : (
           <>
@@ -760,6 +733,16 @@ function SummaryCard({
           </>
         )}
       </button>
+      {status === "sending" && (
+        <p className="mt-1.5 text-center text-[11px] text-muted-foreground" aria-live="polite">
+          {lang === "es" ? "Enviando tu resumen al equipo, un momento…" : "Sending your summary to the team, one moment…"}
+        </p>
+      )}
+      {status === "error" && (
+        <p className="mt-1.5 text-center text-[11px] text-red-600" role="alert">
+          {lang === "es" ? "No se pudo enviar. Revisa tu conexión e intenta de nuevo." : "Couldn't send. Check your connection and try again."}
+        </p>
+      )}
     </div>
   );
 }
