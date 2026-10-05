@@ -8,9 +8,17 @@ import {
 } from "lucide-react";
 import { useLang } from "@/lib/i18n";
 import ContactButton from "@/components/ContactButton";
+import SiteExampleCard from "@/components/SiteExampleCard";
 import { getT } from "@/lib/translations";
 import conectrLogo from "@/assets/conectr-logo.png";
 import { useState, useEffect } from "react";
+
+const EXAMPLE_SITES = [
+  { slug: "vegasbeautylab", url: "https://vegasbeautylab.com/" },
+  { slug: "idaliahomes", url: "https://idaliahomes.com/" },
+  { slug: "ajconstruction", url: "https://ajconstructionplacerville.com/" },
+  { slug: "silvinoscafe", url: "https://silvinoscafe.com/" },
+];
 
 function useTheme() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -189,6 +197,41 @@ export default function PremiumWebsite() {
                 <h3 className="font-bold text-foreground text-xl mb-3 font-sans">{f.title}</h3>
                 <p className="text-muted-foreground leading-relaxed font-light">{f.body}</p>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* EXAMPLES */}
+      <section className="relative border-t border-border overflow-hidden">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
+          <div className="text-center mb-14">
+            <div className="flex justify-center mb-6">
+              <div className="px-4 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-500 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
+                {T.premiumWebsite.examples.pill}
+              </div>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-serif italic mb-4">
+              {T.premiumWebsite.examples.title}
+              <br />
+              <span className="text-gradient font-sans not-italic font-black">{T.premiumWebsite.examples.titleHighlight}</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {EXAMPLE_SITES.map((site, i) => (
+              <SiteExampleCard
+                key={site.slug}
+                index={i}
+                name={T.premiumWebsite.examples.list[i].name}
+                industry={T.premiumWebsite.examples.list[i].industry}
+                url={site.url}
+                desktopSrc={`${import.meta.env.BASE_URL}examples/${site.slug}-desktop.jpg`}
+                mobileSrc={`${import.meta.env.BASE_URL}examples/${site.slug}-mobile.jpg`}
+                desktopAlt={T.premiumWebsite.examples.desktopAlt}
+                mobileAlt={T.premiumWebsite.examples.mobileAlt}
+                visitLabel={T.premiumWebsite.examples.visit}
+              />
             ))}
           </div>
         </div>

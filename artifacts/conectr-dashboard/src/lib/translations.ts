@@ -148,6 +148,20 @@ const translations = {
           },
         ],
       },
+      examples: {
+        pill: "EJEMPLOS",
+        title: "Sitios reales,",
+        titleHighlight: "negocios reales.",
+        visit: "Visitar sitio",
+        desktopAlt: "vista en computadora",
+        mobileAlt: "vista en celular",
+        list: [
+          { name: "Vegas Beauty Lab", industry: "Estilista" },
+          { name: "Idalia Homes", industry: "Bienes Raíces" },
+          { name: "AJ Construction", industry: "Construcción" },
+          { name: "Silvino's Café", industry: "Restaurante" },
+        ],
+      },
       whyUs: {
         pill: "POR QUÉ NOS ELIGEN",
         title: "Más que un sitio web —",
@@ -820,6 +834,20 @@ const translations = {
             title: "Local SEO optimized",
             body: "Technical SEO baked in from day one: semantic HTML, structured data, fast load times, and Google Business integration to rank in local search.",
           },
+        ],
+      },
+      examples: {
+        pill: "EXAMPLES",
+        title: "Real sites,",
+        titleHighlight: "real businesses.",
+        visit: "Visit site",
+        desktopAlt: "desktop view",
+        mobileAlt: "mobile view",
+        list: [
+          { name: "Vegas Beauty Lab", industry: "Stylist" },
+          { name: "Idalia Homes", industry: "Real Estate" },
+          { name: "AJ Construction", industry: "Construction" },
+          { name: "Silvino's Café", industry: "Restaurant" },
         ],
       },
       whyUs: {
