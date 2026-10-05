@@ -20,11 +20,11 @@ const translations = {
       },
       about: {
         pill: "RESUMEN EJECUTIVO",
-        title1: "Mas que software.",
+        title1: "Más que software.",
         title2: "Un ecosistema operativo.",
-        body: "Conect-R es un ecosistema tecnologico integral disenado para revolucionar las operaciones y la experiencia del usuario en la industria restaurantera. Modelo hibrido de Hardware y Software como Servicio (SaaS) que integra soluciones fragmentadas en un solo paquete cohesivo — eliminando la necesidad de multiples proveedores de tecnologia y reduciendo la friccion operativa.",
-        vision: { label: "Vision", body: "Ser el sistema operativo definitivo y mas estetico para la gestion integral de restaurantes." },
-        mission: { label: "Mision", body: "Proveer herramientas visuales premium, intuitivas, de implementacion rapida y con altos estandares de seguridad — para que los duenos puedan enfocarse exclusivamente en crecer y en la hospitalidad." },
+        body: "Conect-R es un ecosistema tecnológico integral para negocios de cualquier industria —construcción, bienes raíces, belleza y más. Creamos páginas web a la medida, manejamos tus redes sociales, y desarrollamos sistemas o aplicaciones personalizadas según tu giro. Para negocios de comida, además ofrecemos una suite especializada de hardware y software como servicio que integra tus operaciones en un solo paquete. Un solo equipo de confianza, sin necesidad de múltiples proveedores de tecnología.",
+        vision: { label: "Visión", body: "Ser el sistema operativo definitivo y más estético para la gestión integral de negocios." },
+        mission: { label: "Misión", body: "Proveer herramientas visuales premium, intuitivas, de implementación rápida y con altos estándares de seguridad — para que los dueños puedan enfocarse exclusivamente en crecer y en atender a sus clientes." },
       },
       ecosystem: {
         pill: "PORTAFOLIO DE APLICACIONES",
@@ -36,7 +36,7 @@ const translations = {
         {
           name: "Premium Website",
           tagline: "EL ESCAPARATE DIGITAL DE LA MARCA",
-          body: "No es un sitio estatico — es una infraestructura interactiva con diseno avanzado de marca. Estetica moderna (glassmorphism, micro-animaciones) que garantiza un wow-factor real. Integra mejores practicas de SEO tecnico (tags, semantica HTML, velocidad de carga) para impulsar visibilidad en buscadores. Cada sitio incluye un conserje de IA integrado que responde a las preguntas de los clientes las 24 horas, los 7 días de la semana, los guía para realizar pedidos o reservar una mesa — reduciendo la carga de trabajo de su personal y propietarios.",
+          body: "No es un sitio estatico — es una infraestructura interactiva con diseno avanzado de marca. Estetica moderna (glassmorphism, micro-animaciones) que garantiza un wow-factor real. Integra mejores practicas de SEO tecnico (tags, semantica HTML, velocidad de carga) para impulsar visibilidad en buscadores. Cada sitio incluye un conserje de IA integrado que responde a las preguntas de los clientes las 24 horas, los 7 días de la semana, los guía para realizar pedidos o agendar una cita — reduciendo la carga de trabajo de su personal y propietarios.",
           dashHash: "presencia",
         },
         {
@@ -66,13 +66,13 @@ const translations = {
         {
           name: "TV Menu Boards",
           tagline: "PANTALLAS DINAMICAS EN SITIO",
-          body: "Sistemas de pantallas digitales colocadas estrategicamente en el establecimiento (barras o zonas de comida rapida). Muestran menu, videos promocionales y especiales de manera atractiva y dinamica — empujando ventas visualmente.",
+          body: "Sistemas de pantallas digitales colocadas estrategicamente en el establecimiento (recepcion, mostrador o sala de espera). Muestran servicios, precios, videos promocionales y novedades de manera atractiva y dinamica — empujando ventas visualmente.",
           dashHash: "signage",
         },
         {
           name: "Asesoria para Negocios",
-          tagline: "CONSULTORIA ESTRATEGICA PARA RESTAURANTES",
-          body: "Acompanamos a tu restaurante mas alla del software: analisis operativo, estrategia de marketing, recomendaciones de menu, optimizacion de costos y plan de crecimiento. Conect-R como tu socio estrategico — no solo proveedor de tecnologia.",
+          tagline: "CONSULTORIA ESTRATEGICA DE RENTABILIDAD",
+          body: "Acompanamos a tu negocio mas alla del software: analisis operativo, estrategia de marketing, revision de oferta y precios, optimizacion de costos y plan de crecimiento. Conect-R como tu socio estrategico — no solo proveedor de tecnologia.",
           dashHash: "consulting",
         },
         {
@@ -97,8 +97,8 @@ const translations = {
       local: {
         pill: "HECHO EN CALIFORNIA",
         title1: "Compañia local de Sacramento",
-        title2: "para restaurantes locales",
-        body: "Conect-R es una compañia local de California, basada en Sacramento. Servimos principalmente a restaurantes de Sacramento y sus alrededores — Elk Grove, Roseville, Folsom, Davis, Rocklin y toda la region. Conocemos el mercado local, hablamos tu idioma y entendemos las necesidades de los restaurantes familiares mexicanos, latinos y americanos.",
+        title2: "para negocios locales",
+        body: "Conect-R es una compañia local de California, basada en Sacramento. Servimos principalmente a negocios de Sacramento y sus alrededores — Elk Grove, Roseville, Folsom, Davis, Rocklin y toda la region. Conocemos el mercado local, hablamos tu idioma y entendemos las necesidades de los negocios familiares mexicanos, latinos y americanos.",
         cities: ["Sacramento", "Elk Grove", "Roseville", "Folsom", "Davis", "Rocklin"],
       },
       expansion: {
@@ -107,9 +107,9 @@ const translations = {
         title2: "en Estados Unidos",
         body: "Nuestro objetivo a mediano y largo plazo es la expansion agresiva y la venta online en todo Estados Unidos. El modelo SaaS y el envio de hardware preconfigurado (como Conect-r Station) nos permite operar de forma remota, eliminando las barreras geograficas que tradicionalmente limitan a las agencias locales.",
         items: [
-          { title: "Estandarizacion *Plug & Play*", body: "Sin POS propietario ni hardware on-premise. Los modulos (Website, Chamba, Table Reserve, NextUp) se activan remotamente para cualquier restaurante en USA en cuestion de horas." },
+          { title: "Estandarizacion *Plug & Play*", body: "Sin POS propietario ni hardware on-premise. Los modulos (Website, Chamba, Table Reserve, NextUp) se activan remotamente para cualquier negocio en USA en cuestion de horas." },
           { title: "Marketing de Impacto Visual", body: "Campañas digitales con disenos premium y dinamicos que garantizan un wow-factor. Las landing pages convierten sin necesidad de visitas presenciales." },
-          { title: "Escalabilidad por Bundle", body: "Promover el Ecosistema Completo aumenta el ticket promedio (LTV) mientras el restaurante hace su transformacion digital con una inversion accesible." },
+          { title: "Escalabilidad por Bundle", body: "Promover el Ecosistema Completo aumenta el ticket promedio (LTV) mientras el negocio hace su transformacion digital con una inversion accesible." },
           { title: "Portafolio Publico Autorizado", body: "Por contrato, Conect-R puede usar logos y casos de exito de clientes como material publicitario (Social Proof) — construyendo credibilidad estado por estado." },
         ],
       },
@@ -120,18 +120,18 @@ const translations = {
         items: [
           { title: "Propiedad Intelectual y Codigo", body: "Conect-R retiene exclusiva y permanentemente todos los derechos sobre la infraestructura online, codigo fuente, bases de datos y algoritmos." },
           { title: "Licencia Restringida", body: "El cliente paga una licencia limitada, no exclusiva y no transferible. La propiedad del hardware fisico (stands) no transfiere derechos sobre el software." },
-          { title: "Confidencialidad Estricta", body: "Compromiso firme de proteger los datos operativos del restaurante y la base de datos de clientes. Conect-R no vende ni distribuye estos datos a terceros." },
+          { title: "Confidencialidad Estricta", body: "Compromiso firme de proteger los datos operativos del negocio y la base de datos de clientes. Conect-R no vende ni distribuye estos datos a terceros." },
           { title: "Disclaimer", body: "El ecosistema se provee 'as is', protegiendo a Conect-R de reclamos por perdida de utilidades o interrupciones imprevisibles del servicio (downtime)." },
         ],
       },
       finalCta: {
-        title: "¿Listo para llenar mas mesas?",
-        body: "Agenda una demo de 30 minutos. Sin compromisos. Te mostramos el ecosistema en accion para tu restaurante.",
+        title: "¿Listo para hacer crecer tu negocio?",
+        body: "Agenda una demo de 30 minutos. Sin compromisos. Te mostramos el ecosistema en accion para tu negocio.",
         whatsapp: "Reservar por WhatsApp",
         email: "Enviar email",
       },
       footer: {
-        tagline: "Ecosistema digital para restaurantes. Atrae, atiende y retiene a tus clientes.",
+        tagline: "Ecosistema digital para negocios. Atrae, atiende y retiene a tus clientes.",
         productLabel: "Producto",
         productLinks: [
           { label: "Contacto", href: "mailto:contact@conect-r.com" },
@@ -144,16 +144,16 @@ const translations = {
 
     consulting: {
       description:
-        "Analizamos tu restaurante a fondo y aplicamos optimizaciones medibles para que cada mesa, cada platillo y cada turno generen más utilidad.",
+        "Analizamos tu negocio a fondo y aplicamos optimizaciones medibles para que cada servicio, cada producto y cada turno generen más utilidad.",
       steps: [
-        { title: "Diagnóstico Operativo", body: "Estudio de ventas, costos, tiempos de servicio, mermas, rotación de mesas y datos del POS para detectar dónde se va el dinero." },
-        { title: "Plan Estratégico", body: "Recomendaciones concretas: ajuste de menú, ingeniería de precios, reorganización de turnos, propinas, marketing local y digitalización." },
+        { title: "Diagnóstico Operativo", body: "Estudio de ventas, costos, tiempos de servicio, desperdicio, capacidad utilizada y datos de tu punto de venta para detectar dónde se va el dinero." },
+        { title: "Plan Estratégico", body: "Recomendaciones concretas: ajuste de tu catálogo de productos y servicios, ingeniería de precios, reorganización de turnos, marketing local y digitalización." },
         { title: "Implementación Guiada", body: "Activamos los módulos Conect-R necesarios, capacitamos al equipo y dejamos procesos documentados para que la operación no dependa de una sola persona." },
-        { title: "Medición de Utilidad", body: "Tablero mensual con KPIs: ticket promedio, food cost %, labor %, ocupación y utilidad neta — comparativo antes vs. después." },
+        { title: "Medición de Utilidad", body: "Tablero mensual con KPIs: ticket promedio, costo de insumos %, costo de nómina %, capacidad utilizada y utilidad neta — comparativo antes vs. después." },
       ],
       metrics: [
         { value: "+28%", label: "Utilidad neta promedio" },
-        { value: "-18%", label: "Food cost después de ingeniería de menú" },
+        { value: "-18%", label: "Costo de insumos tras optimizar el catálogo" },
         { value: "+34%", label: "Ticket promedio en horarios optimizados" },
       ],
     },
@@ -169,7 +169,7 @@ const translations = {
         pill: "SITIO WEB PREMIUM",
         title: "Tu hogar digital,",
         titleHighlight: "diseñado para vender.",
-        subtitle: "No es una plantilla. No es un sitio básico. Una presencia web premium e interactiva creada específicamente para tu restaurante — con reservas, menú y SEO integrados desde el primer día.",
+        subtitle: "No es una plantilla. No es un sitio básico. Una presencia web premium e interactiva creada específicamente para tu negocio — con captación de clientes, catálogo y SEO integrados desde el primer día.",
         cta: "Solicitar mi sitio",
       },
       quote: {
@@ -185,15 +185,15 @@ const translations = {
         list: [
           {
             title: "Diseño de marca premium",
-            body: "Identidad visual personalizada construida alrededor de tu restaurante: colores, tipografía, diseños fotográficos y microanimaciones que garantizan un wow-factor real.",
+            body: "Identidad visual personalizada construida alrededor de tu negocio: colores, tipografía, diseños fotográficos y microanimaciones que garantizan un wow-factor real.",
           },
           {
-            title: "Reservaciones en línea",
-            body: "Flujo de reservas integrado que permite a los clientes reservar mesa en segundos, directamente desde tu sitio — sin comisiones a terceros, sin llamadas perdidas.",
+            title: "Citas y reservas en línea",
+            body: "Flujo de reservas integrado que permite a los clientes agendar en segundos, directamente desde tu sitio — sin comisiones a terceros, sin llamadas perdidas.",
           },
           {
-            title: "Menú digital integrado",
-            body: "Tu menú completo vive en el sitio: siempre actualizado, hermosamente diseñado y accesible desde cualquier dispositivo sin necesidad de descargar apps.",
+            title: "Catálogo digital integrado",
+            body: "Tu catálogo completo de productos y servicios vive en el sitio: siempre actualizado, hermosamente diseñado y accesible desde cualquier dispositivo sin necesidad de descargar apps.",
           },
           {
             title: "Optimizado para SEO local",
@@ -208,18 +208,18 @@ const translations = {
         list: [
           {
             title: "Diseñado para convertir, no solo para verse bien",
-            body: "Cada sección — desde el hero hasta el menú — está diseñada con patrones de conversión probados que transforman visitantes en reservaciones.",
+            body: "Cada sección — desde el hero hasta el catálogo — está diseñada con patrones de conversión probados que transforman visitantes en clientes.",
           },
           {
             title: "Entrega rápida, sin dolores de cabeza técnicos",
-            body: "Proyecto completo al aire en menos de 2 semanas. Nos encargamos del hosting, actualizaciones y monitoreo de rendimiento para que te enfoques en operar tu restaurante.",
+            body: "Proyecto completo al aire en menos de 2 semanas. Nos encargamos del hosting, actualizaciones y monitoreo de rendimiento para que te enfoques en operar tu negocio.",
           },
           {
             title: "Tu marca, tu activo",
             body: "Es tuyo. El diseño, el contenido, el dominio. Lo construimos para durar y te entregamos el control completo sin ataduras.",
           },
           {
-            title: "Probado para restaurantes locales",
+            title: "Diseñado para negocios locales",
             body: "Validado con restaurantes del área de Sacramento — conceptos mexicanos, americanos y latinos — que vieron incrementos medibles en clientes y reservaciones en línea.",
           },
         ],
@@ -227,7 +227,7 @@ const translations = {
       cta: {
         pill: "LISTO PARA LANZAR",
         title: "Construyamos la",
-        titleHighlight: "mejor página de tu restaurante.",
+        titleHighlight: "mejor página de tu negocio.",
         subtitle: "Habla con Aria — nuestra asistente virtual recopilará tus detalles y te conectará con el equipo de Conect-R para comenzar.",
         button: "Solicitar mi sitio",
         backToHome: "Volver al inicio",
@@ -241,8 +241,8 @@ const translations = {
       footer: {
         rights: "© {year} Conect-R. Sacramento, CA. Todos los derechos reservados.",
       },
-      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
-      chatGreeting: "¡Gracias por tu interés en nuestro sitio Premium! Soy Aria de Conect-R. Te guiaré para agendar tu consulta.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?",
+      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y a qué se dedica?",
+      chatGreeting: "¡Gracias por tu interés en nuestro sitio Premium! Soy Aria de Conect-R. Te guiaré para agendar tu consulta.\n\nPara empezar, ¿cuál es el nombre de tu negocio y a qué se dedica?",
       chatUserMessage: "Me gustaría solicitar mi Sitio Web Premium",
       demoUserMessage: "Me gustaría agendar una demo",
     },
@@ -581,7 +581,7 @@ const translations = {
         pill: "TV MENU BOARDS",
         title: "TV Menu Boards",
         titleHighlight: "Pantallas digitales que gestionamos por ti",
-        subtitle: "Olvídate de imprimir menús nuevos cada temporada. Nuestras pantallas rotan eventos, menús con fotos y precios, y promociones animadas — todo gestionado por Conect-R. Envías un mensaje, nosotros actualizamos.",
+        subtitle: "Olvídate de reimprimir carteles cada temporada. Nuestras pantallas rotan tus servicios y precios, novedades, avances de proyecto y promociones animadas — todo gestionado por Conect-R. Envías un mensaje, nosotros actualizamos.",
         cta: "Activar Pantallas TV",
       },
       quote: {
@@ -597,7 +597,7 @@ const translations = {
         list: [
           {
             title: "Rotación automática",
-            body: "Eventos, menús con fotos y precios, promos animadas — todo cicla automáticamente cada pocos segundos.",
+            body: "Servicios con fotos y precios, novedades, promos animadas — todo cicla automáticamente cada pocos segundos.",
           },
           {
             title: "Actualizaciones por WhatsApp",
@@ -605,7 +605,7 @@ const translations = {
           },
           {
             title: "Plantillas premium",
-            body: "Diseño profesional listo para usar — Taco Tuesday, Happy Hour, Brunch, eventos especiales.",
+            body: "Diseño profesional listo para usar — promociones de temporada, lanzamientos, horarios y eventos especiales.",
           },
           {
             title: "Contenido animado",
@@ -617,7 +617,7 @@ const translations = {
           },
           {
             title: "Multi-pantalla",
-            body: "Contenido diferente para cada área: barra, terraza, salón — todo controlado desde una sola consola.",
+            body: "Contenido diferente para cada área: recepción, sala de espera, mostrador — todo controlado desde una sola consola.",
           },
         ],
       },
@@ -639,15 +639,15 @@ const translations = {
             body: "Cero curva de aprendizaje para ti o tu personal. Nosotros nos encargamos de todo el diseño y la gestión tecnológica.",
           },
           {
-            title: "Reemplaza menús y letreros impresos",
-            body: "Elimina los costos repetitivos de impresión y mantén tus precios y platillos dinámicos y actualizados.",
+            title: "Reemplaza carteles y letreros impresos",
+            body: "Elimina los costos repetitivos de impresión y mantén tus precios y tu oferta dinámicos y actualizados.",
           },
         ],
       },
       cta: {
         pill: "LISTO PARA LANZAR",
         title: "¿Listo para lanzar TV Menu Boards?",
-        subtitle: "Habla con Aria — nuestra asistente virtual recopilará tus detalles y te conectará con el equipo de Conect-R para activar tus pantallas de menú de TV.",
+        subtitle: "Habla con Aria — nuestra asistente virtual recopilará tus detalles y te conectará con el equipo de Conect-R para activar tus pantallas digitales.",
         button: "Activar Pantallas TV",
         backToHome: "Volver al inicio",
         socialProof: [
@@ -660,8 +660,8 @@ const translations = {
       footer: {
         rights: "© {year} Conect-R. Sacramento, CA. Todos los derechos reservados.",
       },
-      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
-      chatGreeting: "¡Gracias por tu interés en TV Menu Boards! Soy Aria de Conect-R. Te guiaré para configurar tus pantallas digitales.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?",
+      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y a qué se dedica?",
+      chatGreeting: "¡Gracias por tu interés en TV Menu Boards! Soy Aria de Conect-R. Te guiaré para configurar tus pantallas digitales.\n\nPara empezar, ¿cuál es el nombre de tu negocio y a qué se dedica?",
       chatUserMessage: "Me gustaría activar las Pantallas de Menú TV",
       demoUserMessage: "Me gustaría agendar una demo",
     },
@@ -670,7 +670,7 @@ const translations = {
         pill: "ASESORÍA DE NEGOCIOS",
         title: "Asesoría de Negocios",
         titleHighlight: "Más utilidad, menos conjeturas.",
-        subtitle: "Analizamos tu restaurante a fondo y aplicamos optimizaciones medibles para que cada mesa, cada platillo y cada turno generen más utilidad.",
+        subtitle: "Analizamos tu negocio a fondo y aplicamos optimizaciones medibles para que cada servicio, cada producto y cada turno generen más utilidad.",
         cta: "Quiero un diagnóstico gratuito",
       },
       stats: {
@@ -684,7 +684,7 @@ const translations = {
           },
           {
             value: "-18%",
-            label: "Costo de alimentos tras ingeniería de menú",
+            label: "Costo de insumos tras optimizar el catálogo",
           },
           {
             value: "+34%",
@@ -700,12 +700,12 @@ const translations = {
           {
             number: "01",
             title: "Diagnóstico Operativo",
-            body: "Estudio profundo de ventas, costos, tiempos de servicio, desperdicio, rotación de mesas y datos del POS — identificando exactamente dónde se escapa el dinero.",
+            body: "Estudio profundo de ventas, costos, tiempos de servicio, desperdicio, capacidad utilizada y datos de tu punto de venta — identificando exactamente dónde se escapa el dinero.",
           },
           {
             number: "02",
             title: "Plan Estratégico",
-            body: "Recomendaciones concretas: reingeniería de menús, estrategia de precios, rediseño de turnos, política de propinas, marketing local y activación digital.",
+            body: "Recomendaciones concretas: reingeniería de tu catálogo de productos y servicios, estrategia de precios, rediseño de turnos, marketing local y activación digital.",
           },
           {
             number: "03",
@@ -715,13 +715,13 @@ const translations = {
           {
             number: "04",
             title: "Medición de Beneficios",
-            body: "Panel mensual de KPIs: ticket promedio, % de costo de comida, % de labor, ocupación y utilidad neta — comparación clara del antes vs. después.",
+            body: "Panel mensual de KPIs: ticket promedio, % de costo de insumos, % de nómina, capacidad utilizada y utilidad neta — comparación clara del antes vs. después.",
           },
         ],
       },
       cta: {
         pill: "LISTO PARA OPTIMIZAR",
-        title: "¿Listo para optimizar tu restaurante?",
+        title: "¿Listo para optimizar tu negocio?",
         subtitle: "Habla con Aria — nuestra asistente virtual recopilará tus detalles y te conectará con nuestro equipo de consultoría para comenzar.",
         button: "Quiero un diagnóstico gratuito",
         backToHome: "Volver al inicio",
@@ -735,8 +735,8 @@ const translations = {
       footer: {
         rights: "© {year} Conect-R. Sacramento, CA. Todos los derechos reservados.",
       },
-      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y qué tipo de restaurante es?",
-      chatGreeting: "¡Gracias por tu interés en nuestra Asesoría de Negocios! Soy Aria de Conect-R. Te guiaré para programar tu diagnóstico gratuito.\n\nPara empezar, ¿cuál es el nombre de tu restaurante y qué tipo de cocina manejan?",
+      demoGreeting: "Gracias por contactar a Conect-R, mi nombre es Aria y te guiaré paso a paso para hacer tu cita. Hablo español e inglés, escríbeme en el idioma que prefieras.\n\nPara empezar, ¿cuál es el nombre de tu negocio y a qué se dedica?",
+      chatGreeting: "¡Gracias por tu interés en nuestra Asesoría de Negocios! Soy Aria de Conect-R. Te guiaré para programar tu diagnóstico gratuito.\n\nPara empezar, ¿cuál es el nombre de tu negocio y a qué se dedica?",
       chatUserMessage: "Quiero un diagnóstico gratuito",
       demoUserMessage: "Me gustaría agendar una demo",
     },
@@ -840,21 +840,21 @@ const translations = {
         pill: "EXECUTIVE SUMMARY",
         title1: "More than software.",
         title2: "An operating ecosystem.",
-        body: "Conect-R is a comprehensive technology ecosystem designed to revolutionize operations and user experience in the restaurant industry. A hybrid Hardware + Software-as-a-Service (SaaS) model that integrates fragmented solutions into a single cohesive package — eliminating the need for multiple technology providers and reducing operational friction.",
-        vision: { label: "Vision", body: "To be the ultimate, aesthetically pleasing operating system for the comprehensive management of restaurants." },
-        mission: { label: "Mission", body: "Provide premium, intuitive, quick-to-implement visual tools with high security standards — so owners can focus exclusively on growth and hospitality." },
+        body: "Conect-R is a complete technology ecosystem for businesses in any industry —construction, real estate, beauty, and more. We build custom websites, manage your social media, and develop custom systems or apps for your business. For food-service businesses, we also offer a specialized hardware and software suite that brings your operations into one package. One trusted team, no need for multiple technology vendors.",
+        vision: { label: "Vision", body: "To be the ultimate, aesthetically pleasing operating system for the comprehensive management of local businesses." },
+        mission: { label: "Mission", body: "Provide premium, intuitive, quick-to-implement visual tools with high security standards — so owners can focus exclusively on growth and serving their customers." },
       },
       ecosystem: {
         pill: "APPLICATION PORTFOLIO",
         title1: "Each module,",
         title2: "a critical solution.",
-        body: "Every product in the Conect-R suite is independently designed to solve a critical restaurant operation need, while maintaining unparalleled visual and functional cohesion.",
+        body: "Every product in the Conect-R suite is independently designed to solve a critical operational need, while maintaining unparalleled visual and functional cohesion.",
       },
       appPortfolio: [
         {
           name: "Premium Website",
           tagline: "THE BRAND'S DIGITAL SHOWCASE",
-          body: "Not a static website — an interactive infrastructure with advanced brand design. Modern aesthetics (glassmorphism, micro-animations) that guarantee a true wow-factor. Best practices for technical SEO (tags, HTML semantics, page load speed) to boost search visibility. Every site includes a built-in AI concierge that answers customer questions 24/7, guides them to place orders or book a table — reducing the workload on your staff and owners.",
+          body: "Not a static website — an interactive infrastructure with advanced brand design. Modern aesthetics (glassmorphism, micro-animations) that guarantee a true wow-factor. Best practices for technical SEO (tags, HTML semantics, page load speed) to boost search visibility. Every site includes a built-in AI concierge that answers customer questions 24/7, guides them to place orders or book an appointment — reducing the workload on your staff and owners.",
           dashHash: "presencia",
         },
         {
@@ -883,14 +883,14 @@ const translations = {
         },
         {
           name: "TV Menu Boards",
-          tagline: "DYNAMIC ON-SCREEN MENUS",
-          body: "Digital screen systems strategically placed in the establishment (bars or fast-food areas). They display menus, promotional videos, and specials in an attractive and dynamic way — visually boosting sales.",
+          tagline: "DYNAMIC ON-SCREEN DISPLAYS",
+          body: "Digital screen systems strategically placed in the establishment (reception, counter, or waiting area). They display services, pricing, promotional videos, and updates in an attractive and dynamic way — visually boosting sales.",
           dashHash: "signage",
         },
         {
           name: "Business Consulting",
-          tagline: "STRATEGIC ADVISORY FOR RESTAURANTS",
-          body: "We support your restaurant beyond the software: operational analysis, marketing strategy, menu recommendations, cost optimization, and growth planning. Conect-R as your strategic partner — not just a technology vendor.",
+          tagline: "STRATEGIC PROFITABILITY ADVISORY",
+          body: "We support your business beyond the software: operational analysis, marketing strategy, offering and pricing review, cost optimization, and growth planning. Conect-R as your strategic partner — not just a technology vendor.",
           dashHash: "consulting",
         },
         {
@@ -915,8 +915,8 @@ const translations = {
       local: {
         pill: "MADE IN CALIFORNIA",
         title1: "A local Sacramento company",
-        title2: "for local restaurants",
-        body: "Conect-R is a local California company based in Sacramento. We primarily serve restaurants in Sacramento and surrounding areas — Elk Grove, Roseville, Folsom, Davis, Rocklin and the entire region. We know the local market, we speak your language, and we understand the needs of family-owned Mexican, Latin, and American restaurants.",
+        title2: "for local businesses",
+        body: "Conect-R is a local California company based in Sacramento. We primarily serve businesses in Sacramento and surrounding areas — Elk Grove, Roseville, Folsom, Davis, Rocklin and the entire region. We know the local market, we speak your language, and we understand the needs of family-owned Mexican, Latin, and American businesses.",
         cities: ["Sacramento", "Elk Grove", "Roseville", "Folsom", "Davis", "Rocklin"],
       },
       expansion: {
@@ -925,9 +925,9 @@ const translations = {
         title2: "across the United States",
         body: "Our medium- and long-term goal is aggressive expansion and online sales across the United States. The SaaS model and shipment of pre-configured hardware (such as Conect-r Station) lets us operate remotely, eliminating the geographical barriers that traditionally limit local agencies.",
         items: [
-          { title: "*Plug & Play* Standardization", body: "No proprietary POS or on-premise hardware required. Modules (Website, Chamba, Table Reserve, NextUp) activate remotely for any restaurant in the USA in a matter of hours." },
+          { title: "*Plug & Play* Standardization", body: "No proprietary POS or on-premise hardware required. Modules (Website, Chamba, Table Reserve, NextUp) activate remotely for any business in the USA in a matter of hours." },
           { title: "Visual Impact Marketing", body: "Premium and dynamic digital campaigns that guarantee a wow-factor. Landing pages convert without the need for in-person sales visits." },
-          { title: "Bundle Scalability", body: "Promoting the Complete Ecosystem raises the average ticket (LTV) while the restaurant goes through a full digital transformation with an accessible investment." },
+          { title: "Bundle Scalability", body: "Promoting the Complete Ecosystem raises the average ticket (LTV) while the business goes through a full digital transformation with an accessible investment." },
           { title: "Authorized Public Portfolio", body: "By contract, Conect-R can use customer logos and success stories as marketing material (Social Proof) — building credibility state by state." },
         ],
       },
@@ -938,18 +938,18 @@ const translations = {
         items: [
           { title: "Intellectual Property and Code", body: "Conect-R exclusively and permanently retains all rights to the online infrastructure, source code, databases, and algorithms." },
           { title: "Restricted Licensing", body: "The customer pays for a limited, non-exclusive, non-transferable license. Ownership of the physical hardware (stands) does not transfer software IP rights." },
-          { title: "Strict Confidentiality", body: "Strong commitment to protecting the restaurant's operational data and customer database. Conect-R does not sell or distribute this data to third parties." },
+          { title: "Strict Confidentiality", body: "Strong commitment to protecting the business's operational data and customer database. Conect-R does not sell or distribute this data to third parties." },
           { title: "Disclaimer", body: "The ecosystem is provided 'as is', protecting Conect-R from claims of lost profits or unforeseeable service interruptions (downtime)." },
         ],
       },
       finalCta: {
-        title: "Ready to fill more tables?",
-        body: "Book a 30-minute demo. No commitments. We'll show you the ecosystem in action for your restaurant.",
+        title: "Ready to grow your business?",
+        body: "Book a 30-minute demo. No commitments. We'll show you the ecosystem in action for your business.",
         whatsapp: "Book by WhatsApp",
         email: "Send email",
       },
       footer: {
-        tagline: "Digital ecosystem for restaurants. Attract, serve, and retain your customers.",
+        tagline: "Digital ecosystem for businesses. Attract, serve, and retain your customers.",
         productLabel: "Product",
         productLinks: [
           { label: "Contact", href: "mailto:contact@conect-r.com" },
@@ -962,16 +962,16 @@ const translations = {
 
     consulting: {
       description:
-        "We analyze your restaurant in depth and roll out measurable optimizations so every table, every dish and every shift drives more profit.",
+        "We analyze your business in depth and roll out measurable optimizations so every service, every product and every shift drives more profit.",
       steps: [
-        { title: "Operational Diagnosis", body: "Deep study of sales, costs, service times, waste, table turnover and POS data — pinpointing exactly where money is leaking." },
-        { title: "Strategic Plan", body: "Concrete recommendations: menu re-engineering, price strategy, shift redesign, tip policy, local marketing and digital activation." },
+        { title: "Operational Diagnosis", body: "Deep study of sales, costs, service times, waste, capacity utilization and point-of-sale data — pinpointing exactly where money is leaking." },
+        { title: "Strategic Plan", body: "Concrete recommendations: product and service mix re-engineering, price strategy, shift redesign, local marketing and digital activation." },
         { title: "Guided Implementation", body: "We activate the Conect-R modules you need, train the team and leave processes documented so the business no longer depends on one person." },
-        { title: "Profit Measurement", body: "Monthly KPI dashboard: average check, food cost %, labor %, occupancy and net profit — clear before vs. after comparison." },
+        { title: "Profit Measurement", body: "Monthly KPI dashboard: average ticket, cost of goods %, labor %, capacity utilization and net profit — clear before vs. after comparison." },
       ],
       metrics: [
         { value: "+28%", label: "Average net profit lift" },
-        { value: "-18%", label: "Food cost after menu engineering" },
+        { value: "-18%", label: "Cost of goods after catalog optimization" },
         { value: "+34%", label: "Average ticket in optimized hours" },
       ],
     },
@@ -987,7 +987,7 @@ const translations = {
         pill: "PREMIUM WEBSITE",
         title: "Your digital home,",
         titleHighlight: "built to sell.",
-        subtitle: "Not a template. Not a basic site. A premium, interactive web presence built specifically for your restaurant — with reservations, menu, and SEO baked in from day one.",
+        subtitle: "Not a template. Not a basic site. A premium, interactive web presence built specifically for your business — with lead capture, catalog, and SEO baked in from day one.",
         cta: "Request my site",
       },
       quote: {
@@ -1003,15 +1003,15 @@ const translations = {
         list: [
           {
             title: "Premium brand design",
-            body: "Custom visual identity built around your restaurant — colors, typography, photography layouts, and micro-animations that create a real wow-factor.",
+            body: "Custom visual identity built around your business — colors, typography, photography layouts, and micro-animations that create a real wow-factor.",
           },
           {
-            title: "Online reservations",
-            body: "Integrated reservation flow that lets guests book a table in seconds, directly from your site — no third-party fees, no missed calls.",
+            title: "Online booking",
+            body: "Integrated booking flow that lets customers book in seconds, directly from your site — no third-party fees, no missed calls.",
           },
           {
-            title: "Integrated digital menu",
-            body: "Your full menu lives on the site — always up to date, beautifully formatted, and accessible from any device without an app.",
+            title: "Integrated digital catalog",
+            body: "Your full product and service catalog lives on the site — always up to date, beautifully formatted, and accessible from any device without an app.",
           },
           {
             title: "Local SEO optimized",
@@ -1026,18 +1026,18 @@ const translations = {
         list: [
           {
             title: "Built to convert, not just look good",
-            body: "Every section — from the hero to the menu — is designed with proven conversion patterns that turn visitors into reservations.",
+            body: "Every section — from the hero to the catalog — is designed with proven conversion patterns that turn visitors into customers.",
           },
           {
             title: "Fast delivery, zero tech headaches",
-            body: "Full project live in under 2 weeks. We handle hosting, updates, and performance monitoring so you focus on running your restaurant.",
+            body: "Full project live in under 2 weeks. We handle hosting, updates, and performance monitoring so you focus on running your business.",
           },
           {
             title: "Your brand, your asset",
             body: "You own it. The design, the content, the domain. We build it to last and hand you full control with no lock-in.",
           },
           {
-            title: "Proven for local restaurants",
+            title: "Built for local businesses",
             body: "Tested with Sacramento-area restaurants — Mexican, American, and Latino concepts — that saw measurable increases in walk-ins and online reservations.",
           },
         ],
@@ -1045,7 +1045,7 @@ const translations = {
       cta: {
         pill: "READY TO LAUNCH",
         title: "Let's build your",
-        titleHighlight: "restaurant's best page.",
+        titleHighlight: "business's best page.",
         subtitle: "Talk to Aria — our AI assistant will gather your details and connect you with the Conect-R team to kick things off.",
         button: "Request my site",
         backToHome: "Back to home",
@@ -1059,8 +1059,8 @@ const translations = {
       footer: {
         rights: "© {year} Conect-R. Sacramento, CA. All rights reserved.",
       },
-      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
-      chatGreeting: "Thanks for your interest in our Premium Website! I'm Aria from Conect-R. I'll guide you through booking a consultation.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?",
+      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what does it do?",
+      chatGreeting: "Thanks for your interest in our Premium Website! I'm Aria from Conect-R. I'll guide you through booking a consultation.\n\nTo start, what's the name of your business and what does it do?",
       chatUserMessage: "I would like to request my Premium Website",
       demoUserMessage: "I would like to book a demo",
     },
@@ -1399,7 +1399,7 @@ const translations = {
         pill: "TV MENU BOARDS",
         title: "TV Menu Boards",
         titleHighlight: "Digital screens we manage for you",
-        subtitle: "Forget printing new menus every season. Our screens rotate events, menus with prices and animated promos — all managed by Conect-R. You send a message, we update.",
+        subtitle: "Forget reprinting signage every season. Our screens rotate your services and pricing, updates, project progress and animated promos — all managed by Conect-R. You send a message, we update.",
         cta: "Activate TV Boards",
       },
       quote: {
@@ -1415,7 +1415,7 @@ const translations = {
         list: [
           {
             title: "Auto rotation",
-            body: "Events, menu with prices and photos, animated promos — they cycle on their own every few seconds.",
+            body: "Services with prices and photos, updates, animated promos — they cycle on their own every few seconds.",
           },
           {
             title: "WhatsApp updates",
@@ -1423,7 +1423,7 @@ const translations = {
           },
           {
             title: "Premium templates",
-            body: "Pro design ready to use — Taco Tuesday, Happy Hour, Brunch, events.",
+            body: "Pro design ready to use — seasonal promos, launches, hours, and events.",
           },
           {
             title: "Animated content",
@@ -1435,7 +1435,7 @@ const translations = {
           },
           {
             title: "Multi-screen",
-            body: "Different content per location: bar, terrace, dining — all from one console.",
+            body: "Different content per location: reception, waiting area, counter — all from one console.",
           },
         ],
       },
@@ -1457,15 +1457,15 @@ const translations = {
             body: "Zero learning curve for you or your staff. We handle all design and technology management.",
           },
           {
-            title: "Replaces printed menus and signage",
-            body: "Eliminate repetitive printing costs and keep your pricing and items dynamic and fresh.",
+            title: "Replaces printed posters and signage",
+            body: "Eliminate repetitive printing costs and keep your pricing and offering dynamic and fresh.",
           },
         ],
       },
       cta: {
         pill: "READY TO LAUNCH",
         title: "Ready to launch TV Menu Boards?",
-        subtitle: "Talk to Aria — our AI assistant will gather your details and connect you with the Conect-R team to activate your TV menu boards.",
+        subtitle: "Talk to Aria — our AI assistant will gather your details and connect you with the Conect-R team to activate your digital boards.",
         button: "Activate TV Boards",
         backToHome: "Back to home",
         socialProof: [
@@ -1478,8 +1478,8 @@ const translations = {
       footer: {
         rights: "© {year} Conect-R. Sacramento, CA. All rights reserved.",
       },
-      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
-      chatGreeting: "Thanks for your interest in TV Menu Boards! I'm Aria from Conect-R. I'll guide you through setting up your digital boards.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?",
+      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what does it do?",
+      chatGreeting: "Thanks for your interest in TV Menu Boards! I'm Aria from Conect-R. I'll guide you through setting up your digital boards.\n\nTo start, what's the name of your business and what does it do?",
       chatUserMessage: "I would like to activate TV Menu Boards",
       demoUserMessage: "I would like to book a demo",
     },
@@ -1488,7 +1488,7 @@ const translations = {
         pill: "BUSINESS CONSULTING",
         title: "Business Consulting",
         titleHighlight: "More profit, less guessing.",
-        subtitle: "We analyze your restaurant in depth and roll out measurable optimizations so every table, every dish and every shift drives more profit.",
+        subtitle: "We analyze your business in depth and roll out measurable optimizations so every service, every product and every shift drives more profit.",
         cta: "I want a free diagnosis",
       },
       stats: {
@@ -1502,7 +1502,7 @@ const translations = {
           },
           {
             value: "-18%",
-            label: "Food cost after menu engineering",
+            label: "Cost of goods after catalog optimization",
           },
           {
             value: "+34%",
@@ -1518,12 +1518,12 @@ const translations = {
           {
             number: "01",
             title: "Operational Diagnosis",
-            body: "Deep study of sales, costs, service times, waste, table turnover and POS data — pinpointing exactly where money is leaking.",
+            body: "Deep study of sales, costs, service times, waste, capacity utilization and point-of-sale data — pinpointing exactly where money is leaking.",
           },
           {
             number: "02",
             title: "Strategic Plan",
-            body: "Concrete recommendations: menu re-engineering, price strategy, shift redesign, tip policy, local marketing and digital activation.",
+            body: "Concrete recommendations: product and service mix re-engineering, price strategy, shift redesign, local marketing and digital activation.",
           },
           {
             number: "03",
@@ -1533,13 +1533,13 @@ const translations = {
           {
             number: "04",
             title: "Profit Measurement",
-            body: "Monthly KPI dashboard: average check, food cost %, labor %, occupancy and net profit — clear before vs. after comparison.",
+            body: "Monthly KPI dashboard: average ticket, cost of goods %, labor %, capacity utilization and net profit — clear before vs. after comparison.",
           },
         ],
       },
       cta: {
         pill: "READY TO OPTIMIZE",
-        title: "Ready to optimize your restaurant?",
+        title: "Ready to optimize your business?",
         subtitle: "Talk to Aria — our AI assistant will gather your details and connect you with our consulting team to get started.",
         button: "I want a free diagnosis",
         backToHome: "Back to home",
@@ -1553,8 +1553,8 @@ const translations = {
       footer: {
         rights: "© {year} Conect-R. Sacramento, CA. All rights reserved.",
       },
-      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what type of restaurant is it?",
-      chatGreeting: "Thanks for your interest in our Business Consulting services! I'm Aria from Conect-R. I'll guide you through scheduling your free diagnosis.\n\nTo start, what's the name of your restaurant and what type of cuisine do you serve?",
+      demoGreeting: "Thanks for reaching out to Conect-R, my name is Aria and I'll guide you step by step to book your appointment. I speak English and Spanish — feel free to write in whichever you prefer.\n\nTo start, what's the name of your business and what does it do?",
+      chatGreeting: "Thanks for your interest in our Business Consulting services! I'm Aria from Conect-R. I'll guide you through scheduling your free diagnosis.\n\nTo start, what's the name of your business and what does it do?",
       chatUserMessage: "I want a free diagnosis",
       demoUserMessage: "I would like to book a demo",
     },
