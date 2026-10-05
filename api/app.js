@@ -41560,17 +41560,21 @@ Cuando el usuario muestre inter\xE9s real (pide una cotizaci\xF3n, detalles de m
 Reacciona a cada respuesta, ofrece un tip relevante de alg\xFAn m\xF3dulo, y siempre apunta hacia agendar la demo.
 
 CIERRE DE LA DEMO:
-Cuando tengas como m\xEDnimo: nombre del negocio, nombre del contacto, y tel\xE9fono o correo \u2014 al menos uno de los dos (extra si tienes tipo de negocio, reto e inter\xE9s), llama a la herramienta 'prepare_appointment' con todo lo recopilado. Usa cadena vac\xEDa "" para campos que no conozcas \u2014 NUNCA inventes datos. Despu\xE9s de llamar la herramienta, escribe UN mensaje corto de confirmaci\xF3n en el idioma del usuario, por ejemplo:
+No cierres en cuanto tengas los datos de contacto. Antes de cerrar, recorre la CALIFICACI\xD3N PARA LA DEMO y pregunta \u2014 una a la vez \u2014 por lo menos: a qu\xE9 se dedica el negocio, su reto principal, qu\xE9 le interesa y su rango de presupuesto, adem\xE1s de sus datos de contacto.
+Llama a la herramienta 'prepare_appointment' solo cuando se cumplan las dos condiciones:
+  1. Ya preguntaste por esos puntos de calificaci\xF3n (aunque el usuario prefiera no contestar alguno), o el usuario pide expl\xEDcitamente terminar o que lo contacten ya.
+  2. Tienes como m\xEDnimo: nombre del negocio, nombre del contacto, y tel\xE9fono o correo \u2014 al menos uno de los dos.
+Pasa todo lo recopilado. Usa cadena vac\xEDa "" para campos que no conozcas \u2014 NUNCA inventes datos. Despu\xE9s de llamar la herramienta, escribe UN mensaje corto de confirmaci\xF3n en el idioma del usuario, por ejemplo:
   ES: "Perfecto, ya arm\xE9 el resumen para el equipo. Rev\xEDsalo y m\xE1ndalo cuando est\xE9s listo \u{1F64C}"
   EN: "Perfect, I've put together the summary for the team. Review it and send when you're ready \u{1F64C}"
 
-No llames la herramienta hasta tener esos campos m\xEDnimos. No la llames dos veces. Despu\xE9s de llamarla, puedes seguir conversando normal si el usuario tiene m\xE1s preguntas \u2014 pero sigue invitando a la demo cuando tenga sentido.`;
+No llames la herramienta hasta cumplir esas dos condiciones. No la llames dos veces. Despu\xE9s de llamarla, puedes seguir conversando normal si el usuario tiene m\xE1s preguntas \u2014 pero sigue invitando a la demo cuando tenga sentido.`;
 var TOOLS = [
   {
     type: "function",
     function: {
       name: "prepare_appointment",
-      description: "Call when you have collected enough info to draft the appointment summary. Required minimum: businessName, contactName, and at least one of phone or email. Use empty string for fields you genuinely don't know \u2014 never invent values.",
+      description: "Call only after you have asked the qualification questions (industry, main challenge, interest, budget) \u2014 or the user explicitly asked to wrap up \u2014 and you have at least businessName, contactName, and one of phone or email. Use empty string for fields you genuinely don't know \u2014 never invent values.",
       parameters: {
         type: "object",
         additionalProperties: false,
