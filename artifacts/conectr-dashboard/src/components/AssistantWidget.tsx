@@ -8,7 +8,8 @@ const PHONE_DISPLAY = "+1 916 812 0873";
 
 type Lang = "es" | "en";
 
-type Msg = { id: string; from: "bot" | "user"; text: string };
+// "card" marks where the summary card sits in the conversation, so later messages render below it
+type Msg = { id: string; from: "bot" | "user" | "card"; text: string };
 
 type Appointment = {
   businessName: string;
@@ -236,6 +237,7 @@ export default function AssistantWidget() {
         });
       }
       if (data.appointment) {
+        setMessages((m) => (m.some((x) => x.from === "card") ? m : [...m, { id: uid(), from: "card", text: "" }]));
         // Merge with any prior appointment so user edits are preserved
         setAppointment((prev) => ({
           businessName: "",
@@ -275,11 +277,13 @@ export default function AssistantWidget() {
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setSendStatus("sent");
-      pushBot(
+      const doneText =
         lang === "es"
-          ? "¡Listo! Resumen enviado. El equipo de Conect-R te contactará en menos de 24 horas 🙌"
-          : "Done! Summary sent. The Conect-R team will reach out within 24 hours 🙌",
-      );
+          ? "¡Listo! Resumen enviado — el equipo de Conect-R te contactará en menos de 24 horas 🙌 Mientras tanto, ¿hay algo más en lo que te pueda ayudar?"
+          : "Done! Summary sent — the Conect-R team will reach out within 24 hours 🙌 In the meantime, is there anything else I can help you with?";
+      pushBot(doneText);
+      // Let Aria know the summary already went out, so a follow-up question doesn't trigger another one
+      aiHistoryRef.current.push({ role: "assistant", content: doneText });
     } catch {
       setSendStatus("error");
       pushBot(
@@ -381,23 +385,26 @@ export default function AssistantWidget() {
               ref={scrollRef}
               className="flex-1 overflow-y-auto px-3 py-3 space-y-2 bg-muted/20"
             >
-              {messages.map((m) => (
-                <MessageBubble key={m.id} from={m.from} text={m.text} />
-              ))}
+              {messages.map((m) =>
+                m.from === "card" ? (
+                  appointment && (
+                    <SummaryCard
+                      key={m.id}
+                      lang={lang}
+                      appt={appointment}
+                      editing={editing}
+                      status={sendStatus}
+                      onEdit={() => setEditing((e) => !e)}
+                      onChange={(a) => setAppointment(a)}
+                      onSend={sendEmail}
+                    />
+                  )
+                ) : (
+                  <MessageBubble key={m.id} from={m.from} text={m.text} />
+                ),
+              )}
 
               {thinking && <TypingDots />}
-
-              {appointment && (
-                <SummaryCard
-                  lang={lang}
-                  appt={appointment}
-                  editing={editing}
-                  status={sendStatus}
-                  onEdit={() => setEditing((e) => !e)}
-                  onChange={(a) => setAppointment(a)}
-                  onSend={sendEmail}
-                />
-              )}
             </div>
 
             {/* Input */}
