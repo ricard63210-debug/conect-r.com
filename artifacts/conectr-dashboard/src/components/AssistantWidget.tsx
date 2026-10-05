@@ -38,7 +38,7 @@ const STR = {
     fallback: `Tuve un problemita de conexión. Mientras, escríbeme a ${CONTACT_EMAIL} o al ${PHONE_DISPLAY}.`,
     summaryTitle: "Resumen para el equipo",
     summaryHint: "Revisa los datos y mándalos cuando estés listo.",
-    sendBtn: "Enviar resumen por correo",
+    sendBtn: "Enviar resumen",
     edit: "Editar",
     labels: {
       profile: "Perfil del Negocio",
@@ -319,8 +319,8 @@ export default function AssistantWidget() {
       setSendStatus("sent");
       pushBot(
         lang === "es"
-          ? "¡Listo! Enviamos el resumen a tu correo y al equipo de Conect-R. Te contactamos en menos de 24 horas 🙌"
-          : "Done! We sent the summary to your inbox and to the Conect-R team. You'll hear from us within 24 hours 🙌",
+          ? "¡Listo! Resumen enviado. El equipo de Conect-R te contactará en menos de 24 horas 🙌"
+          : "Done! Summary sent. The Conect-R team will reach out within 24 hours 🙌",
       );
     } catch {
       setSendStatus("error");
