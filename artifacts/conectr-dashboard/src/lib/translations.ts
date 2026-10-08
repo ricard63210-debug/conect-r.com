@@ -31,6 +31,7 @@ const translations = {
         title1: "Cada modulo,",
         title2: "una solucion critica.",
         body: "Cada producto del suite Conect-R esta disenado independientemente para resolver una necesidad critica de operacion, manteniendo cohesion visual y funcional inigualable.",
+        learnMore: "Ver más",
       },
       appPortfolio: [
         {
@@ -719,6 +720,7 @@ const translations = {
         title1: "Each module,",
         title2: "a critical solution.",
         body: "Every product in the Conect-R suite is independently designed to solve a critical operational need, while maintaining unparalleled visual and functional cohesion.",
+        learnMore: "Learn more",
       },
       appPortfolio: [
         {

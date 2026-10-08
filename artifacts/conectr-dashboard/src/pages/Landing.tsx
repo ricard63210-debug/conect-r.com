@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import {
-  ArrowUpRight, Check, Sun, Moon, Languages,
+  ArrowUpRight, ArrowRight, Check, Sun, Moon, Languages,
   Globe, Smartphone, Monitor,
   Eye, Target,
   Sparkles, Mail,
@@ -289,7 +289,8 @@ export default function Landing() {
                 "/chop-chop"
               ];
               const path = cardPaths[i] || "/";
-              const cardClasses = "maya-card group block h-full text-left w-full rounded-[2.5rem] border border-border bg-card/40 backdrop-blur-sm p-8 hover:border-orange-500/30 hover:bg-orange-500/[0.02] transition-all cursor-pointer relative overflow-hidden";
+              const hasPage = Boolean(cardPaths[i]);
+              const cardClasses = "maya-card group flex flex-col h-full text-left w-full rounded-[2.5rem] border border-border bg-card/40 backdrop-blur-sm p-8 hover:border-orange-500/30 hover:bg-orange-500/[0.02] transition-all cursor-pointer relative overflow-hidden";
               
               return (
                 <motion.div
@@ -300,7 +301,7 @@ export default function Landing() {
                   transition={{ duration: 0.7, delay: i * 0.1 }}
                 >
                   <Link href={path} className={cardClasses}>
-                    <div className="relative z-10">
+                    <div className="relative z-10 flex flex-1 flex-col">
                       <div className="font-bold text-foreground text-2xl mb-2 flex items-center gap-2">
                         {mod.name}
                         <ArrowUpRight size={18} strokeWidth={2.5} className="text-orange-500 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300" />
@@ -309,6 +310,16 @@ export default function Landing() {
                         {mod.tagline}
                       </div>
                       <p className="text-muted-foreground leading-relaxed font-light tracking-wide">{mod.body}</p>
+                      {hasPage && (
+                        // Visual cue only: the whole card is already the link
+                        <span
+                          aria-hidden="true"
+                          className="mt-auto pt-6 inline-flex items-center gap-1.5 text-sm font-bold text-orange-500 transition-all group-hover:gap-2.5"
+                        >
+                          {L.ecosystem.learnMore}
+                          <ArrowRight size={16} strokeWidth={2.5} className="transition-transform group-hover:translate-x-0.5" />
+                        </span>
+                      )}
                     </div>
                     <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   </Link>
