@@ -16,6 +16,7 @@ import Terms from "@/pages/Terms";
 import Privacy from "@/pages/Privacy";
 import NotFound from "@/pages/not-found";
 import AssistantWidget from "@/components/AssistantWidget";
+import ScrollManager from "@/components/ScrollManager";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ function App() {
       <TooltipProvider>
         <LanguageProvider>
           <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+            <ScrollManager />
             <Router />
             <AssistantWidget />
           </WouterRouter>
