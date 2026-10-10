@@ -8,11 +8,16 @@ import {
   CreditCard, TrendingUp
 } from "lucide-react";
 import { useLang } from "@/lib/i18n";
+import ContactButton from "@/components/ContactButton";
 import { getT } from "@/lib/translations";
 import conectrLogo from "@/assets/conectr-logo.png";
 import { useState, useEffect } from "react";
 
 const SIGNUP_URL = "https://station.conect-r.com/signup";
+// TEMPORARY: Station sign-ups are paused while the subscription plans change.
+// The "Create your free account" buttons become "Notify me when we reopen" (SMS) and the price note is hidden.
+// To revert, set this to false.
+const SIGNUPS_PAUSED = true;
 const SUPPORT_PHONE = "+19168120873";
 
 function useTheme() {
@@ -124,20 +129,33 @@ export default function ConectrStation() {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <a
-              href={SIGNUP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-3 bg-foreground text-background px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl shadow-black/20 transition-all hover:scale-[1.02] active:scale-95"
-            >
-              <span className="relative z-10">{S.hero.cta}</span>
-              <ArrowRight size={18} strokeWidth={2.5} className="relative z-10 transition-transform group-hover:translate-x-1" />
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </a>
+            {SIGNUPS_PAUSED ? (
+              <ContactButton
+                message={S.notifySms}
+                className="group relative inline-flex items-center gap-3 bg-foreground text-background px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl shadow-black/20 transition-all hover:scale-[1.02] active:scale-95"
+              >
+                <span className="relative z-10">{S.notifyMe}</span>
+                <ArrowRight size={18} strokeWidth={2.5} className="relative z-10 transition-transform group-hover:translate-x-1" />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </ContactButton>
+            ) : (
+              <a
+                href={SIGNUP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center gap-3 bg-foreground text-background px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl shadow-black/20 transition-all hover:scale-[1.02] active:scale-95"
+              >
+                <span className="relative z-10">{S.hero.cta}</span>
+                <ArrowRight size={18} strokeWidth={2.5} className="relative z-10 transition-transform group-hover:translate-x-1" />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+            )}
           </motion.div>
-          <p className="mt-4 text-xs sm:text-sm text-muted-foreground max-w-md mx-auto leading-relaxed font-light">
-            {S.signupNote}
-          </p>
+          {!SIGNUPS_PAUSED && (
+            <p className="mt-4 text-xs sm:text-sm text-muted-foreground max-w-md mx-auto leading-relaxed font-light">
+              {S.signupNote}
+            </p>
+          )}
         </div>
       </section>
 
@@ -234,18 +252,29 @@ export default function ConectrStation() {
             </p>
 
             <div className="flex justify-center">
-              <a
-                href={SIGNUP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center bg-orange-500 hover:bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl shadow-orange-500/30 transition-all hover:scale-105 active:scale-95"
-              >
-                {S.cta.button}
-              </a>
+              {SIGNUPS_PAUSED ? (
+                <ContactButton
+                  message={S.notifySms}
+                  className="inline-flex items-center bg-orange-500 hover:bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl shadow-orange-500/30 transition-all hover:scale-105 active:scale-95"
+                >
+                  {S.notifyMe}
+                </ContactButton>
+              ) : (
+                <a
+                  href={SIGNUP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center bg-orange-500 hover:bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl shadow-orange-500/30 transition-all hover:scale-105 active:scale-95"
+                >
+                  {S.cta.button}
+                </a>
+              )}
             </div>
-            <p className="mt-4 text-xs sm:text-sm text-muted-foreground max-w-md mx-auto leading-relaxed font-light">
-              {S.signupNote}
-            </p>
+            {!SIGNUPS_PAUSED && (
+              <p className="mt-4 text-xs sm:text-sm text-muted-foreground max-w-md mx-auto leading-relaxed font-light">
+                {S.signupNote}
+              </p>
+            )}
           </motion.div>
         </div>
       </section>
