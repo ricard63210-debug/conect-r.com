@@ -655,7 +655,7 @@ const translations = {
         titleHighlight: "un motor de crecimiento.",
         list: [
           {
-            title: "Deja de regalar comisión",
+            title: "Olvídate de las comisiones de 15–30% de las apps de delivery",
             body: "Cada pedido que te llega por tu link o QR es dinero que no le das a DoorDash o Uber Eats.",
           },
           {
@@ -1346,7 +1346,7 @@ const translations = {
         titleHighlight: "a growth engine.",
         list: [
           {
-            title: "Stop giving away commission",
+            title: "Ditch 15–30% delivery-app commissions",
             body: "Every order that comes through your link or QR is money you're not handing to DoorDash or Uber Eats.",
           },
           {
